@@ -10,5 +10,6 @@
 
 - (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver;
 
+- (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver;
 
 @end

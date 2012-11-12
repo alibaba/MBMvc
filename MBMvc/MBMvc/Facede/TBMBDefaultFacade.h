@@ -8,4 +8,6 @@
 
 
 @interface TBMBDefaultFacade : NSObject <TBMBFacade>
++ (TBMBDefaultFacade *)instance;
+
 @end
