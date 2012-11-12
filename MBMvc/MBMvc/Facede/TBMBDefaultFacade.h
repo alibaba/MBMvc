@@ -7,5 +7,5 @@
 #import "TBMBFacade.h"
 
 
-@interface TBMBApplicationFacade : NSObject <TBMBFacade>
+@interface TBMBDefaultFacade : NSObject <TBMBFacade>
 @end

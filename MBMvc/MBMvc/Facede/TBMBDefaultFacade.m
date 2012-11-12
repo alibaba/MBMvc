@@ -3,10 +3,10 @@
 //
 
 
-#import "TBMBApplicationFacade.h"
+#import "TBMBDefaultFacade.h"
 
 
-@implementation TBMBApplicationFacade {
+@implementation TBMBDefaultFacade {
 
 }
 

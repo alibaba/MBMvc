@@ -3,9 +3,12 @@
 //
 
 
-@protocol TBMBFacade
+#import "TBMBMessageReceiver.h"
+#import "TBMBMessageSender.h"
 
-- (void)subscribeNotification:(NSString *)notificationName;
+@protocol TBMBFacade <TBMBMessageSender>
 
-- (void)subscribeNotifications:(NSArray */*NSString*/)notificationNames;
+- (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver;
+
+
 @end
