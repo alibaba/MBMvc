@@ -16,7 +16,7 @@
 static Class _facadeClass = nil;
 
 + (BOOL)setDefaultFacade:(Class)facadeClass {
-    if (class_conformsToProtocol(facadeClass, objc_getProtocol("TBMBFacade"))) {
+    if (class_conformsToProtocol(facadeClass, @protocol(TBMBFacade))) {
         _facadeClass = facadeClass;
         return YES;
     }
@@ -56,6 +56,10 @@ static Class _facadeClass = nil;
 
 - (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver {
     [_facade unsubscribeNotification:receiver];
+}
+
+- (void)registerCommand:(Class)commandClass {
+    [_facade registerCommand:commandClass];
 }
 
 - (void)sendNotification:(NSString *)notificationName {

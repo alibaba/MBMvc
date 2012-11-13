@@ -20,7 +20,6 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
-    [[TBMBRootViewController alloc] init];
     return YES;
 }
 

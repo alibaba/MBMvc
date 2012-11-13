@@ -3,13 +3,17 @@
 //
 
 
+#import <objc/runtime.h>
+#import <objc/message.h>
 #import "TBMBDefaultFacade.h"
 #import "TBMBDefaultNotification.h"
+#import "TBMBDefaultObserver.h"
 
 
 @implementation TBMBDefaultFacade {
 @private
     NSNotificationCenter *_notificationCenter;
+    NSMutableArray *_commandObservers;
 }
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
@@ -27,6 +31,7 @@
     self = [super init];
     if (self) {
         _notificationCenter = [[NSNotificationCenter alloc] init];
+        _commandObservers = [[NSMutableArray alloc] initWithCapacity:10];
     }
     return self;
 }
@@ -52,6 +57,22 @@
         return;
     }
     [_notificationCenter removeObserver:receiver];
+}
+
+- (void)registerCommand:(Class)commandClass {
+    if (class_conformsToProtocol(commandClass, @protocol(TBMBCommand))) {
+        NSArray *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
+        TBMBDefaultObserver *observer = [TBMBDefaultObserver objectWithCommandClass:commandClass];
+        [_commandObservers addObject:observer];
+        for (NSString *name in names) {
+            [_notificationCenter addObserver:observer
+                                    selector:@selector(handlerNotification:)
+                                        name:name
+                                      object:nil];
+        }
+    } else {
+        //TODO 处理异常?
+    }
 }
 
 

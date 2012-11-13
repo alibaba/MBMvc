@@ -5,6 +5,7 @@
 
 #import "TBMBMessageReceiver.h"
 #import "TBMBMessageSender.h"
+#import "TBMBCommand.h"
 
 @protocol TBMBFacade <TBMBMessageSender>
 
@@ -13,5 +14,7 @@
 - (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver;
 
 - (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver;
+
+- (void)registerCommand:(Class)commandClass;
 
 @end
