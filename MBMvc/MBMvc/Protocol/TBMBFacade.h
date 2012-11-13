@@ -8,6 +8,8 @@
 
 @protocol TBMBFacade <TBMBMessageSender>
 
++ (id <TBMBFacade>)instance;
+
 - (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver;
 
 - (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver;

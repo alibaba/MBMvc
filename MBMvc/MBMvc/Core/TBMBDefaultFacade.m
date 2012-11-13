@@ -4,6 +4,7 @@
 
 
 #import "TBMBDefaultFacade.h"
+#import "TBMBDefaultNotification.h"
 
 
 @implementation TBMBDefaultFacade {
@@ -55,18 +56,18 @@
 
 
 - (void)sendNotification:(NSString *)notificationName {
-
+    [self sendTBMBNotification:[TBMBDefaultNotification objectWithName:notificationName]];
 }
 
 - (void)sendNotification:(NSString *)notificationName body:(id)body {
-
+    [self sendTBMBNotification:[TBMBDefaultNotification objectWithName:notificationName body:body]];
 }
 
 - (void)sendTBMBNotification:(id <TBMBNotification>)notification {
     NSNotification *sysNotification = [NSNotification notificationWithName:notification.name
                                                                     object:nil
                                                                   userInfo:[NSDictionary dictionaryWithObject:notification
-                                                                                                       forKey:@"notification"]];
+                                                                                                       forKey:TBMB_NOTIFICATION_KEY]];
     [_notificationCenter postNotification:sysNotification];
 }
 

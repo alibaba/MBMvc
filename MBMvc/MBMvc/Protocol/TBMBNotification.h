@@ -9,6 +9,22 @@
 
 - (NSString *)name;
 
+- (NSUInteger)key;
+
+- (void)setKey:(NSUInteger)key;
+
 - (void)setBody:(id)body;
+
+- (NSDictionary *)userInfo;
+
+- (void)setUserInfo:(NSDictionary *)value;
+
+- (NSUInteger)retryCount;
+
+- (void)setRetryCount:(NSUInteger)value;
+
+- (id <TBMBNotification>)retryNotification;
+
+- (void)setRetryNotification:(id <TBMBNotification>)notification;
 
 @end

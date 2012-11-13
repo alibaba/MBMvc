@@ -4,6 +4,16 @@
 
 
 #import <Foundation/Foundation.h>
+#import "TBMBFacade.h"
 
-@interface TBMBRootViewController : UIViewController
+@interface TBMBRootViewController : UIViewController <TBMBMessageReceiver, TBMBMessageSender>
+
+@property(nonatomic, strong) id <TBMBFacade> tbmbFacade;
+
+- (NSUInteger const)notificationKey;
+
+- (id)initWithTBMBFacade:(id <TBMBFacade>)tbmbFacade;
+
++ (id)objectWithTBMBFacade:(id <TBMBFacade>)tbmbFacade;
+
 @end

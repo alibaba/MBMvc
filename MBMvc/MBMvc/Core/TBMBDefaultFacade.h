@@ -7,6 +7,8 @@
 #import "TBMBFacade.h"
 
 
+#define TBMB_NOTIFICATION_KEY @"TBMB_NOTIFICATION_KEY"
+
 @interface TBMBDefaultFacade : NSObject <TBMBFacade>
 + (TBMBDefaultFacade *)instance;
 
