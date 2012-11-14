@@ -13,11 +13,8 @@
 
 + (void)staticHelloHandler:(id <TBMBNotification>)notification {
     [TBMBTestService helloWorld:notification.body result:^(NSString *ret) {
-        id <TBMBNotification> retNotification = [TBMBDefaultNotification objectWithName:@"receiveStaticHello"];
-        retNotification.lastNotification = notification;
-        retNotification.body = ret;
-        retNotification.key = notification.key;
-        [[TBMBGlobalFacade instance] sendTBMBNotification:retNotification];
+        [[TBMBGlobalFacade instance] sendTBMBNotification:[notification createNextNotification:@"receiveStaticHello"
+                                                                                      withBody:ret]];
     }];
 }
 

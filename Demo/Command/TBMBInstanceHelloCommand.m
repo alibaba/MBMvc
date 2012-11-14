@@ -16,11 +16,8 @@
 
 - (void)instanceHelloHandler:(id <TBMBNotification>)notification {
     [TBMBTestService helloWorld:notification.body result:^(NSString *ret) {
-        id <TBMBNotification> retNotification = [TBMBDefaultNotification objectWithName:@"receiveInstanceHello"];
-        retNotification.lastNotification = notification;
-        retNotification.body = ret;
-        retNotification.key = notification.key;
-        [[TBMBGlobalFacade instance] sendTBMBNotification:retNotification];
+        [[TBMBGlobalFacade instance] sendTBMBNotification:[notification createNextNotification:@"receiveInstanceHello"
+                                                                                      withBody:ret]];
     }];
 }
 

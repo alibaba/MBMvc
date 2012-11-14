@@ -27,4 +27,8 @@
 
 - (void)setLastNotification:(id <TBMBNotification>)notification;
 
+- (id <TBMBNotification>)createNextNotification:(NSString *)name;
+
+- (id <TBMBNotification>)createNextNotification:(NSString *)name withBody:(id)body;
+
 @end

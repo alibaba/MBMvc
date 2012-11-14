@@ -82,5 +82,29 @@
     return [[TBMBDefaultNotification alloc] initWithName:name key:key];
 }
 
+- (id <TBMBNotification>)createNextNotification:(NSString *)name {
+    TBMBDefaultNotification *notification = [TBMBDefaultNotification objectWithName:name];
+    notification.key = self.key;
+    notification.lastNotification = self;
+    return notification;
+}
+
+- (id <TBMBNotification>)createNextNotification:(NSString *)name withBody:(id)body {
+    TBMBDefaultNotification *notification = [TBMBDefaultNotification objectWithName:name body:body];
+    notification.key = self.key;
+    notification.lastNotification = self;
+    return notification;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"Name:[%@] "
+                                              "Body:[%@] "
+                                              "Key:[%d] "
+                                              "retryCount:[%d] "
+                                              "userInfo:[%@] "
+                                              "lastNotification:[\n\t%@\n] "
+            , _name, _body, _key, _retryCount, _userInfo, _lastNotification];
+}
+
 
 @end
