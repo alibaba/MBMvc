@@ -63,6 +63,51 @@
     return self;
 }
 
+- (id)initWithSEL:(SEL)SEL {
+    self = [super init];
+    if (self) {
+        _name = NSStringFromSelector(SEL);
+    }
+
+    return self;
+}
+
+- (id)initWithSEL:(SEL)SEL body:(id)body {
+    self = [super init];
+    if (self) {
+        _name = NSStringFromSelector(SEL);
+        _body = body;
+    }
+
+    return self;
+}
+
+- (id)initWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name {
+    self = [super init];
+    if (self) {
+        _name = NSStringFromSelector(SEL);
+        _key = key;
+        _name = name;
+    }
+
+    return self;
+}
+
++ (id)objectWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name {
+    return [[TBMBDefaultNotification alloc] initWithSEL:SEL key:key name:name];
+}
+
+
++ (id)objectWithSEL:(SEL)SEL body:(id)body {
+    return [[TBMBDefaultNotification alloc] initWithSEL:SEL body:body];
+}
+
+
++ (id)objectWithSEL:(SEL)SEL {
+    return [[TBMBDefaultNotification alloc] initWithSEL:SEL];
+}
+
+
 + (id)objectWithName:(NSString *)name body:(id)body {
     return [[TBMBDefaultNotification alloc] initWithName:name body:body];
 }

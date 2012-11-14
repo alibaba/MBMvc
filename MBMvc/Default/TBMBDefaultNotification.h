@@ -24,7 +24,6 @@
 
 + (id)objectWithName:(NSString *)name body:(id)body;
 
-
 - (id)initWithName:(NSString *)name key:(NSUInteger)key;
 
 + (id)objectWithName:(NSString *)name key:(NSUInteger)key;
@@ -32,6 +31,18 @@
 - (id)initWithName:(NSString *)name key:(NSUInteger)key body:(id)body;
 
 + (id)objectWithName:(NSString *)name key:(NSUInteger)key body:(id)body;
+
+- (id)initWithSEL:(SEL)SEL;
+
++ (id)objectWithSEL:(SEL)SEL;
+
+- (id)initWithSEL:(SEL)SEL body:(id)body;
+
++ (id)objectWithSEL:(SEL)SEL body:(id)body;
+
+- (id)initWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name;
+
++ (id)objectWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name;
 
 
 @end
