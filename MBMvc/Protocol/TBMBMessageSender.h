@@ -13,4 +13,8 @@
 
 - (void)sendTBMBNotification:(id <TBMBNotification>)notification;
 
+- (void)sendNotificationForSEL:(SEL)selector;
+
+- (void)sendNotificationForSEL:(SEL)selector body:(id)body;
+
 @end

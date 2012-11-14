@@ -110,5 +110,13 @@
     [_notificationCenter postNotification:sysNotification];
 }
 
+- (void)sendNotificationForSEL:(SEL)selector {
+    [self sendNotification:NSStringFromSelector(selector)];
+}
+
+- (void)sendNotificationForSEL:(SEL)selector body:(id)body {
+    [self sendNotification:NSStringFromSelector(selector) body:body];
+}
+
 
 @end

@@ -96,6 +96,15 @@
     return notification;
 }
 
+- (id <TBMBNotification>)createNextNotificationForSEL:(SEL)selector {
+    return [self createNextNotification:NSStringFromSelector(selector)];
+}
+
+- (id <TBMBNotification>)createNextNotificationForSEL:(SEL)selector withBody:(id)body {
+    return [self createNextNotification:NSStringFromSelector(selector) withBody:body];
+}
+
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"Name:[%@] "
                                               "Body:[%@] "

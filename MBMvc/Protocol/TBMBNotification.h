@@ -31,4 +31,8 @@
 
 - (id <TBMBNotification>)createNextNotification:(NSString *)name withBody:(id)body;
 
+- (id <TBMBNotification>)createNextNotificationForSEL:(SEL)selector;
+
+- (id <TBMBNotification>)createNextNotificationForSEL:(SEL)selector withBody:(id)body;
+
 @end

@@ -90,5 +90,15 @@
     [self.tbmbFacade sendTBMBNotification:notification];
 }
 
+- (void)sendNotificationForSEL:(SEL)selector {
+    [self.tbmbFacade sendTBMBNotification:[TBMBDefaultNotification objectWithName:NSStringFromSelector(selector)
+                                                                              key:self.notificationKey]];
+}
+
+- (void)sendNotificationForSEL:(SEL)selector body:(id)body {
+    [self.tbmbFacade sendTBMBNotification:[TBMBDefaultNotification objectWithName:NSStringFromSelector(selector)
+                                                                              key:self.notificationKey body:body]];
+}
+
 
 @end

@@ -41,13 +41,13 @@
 - (void)requestStatic:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [self sendNotification:NSStringFromSelector(@selector($$staticHello:)) body:view.text];
+    [self sendNotificationForSEL:@selector($$staticHello:) body:view.text];
 }
 
 - (void)requestInstance:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [self sendNotification:NSStringFromSelector(@selector($$instanceHello:)) body:view.text];
+    [self sendNotificationForSEL:@selector($$instanceHello:) body:view.text];
 }
 
 

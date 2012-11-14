@@ -75,5 +75,13 @@ static Class _facadeClass = nil;
     [_facade sendTBMBNotification:notification];
 }
 
+- (void)sendNotificationForSEL:(SEL)selector {
+    [_facade sendNotificationForSEL:selector];
+}
+
+- (void)sendNotificationForSEL:(SEL)selector body:(id)body {
+    [_facade sendNotificationForSEL:selector body:body];
+}
+
 
 @end
