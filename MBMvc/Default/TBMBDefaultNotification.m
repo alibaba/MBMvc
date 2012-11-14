@@ -106,12 +106,12 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Name:[%@] "
+    return [NSString stringWithFormat:@"{Name:[%@] "
                                               "Body:[%@] "
                                               "Key:[%d] "
                                               "retryCount:[%d] "
-                                              "userInfo:[%@] "
-                                              "lastNotification:[\n\t%@\n] "
+                                              "userInfo:{%@} "
+                                              "lastNotification:{\n\t%@\n}}"
             , _name, _body, _key, _retryCount, _userInfo, _lastNotification];
 }
 
