@@ -71,7 +71,7 @@
                                       object:nil];
         }
     } else {
-        //TODO 处理异常?
+        NSAssert(NO, @"Unknown commandClass[%@] to register", commandClass);
     }
 }
 

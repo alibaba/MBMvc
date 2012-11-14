@@ -35,7 +35,7 @@
     } else if (class_conformsToProtocol(_commandClass, @protocol(TBMBInstanceCommand))) {
         objc_msgSend([[_commandClass alloc] init], @selector(execute:), notification);
     } else {
-        //TODO 没有定义的command , 处理异常
+        NSAssert(NO, @"Unknown commandClass[%@] to invoke", _commandClass);
     }
 }
 
