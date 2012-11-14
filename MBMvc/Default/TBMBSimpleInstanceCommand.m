@@ -5,7 +5,6 @@
 
 #import <objc/message.h>
 #import "TBMBSimpleInstanceCommand.h"
-#import "TBMBStaticCommand.h"
 #import "TBMBUtil.h"
 
 
@@ -13,8 +12,9 @@
 
 }
 - (void)execute:(id <TBMBNotification>)notification {
-    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@Handler",
-                                                                        [notification name]]
+    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@%@",
+                                                                        [notification name],
+                                                                        TBMB_DEFAULT_COMMAND_HANDLER_NAME]
     );
     if ([self respondsToSelector:notifyHandler]) {
         objc_msgSend(self, notifyHandler, notification);

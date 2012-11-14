@@ -6,8 +6,6 @@
 #import "TBMBNotification.h"
 #import "TBMBCommand.h"
 
-#define TBMB_DEFAULT_COMMAND_HANDLER_NAME @"Handler:"
-
 @protocol TBMBStaticCommand <TBMBCommand>
 
 + (void)execute:(id <TBMBNotification>)notification;
