@@ -3,11 +3,11 @@
 //
 
 
-#import <objc/runtime.h>
 #import <objc/message.h>
 #import "TBMBDefaultFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBDefaultObserver.h"
+#import "TBMBProtocalUtil.h"
 
 
 @implementation TBMBDefaultFacade {
@@ -60,7 +60,7 @@
 }
 
 - (void)registerCommand:(Class)commandClass {
-    if (class_conformsToProtocol(commandClass, @protocol(TBMBCommand))) {
+    if (TBMBClassHasProtocol(commandClass, @protocol(TBMBCommand))) {
         NSArray *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
         TBMBDefaultObserver *observer = [TBMBDefaultObserver objectWithCommandClass:commandClass];
         [_commandObservers addObject:observer];

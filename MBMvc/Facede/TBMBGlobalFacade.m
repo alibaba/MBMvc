@@ -5,6 +5,7 @@
 
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultFacade.h"
+#import "TBMBProtocalUtil.h"
 #import <objc/runtime.h>
 
 
@@ -16,7 +17,7 @@
 static Class _facadeClass = nil;
 
 + (BOOL)setDefaultFacade:(Class)facadeClass {
-    if (class_conformsToProtocol(facadeClass, @protocol(TBMBFacade))) {
+    if (TBMBClassHasProtocol(facadeClass, @protocol(TBMBFacade))) {
         _facadeClass = facadeClass;
         return YES;
     }

@@ -9,6 +9,7 @@
 #import "TBMBFacade.h"
 #import "TBMBStaticCommand.h"
 #import "TBMBInstanceCommand.h"
+#import "TBMBProtocalUtil.h"
 
 
 @implementation TBMBDefaultObserver {
@@ -30,9 +31,9 @@
 
 
 - (void)handlerNotification:(id <TBMBNotification>)notification {
-    if (class_conformsToProtocol(_commandClass, @protocol(TBMBStaticCommand))) {
+    if (TBMBClassHasProtocol(_commandClass, @protocol(TBMBStaticCommand))) {
         objc_msgSend(_commandClass, @selector(execute:), notification);
-    } else if (class_conformsToProtocol(_commandClass, @protocol(TBMBInstanceCommand))) {
+    } else if (TBMBClassHasProtocol(_commandClass, @protocol(TBMBInstanceCommand))) {
         objc_msgSend([[_commandClass alloc] init], @selector(execute:), notification);
     } else {
         NSAssert(NO, @"Unknown commandClass[%@] to invoke", _commandClass);

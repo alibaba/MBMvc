@@ -11,7 +11,7 @@
 
 }
 + (void)execute:(id <TBMBNotification>)notification {
-    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@Handler",
+    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@Handler:",
                                                                         [notification name]]
     );
     if ([self respondsToSelector:notifyHandler]) {
