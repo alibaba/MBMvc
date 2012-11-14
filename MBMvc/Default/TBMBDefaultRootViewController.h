@@ -5,11 +5,10 @@
 
 #import <Foundation/Foundation.h>
 #import "TBMBFacade.h"
-#import "TBMBDefaultMessageReceiver.h"
 
 #define TBMB_DEFAULT_RECEIVE_HANDLER_NAME @"Handler:isSendByMe:"
 
-@interface TBMBDefaultRootViewController : UIViewController <TBMBDefaultMessageReceiver, TBMBMessageSender>
+@interface TBMBDefaultRootViewController : UIViewController <TBMBMessageReceiver, TBMBMessageSender>
 
 @property(nonatomic, strong) id <TBMBFacade> tbmbFacade;
 

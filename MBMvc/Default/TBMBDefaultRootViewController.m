@@ -61,12 +61,6 @@
 }
 
 #pragma mark  - receiver ,need Overwrite
-- (void)handlerSysNotification:(NSNotification *)notification {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self handlerNotification:[notification.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
-    }
-    );
-}
 
 //默认自动匹配方法
 - (void)handlerNotification:(id <TBMBNotification>)notification {

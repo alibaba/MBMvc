@@ -8,7 +8,6 @@
 #import "TBMBDefaultNotification.h"
 #import "TBMBDefaultObserver.h"
 #import "TBMBUtil.h"
-#import "TBMBDefaultMessageReceiver.h"
 
 
 @implementation TBMBDefaultFacade {
@@ -40,22 +39,27 @@
 }
 
 
-- (void)subscribeNotification:(id <TBMBDefaultMessageReceiver>)receiver {
+- (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver {
     if (!receiver) {
         return;
     }
     NSSet *notificationNames = receiver.listReceiveNotifications;
     if (notificationNames && notificationNames.count > 0) {
         for (NSString *name in notificationNames) {
-            [_notificationCenter addObserver:receiver
-                                    selector:@selector(handlerSysNotification:)
-                                        name:name
-                                      object:nil];
+//            [_notificationCenter addObserver:receiver
+//                                    selector:@selector(handlerSysNotification:)
+//                                        name:name
+//                                      object:nil];
+            [_notificationCenter addObserverForName:name
+                                             object:nil queue:[NSOperationQueue currentQueue]
+                                         usingBlock:^(NSNotification *note) {
+                                             [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                                         }];
         }
     }
 }
 
-- (void)unsubscribeNotification:(id <TBMBDefaultMessageReceiver>)receiver {
+- (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver {
     if (!receiver) {
         return;
     }
