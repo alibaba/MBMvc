@@ -5,7 +5,6 @@
 
 #import "TBMBInstanceHelloCommand.h"
 #import "TBMBTestService.h"
-#import "TBMBDefaultNotification.h"
 #import "TBMBMessageSender.h"
 #import "TBMBGlobalFacade.h"
 

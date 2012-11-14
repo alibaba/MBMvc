@@ -3,6 +3,7 @@
 //
 
 #define TBMB_DEFAULT_COMMAND_HANDLER_NAME @"Handler:"
+
 @protocol TBMBCommand
 
 + (NSSet */*NSString*/)listReceiveNotifications;

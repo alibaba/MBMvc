@@ -6,7 +6,6 @@
 #import "TBMBStaticHelloCommand.h"
 #import "TBMBTestService.h"
 #import "TBMBGlobalFacade.h"
-#import "TBMBDefaultNotification.h"
 
 
 @implementation TBMBStaticHelloCommand

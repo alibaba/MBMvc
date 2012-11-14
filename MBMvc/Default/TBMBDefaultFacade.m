@@ -46,10 +46,6 @@
     NSSet *notificationNames = receiver.listReceiveNotifications;
     if (notificationNames && notificationNames.count > 0) {
         for (NSString *name in notificationNames) {
-//            [_notificationCenter addObserver:receiver
-//                                    selector:@selector(handlerSysNotification:)
-//                                        name:name
-//                                      object:nil];
             [_notificationCenter addObserverForName:name
                                              object:nil queue:[NSOperationQueue currentQueue]
                                          usingBlock:^(NSNotification *note) {

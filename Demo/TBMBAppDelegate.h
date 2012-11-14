@@ -12,8 +12,8 @@
 
 @interface TBMBAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property(strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) TBMBViewController *viewController;
+@property(strong, nonatomic) TBMBViewController *viewController;
 
 @end
