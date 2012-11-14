@@ -6,6 +6,8 @@
 #import <Foundation/Foundation.h>
 #import "TBMBFacade.h"
 
+@protocol TBMBDefaultMessageReceiver;
+
 
 #define TBMB_NOTIFICATION_KEY @"TBMB_NOTIFICATION_KEY"
 

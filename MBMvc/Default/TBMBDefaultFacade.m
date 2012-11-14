@@ -7,13 +7,13 @@
 #import "TBMBDefaultFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBDefaultObserver.h"
-#import "TBMBProtocalUtil.h"
+#import "TBMBUtil.h"
+#import "TBMBDefaultMessageReceiver.h"
 
 
 @implementation TBMBDefaultFacade {
 @private
     NSNotificationCenter *_notificationCenter;
-    NSMutableArray *_commandObservers;
 }
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
@@ -31,28 +31,27 @@
     self = [super init];
     if (self) {
         _notificationCenter = [[NSNotificationCenter alloc] init];
-        _commandObservers = [[NSMutableArray alloc] initWithCapacity:10];
     }
     return self;
 }
 
 
-- (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver {
+- (void)subscribeNotification:(id <TBMBDefaultMessageReceiver>)receiver {
     if (!receiver) {
         return;
     }
-    NSArray *notificationNames = receiver.listReceiveNotifications;
+    NSSet *notificationNames = receiver.listReceiveNotifications;
     if (notificationNames && notificationNames.count > 0) {
         for (NSString *name in notificationNames) {
             [_notificationCenter addObserver:receiver
-                                    selector:@selector(handlerNotification:)
+                                    selector:@selector(handlerSysNotification:)
                                         name:name
                                       object:nil];
         }
     }
 }
 
-- (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver {
+- (void)unsubscribeNotification:(id <TBMBDefaultMessageReceiver>)receiver {
     if (!receiver) {
         return;
     }
@@ -61,12 +60,11 @@
 
 - (void)registerCommand:(Class)commandClass {
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBCommand))) {
-        NSArray *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
-        TBMBDefaultObserver *observer = [TBMBDefaultObserver objectWithCommandClass:commandClass];
-        [_commandObservers addObject:observer];
+        [[TBMBDefaultObserver instance] registerCommand:commandClass];
+        NSSet *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
         for (NSString *name in names) {
-            [_notificationCenter addObserver:observer
-                                    selector:@selector(handlerNotification:)
+            [_notificationCenter addObserver:[TBMBDefaultObserver instance]
+                                    selector:@selector(handlerSysNotification:)
                                         name:name
                                       object:nil];
         }

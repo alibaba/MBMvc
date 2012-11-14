@@ -4,12 +4,14 @@
 
 
 #import <objc/message.h>
-#import "TBMBRootViewController.h"
+#import "TBMBDefaultRootViewController.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
+#import "TBMBDefaultFacade.h"
+#import "TBMBUtil.h"
 
 
-@implementation TBMBRootViewController {
+@implementation TBMBDefaultRootViewController {
 @private
     id <TBMBFacade> _tbmbFacade;
 }
@@ -40,33 +42,17 @@
     return self;
 }
 
-- (id)init {
-    self = [super init];
-    if (self) {
-        [self.tbmbFacade subscribeNotification:self];
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        [self.tbmbFacade subscribeNotification:self];
-    }
-    return self;
-}
 
 - (id)initWithTBMBFacade:(id <TBMBFacade>)tbmbFacade {
     self = [super init];
     if (self) {
-        _tbmbFacade = tbmbFacade ? : [TBMBGlobalFacade instance];
-        [self.tbmbFacade subscribeNotification:self];
+        self.tbmbFacade = tbmbFacade;
     }
     return self;
 }
 
 + (id)objectWithTBMBFacade:(id <TBMBFacade>)tbmbFacade {
-    return [[TBMBRootViewController alloc] initWithTBMBFacade:tbmbFacade];
+    return [[TBMBDefaultRootViewController alloc] initWithTBMBFacade:tbmbFacade];
 }
 
 
@@ -75,18 +61,23 @@
 }
 
 #pragma mark  - receiver ,need Overwrite
+- (void)handlerSysNotification:(NSNotification *)notification {
+    [self handlerNotification:[notification.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+}
+
 //默认自动匹配方法
 - (void)handlerNotification:(id <TBMBNotification>)notification {
-    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@Handler:isSendByMe:",
-                                                                        [notification name]]
+    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@%@",
+                                                                        [notification name],
+                                                                        TBMB_DEFAULT_RECEIVE_HANDLER_NAME]
     );
     if ([self respondsToSelector:notifyHandler]) {
         objc_msgSend(self, notifyHandler, notification, notification.key == self.notificationKey);
     }
 }
 
-- (NSArray *)listReceiveNotifications {
-    return nil;
+- (NSSet *)listReceiveNotifications {
+    return TBMBGetAllUIViewControllerHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
 }
 
 #pragma mark  - sender

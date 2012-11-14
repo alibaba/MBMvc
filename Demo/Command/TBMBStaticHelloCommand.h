@@ -7,5 +7,5 @@
 #import "TBMBSimpleStaticCommand.h"
 
 
-@interface TBMBStaticHelloCommand : TBMBSimpleStaticCommand <TBMBCommand>
+@interface TBMBStaticHelloCommand : TBMBSimpleStaticCommand
 @end

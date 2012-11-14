@@ -9,6 +9,6 @@
 - (void)handlerNotification:(id <TBMBNotification>)notification;
 
 //列出需要监听的通知名
-- (NSArray */*NSString*/)listReceiveNotifications;
+- (NSSet */*NSString*/)listReceiveNotifications;
 
 @end

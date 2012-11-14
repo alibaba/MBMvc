@@ -5,6 +5,6 @@
 
 @protocol TBMBCommand
 
-+ (NSArray */*NSString*/)listReceiveNotifications;
++ (NSSet */*NSString*/)listReceiveNotifications;
 
 @end

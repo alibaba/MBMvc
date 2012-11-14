@@ -1,17 +1,20 @@
 //
-// Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-11-14 上午9:49.
+// Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-11-14 下午1:53.
 //
 
 
-#import "TBMBStaticHelloCommand.h"
+#import "TBMBInstanceHelloCommand.h"
 #import "TBMBTestService.h"
-#import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
+#import "TBMBMessageSender.h"
+#import "TBMBGlobalFacade.h"
 
 
-@implementation TBMBStaticHelloCommand
+@implementation TBMBInstanceHelloCommand {
 
-+ (void)staticHelloHandler:(id <TBMBNotification>)notification {
+}
+
+- (void)instanceHelloHandler:(id <TBMBNotification>)notification {
     [TBMBTestService helloWorld:notification.body result:^(NSString *ret) {
         id <TBMBNotification> retNotification = [TBMBDefaultNotification objectWithName:@"receiveStaticHello"];
         retNotification.lastNotification = notification;
@@ -20,5 +23,6 @@
         [[TBMBGlobalFacade instance] sendTBMBNotification:retNotification];
     }];
 }
+
 
 @end

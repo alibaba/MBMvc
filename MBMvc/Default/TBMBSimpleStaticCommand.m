@@ -5,6 +5,7 @@
 
 #import <objc/message.h>
 #import "TBMBSimpleStaticCommand.h"
+#import "TBMBUtil.h"
 
 
 @implementation TBMBSimpleStaticCommand {
@@ -19,8 +20,8 @@
     }
 }
 
-+ (NSArray *)listReceiveNotifications {
-    return nil;
++ (NSSet *)listReceiveNotifications {
+    return TBMBGetAllCommandHandlerName(self, TBMB_DEFAULT_COMMAND_HANDLER_NAME);
 }
 
 

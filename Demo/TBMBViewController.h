@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TBMBRootViewController.h"
+#import "TBMBDefaultRootViewController.h"
 
-@interface TBMBViewController : TBMBRootViewController
+@interface TBMBViewController : TBMBDefaultRootViewController
 
 @end

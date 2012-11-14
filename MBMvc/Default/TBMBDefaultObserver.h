@@ -7,10 +7,11 @@
 #import "TBMBMessageReceiver.h"
 
 
-@interface TBMBDefaultObserver : NSObject <TBMBMessageReceiver>
-- (id)initWithCommandClass:(Class)commandClass;
+@interface TBMBDefaultObserver : NSObject
 
-+ (id)objectWithCommandClass:(Class)commandClass;
++ (TBMBDefaultObserver *)instance;
 
+- (void)handlerSysNotification:(NSNotification *)notification;
 
+- (void)registerCommand:(Class)commandClass;
 @end

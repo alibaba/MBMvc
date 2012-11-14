@@ -5,7 +5,7 @@
 
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultFacade.h"
-#import "TBMBProtocalUtil.h"
+#import "TBMBUtil.h"
 #import <objc/runtime.h>
 
 

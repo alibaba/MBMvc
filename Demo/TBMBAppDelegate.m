@@ -9,7 +9,7 @@
 #import "TBMBAppDelegate.h"
 
 #import "TBMBViewController.h"
-#import "TBMBRootViewController.h"
+#import "TBMBDefaultRootViewController.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBStaticHelloCommand.h"
 
