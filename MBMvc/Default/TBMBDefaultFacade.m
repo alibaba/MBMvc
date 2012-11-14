@@ -14,6 +14,7 @@
 @implementation TBMBDefaultFacade {
 @private
     NSNotificationCenter *_notificationCenter;
+    dispatch_queue_t _queue;
 }
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
@@ -31,6 +32,9 @@
     self = [super init];
     if (self) {
         _notificationCenter = [[NSNotificationCenter alloc] init];
+        _queue = dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT.%@", self]
+                                                  UTF8String], DISPATCH_QUEUE_CONCURRENT
+        );
     }
     return self;
 }
@@ -87,7 +91,11 @@
                                                                     object:nil
                                                                   userInfo:[NSDictionary dictionaryWithObject:notification
                                                                                                        forKey:TBMB_NOTIFICATION_KEY]];
-    [_notificationCenter postNotification:sysNotification];
+
+    dispatch_async(_queue, ^{
+        [_notificationCenter postNotification:sysNotification];
+    }
+    );
 }
 
 
