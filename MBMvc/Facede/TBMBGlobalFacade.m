@@ -6,7 +6,6 @@
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultFacade.h"
 #import "TBMBUtil.h"
-#import <objc/runtime.h>
 
 
 @implementation TBMBGlobalFacade {

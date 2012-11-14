@@ -77,8 +77,8 @@
                                                  if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
                                                      objc_msgSend(commandClass, @selector(execute:), notification);
                                                  } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
-                                                     objc_msgSend([[commandClass alloc]
-                                                                                 init], @selector(execute:), notification
+                                                     objc_msgSend([[commandClass alloc] init],
+                                                             @selector(execute:), notification
                                                      );
                                                  } else {
                                                      NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
