@@ -18,7 +18,7 @@ BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     return YES;
 }
 
-static NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NSString *suffix) {
+static NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:2];
     unsigned int methodCount;
     Method *methods = isClassMethod ?
@@ -28,8 +28,8 @@ static NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NS
         for (unsigned int i = 0; i < methodCount; i++) {
             SEL selector = method_getName(methods[i]);
             NSString *selectorName = NSStringFromSelector(selector);
-            if ([selectorName hasSuffix:suffix]) {
-                [names addObject:[selectorName substringToIndex:(selectorName.length - suffix.length)]];
+            if ([selectorName hasPrefix:prefix]) {
+                [names addObject:selectorName];
             }
         }
     }
@@ -39,11 +39,11 @@ static NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NS
     return names;
 }
 
-NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *suffix) {
+NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
     Class clazz = [controller class];
     while (clazz != nil && clazz != [UIViewController class]) {
-        NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, NO, suffix);
+        NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, NO, prefix);
         [names unionSet:nameWithClass];
         clazz = class_getSuperclass(clazz);
     }
@@ -51,11 +51,11 @@ NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSStr
 }
 
 
-NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *suffix) {
+NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
     Class clazz = commandClass;
     while (clazz != nil && clazz != [NSObject class]) {
-        NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand)), suffix);
+        NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand)), prefix);
         [names unionSet:nameWithClass];
         clazz = class_getSuperclass(clazz);
     }

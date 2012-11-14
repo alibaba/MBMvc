@@ -13,11 +13,12 @@
 
 }
 
-- (void)instanceHelloHandler:(id <TBMBNotification>)notification {
+- (void)$$instanceHello:(id <TBMBNotification>)notification {
     NSLog(@"command Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     [TBMBTestService helloWorld:notification.body result:^(NSString *ret) {
         NSLog(@"command Callback Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-        [[TBMBGlobalFacade instance] sendTBMBNotification:[notification createNextNotification:@"receiveInstanceHello"
+        [[TBMBGlobalFacade instance] sendTBMBNotification:[notification createNextNotification:NSStringFromSelector
+                (@selector($$receiveInstanceHello:))
                                                                                       withBody:ret]];
     }];
 }

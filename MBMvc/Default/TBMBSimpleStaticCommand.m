@@ -6,23 +6,21 @@
 #import <objc/message.h>
 #import "TBMBSimpleStaticCommand.h"
 #import "TBMBUtil.h"
+#import "TBMBMessageReceiver.h"
 
 
 @implementation TBMBSimpleStaticCommand {
 
 }
 + (void)execute:(id <TBMBNotification>)notification {
-    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@%@",
-                                                                        [notification name],
-                                                                        TBMB_DEFAULT_COMMAND_HANDLER_NAME]
-    );
+    SEL notifyHandler = NSSelectorFromString(notification.name);
     if ([self respondsToSelector:notifyHandler]) {
         objc_msgSend(self, notifyHandler, notification);
     }
 }
 
 + (NSSet *)listReceiveNotifications {
-    return TBMBGetAllCommandHandlerName(self, TBMB_DEFAULT_COMMAND_HANDLER_NAME);
+    return TBMBGetAllCommandHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
 }
 
 

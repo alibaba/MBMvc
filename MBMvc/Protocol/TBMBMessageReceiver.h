@@ -4,6 +4,8 @@
 
 #import "TBMBNotification.h"
 
+#define TBMB_DEFAULT_RECEIVE_HANDLER_NAME  (@"$$")
+
 @protocol TBMBMessageReceiver
 //处理通知的函数
 - (void)handlerNotification:(id <TBMBNotification>)notification;

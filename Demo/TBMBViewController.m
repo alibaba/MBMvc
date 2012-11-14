@@ -41,26 +41,26 @@
 - (void)requestStatic:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [self sendNotification:@"staticHello" body:view.text];
+    [self sendNotification:NSStringFromSelector(@selector($$staticHello:)) body:view.text];
 }
 
 - (void)requestInstance:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [self sendNotification:@"instanceHello" body:view.text];
+    [self sendNotification:NSStringFromSelector(@selector($$instanceHello:)) body:view.text];
 }
 
 
-- (void)receiveStaticHelloHandler:(id <TBMBNotification>)notification isSendByMe:(BOOL)yesOrNo {
+- (void)$$receiveStaticHello:(id <TBMBNotification>)notification {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    NSLog(@"isSendByMe:%d", yesOrNo);
+    NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
     UIButton *view = (UIButton *) [self.view viewWithTag:1];
     [view setTitle:notification.body forState:UIControlStateNormal];
 }
 
-- (void)receiveInstanceHelloHandler:(id <TBMBNotification>)notification isSendByMe:(BOOL)yesOrNo {
+- (void)$$receiveInstanceHello:(id <TBMBNotification>)notification {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    NSLog(@"isSendByMe:%d", yesOrNo);
+    NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
     UIButton *view = (UIButton *) [self.view viewWithTag:2];
     [view setTitle:notification.body forState:UIControlStateNormal];
 }

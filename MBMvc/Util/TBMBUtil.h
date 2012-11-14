@@ -4,6 +4,6 @@
 
 extern BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
 
-extern NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *suffix);
+extern NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix);
 
-extern NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *suffix);
+extern NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
