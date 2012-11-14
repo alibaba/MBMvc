@@ -13,14 +13,14 @@
     id _body;
     NSUInteger _retryCount;
     NSDictionary *_userInfo;
-    id <TBMBNotification> _retryNotification;
+    id <TBMBNotification> _lastNotification;
     NSUInteger _key;
 }
 @synthesize name = _name;
 @synthesize body = _body;
 @synthesize retryCount = _retryCount;
 @synthesize userInfo = _userInfo;
-@synthesize retryNotification = _retryNotification;
+@synthesize lastNotification = _lastNotification;
 @synthesize key = _key;
 
 - (id)initWithName:(NSString *)name key:(NSUInteger)key {

@@ -23,8 +23,8 @@
 
 - (void)setRetryCount:(NSUInteger)value;
 
-- (id <TBMBNotification>)retryNotification;
+- (id <TBMBNotification>)lastNotification;
 
-- (void)setRetryNotification:(id <TBMBNotification>)notification;
+- (void)setLastNotification:(id <TBMBNotification>)notification;
 
 @end

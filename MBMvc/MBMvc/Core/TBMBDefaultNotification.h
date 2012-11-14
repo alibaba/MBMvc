@@ -14,7 +14,7 @@
 @property(nonatomic, strong) id body;
 @property(nonatomic, assign) NSUInteger retryCount;
 @property(nonatomic, strong) NSDictionary *userInfo;
-@property(nonatomic, strong) id <TBMBNotification> retryNotification;
+@property(nonatomic, strong) id <TBMBNotification> lastNotification;
 
 - (id)initWithName:(NSString *)name;
 
