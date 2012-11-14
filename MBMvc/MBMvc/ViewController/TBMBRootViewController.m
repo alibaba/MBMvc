@@ -3,6 +3,7 @@
 //
 
 
+#import <objc/message.h>
 #import "TBMBRootViewController.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
@@ -74,8 +75,14 @@
 }
 
 #pragma mark  - receiver ,need Overwrite
-- (void)handlerNotification:(id <TBMBNotification> *)notification {
-
+//默认自动匹配方法
+- (void)handlerNotification:(id <TBMBNotification>)notification {
+    SEL notifyHandler = NSSelectorFromString([NSString stringWithFormat:@"%@Handler:isSendByMe:",
+                                                                        [notification name]]
+    );
+    if ([self respondsToSelector:notifyHandler]) {
+        objc_msgSend(self, notifyHandler, notification, notification.key == self.notificationKey);
+    }
 }
 
 - (NSArray *)listReceiveNotifications {

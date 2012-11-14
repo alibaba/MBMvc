@@ -29,7 +29,7 @@
 }
 
 
-- (void)handlerNotification:(id <TBMBNotification> *)notification {
+- (void)handlerNotification:(id <TBMBNotification>)notification {
     if (class_conformsToProtocol(_commandClass, @protocol(TBMBStaticCommand))) {
         objc_msgSend(_commandClass, @selector(execute:), notification);
     } else if (class_conformsToProtocol(_commandClass, @protocol(TBMBInstanceCommand))) {

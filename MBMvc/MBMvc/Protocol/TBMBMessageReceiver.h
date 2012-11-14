@@ -6,7 +6,7 @@
 
 @protocol TBMBMessageReceiver
 //处理通知的函数
-- (void)handlerNotification:(id <TBMBNotification> *)notification;
+- (void)handlerNotification:(id <TBMBNotification>)notification;
 
 //列出需要监听的通知名
 - (NSArray */*NSString*/)listReceiveNotifications;
