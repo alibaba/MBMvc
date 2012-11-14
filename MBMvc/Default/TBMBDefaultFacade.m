@@ -6,8 +6,9 @@
 #import <objc/message.h>
 #import "TBMBDefaultFacade.h"
 #import "TBMBDefaultNotification.h"
-#import "TBMBDefaultObserver.h"
 #import "TBMBUtil.h"
+#import "TBMBInstanceCommand.h"
+#import "TBMBStaticCommand.h"
 
 
 @implementation TBMBDefaultFacade {
@@ -47,7 +48,7 @@
     if (notificationNames && notificationNames.count > 0) {
         for (NSString *name in notificationNames) {
             [_notificationCenter addObserverForName:name
-                                             object:nil queue:[NSOperationQueue currentQueue]
+                                             object:nil queue:[NSOperationQueue mainQueue]
                                          usingBlock:^(NSNotification *note) {
                                              [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
                                          }];
@@ -64,13 +65,27 @@
 
 - (void)registerCommand:(Class)commandClass {
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBCommand))) {
-        [[TBMBDefaultObserver instance] registerCommand:commandClass];
+        dispatch_queue_t queue = _queue;
         NSSet *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
         for (NSString *name in names) {
-            [_notificationCenter addObserver:[TBMBDefaultObserver instance]
-                                    selector:@selector(handlerSysNotification:)
-                                        name:name
-                                      object:nil];
+            [_notificationCenter addObserverForName:name
+                                             object:nil queue:[NSOperationQueue mainQueue]
+                                         usingBlock:^(NSNotification *note) {
+                                             id <TBMBNotification> notification = [note.userInfo
+                                                     objectForKey:TBMB_NOTIFICATION_KEY];
+                                             dispatch_async(queue, ^{
+                                                 if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
+                                                     objc_msgSend(commandClass, @selector(execute:), notification);
+                                                 } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
+                                                     objc_msgSend([[commandClass alloc]
+                                                                                 init], @selector(execute:), notification
+                                                     );
+                                                 } else {
+                                                     NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
+                                                 }
+                                             }
+                                             );
+                                         }];
         }
     } else {
         NSAssert(NO, @"Unknown commandClass[%@] to register", commandClass);
@@ -92,10 +107,7 @@
                                                                   userInfo:[NSDictionary dictionaryWithObject:notification
                                                                                                        forKey:TBMB_NOTIFICATION_KEY]];
 
-    dispatch_async(_queue, ^{
-        [_notificationCenter postNotification:sysNotification];
-    }
-    );
+    [_notificationCenter postNotification:sysNotification];
 }
 
 
