@@ -17,14 +17,14 @@
 
 - (void)loadView {
     [super loadView];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 100, 30)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 200, 30)];
     [button setTitle:@"请求" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(requestStatic:) forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor = [UIColor redColor];
     button.tag = 1;
     [self.view addSubview:button];
 
-    UIButton *buttonTwo = [[UIButton alloc] initWithFrame:CGRectMake(50, 80, 100, 30)];
+    UIButton *buttonTwo = [[UIButton alloc] initWithFrame:CGRectMake(50, 80, 200, 30)];
     [buttonTwo setTitle:@"请求" forState:UIControlStateNormal];
     [buttonTwo addTarget:self action:@selector(requestInstance:) forControlEvents:UIControlEventTouchUpInside];
     buttonTwo.backgroundColor = [UIColor redColor];
