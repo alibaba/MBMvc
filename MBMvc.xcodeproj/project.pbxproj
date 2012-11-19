@@ -25,21 +25,23 @@
 		EACF05A2405BAB8DC3D29FF1 /* TBMBDefaultRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */; };
 		EACF07411BAC39CBE2196D50 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0B0638BD017E4E305399 /* Default.png */; };
 		EACF07FDA05B19D29466B216 /* TBMBDefaultRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */; };
+		EACF095AF8ACD271CA41BBF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D980DF4ABC5FE1DD51A /* InfoPlist.strings */; };
 		EACF097504AE855ED6921972 /* TBMBStaticHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF009893395D5F7221274B /* TBMBStaticHelloCommand.m */; };
 		EACF0980B1B55973A3186EFC /* TBMBInstanceHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0232AF8F10AC9ECC0F14 /* TBMBInstanceHelloCommand.m */; };
 		EACF09F995FE62F5B7A54282 /* TBMBInstanceHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0232AF8F10AC9ECC0F14 /* TBMBInstanceHelloCommand.m */; };
 		EACF0A0236F08407B5100D0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
 		EACF0B001BD9BE25CCA0B3D5 /* TBMBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0114696E5921FD1438BC /* TBMBAppDelegate.m */; };
 		EACF0B0972828AB8ED702CDA /* TBMBStaticHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF009893395D5F7221274B /* TBMBStaticHelloCommand.m */; };
+		EACF0B333FA47CFED50854EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF01017E4FAEB93FB87A8B /* InfoPlist.strings */; };
 		EACF0C0A8D76F4C66815D50B /* TBMBGlobalFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */; };
 		EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */; };
 		EACF0D23A3C06DC05782C40C /* TBMBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF01467974E8656490884A /* TBMBUtil.m */; };
 		EACF0D54FD79692B7447DA1A /* TBMBSimpleInstanceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0761A6B58420994E034C /* TBMBSimpleInstanceCommand.m */; };
 		EACF0D972E6C6BAA0499D635 /* TBMBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF01467974E8656490884A /* TBMBUtil.m */; };
 		EACF0DB660DDC3B0C40535F1 /* TBMBSimpleStaticCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0BB084076719C2747425 /* TBMBSimpleStaticCommand.m */; };
-		EACF0DC1651A590A8D69AA75 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF05BE95B6DDA3E34D0ADA /* InfoPlist.strings */; };
 		EACF0ECF63E169A1AC59FD53 /* TBMBGlobalFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */; };
 		EACF0F15033165E5EBD597F2 /* TBMBTestService.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0E1EF74E82CE36E11EE9 /* TBMBTestService.m */; };
+		EACF0F6CED51863C1FF4DBA9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF0BE3EE9393AE445B9537 /* InfoPlist.strings */; };
 		EACF0FA89B08F82AF1AD3231 /* TBMBDefaultNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */; };
 		EACF0FCFB829D4899F7D4CF5 /* TBMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF01DAA530DD7BDABD9AC9 /* TBMBViewController.m */; };
 /* End PBXBuildFile section */
@@ -56,8 +58,8 @@
 
 /* Begin PBXFileReference section */
 		EACF00222F49568473E9C0E1 /* MBMvcTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MBMvcTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EACF003361E0B86F01564B8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../MBMvc/main.m; sourceTree = "<group>"; };
-		EACF0076A143CB39C2F37F3D /* MBMvc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; name = "MBMvc-Info.plist"; path = "../MBMvc/MBMvc-Info.plist"; sourceTree = "<group>"; };
+		EACF003361E0B86F01564B8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EACF0076A143CB39C2F37F3D /* MBMvc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "MBMvc-Info.plist"; sourceTree = "<group>"; };
 		EACF009893395D5F7221274B /* TBMBStaticHelloCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBStaticHelloCommand.m; sourceTree = "<group>"; };
 		EACF00A11283172B290F0CA2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EACF00B4DE855DEECCC0B05A /* TBMBCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBCommand.h; sourceTree = "<group>"; };
@@ -72,9 +74,10 @@
 		EACF035FAB2F66CED9E8174E /* TBMBMessageSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageSender.h; sourceTree = "<group>"; };
 		EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EACF03F3429D28833C1197FC /* TBMBInstanceHelloCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBInstanceHelloCommand.h; sourceTree = "<group>"; };
+		EACF04421DEF74195EE2E5EC /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = ../MBMvc/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EACF04A49197313295C9DAB1 /* TBMBDefaultRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultRootViewController.h; sourceTree = "<group>"; };
 		EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultNotification.m; sourceTree = "<group>"; };
-		EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MBMvc-Prefix.pch"; path = "../MBMvc/MBMvc-Prefix.pch"; sourceTree = "<group>"; };
+		EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBMvc-Prefix.pch"; sourceTree = "<group>"; };
 		EACF0755EFB1DAFCA21432B5 /* TBMBDefaultFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultFacade.m; sourceTree = "<group>"; };
 		EACF0761A6B58420994E034C /* TBMBSimpleInstanceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBSimpleInstanceCommand.m; sourceTree = "<group>"; };
 		EACF076966D60DA2353A80AF /* TBMBGlobalFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBGlobalFacade.h; sourceTree = "<group>"; };
@@ -83,19 +86,18 @@
 		EACF085E254F3EFB3DAE4F38 /* TBMBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBUtil.h; sourceTree = "<group>"; };
 		EACF086D6A058EE4218597A7 /* TBMBStaticHelloCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBStaticHelloCommand.h; sourceTree = "<group>"; };
 		EACF0A5216A3B1E4035D55D2 /* TBMBTestService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestService.h; sourceTree = "<group>"; };
-		EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../MBMvc/Default@2x.png"; sourceTree = "<group>"; };
+		EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EACF0A943E34ABAE321F94B2 /* MBMvcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "MBMvcTests-Info.plist"; sourceTree = "<group>"; };
 		EACF0ABDD8484047F155F8C1 /* MBMvcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMvcTests.h; sourceTree = "<group>"; };
 		EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		EACF0B0638BD017E4E305399 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../MBMvc/Default.png; sourceTree = "<group>"; };
-		EACF0B898B88B84C9E93F7B5 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = ../MBMvc/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EACF0B0638BD017E4E305399 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EACF0BB084076719C2747425 /* TBMBSimpleStaticCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBSimpleStaticCommand.m; sourceTree = "<group>"; };
 		EACF0BC84CBD4AC83FE324DA /* TBMBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBMBViewController.h; sourceTree = "<group>"; };
 		EACF0C42E018916502131565 /* TBMBInstanceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBInstanceCommand.h; sourceTree = "<group>"; };
 		EACF0C59AFBE61AE9FEE8BCF /* TBMBNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBNotification.h; sourceTree = "<group>"; };
 		EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EACF0D201D5F5413BB0C1AA1 /* TBMBSimpleInstanceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBSimpleInstanceCommand.h; sourceTree = "<group>"; };
-		EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../MBMvc/Default-568h@2x.png"; sourceTree = "<group>"; };
+		EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EACF0D9041C3E2B14E58C15C /* TBMBStaticCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBStaticCommand.h; sourceTree = "<group>"; };
 		EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBGlobalFacade.m; sourceTree = "<group>"; };
 		EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultRootViewController.m; sourceTree = "<group>"; };
@@ -169,7 +171,6 @@
 				EACF0C42E018916502131565 /* TBMBInstanceCommand.h */,
 				EACF00B4DE855DEECCC0B05A /* TBMBCommand.h */,
 			);
-			lastKnownFileType = text;
 			path = Protocol;
 			sourceTree = "<group>";
 		};
@@ -207,7 +208,6 @@
 				EACF04A49197313295C9DAB1 /* TBMBDefaultRootViewController.h */,
 				EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */,
 			);
-			lastKnownFileType = text;
 			path = Default;
 			sourceTree = "<group>";
 		};
@@ -221,6 +221,13 @@
 				EACF0D71EC854C0EBDDEDA90 /* Supporting Files */,
 				EACF01DB997325F9274B22E3 /* Service */,
 				EACF0D3DFB42347A83C85ABD /* Command */,
+				EACF0D52192F1E5B3BF40004 /* en.lproj */,
+				EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */,
+				EACF0B0638BD017E4E305399 /* Default.png */,
+				EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */,
+				EACF003361E0B86F01564B8D /* main.m */,
+				EACF0076A143CB39C2F37F3D /* MBMvc-Info.plist */,
+				EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -275,16 +282,20 @@
 			path = Command;
 			sourceTree = "<group>";
 		};
+		EACF0D52192F1E5B3BF40004 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				EACF0BE3EE9393AE445B9537 /* InfoPlist.strings */,
+				EACF01017E4FAEB93FB87A8B /* InfoPlist.strings */,
+				EACF0D980DF4ABC5FE1DD51A /* InfoPlist.strings */,
+			);
+			name = en.lproj;
+			sourceTree = "<group>";
+		};
 		EACF0D71EC854C0EBDDEDA90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EACF0076A143CB39C2F37F3D /* MBMvc-Info.plist */,
 				EACF05BE95B6DDA3E34D0ADA /* InfoPlist.strings */,
-				EACF003361E0B86F01564B8D /* main.m */,
-				EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */,
-				EACF0B0638BD017E4E305399 /* Default.png */,
-				EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */,
-				EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -356,7 +367,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EACF0DC1651A590A8D69AA75 /* InfoPlist.strings in Resources */,
 				EACF07411BAC39CBE2196D50 /* Default.png in Resources */,
 				EACF00F3BB9611C843583809 /* Default@2x.png in Resources */,
 				EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */,
@@ -368,6 +378,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EACF002BD4B066233DCAAFB1 /* InfoPlist.strings in Resources */,
+				EACF0F6CED51863C1FF4DBA9 /* InfoPlist.strings in Resources */,
+				EACF0B333FA47CFED50854EE /* InfoPlist.strings in Resources */,
+				EACF095AF8ACD271CA41BBF1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,10 +452,31 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		EACF01017E4FAEB93FB87A8B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		EACF05BE95B6DDA3E34D0ADA /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EACF0B898B88B84C9E93F7B5 /* InfoPlist.strings */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EACF0BE3EE9393AE445B9537 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EACF0D980DF4ABC5FE1DD51A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EACF04421DEF74195EE2E5EC /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -479,8 +513,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MBMvc/MBMvc-Prefix.pch";
-				INFOPLIST_FILE = "MBMvc/MBMvc-Info.plist";
+				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
+				INFOPLIST_FILE = "Demo/MBMvc-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -490,8 +524,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MBMvc/MBMvc-Prefix.pch";
-				INFOPLIST_FILE = "MBMvc/MBMvc-Info.plist";
+				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
+				INFOPLIST_FILE = "Demo/MBMvc-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -583,6 +617,7 @@
 				EACF0E0C94853947C0FF219D /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EACF0F9A6CF11B71A8FFBEBF /* Build configuration list for PBXNativeTarget "MBMvc" */ = {
 			isa = XCConfigurationList;
@@ -591,6 +626,7 @@
 				EACF068EF391AB4DABA4E283 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
