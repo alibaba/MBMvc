@@ -18,11 +18,24 @@
     NSOperationQueue *_dispatch_message_queue;
 }
 
-static NSOperationQueue *_dispatch_queue = nil;
+static NSOperationQueue *_c_dispatch_queue = nil;
 
 + (void)setDispatchQueue:(NSOperationQueue *)queue {
-    _dispatch_queue = queue;
+    _c_dispatch_queue = queue;
 }
+
+static dispatch_queue_t _c_queue = NULL;
+
++ (void)setCommandQueue:(dispatch_queue_t)queue {
+    _c_queue = queue;
+}
+
+static NSNotificationCenter *_c_NotificationCenter;
+
++ (void)setNotificationCenter:(NSNotificationCenter *)notificationCenter {
+    _c_NotificationCenter = notificationCenter;
+}
+
 
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
@@ -41,12 +54,13 @@ static NSOperationQueue *_dispatch_queue = nil;
 - (id)init {
     self = [super init];
     if (self) {
-        _notificationCenter = [[NSNotificationCenter alloc] init];
-        _command_queue = dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@", self]
-                                                          UTF8String], DISPATCH_QUEUE_CONCURRENT
+        _notificationCenter = _c_NotificationCenter ? : [[NSNotificationCenter alloc] init];
+        _command_queue = _c_queue ? : dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@",
+                                                                                        self]
+                                                                                        UTF8String], DISPATCH_QUEUE_CONCURRENT
         );
-        if (_dispatch_queue) {
-            _dispatch_message_queue = _dispatch_queue;
+        if (_c_dispatch_queue) {
+            _dispatch_message_queue = _c_dispatch_queue;
         } else {
             _dispatch_message_queue = [[NSOperationQueue alloc] init];
             [_dispatch_message_queue setName:[NSString stringWithFormat:@"TBMB_DEFAULT_DISPATCH_QUEUE.%@", self]];

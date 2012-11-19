@@ -11,6 +11,10 @@
 @interface TBMBDefaultFacade : NSObject <TBMBFacade>
 + (void)setDispatchQueue:(NSOperationQueue *)queue;
 
++ (void)setCommandQueue:(dispatch_queue_t)queue;
+
++ (void)setNotificationCenter:(NSNotificationCenter *)notificationCenter;
+
 + (TBMBDefaultFacade *)instance;
 
 @end
