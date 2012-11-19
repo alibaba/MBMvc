@@ -18,6 +18,12 @@
     NSOperationQueue *_dispatch_message_queue;
 }
 
+static NSOperationQueue *_dispatch_queue = nil;
+
++ (void)setDispatchQueue:(NSOperationQueue *)queue {
+    _dispatch_queue = queue;
+}
+
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
     static dispatch_once_t _oncePredicate_TBMBDefaultFacade;
@@ -39,8 +45,12 @@
         _command_queue = dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@", self]
                                                           UTF8String], DISPATCH_QUEUE_CONCURRENT
         );
-        _dispatch_message_queue = [[NSOperationQueue alloc] init];
-        [_dispatch_message_queue setName:[NSString stringWithFormat:@"TBMB_DEFAULT_DISPATCH_QUEUE.%@", self]];
+        if (_dispatch_queue) {
+            _dispatch_message_queue = _dispatch_queue;
+        } else {
+            _dispatch_message_queue = [[NSOperationQueue alloc] init];
+            [_dispatch_message_queue setName:[NSString stringWithFormat:@"TBMB_DEFAULT_DISPATCH_QUEUE.%@", self]];
+        }
     }
     return self;
 }
@@ -55,20 +65,28 @@
     if (!receiver) {
         return;
     }
-    NSThread *currentThread = [NSThread currentThread];
+    void (^OBSERVER_BLOCK)(NSNotification *);
+    if ([[NSOperationQueue currentQueue] isEqual:_dispatch_message_queue]) {
+        OBSERVER_BLOCK = ^(NSNotification *note) {
+            [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+        };
+    } else {
+        NSThread *currentThread = [NSThread currentThread];
+        OBSERVER_BLOCK = ^(NSNotification *note) {
+            [self performSelector:@selector(runInOneThreadWithBlock:)
+                         onThread:currentThread
+                       withObject:^() {
+                           [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                       }
+                    waitUntilDone:NO];
+        };
+    }
     NSSet *notificationNames = receiver.listReceiveNotifications;
     if (notificationNames && notificationNames.count > 0) {
         for (NSString *name in notificationNames) {
             [_notificationCenter addObserverForName:name
                                              object:nil queue:_dispatch_message_queue
-                                         usingBlock:^(NSNotification *note) {
-                                             [self performSelector:@selector(runInOneThreadWithBlock:)
-                                                          onThread:currentThread
-                                                        withObject:^() {
-                                                            [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
-                                                        }
-                                                     waitUntilDone:NO];
-                                         }];
+                                         usingBlock:OBSERVER_BLOCK];
         }
     }
 }

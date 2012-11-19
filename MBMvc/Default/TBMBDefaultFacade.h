@@ -9,6 +9,8 @@
 #define TBMB_NOTIFICATION_KEY @"TBMB_NOTIFICATION_KEY"
 
 @interface TBMBDefaultFacade : NSObject <TBMBFacade>
++ (void)setDispatchQueue:(NSOperationQueue *)queue;
+
 + (TBMBDefaultFacade *)instance;
 
 @end
