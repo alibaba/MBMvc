@@ -27,12 +27,14 @@ static Class _facadeClass = nil;
 
 + (TBMBGlobalFacade *)instance {
     static TBMBGlobalFacade *_instance = nil;
+    static dispatch_once_t _oncePredicate_TBMBGlobalFacade;
 
-    @synchronized (self) {
+    dispatch_once(&_oncePredicate_TBMBGlobalFacade, ^{
         if (_instance == nil) {
             _instance = [[self alloc] init];
         }
     }
+    );
 
     return _instance;
 }

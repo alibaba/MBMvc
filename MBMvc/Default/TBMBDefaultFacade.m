@@ -16,14 +16,17 @@
     NSNotificationCenter *_notificationCenter;
     dispatch_queue_t _queue;
 }
+
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
+    static dispatch_once_t _oncePredicate_TBMBDefaultFacade;
 
-    @synchronized (self) {
+    dispatch_once(&_oncePredicate_TBMBDefaultFacade, ^{
         if (_instance == nil) {
             _instance = [[self alloc] init];
         }
     }
+    );
 
     return _instance;
 }
