@@ -3,6 +3,7 @@
 //
 
 
+#import <objc/runtime.h>
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultFacade.h"
 #import "TBMBUtil.h"
@@ -38,6 +39,23 @@ static Class _facadeClass = nil;
 
     return _instance;
 }
+
+- (void)registerCommandAuto {
+    Class *classes = NULL;
+    int numClasses = objc_getClassList(NULL, 0);
+    if (numClasses > 0) {
+        classes = (Class *) malloc(sizeof(Class) * numClasses);
+        numClasses = objc_getClassList(classes, numClasses);
+        for (int i = 0; i < numClasses; i++) {
+            Class clazz = classes[i];
+            if (TBMBClassHasProtocol(clazz, @protocol(TBMBCommand))) {
+                [self registerCommand:clazz];
+            }
+        }
+        free(classes);
+    }
+}
+
 
 - (id)init {
     self = [super init];

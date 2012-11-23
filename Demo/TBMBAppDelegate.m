@@ -10,15 +10,15 @@
 
 #import "TBMBViewController.h"
 #import "TBMBGlobalFacade.h"
-#import "TBMBStaticHelloCommand.h"
-#import "TBMBInstanceHelloCommand.h"
 
 @implementation TBMBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
-    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
+//    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
+//    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
+
+    [[TBMBGlobalFacade instance] registerCommandAuto];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
