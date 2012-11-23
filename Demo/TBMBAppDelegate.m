@@ -18,7 +18,7 @@
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
 
-    [[TBMBGlobalFacade instance] registerCommandAuto];
+    [[TBMBGlobalFacade instance] registerCommandAutoAsync];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
