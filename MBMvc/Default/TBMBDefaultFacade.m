@@ -178,8 +178,8 @@ static NSNotificationCenter *_c_NotificationCenter;
                 if ([_waitingNotification count] > 0) {
                     waitingNotification = [[NSArray alloc] initWithArray:_waitingNotification];
                     [_waitingNotification removeAllObjects];
-                    _waitingNotification = nil;
                 }
+                _waitingNotification = nil;
             }
             if (waitingNotification) {
                 for (id <TBMBNotification> notification in waitingNotification) {
