@@ -22,7 +22,7 @@
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[TBMBViewController alloc] init];
+    self.viewController = [[TBMBViewController alloc] initWithCoder:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
