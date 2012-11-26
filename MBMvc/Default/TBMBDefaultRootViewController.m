@@ -74,9 +74,8 @@
 //默认自动匹配方法
 - (void)handlerNotification:(id <TBMBNotification>)notification {
     SEL notifyHandler = NSSelectorFromString(notification.name);
-    if ([self respondsToSelector:notifyHandler]) {
-        objc_msgSend(self, notifyHandler, notification, notification.key == self.notificationKey);
-    }
+    Method pMethod = class_getInstanceMethod([self class], notifyHandler);
+    TBMBAutoHandlerNotification(self, pMethod, notifyHandler, notification);
 }
 
 - (NSSet *)listReceiveNotifications {
