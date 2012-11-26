@@ -3,7 +3,6 @@
 //
 
 
-#import <objc/message.h>
 #import "TBMBDefaultRootViewController.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
@@ -12,7 +11,8 @@
 
 @implementation TBMBDefaultRootViewController {
 @private
-    id <TBMBFacade> _tbmbFacade;
+    id <TBMBFacade> _$tbmbFacade;
+    NSMutableSet *_$tbmbObserver;
 }
 
 - (const NSUInteger)notificationKey {
@@ -21,14 +21,18 @@
 }
 
 - (id <TBMBFacade>)tbmbFacade {
-    return _tbmbFacade ? : [TBMBGlobalFacade instance];
+    return _$tbmbFacade ? : [TBMBGlobalFacade instance];
+}
+
+- (NSMutableSet *)tbmbObservers {
+    return _$tbmbObserver ? : (_$tbmbObserver = [NSMutableSet setWithCapacity:0]);
 }
 
 
 - (void)setTbmbFacade:(id <TBMBFacade>)tbmbFacade {
     if (self.tbmbFacade != tbmbFacade) {
         [self.tbmbFacade unsubscribeNotification:self];
-        _tbmbFacade = tbmbFacade;
+        _$tbmbFacade = tbmbFacade;
         [self.tbmbFacade subscribeNotification:self];
     }
 }
@@ -78,6 +82,18 @@
 
 - (NSSet *)listReceiveNotifications {
     return TBMBGetAllUIViewControllerHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
+}
+
+- (NSSet *)_$listObserver {
+    return self.tbmbObservers;
+}
+
+- (void)_$addObserver:(id)observer {
+    [self.tbmbObservers addObject:observer];
+}
+
+- (void)_$removeObserver:(id)observer {
+    [self.tbmbObservers removeObject:observer];
 }
 
 #pragma mark  - sender

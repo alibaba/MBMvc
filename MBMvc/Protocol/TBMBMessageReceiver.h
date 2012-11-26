@@ -13,4 +13,12 @@
 //列出需要监听的通知名
 - (NSSet */*NSString*/)listReceiveNotifications;
 
+//列出所有的Observer 需要释放
+- (NSSet *)_$listObserver;
+
+//加入被加到NotificationCenter的Observer
+- (void)_$addObserver:(id)observer;
+
+//移除被加到NotificationCenter的Observer
+- (void)_$removeObserver:(id)observer;
 @end

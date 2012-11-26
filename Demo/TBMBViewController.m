@@ -36,6 +36,27 @@
     textField.tag = 3;
     textField.text = @"test";
     [self.view addSubview:textField];
+
+    UIButton *buttonNav = [[UIButton alloc] initWithFrame:CGRectMake(50, 160, 200, 30)];
+    [buttonNav setTitle:@"下一个" forState:UIControlStateNormal];
+    [buttonNav addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
+    buttonNav.backgroundColor = [UIColor redColor];
+    buttonNav.tag = 4;
+    [self.view addSubview:buttonNav];
+
+    UIButton *buttonPrev = [[UIButton alloc] initWithFrame:CGRectMake(50, 200, 200, 30)];
+    [buttonPrev setTitle:@"上一个" forState:UIControlStateNormal];
+    [buttonPrev addTarget:self action:@selector(prev:) forControlEvents:UIControlEventTouchUpInside];
+    buttonPrev.backgroundColor = [UIColor redColor];
+    buttonPrev.tag = 5;
+    [self.view addSubview:buttonPrev];
+}
+
+- (void)prev:(id)prev {
+}
+
+- (void)next:(id)next {
+    [[TBMBViewController alloc] init];
 }
 
 - (void)requestStatic:(UIButton *)sender {
@@ -74,6 +95,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    NSLog(@"dealloc %p", self);
+
 }
 
 

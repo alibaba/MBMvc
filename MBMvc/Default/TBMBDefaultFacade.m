@@ -83,10 +83,11 @@ static NSNotificationCenter *_c_NotificationCenter;
 }
 
 
-- (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver {
-    if (!receiver) {
+- (void)subscribeNotification:(id <TBMBMessageReceiver>)_receiver {
+    if (!_receiver) {
         return;
     }
+    __block __unsafe_unretained id <TBMBMessageReceiver> receiver = _receiver;
     void (^OBSERVER_BLOCK)(NSNotification *);
     if ([[NSOperationQueue currentQueue] isEqual:_dispatch_message_queue]) {
         OBSERVER_BLOCK = ^(NSNotification *note) {
@@ -106,18 +107,23 @@ static NSNotificationCenter *_c_NotificationCenter;
     NSSet *notificationNames = receiver.listReceiveNotifications;
     if (notificationNames && notificationNames.count > 0) {
         for (NSString *name in notificationNames) {
-            [_notificationCenter addObserverForName:name
-                                             object:nil queue:_dispatch_message_queue
-                                         usingBlock:OBSERVER_BLOCK];
+            id observer = [_notificationCenter addObserverForName:name
+                                                           object:nil queue:_dispatch_message_queue
+                                                       usingBlock:OBSERVER_BLOCK];
+            [_receiver _$addObserver:observer];
         }
     }
 }
 
 - (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver {
-    if (!receiver) {
+    if (!receiver || receiver._$listObserver.count == 0) {
         return;
     }
-    [_notificationCenter removeObserver:receiver];
+    NSSet *_observers = [NSSet setWithSet:receiver._$listObserver];
+    for (id observer in _observers) {
+        [_notificationCenter removeObserver:observer];
+        [receiver _$removeObserver:observer];
+    }
 }
 
 - (void)registerCommand:(Class)commandClass {
