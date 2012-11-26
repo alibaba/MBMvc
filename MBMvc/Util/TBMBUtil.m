@@ -62,21 +62,3 @@ NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {
     }
     return names;
 }
-
-inline void TBMBAutoHandlerNotification(id handler, Method pMethod, SEL notifyHandler, id <TBMBNotification> notification) {
-    if (pMethod) {
-        switch (method_getNumberOfArguments(pMethod)) {
-            case (3):
-                objc_msgSend(handler, notifyHandler, notification);
-                break;
-            case (4):
-                objc_msgSend(handler, notifyHandler, notification, notification.body);
-                break;
-            case (5):
-                objc_msgSend(handler, notifyHandler, notification, notification.body, notification.key);
-                break;
-            default:
-                break;
-        }
-    }
-}

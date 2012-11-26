@@ -10,6 +10,3 @@ extern BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
 extern NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix);
 
 extern NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
-
-extern inline void TBMBAutoHandlerNotification(id handler, Method pMethod, SEL notifyHandler,
-        id <TBMBNotification> notification);
