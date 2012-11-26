@@ -3,7 +3,6 @@
 //
 
 
-#import <objc/message.h>
 #import "TBMBSimpleInstanceCommand.h"
 #import "TBMBUtil.h"
 #import "TBMBMessageReceiver.h"
@@ -13,10 +12,7 @@
 
 }
 - (void)execute:(id <TBMBNotification>)notification {
-    SEL notifyHandler = NSSelectorFromString(notification.name);
-    if ([self respondsToSelector:notifyHandler]) {
-        objc_msgSend(self, notifyHandler, notification, notification.body, notification.key);
-    }
+    TBMBAutoHandlerNotification(self, notification);
 }
 
 + (NSSet *)listReceiveNotifications {

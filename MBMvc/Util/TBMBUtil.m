@@ -62,3 +62,10 @@ NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {
     }
     return names;
 }
+
+inline void TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification) {
+    SEL notifyHandler = NSSelectorFromString(notification.name);
+    if ([handler respondsToSelector:notifyHandler]) {
+        objc_msgSend(handler, notifyHandler, notification, notification.body, notification.key);
+    }
+}

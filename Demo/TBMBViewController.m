@@ -41,7 +41,7 @@
 - (void)requestStatic:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [self sendNotificationForSEL:@selector($$staticHello:) body:view.text];
+    [self sendNotificationForSEL:@selector($$staticHello:name:) body:view.text];
 }
 
 - (void)requestInstance:(UIButton *)sender {
@@ -51,11 +51,11 @@
 }
 
 
-- (void)$$receiveStaticHello:(id <TBMBNotification>)notification {
+- (void)$$receiveStaticHello:(id <TBMBNotification>)notification title:(NSString *)title {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
     UIButton *view = (UIButton *) [self.view viewWithTag:1];
-    [view setTitle:notification.body forState:UIControlStateNormal];
+    [view setTitle:title forState:UIControlStateNormal];
 }
 
 - (void)$$receiveInstanceHello:(id <TBMBNotification>)notification {
