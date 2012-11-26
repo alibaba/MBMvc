@@ -24,11 +24,6 @@
     return _$tbmbFacade ? : [TBMBGlobalFacade instance];
 }
 
-- (NSMutableSet *)tbmbObservers {
-    return _$tbmbObserver ? : (_$tbmbObserver = [NSMutableSet setWithCapacity:0]);
-}
-
-
 - (void)setTbmbFacade:(id <TBMBFacade>)tbmbFacade {
     if (self.tbmbFacade != tbmbFacade) {
         [self.tbmbFacade unsubscribeNotification:self];
@@ -85,15 +80,16 @@
 }
 
 - (NSSet *)_$listObserver {
-    return self.tbmbObservers;
+    return _$tbmbObserver;
 }
 
 - (void)_$addObserver:(id)observer {
-    [self.tbmbObservers addObject:observer];
+    _$tbmbObserver = _$tbmbObserver ? : [NSMutableSet setWithCapacity:1];
+    [_$tbmbObserver addObject:observer];
 }
 
 - (void)_$removeObserver:(id)observer {
-    [self.tbmbObservers removeObject:observer];
+    [_$tbmbObserver removeObject:observer];
 }
 
 #pragma mark  - sender
