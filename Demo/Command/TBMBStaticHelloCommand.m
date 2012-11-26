@@ -14,9 +14,9 @@
     NSLog(@"command Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     [TBMBTestService helloWorld:name result:^(NSString *ret) {
         NSLog(@"command Callback Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-        [[TBMBGlobalFacade instance]
-                           sendTBMBNotification:[notification createNextNotificationForSEL:@selector
-                           ($$receiveStaticHello:title:)                          withBody:ret]];
+        TBMBGlobalSendTBMBNotification([notification createNextNotificationForSEL:@selector
+        ($$receiveStaticHello:title:)                                    withBody:ret]
+        );
     }];
 }
 

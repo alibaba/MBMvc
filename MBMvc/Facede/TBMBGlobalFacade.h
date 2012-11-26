@@ -11,3 +11,13 @@
 
 + (TBMBGlobalFacade *)instance;
 @end
+
+extern inline void TBMBGlobalSendNotification(NSString *notificationName);
+
+extern inline void TBMBGlobalSendNotificationWithBody(NSString *notificationName, id body);
+
+extern inline void TBMBGlobalSendNotificationForSEL(SEL selector);
+
+extern inline void TBMBGlobalSendNotificationForSELWithBody(SEL selector, id body);
+
+extern inline void TBMBGlobalSendTBMBNotification(id <TBMBNotification> notification);

@@ -96,3 +96,23 @@ static Class _facadeClass = nil;
 
 
 @end
+
+inline void TBMBGlobalSendNotification(NSString *notificationName) {
+    [[TBMBGlobalFacade instance] sendNotification:notificationName];
+}
+
+inline void TBMBGlobalSendNotificationWithBody(NSString *notificationName, id body) {
+    [[TBMBGlobalFacade instance] sendNotification:notificationName body:body];
+}
+
+inline void TBMBGlobalSendNotificationForSEL(SEL selector) {
+    [[TBMBGlobalFacade instance] sendNotificationForSEL:selector];
+}
+
+inline void TBMBGlobalSendNotificationForSELWithBody(SEL selector, id body) {
+    [[TBMBGlobalFacade instance] sendNotificationForSEL:selector body:body];
+}
+
+inline void TBMBGlobalSendTBMBNotification(id <TBMBNotification> notification) {
+    [[TBMBGlobalFacade instance] sendTBMBNotification:notification];
+}
