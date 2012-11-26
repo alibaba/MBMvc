@@ -10,12 +10,19 @@
 #import "TBMBInstanceCommand.h"
 #import "TBMBStaticCommand.h"
 
+typedef enum {
+    TBMB_REG_COMMAND_INIT,
+    TBMB_REG_COMMAND_ASYNC_DOING,
+    TBMB_REG_COMMAND_DONE
+} TBMB_REG_COMMAND_STATUE;
 
 @implementation TBMBDefaultFacade {
 @private
     NSNotificationCenter *_notificationCenter;
     dispatch_queue_t _command_queue;
     NSOperationQueue *_dispatch_message_queue;
+    TBMB_REG_COMMAND_STATUE _regCommandStatus;
+    NSMutableArray *_waitingNotification;
 }
 
 static NSOperationQueue *_c_dispatch_queue = nil;
@@ -54,6 +61,7 @@ static NSNotificationCenter *_c_NotificationCenter;
 - (id)init {
     self = [super init];
     if (self) {
+        _regCommandStatus = TBMB_REG_COMMAND_INIT;
         _notificationCenter = _c_NotificationCenter ? : [[NSNotificationCenter alloc] init];
         _command_queue = _c_queue ? : dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@",
                                                                                         self]
@@ -141,6 +149,49 @@ static NSNotificationCenter *_c_NotificationCenter;
     }
 }
 
+- (void)registerCommandAuto {
+    Class *classes = NULL;
+    int numClasses = objc_getClassList(NULL, 0);
+    if (numClasses > 0) {
+        classes = (Class *) malloc(sizeof(Class) * numClasses);
+        numClasses = objc_getClassList(classes, numClasses);
+        for (int i = 0; i < numClasses; i++) {
+            Class clazz = classes[i];
+            if (TBMBClassHasProtocol(clazz, @protocol(TBMBCommand))) {
+                [self registerCommand:clazz];
+            }
+        }
+        free(classes);
+    }
+}
+
+- (void)registerCommandAutoAsync {
+    static dispatch_once_t _oncePredicate_registerCommandAutoAsync;
+    dispatch_once(&_oncePredicate_registerCommandAutoAsync, ^{
+        _waitingNotification = [[NSMutableArray alloc] initWithCapacity:0];
+        _regCommandStatus = TBMB_REG_COMMAND_ASYNC_DOING;
+        dispatch_async(dispatch_queue_create("registerCommandQueue", NULL), ^{
+            [self registerCommandAuto];
+            _regCommandStatus = TBMB_REG_COMMAND_DONE;
+            NSArray *waitingNotification;
+            @synchronized (self) {
+                if ([_waitingNotification count] > 0) {
+                    waitingNotification = [[NSArray alloc] initWithArray:_waitingNotification];
+                    [_waitingNotification removeAllObjects];
+                }
+                _waitingNotification = nil;
+            }
+            if (waitingNotification) {
+                for (id <TBMBNotification> notification in waitingNotification) {
+                    [self sendTBMBNotification:notification];
+                }
+            }
+        }
+        );
+    }
+    );
+}
+
 
 - (void)sendNotification:(NSString *)notificationName {
     [self sendTBMBNotification:[TBMBDefaultNotification objectWithName:notificationName]];
@@ -151,6 +202,12 @@ static NSNotificationCenter *_c_NotificationCenter;
 }
 
 - (void)sendTBMBNotification:(id <TBMBNotification>)notification {
+    if (_regCommandStatus == TBMB_REG_COMMAND_ASYNC_DOING) {
+        @synchronized (self) {
+            [_waitingNotification addObject:notification];
+        }
+        return;
+    }
     NSNotification *sysNotification = [NSNotification notificationWithName:notification.name
                                                                     object:nil
                                                                   userInfo:[NSDictionary dictionaryWithObject:notification

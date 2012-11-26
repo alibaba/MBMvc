@@ -10,6 +10,4 @@
 + (BOOL)setDefaultFacade:(Class)facadeClass;
 
 + (TBMBGlobalFacade *)instance;
-
-- (void)registerCommandAuto;
 @end

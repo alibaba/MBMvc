@@ -17,4 +17,8 @@
 
 - (void)registerCommand:(Class)commandClass;
 
+- (void)registerCommandAuto;
+
+- (void)registerCommandAutoAsync;
+
 @end
