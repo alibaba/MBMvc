@@ -75,7 +75,7 @@
 - (void)handlerNotification:(id <TBMBNotification>)notification {
     SEL notifyHandler = NSSelectorFromString(notification.name);
     if ([self respondsToSelector:notifyHandler]) {
-        objc_msgSend(self, notifyHandler, notification, notification.key == self.notificationKey);
+        objc_msgSend(self, notifyHandler, notification, notification.body, notification.key);
     }
 }
 
