@@ -96,6 +96,11 @@ static NSNotificationCenter *_c_NotificationCenter;
     } else {
         NSThread *currentThread = [NSThread currentThread];
         OBSERVER_BLOCK = ^(NSNotification *note) {
+            if (!currentThread || currentThread.isCancelled || currentThread.isFinished) {
+                NSLog(@"ERROR:Observer Thread can't be Run![%@]", currentThread);
+                [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                return;
+            }
             [self performSelector:@selector(runInOneThreadWithBlock:)
                          onThread:currentThread
                        withObject:^() {
