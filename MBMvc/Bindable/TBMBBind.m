@@ -78,36 +78,6 @@
 
 @end
 
-@implementation TBMBBind {
-
-}
-
-+ (void)initBind {
-    static dispatch_once_t _oncePredicate_TBMBBindableObject;
-    dispatch_once(&_oncePredicate_TBMBBindableObject, ^{
-        Class class = [NSObject class];
-        Method originalMethod = class_getInstanceMethod(class, NSSelectorFromString(@"dealloc"));
-        Method newMethod = class_getInstanceMethod(class, @selector(_$TBMBBindableObject_dealloc));
-        method_exchangeImplementations(originalMethod, newMethod);
-    }
-    );
-}
-
-+ (void)bindObject:(id)bindable
-        forKeyPath:(NSString *)keyPath
-        withChange:(TBMB_CHANGE_BLOCK)changeBlock {
-    [self initBind];
-    [(id) bindable addObserver:[TBMBBindObjectHandler objectWithBindableObject:bindable
-                                                                       keyPath:keyPath
-                                                                   changeBlock:changeBlock]
-                    forKeyPath:keyPath
-                       options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                       context:nil];
-}
-
-
-@end
-
 inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock) {
     [TBMBBind bindObject:bindable
               forKeyPath:keyPath
@@ -142,4 +112,38 @@ static char kTBMBBindableObjectKey;
     // Call original implementation
     [self _$TBMBBindableObject_dealloc];
 }
+@end
+
+
+@implementation TBMBBind {
+
+}
+
++ (void)initBind {
+    static dispatch_once_t _oncePredicate_TBMBBindableObject;
+    dispatch_once(&_oncePredicate_TBMBBindableObject, ^{
+        Class class = [NSObject class];
+        Method originalMethod = class_getInstanceMethod(class, NSSelectorFromString(@"dealloc"));
+        Method newMethod = class_getInstanceMethod(class, @selector(_$TBMBBindableObject_dealloc));
+        method_exchangeImplementations(originalMethod, newMethod);
+    }
+    );
+}
+
++ (void)bindObject:(id)bindable
+        forKeyPath:(NSString *)keyPath
+        withChange:(TBMB_CHANGE_BLOCK)changeBlock {
+    [self initBind];
+    TBMBBindObjectHandler *handler = [TBMBBindObjectHandler objectWithBindableObject:bindable
+                                                                             keyPath:keyPath
+                                                                         changeBlock:changeBlock];
+    [bindable addObserver:handler
+               forKeyPath:keyPath
+                  options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                  context:nil];
+
+    [bindable _$AddTBMBBindableObjectSet:handler];
+}
+
+
 @end
