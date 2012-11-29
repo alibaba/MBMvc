@@ -7,6 +7,7 @@
 //
 
 #import "TBMBViewController.h"
+#import "TBMBBind.h"
 
 @interface TBMBViewController ()
 
@@ -49,6 +50,18 @@
     [buttonPrev addTarget:self action:@selector(prev:) forControlEvents:UIControlEventTouchUpInside];
     buttonPrev.backgroundColor = [UIColor redColor];
     buttonPrev.tag = 5;
+
+
+    UITextField *textFieldSync = [[UITextField alloc] initWithFrame:CGRectMake(50, 240, 200, 30)];
+    textFieldSync.backgroundColor = [UIColor redColor];
+    textFieldSync.tag = 4;
+    [self.view addSubview:textFieldSync];
+
+    TBMBBindObject(textField, @"text", ^(id old, id new) {
+        textFieldSync.text = new;
+    }
+    );
+    textField.text = @"testl";
     [self.view addSubview:buttonPrev];
 }
 
