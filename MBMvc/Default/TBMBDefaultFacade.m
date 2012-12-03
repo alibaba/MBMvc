@@ -9,6 +9,7 @@
 #import "TBMBUtil.h"
 #import "TBMBInstanceCommand.h"
 #import "TBMBStaticCommand.h"
+#import "TBMBSingletonCommand.h"
 
 typedef enum {
     TBMB_REG_COMMAND_INIT,
@@ -147,6 +148,13 @@ static NSNotificationCenter *_c_NotificationCenter;
                                              dispatch_async(queue, ^{
                                                  if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
                                                      objc_msgSend(commandClass, @selector(execute:), notification);
+                                                 } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBSingletonCommand))) {
+                                                     id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass,
+                                                             @selector(instance)
+                                                     );
+                                                     objc_msgSend(commandSingleton,
+                                                             @selector(execute:), notification
+                                                     );
                                                  } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
                                                      objc_msgSend([[commandClass alloc] init],
                                                              @selector(execute:), notification

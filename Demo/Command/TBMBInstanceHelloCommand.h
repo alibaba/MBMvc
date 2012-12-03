@@ -5,7 +5,8 @@
 
 #import <Foundation/Foundation.h>
 #import "TBMBSimpleInstanceCommand.h"
+#import "TBMBSimpleSingletonCommand.h"
 
 
-@interface TBMBInstanceHelloCommand : TBMBSimpleInstanceCommand
+@interface TBMBInstanceHelloCommand : TBMBSimpleSingletonCommand
 @end
