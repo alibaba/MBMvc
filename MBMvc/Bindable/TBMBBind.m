@@ -104,6 +104,10 @@ inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_H
     }
 }
 
+inline void TBMBUnbindObject(id bindable) {
+    [TBMBBind unbindObject:bindable];
+}
+
 static char kTBMBBindableObjectKey;
 
 @implementation NSObject (TBMBBindableObject)
@@ -123,12 +127,7 @@ static char kTBMBBindableObjectKey;
 }
 
 - (void)_$TBMBBindableObject_dealloc {
-    NSSet *objectSet;
-    if ((objectSet = self._$TBMBBindableObjectSet) && objectSet.count > 0) {
-        for (id <TBMBBindHandlerProtocol> handler in objectSet) {
-            [handler removeObserver];
-        }
-    }
+    TBMBUnbindObject(self);
     // Call original implementation
     [self _$TBMBBindableObject_dealloc];
 }
@@ -164,6 +163,15 @@ static char kTBMBBindableObjectKey;
                       context:nil];
 
         [bindable _$AddTBMBBindableObjectSet:handler];
+    }
+}
+
++ (void)unbindObject:(id)bindable {
+    NSSet *objectSet;
+    if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
+        for (id <TBMBBindHandlerProtocol> handler in objectSet) {
+            [handler removeObserver];
+        }
     }
 }
 
