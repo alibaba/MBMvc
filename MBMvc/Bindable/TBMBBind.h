@@ -8,9 +8,15 @@
 
 typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 
+typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);
+
 
 @interface TBMBBind : NSObject
 + (void)bindObject:(id)bindable forKeyPath:(NSString *)keyPath withChange:(TBMB_CHANGE_BLOCK)changeBlock;
 @end
 
 extern inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock);
+
+extern inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
+
+extern inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);

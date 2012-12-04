@@ -84,6 +84,26 @@ inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK cha
               withChange:changeBlock];
 }
 
+
+inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
+    if (changeBlock) {
+        __block __unsafe_unretained _host = host;
+        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+            changeBlock(_host, old, new);
+        }
+        );
+    }
+}
+
+inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
+    if (changeBlock) {
+        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+            changeBlock(host, old, new);
+        }
+        );
+    }
+}
+
 static char kTBMBBindableObjectKey;
 
 @implementation NSObject (TBMBBindableObject)
@@ -133,16 +153,18 @@ static char kTBMBBindableObjectKey;
 + (void)bindObject:(id)bindable
         forKeyPath:(NSString *)keyPath
         withChange:(TBMB_CHANGE_BLOCK)changeBlock {
-    [self initBind];
-    TBMBBindObjectHandler *handler = [TBMBBindObjectHandler objectWithBindableObject:bindable
-                                                                             keyPath:keyPath
-                                                                         changeBlock:changeBlock];
-    [bindable addObserver:handler
-               forKeyPath:keyPath
-                  options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                  context:nil];
+    if (changeBlock) {
+        [self initBind];
+        TBMBBindObjectHandler *handler = [TBMBBindObjectHandler objectWithBindableObject:bindable
+                                                                                 keyPath:keyPath
+                                                                             changeBlock:changeBlock];
+        [bindable addObserver:handler
+                   forKeyPath:keyPath
+                      options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                      context:nil];
 
-    [bindable _$AddTBMBBindableObjectSet:handler];
+        [bindable _$AddTBMBBindableObjectSet:handler];
+    }
 }
 
 
