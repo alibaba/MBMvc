@@ -87,7 +87,7 @@ inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK cha
 
 inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
-        __block __unsafe_unretained _host = host;
+        __block __unsafe_unretained id _host = host;
         TBMBBindObject(bindable, keyPath, ^(id old, id new) {
             changeBlock(_host, old, new);
         }
