@@ -127,7 +127,12 @@ static char kTBMBBindableObjectKey;
 }
 
 - (void)_$TBMBBindableObject_dealloc {
-    TBMBUnbindObject(self);
+    NSSet *objectSet;
+    if ((objectSet = [self _$TBMBBindableObjectSet]) && objectSet.count > 0) {
+        for (id <TBMBBindHandlerProtocol> handler in objectSet) {
+            [handler removeObserver];
+        }
+    }
     // Call original implementation
     [self _$TBMBBindableObject_dealloc];
 }
