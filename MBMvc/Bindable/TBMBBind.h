@@ -24,3 +24,13 @@ extern inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, T
 extern inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
 
 extern inline void TBMBUnbindObject(id bindable);
+
+#define TBMBBindPropertyWeak(bindable , keyPath , host , property)                                            \
+        TBMBBindObjectWeak((bindable) , (keyPath) , (host) , ^(id ____host ,id ____old, id ____new) {         \
+                            (____host).##property = ____new;                                                  \
+                    })                                                                                        \
+
+#define TBMBBindPropertyStrong(bindable , keyPath , host , property)                                           \
+        TBMBBindObjectStrong((bindable) , (keyPath) , (host) , ^(id ____host ,id ____old, id ____new) {        \
+                            (____host).##property = ____new;                                                   \
+                    })
