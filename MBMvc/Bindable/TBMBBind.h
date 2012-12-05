@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern void TBMBSetAutoUnbind(BOOL yesOrNO);
 
 typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 

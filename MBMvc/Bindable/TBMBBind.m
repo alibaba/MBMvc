@@ -6,6 +6,12 @@
 #import <objc/runtime.h>
 #import "TBMBBind.h"
 
+static BOOL __is_need_auto_unbind = YES;
+
+void TBMBSetAutoUnbind(BOOL yesOrNO) {
+    __is_need_auto_unbind = yesOrNO;
+}
+
 @protocol TBMBBindHandlerProtocol
 - (void)removeObserver;
 @end
@@ -128,7 +134,7 @@ static char kTBMBBindableObjectKey;
 
 - (void)_$TBMBBindableObject_dealloc {
     NSSet *objectSet;
-    if ((objectSet = [self _$TBMBBindableObjectSet]) && objectSet.count > 0) {
+    if (__is_need_auto_unbind && (objectSet = [self _$TBMBBindableObjectSet]) && objectSet.count > 0) {
         for (id <TBMBBindHandlerProtocol> handler in objectSet) {
             [handler removeObserver];
         }
@@ -144,6 +150,9 @@ static char kTBMBBindableObjectKey;
 }
 
 + (void)initBind {
+    if (!__is_need_auto_unbind) {
+        return;
+    }
     static dispatch_once_t _oncePredicate_TBMBBindableObject;
     dispatch_once(&_oncePredicate_TBMBBindableObject, ^{
         Class class = [NSObject class];
