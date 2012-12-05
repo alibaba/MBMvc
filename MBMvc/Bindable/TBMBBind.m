@@ -113,7 +113,7 @@ static char kTBMBBindableObjectKey;
 @implementation NSObject (TBMBBindableObject)
 
 
-- (NSSet *)_$TBMBBindableObjectSet {
+- (NSMutableSet *)_$TBMBBindableObjectSet {
     return objc_getAssociatedObject(self, &kTBMBBindableObjectKey);
 }
 
@@ -172,10 +172,12 @@ static char kTBMBBindableObjectKey;
 }
 
 + (void)unbindObject:(id)bindable {
-    NSSet *objectSet;
+    NSMutableSet *objectSet;
     if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
-        for (id <TBMBBindHandlerProtocol> handler in objectSet) {
+        NSSet *objectSetCopy = [NSSet setWithSet:objectSet];
+        for (id <TBMBBindHandlerProtocol> handler in objectSetCopy) {
             [handler removeObserver];
+            [objectSet removeObject:handler];
         }
     }
 }
