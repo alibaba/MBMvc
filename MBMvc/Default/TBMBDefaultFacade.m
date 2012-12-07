@@ -79,38 +79,30 @@ static NSNotificationCenter *_c_NotificationCenter;
 }
 
 
-- (void)runInOneThreadWithBlock:(void (^)())block {
-    block();
-}
-
-
 - (void)subscribeNotification:(id <TBMBMessageReceiver>)_receiver {
     if (!_receiver) {
         return;
     }
     __block __unsafe_unretained id <TBMBMessageReceiver> receiver = _receiver;
     void (^OBSERVER_BLOCK)(NSNotification *);
-    if ([[NSOperationQueue currentQueue] isEqual:_dispatch_message_queue]) {
+    NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
+    if ([currentQueue isEqual:_dispatch_message_queue]) {
         OBSERVER_BLOCK = ^(NSNotification *note) {
             [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
         };
     } else {
-        NSThread *currentThread = [NSThread currentThread];
         OBSERVER_BLOCK = ^(NSNotification *note) {
-            if (!currentThread || currentThread.isCancelled || currentThread.isFinished) {
-                NSLog(@"ERROR:Observer Thread can't be Run![%@]", currentThread);  //注册线程失效的情况下使用主线程执行
+            if (currentQueue.isSuspended) {
+                NSLog(@"ERROR:Observer OperationQueue can't be Run![%@]", currentQueue);  //注册线程失效的情况下使用主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
                 }
                 );
                 return;
             }
-            [self performSelector:@selector(runInOneThreadWithBlock:)
-                         onThread:currentThread
-                       withObject:^() {
-                           [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
-                       }
-                    waitUntilDone:NO];
+            [currentQueue addOperationWithBlock:^{
+                [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+            }];
         };
     }
     NSSet *notificationNames = receiver.listReceiveNotifications;
