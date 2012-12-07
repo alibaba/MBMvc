@@ -26,12 +26,16 @@ extern inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host,
 
 extern inline void TBMBUnbindObject(id bindable);
 
-#define TBMBBindPropertyWeak(bindable , keyPath , host , property)                                            \
-        TBMBBindObjectWeak((bindable) , (keyPath) , (host) , ^(id ____host ,id ____old, id ____new) {         \
-                            (____host).##property = ____new;                                                  \
-                    })                                                                                        \
+#define TBMBBindPropertyWeak(bindable , keyPath , type , host , property)                                     \
+        {__block __unsafe_unretained type ___host = host;                                                     \
+            TBMBBindObject((bindable) , (keyPath) , ^(id ____old, id ____new) {                               \
+                                (___host).property = ____new;                                                 \
+                        });                                                                                   \
+        }
 
-#define TBMBBindPropertyStrong(bindable , keyPath , host , property)                                           \
-        TBMBBindObjectStrong((bindable) , (keyPath) , (host) , ^(id ____host ,id ____old, id ____new) {        \
-                            (____host).##property = ____new;                                                   \
-                    })
+#define TBMBBindPropertyStrong(bindable , keyPath , host , property)                                          \
+        {                                                                                                     \
+            TBMBBindObject((bindable) , (keyPath) , ^(id ____old, id ____new) {                               \
+                            (host).property = ____new;                                                        \
+            });                                                                                               \
+        }

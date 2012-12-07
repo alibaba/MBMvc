@@ -57,11 +57,14 @@
     textFieldSync.tag = 4;
     [self.view addSubview:textFieldSync];
 
-    TBMBBindObject(textField, @"text", ^(id old, id new) {
-        textFieldSync.text = new;
-    }
-    );
-    textField.text = @"testl";
+//    TBMBBindObject(textField, @"text", ^(id old, id new) {
+//        [aaa setText:new];
+//    }
+//    );
+
+
+    TBMBBindPropertyWeak(textField, @"text", UITextField *, textFieldSync, text);
+    textField.text = @"testl123345";
     [self.view addSubview:buttonPrev];
 }
 
@@ -111,7 +114,7 @@
 }
 
 - (void)dealloc {
-    NSLog(@"dealloc %p", self);
+    NSLog(@"dealloc %@", self);
 
 }
 
