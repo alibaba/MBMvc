@@ -82,19 +82,19 @@
     return self;
 }
 
-- (id)initWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name {
+- (id)initWithSEL:(SEL)SEL key:(NSUInteger)key body:(id)body {
     self = [super init];
     if (self) {
         _name = NSStringFromSelector(SEL);
         _key = key;
-        _name = name;
+        _body = body;
     }
 
     return self;
 }
 
-+ (id)objectWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name {
-    return [[TBMBDefaultNotification alloc] initWithSEL:SEL key:key name:name];
++ (id)objectWithSEL:(SEL)SEL key:(NSUInteger)key body:(id)body {
+    return [[TBMBDefaultNotification alloc] initWithSEL:SEL key:key body:body];
 }
 
 

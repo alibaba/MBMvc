@@ -40,9 +40,9 @@
 
 + (id)objectWithSEL:(SEL)SEL body:(id)body;
 
-- (id)initWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name;
+- (id)initWithSEL:(SEL)SEL key:(NSUInteger)key body:(id)body;
 
-+ (id)objectWithSEL:(SEL)SEL key:(NSUInteger)key name:(NSString *)name;
++ (id)objectWithSEL:(SEL)SEL key:(NSUInteger)key body:(id)body;
 
 
 @end
