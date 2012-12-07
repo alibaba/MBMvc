@@ -184,7 +184,7 @@ static NSNotificationCenter *_c_NotificationCenter;
     dispatch_once(&_oncePredicate_registerCommandAutoAsync, ^{
         _waitingNotification = [[NSMutableArray alloc] initWithCapacity:0];
         _regCommandStatus = TBMB_REG_COMMAND_ASYNC_DOING;
-        dispatch_async(dispatch_queue_create("registerCommandQueue", NULL), ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self registerCommandAuto];
             _regCommandStatus = TBMB_REG_COMMAND_DONE;
             NSArray *waitingNotification;
