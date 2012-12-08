@@ -10,5 +10,5 @@
 #import "TBMBDefaultRootViewController.h"
 
 @interface TBMBViewController : TBMBDefaultRootViewController
-
+- (void)requestInstance:(UIButton *)sender;
 @end
