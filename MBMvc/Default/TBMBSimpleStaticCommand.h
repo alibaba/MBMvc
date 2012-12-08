@@ -8,4 +8,5 @@
 
 
 @interface TBMBSimpleStaticCommand : NSObject <TBMBStaticCommand>
++ (id)proxy;
 @end

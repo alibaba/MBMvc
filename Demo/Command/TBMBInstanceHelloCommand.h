@@ -9,4 +9,6 @@
 
 
 @interface TBMBInstanceHelloCommand : TBMBSimpleSingletonCommand
+
+- (void)sayHello:(NSString *)name;
 @end

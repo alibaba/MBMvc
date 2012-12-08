@@ -15,4 +15,11 @@
     }
 }
 
++ (void)noWorld:(NSString *)name result:(void (^)(NSString *))result {
+    if (result) {
+        result([NSString stringWithFormat:@"no,%@!", name]);
+    }
+}
+
+
 @end

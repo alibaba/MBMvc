@@ -8,6 +8,8 @@
 
 #import "TBMBViewController.h"
 #import "TBMBDemoView.h"
+#import "TBMBInstanceHelloCommand.h"
+#import "TBMBStaticHelloCommand.h"
 
 @interface TBMBViewController ()
 
@@ -33,13 +35,16 @@
 - (void)requestStatic:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [self sendNotificationForSEL:@selector($$staticHello:name:) body:view.text];
+    [[TBMBStaticHelloCommand proxy] sayNo:view.text];
+//    [self sendNotificationForSEL:@selector($$staticHello:name:) body:view.text];
 }
 
 - (void)requestInstance:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [self sendNotificationForSEL:@selector($$instanceHello:) body:view.text];
+
+    [[TBMBInstanceHelloCommand proxy] sayHello:view.text];
+//    [self sendNotificationForSEL:@selector($$instanceHello:) body:view.text];
 }
 
 

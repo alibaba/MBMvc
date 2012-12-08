@@ -9,4 +9,6 @@
 @interface TBMBTestService : NSObject
 
 + (void)helloWorld:(NSString *)name result:(void (^)(NSString *ret))result;
+
++ (void)noWorld:(NSString *)name result:(void (^)(NSString *ret))result;
 @end

@@ -6,17 +6,29 @@
 #import "TBMBSimpleInstanceCommand.h"
 #import "TBMBUtil.h"
 #import "TBMBMessageReceiver.h"
+#import "TBMBMessageProxy.h"
 
 
 @implementation TBMBSimpleInstanceCommand {
 
 }
 - (void)execute:(id <TBMBNotification>)notification {
+    if ([notification.name isEqualToString:TBMBProxyHandlerName(0, [self class])]) {   //代理方法直接执行
+        NSInvocation *invocation = notification.body;
+        [invocation invokeWithTarget:self];
+        return;
+    }
     TBMBAutoHandlerNotification(self, notification);
 }
 
 + (NSSet *)listReceiveNotifications {
-    return TBMBGetAllCommandHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
+    NSMutableSet *handlerNames = TBMBGetAllCommandHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
+    [handlerNames addObject:TBMBProxyHandlerName(0, self)];
+    return handlerNames;
+}
+
++ (id)proxy {
+    return [[TBMBMessageProxy alloc] initWithClass:self andKey:0];
 }
 
 

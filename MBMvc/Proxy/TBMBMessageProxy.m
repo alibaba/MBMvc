@@ -7,6 +7,7 @@
 #import "TBMBDefaultNotification.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBUtil.h"
+#import "TBMBStaticCommand.h"
 
 
 @implementation TBMBMessageProxy {
@@ -22,7 +23,12 @@
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
-    NSMethodSignature *sig = [_proxyClass instanceMethodSignatureForSelector:sel];
+    NSMethodSignature *sig;
+    if (TBMBClassHasProtocol(_proxyClass, @protocol(TBMBStaticCommand))) {
+        sig = [_proxyClass methodSignatureForSelector:sel];
+    } else {
+        sig = [_proxyClass instanceMethodSignatureForSelector:sel];
+    }
     return sig ? : [super methodSignatureForSelector:sel];
 }
 

@@ -8,4 +8,6 @@
 
 
 @interface TBMBStaticHelloCommand : TBMBSimpleStaticCommand
+
++ (void)sayNo:(NSString *)name;
 @end
