@@ -8,7 +8,7 @@
 #import "TBMBCommand.h"
 #import "TBMBStaticCommand.h"
 
-BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
+inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     Class currentClass = clazz;
     while (!class_conformsToProtocol(currentClass, protocol)) {
         currentClass = class_getSuperclass(currentClass);
@@ -19,7 +19,11 @@ BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     return YES;
 }
 
-static NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NSString *prefix) {
+inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz) {
+    return [NSString stringWithFormat:(@"__$$__receiveSelectorAndParameterToRun_%d_%@"), key, clazz];
+}
+
+static inline NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:2];
     unsigned int methodCount;
     Method *methods = isClassMethod ?
@@ -40,7 +44,7 @@ static NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NS
     return names;
 }
 
-NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix) {
+inline NSMutableSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
     Class clazz = [controller class];
     while (clazz != nil && clazz != [UIViewController class]) {
@@ -52,7 +56,7 @@ NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSStr
 }
 
 
-NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {
+inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
     Class clazz = commandClass;
     while (clazz != nil && clazz != [NSObject class]) {

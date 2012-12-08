@@ -78,11 +78,18 @@
 
 //默认自动匹配方法
 - (void)handlerNotification:(id <TBMBNotification>)notification {
+    if ([notification.name isEqualToString:TBMBProxyHandlerName(self.notificationKey, [self class])]) {   //代理方法直接执行
+        TBMBMessageProxyRequest *request = notification.body;
+        [request.invocation invokeWithTarget:self];
+        return;
+    }
     TBMBAutoHandlerNotification(self, notification);
 }
 
 - (NSSet *)listReceiveNotifications {
-    return TBMBGetAllUIViewControllerHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
+    NSMutableSet *handlerNames = TBMBGetAllUIViewControllerHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
+    [handlerNames addObject:TBMBProxyHandlerName(self.notificationKey, [self class])];
+    return handlerNames;
 }
 
 - (NSSet *)_$listObserver {
@@ -96,15 +103,6 @@
 
 - (void)_$removeObserver:(id)observer {
     [_$tbmbObserver removeObject:observer];
-}
-
-- (void)$$__$$receiveSelectorAndParameterToRun:(id <TBMBNotification>)notification {
-    if (notification.key == self.notificationKey) {
-        TBMBMessageProxyRequest *request = notification.body;
-        if ([self class] == request.targetClass) {
-            [request.invocation invokeWithTarget:self];
-        }
-    }
 }
 
 #pragma mark  - sender

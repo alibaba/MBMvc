@@ -7,6 +7,7 @@
 #import "TBMBMessageProxyRequest.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBGlobalFacade.h"
+#import "TBMBUtil.h"
 
 
 @implementation TBMBMessageProxy {
@@ -31,9 +32,9 @@
                                                                            invocation:invocation];
 
     TBMBDefaultNotification *notification = [[TBMBDefaultNotification alloc]
-                                                                      initWithSEL:@selector($$__$$receiveSelectorAndParameterToRun:)
-                                                                              key:_key
-                                                                             body:request];
+                                                                      initWithName:TBMBProxyHandlerName(_key, _proxyClass)
+                                                                               key:_key
+                                                                              body:request];
     TBMBGlobalSendTBMBNotification(notification);
 }
 

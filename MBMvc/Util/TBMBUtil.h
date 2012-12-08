@@ -5,10 +5,12 @@
 #import <objc/runtime.h>
 #import "TBMBNotification.h"
 
-extern BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
+extern inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
 
-extern NSSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix);
+extern inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz);
 
-extern NSSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
+extern inline NSMutableSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix);
+
+extern inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
 
 extern inline void TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification);
