@@ -33,6 +33,9 @@
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
+    if (!invocation.argumentsRetained) {
+        [invocation retainArguments];
+    }
     TBMBDefaultNotification *notification = [[TBMBDefaultNotification alloc]
                                                                       initWithName:TBMBProxyHandlerName(_key, _proxyClass)
                                                                                key:_key

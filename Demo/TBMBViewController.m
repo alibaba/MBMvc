@@ -35,16 +35,36 @@
 - (void)requestStatic:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    [[TBMBStaticHelloCommand proxy] sayNo:view.text];
+    TBMBViewController *delegate = self.proxyDelegate;
+    [[TBMBStaticHelloCommand proxy] sayNo:[TBMBTestDO objectWithName:view.text]
+                                   result:[^(NSString *ret) {
+                                       [delegate sayNo:ret];
+                                   } copy]];
 //    [self sendNotificationForSEL:@selector($$staticHello:name:) body:view.text];
 }
 
 - (void)requestInstance:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-
-    [[TBMBInstanceHelloCommand proxy] sayHello:view.text];
+    TBMBViewController *delegate = self.proxyDelegate;
+    [[TBMBInstanceHelloCommand proxy] sayHello:[TBMBTestDO objectWithName:view.text]
+                                        result:[^(NSString *ret) {
+                                            [delegate sayHello:ret];
+                                        } copy]];
 //    [self sendNotificationForSEL:@selector($$instanceHello:) body:view.text];
+}
+
+- (void)sayNo:(NSString *)name {
+    NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
+    UIButton *view = (UIButton *) [self.view viewWithTag:1];
+    [view setTitle:name forState:UIControlStateNormal];
+}
+
+- (NSString *)sayHello:(NSString *)name {
+    NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
+    UIButton *view = (UIButton *) [self.view viewWithTag:2];
+    [view setTitle:name forState:UIControlStateNormal];
+    return @"hello";
 }
 
 

@@ -26,6 +26,7 @@
 		EACF02E764BCB6F08E1615EF /* TBMBSimpleInstanceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0761A6B58420994E034C /* TBMBSimpleInstanceCommand.m */; };
 		EACF03DE521EF65773062EA3 /* TBMBDefaultNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */; };
 		EACF03F2581BACB54DF53900 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */; };
+		EACF053B72FACC29C248D4B4 /* TBMBTestDO.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0553453C4BD0344F68BA /* TBMBTestDO.m */; };
 		EACF05A2405BAB8DC3D29FF1 /* TBMBDefaultRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */; };
 		EACF06A3F19808C4AC5E5DE9 /* TBMBMessageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0E57111DA06BDC157FB2 /* TBMBMessageProxy.m */; };
 		EACF07411BAC39CBE2196D50 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0B0638BD017E4E305399 /* Default.png */; };
@@ -42,6 +43,7 @@
 		EACF0B333FA47CFED50854EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF01017E4FAEB93FB87A8B /* InfoPlist.strings */; };
 		EACF0C0A8D76F4C66815D50B /* TBMBGlobalFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */; };
 		EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */; };
+		EACF0CC6A4574557C01B6BEC /* TBMBTestDO.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0553453C4BD0344F68BA /* TBMBTestDO.m */; };
 		EACF0D23A3C06DC05782C40C /* TBMBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF01467974E8656490884A /* TBMBUtil.m */; };
 		EACF0D54FD79692B7447DA1A /* TBMBSimpleInstanceCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0761A6B58420994E034C /* TBMBSimpleInstanceCommand.m */; };
 		EACF0D972E6C6BAA0499D635 /* TBMBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF01467974E8656490884A /* TBMBUtil.m */; };
@@ -87,6 +89,7 @@
 		EACF04421DEF74195EE2E5EC /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = ../MBMvc/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EACF04A49197313295C9DAB1 /* TBMBDefaultRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultRootViewController.h; sourceTree = "<group>"; };
 		EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultNotification.m; sourceTree = "<group>"; };
+		EACF0553453C4BD0344F68BA /* TBMBTestDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBTestDO.m; sourceTree = "<group>"; };
 		EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBMvc-Prefix.pch"; sourceTree = "<group>"; };
 		EACF0755EFB1DAFCA21432B5 /* TBMBDefaultFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultFacade.m; sourceTree = "<group>"; };
 		EACF0761A6B58420994E034C /* TBMBSimpleInstanceCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBSimpleInstanceCommand.m; sourceTree = "<group>"; };
@@ -103,6 +106,7 @@
 		EACF0ABDD8484047F155F8C1 /* MBMvcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMvcTests.h; sourceTree = "<group>"; };
 		EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EACF0B0638BD017E4E305399 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		EACF0B5DA162D6F4C4CF39E9 /* TBMBTestDO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestDO.h; sourceTree = "<group>"; };
 		EACF0B6F367E5559EF06F871 /* TBMBBind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBBind.h; sourceTree = "<group>"; };
 		EACF0B8130606128EE159A61 /* TBMBSimpleSingletonCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBSimpleSingletonCommand.h; sourceTree = "<group>"; };
 		EACF0BB084076719C2747425 /* TBMBSimpleStaticCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBSimpleStaticCommand.m; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */,
 				EACF0D97C139950E919F5157 /* TBMBDemoView.m */,
 				EACF0FD4626D683F513A8DAF /* TBMBDemoView.h */,
+				EACF09B6C486FB27D7A29712 /* Module */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -271,6 +276,15 @@
 				EACF0E48844C799FD0D1290F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EACF09B6C486FB27D7A29712 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				EACF0553453C4BD0344F68BA /* TBMBTestDO.m */,
+				EACF0B5DA162D6F4C4CF39E9 /* TBMBTestDO.h */,
+			);
+			path = Module;
 			sourceTree = "<group>";
 		};
 		EACF0A957A25CD1B1A993DE3 /* Products */ = {
@@ -466,6 +480,7 @@
 				EACF01054FCCA2B8DF0AE4F6 /* TBMBSimpleSingletonCommand.m in Sources */,
 				EACF0F6BEE7B01AFAD7A1BA4 /* TBMBMessageProxy.m in Sources */,
 				EACF02A9E48E75E779599F66 /* TBMBDemoView.m in Sources */,
+				EACF0CC6A4574557C01B6BEC /* TBMBTestDO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +503,7 @@
 				EACF08DF827B8818D7E9E57E /* TBMBSimpleSingletonCommand.m in Sources */,
 				EACF06A3F19808C4AC5E5DE9 /* TBMBMessageProxy.m in Sources */,
 				EACF01C60108013B4B9031BF /* TBMBDemoView.m in Sources */,
+				EACF053B72FACC29C248D4B4 /* TBMBTestDO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

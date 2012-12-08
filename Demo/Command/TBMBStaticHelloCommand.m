@@ -20,11 +20,13 @@
     }];
 }
 
-+ (void)sayNo:(NSString *)name {
++ (void)sayNo:(TBMBTestDO *)name result:(void (^)(NSString *ret))result {
     NSLog(@"command Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    [TBMBTestService noWorld:name result:^(NSString *ret) {
+    [TBMBTestService noWorld:name.name result:^(NSString *ret) {
         NSLog(@"command Callback Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-        TBMBGlobalSendNotificationForSELWithBody(@selector($$receiveStaticHello:title:), ret);
+        if (result) {
+            result(ret);
+        }
     }];
 }
 

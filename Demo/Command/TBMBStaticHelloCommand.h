@@ -5,9 +5,9 @@
 
 #import <Foundation/Foundation.h>
 #import "TBMBSimpleStaticCommand.h"
-
+#import "TBMBTestDO.h"
 
 @interface TBMBStaticHelloCommand : TBMBSimpleStaticCommand
 
-+ (void)sayNo:(NSString *)name;
++ (void)sayNo:(TBMBTestDO *)name result:(void (^)(NSString *ret))result;
 @end
