@@ -27,7 +27,7 @@ extern inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host,
 extern inline void TBMBUnbindObject(id bindable);
 
 #define TBMBBindPropertyWeak(bindable , keyPath , type , host , property)                                     \
-        {__block __unsafe_unretained type ___host = host;                                                     \
+        {__block __unsafe_unretained type ___host = (type) host;                                              \
             TBMBBindObject((bindable) , (keyPath) , ^(id ____old, id ____new) {                               \
                                 (___host).property = ____new;                                                 \
                         });                                                                                   \
