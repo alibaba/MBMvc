@@ -6,10 +6,9 @@
 #import <Foundation/Foundation.h>
 #import "TBMBSimpleInstanceCommand.h"
 #import "TBMBSimpleSingletonCommand.h"
-#import "TBMBTestDO.h"
 
 
 @interface TBMBInstanceHelloCommand : TBMBSimpleSingletonCommand
 
-- (void)sayHello:(TBMBTestDO *)name result:(void(^)(NSString *ret))result;
+- (void)sayHello:(NSString *)name result:(void (^)(NSString *ret))result;
 @end

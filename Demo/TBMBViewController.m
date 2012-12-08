@@ -47,7 +47,7 @@
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyDelegate;
-    [[TBMBInstanceHelloCommand proxy] sayHello:[TBMBTestDO objectWithName:view.text]
+    [[TBMBInstanceHelloCommand proxy] sayHello:view.text
                                         result:[^(NSString *ret) {
                                             [delegate sayHello:ret];
                                         } copy]];

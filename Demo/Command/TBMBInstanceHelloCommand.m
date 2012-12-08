@@ -21,9 +21,9 @@
     }];
 }
 
-- (void)sayHello:(TBMBTestDO *)name result:(void (^)(NSString *ret))result {
+- (void)sayHello:(NSString *)name result:(void (^)(NSString *ret))result {
     NSLog(@"command Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    [TBMBTestService helloWorld:name.name result:^(NSString *ret) {
+    [TBMBTestService helloWorld:name result:^(NSString *ret) {
         NSLog(@"command Callback Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
         if (result) {
             result(ret);
