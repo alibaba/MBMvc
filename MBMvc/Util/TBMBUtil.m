@@ -20,7 +20,7 @@ inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
 }
 
 inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz) {
-    return [NSString stringWithFormat:(@"__$$__receiveSelectorAndParameterToRun_%d_%@"), key, clazz];
+    return [NSString stringWithFormat:(@"__$$__ProxyHandler_%d_%@"), key, clazz];
 }
 
 static inline NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NSString *prefix) {

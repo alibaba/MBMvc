@@ -4,7 +4,6 @@
 
 
 #import "TBMBMessageProxy.h"
-#import "TBMBMessageProxyRequest.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBUtil.h"
@@ -28,13 +27,10 @@
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
-    TBMBMessageProxyRequest *request = [TBMBMessageProxyRequest objectWithTargetClass:_proxyClass
-                                                                           invocation:invocation];
-
     TBMBDefaultNotification *notification = [[TBMBDefaultNotification alloc]
                                                                       initWithName:TBMBProxyHandlerName(_key, _proxyClass)
                                                                                key:_key
-                                                                              body:request];
+                                                                              body:invocation];
     TBMBGlobalSendTBMBNotification(notification);
 }
 
