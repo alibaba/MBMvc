@@ -10,8 +10,6 @@
 
 #import "TBMBViewController.h"
 #import "TBMBGlobalFacade.h"
-#import "TBMBMessageProxy.h"
-#import "TBMBFake.h"
 
 @implementation TBMBAppDelegate
 
@@ -27,32 +25,7 @@
     self.viewController = [[TBMBViewController alloc] initWithCoder:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    id proxy = [[TBMBMessageProxy alloc] initWithClass:[TBMBFake class]];
-    int ip = 10;
-    __union u = {1};
-    __struct s = {1, "a"};
-    int aa[] = {1, 2, 4};
-    [proxy requestChar:'a'
-          UnsignedChar:'b'
-                  Bool:true Double:12345678
-                   Int:123
-                 Float:123.123
-                  Long:-654321L
-          UnsignedLong:654321L
-      UnsignedLongLong:6543211
-                 Short:2
-         UnsignedShort:3
-                Struct:s
-              Unsigned:10
-                  IntP:&ip
-                 Block:^{
-                 }
-                 CharP:"test"
-                 Array:aa
-                 Point:&s
-                 Class:[TBMBFake class]
-               Selecor:@selector(application:didChangeStatusBarFrame:)
-                   Any:NULL Id:self];
+
     return YES;
 }
 

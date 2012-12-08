@@ -4,23 +4,20 @@
 
 
 #import "TBMBMessageProxy.h"
-#import "TBMBSelectorParameter.h"
+#import "TBMBMessageProxyRequest.h"
+#import "TBMBDefaultNotification.h"
+#import "TBMBGlobalFacade.h"
 
-
-static inline TBMBSelectorParameter *getTBMBSelectorParameter(NSInvocation *invocation, NSUInteger parameterIdx) {
-    char const *type = [invocation.methodSignature getArgumentTypeAtIndex:parameterIdx];
-    NSLog(@"%s", type);
-    return nil;
-}
 
 @implementation TBMBMessageProxy {
 @private
     Class _proxyClass;
-
+    NSUInteger _key;
 }
 
-- (id)initWithClass:(Class)proxyClass {
+- (id)initWithClass:(Class)proxyClass andKey:(NSUInteger)key; {
     _proxyClass = proxyClass;
+    _key = key;
     return self;
 }
 
@@ -30,17 +27,14 @@ static inline TBMBSelectorParameter *getTBMBSelectorParameter(NSInvocation *invo
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
-    SEL aSelector = invocation.selector;
-    NSUInteger argsNum = invocation.methodSignature.numberOfArguments;
-    if (argsNum > 2) {
-        for (NSUInteger i = 2; i < argsNum; i++) {
-            getTBMBSelectorParameter(invocation, i);
-        }
-    }
+    TBMBMessageProxyRequest *request = [TBMBMessageProxyRequest objectWithTargetClass:_proxyClass
+                                                                           invocation:invocation];
 
-
-
-//    [super forwardInvocation:invocation];
+    TBMBDefaultNotification *notification = [[TBMBDefaultNotification alloc]
+                                                                      initWithSEL:@selector($$__$$receiveSelectorAndParameterToRun:)
+                                                                              key:_key
+                                                                             body:request];
+    TBMBGlobalSendTBMBNotification(notification);
 }
 
 

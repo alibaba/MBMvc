@@ -7,7 +7,8 @@
 //
 
 #import "TBMBViewController.h"
-#import "TBMBBind.h"
+#import "TBMBDemoView.h"
+#import "TBMBMessageProxy.h"
 
 @interface TBMBViewController ()
 
@@ -18,54 +19,9 @@
 
 - (void)loadView {
     [super loadView];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 200, 30)];
-    [button setTitle:@"请求" forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(requestStatic:) forControlEvents:UIControlEventTouchUpInside];
-    button.backgroundColor = [UIColor redColor];
-    button.tag = 1;
-    [self.view addSubview:button];
-
-    UIButton *buttonTwo = [[UIButton alloc] initWithFrame:CGRectMake(50, 80, 200, 30)];
-    [buttonTwo setTitle:@"请求" forState:UIControlStateNormal];
-    [buttonTwo addTarget:self action:@selector(requestInstance:) forControlEvents:UIControlEventTouchUpInside];
-    buttonTwo.backgroundColor = [UIColor redColor];
-    buttonTwo.tag = 2;
-    [self.view addSubview:buttonTwo];
-
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50, 120, 200, 30)];
-    textField.backgroundColor = [UIColor redColor];
-    textField.tag = 3;
-    textField.text = @"test";
-    [self.view addSubview:textField];
-
-    UIButton *buttonNav = [[UIButton alloc] initWithFrame:CGRectMake(50, 160, 200, 30)];
-    [buttonNav setTitle:@"下一个" forState:UIControlStateNormal];
-    [buttonNav addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
-    buttonNav.backgroundColor = [UIColor redColor];
-    buttonNav.tag = 4;
-    [self.view addSubview:buttonNav];
-
-    UIButton *buttonPrev = [[UIButton alloc] initWithFrame:CGRectMake(50, 200, 200, 30)];
-    [buttonPrev setTitle:@"上一个" forState:UIControlStateNormal];
-    [buttonPrev addTarget:self action:@selector(prev:) forControlEvents:UIControlEventTouchUpInside];
-    buttonPrev.backgroundColor = [UIColor redColor];
-    buttonPrev.tag = 5;
-
-
-    UITextField *textFieldSync = [[UITextField alloc] initWithFrame:CGRectMake(50, 240, 200, 30)];
-    textFieldSync.backgroundColor = [UIColor redColor];
-    textFieldSync.tag = 4;
-    [self.view addSubview:textFieldSync];
-
-//    TBMBBindObject(textField, @"text", ^(id old, id new) {
-//        [aaa setText:new];
-//    }
-//    );
-
-
-    TBMBBindPropertyWeak(textField, @"text", UITextField *, textFieldSync, text);
-    textField.text = @"testl123345";
-    [self.view addSubview:buttonPrev];
+    TBMBDemoView *view = [[TBMBDemoView alloc] initWithFrame:self.view.frame];
+    view.delegate = [[TBMBMessageProxy alloc] initWithClass:[self class] andKey:self.notificationKey];
+    [self.view addSubview:view];
 }
 
 - (void)prev:(id)prev {

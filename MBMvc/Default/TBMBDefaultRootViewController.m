@@ -7,6 +7,7 @@
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBUtil.h"
+#import "TBMBMessageProxyRequest.h"
 
 
 @implementation TBMBDefaultRootViewController {
@@ -90,6 +91,15 @@
 
 - (void)_$removeObserver:(id)observer {
     [_$tbmbObserver removeObject:observer];
+}
+
+- (void)$$__$$receiveSelectorAndParameterToRun:(id <TBMBNotification>)notification {
+    if (notification.key == self.notificationKey) {
+        TBMBMessageProxyRequest *request = notification.body;
+        if ([self class] == request.targetClass) {
+            [request.invocation invokeWithTarget:self];
+        }
+    }
 }
 
 #pragma mark  - sender

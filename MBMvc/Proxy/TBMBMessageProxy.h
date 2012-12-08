@@ -7,5 +7,5 @@
 
 
 @interface TBMBMessageProxy : NSProxy
-- (id)initWithClass:(Class)proxyClass;
+- (id)initWithClass:(Class)proxyClass andKey:(NSUInteger)key;
 @end
