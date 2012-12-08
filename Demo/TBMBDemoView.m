@@ -4,7 +4,7 @@
 
 
 #import "TBMBDemoView.h"
-#import "TBMBViewController.h"
+#import "TBMBBind.h"
 
 
 @implementation TBMBDemoView {
@@ -57,8 +57,8 @@
         textFieldSync.tag = 6;
         [self addSubview:textFieldSync];
 
-//        TBMBBindPropertyWeak(textField, @"text", UITextField *, textFieldSync, text);
-//        textField.text = @"testl123345";
+        TBMBBindPropertyWeak(textField, @"text", UITextField *, textFieldSync, text);
+        textField.text = @"testl123345";
         [self addSubview:buttonPrev];
     }
 

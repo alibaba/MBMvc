@@ -8,7 +8,6 @@
 
 #import "TBMBViewController.h"
 #import "TBMBDemoView.h"
-#import "TBMBMessageProxy.h"
 
 @interface TBMBViewController ()
 
@@ -20,7 +19,7 @@
 - (void)loadView {
     [super loadView];
     TBMBDemoView *view = [[TBMBDemoView alloc] initWithFrame:self.view.frame];
-    view.delegate = [[TBMBMessageProxy alloc] initWithClass:[self class] andKey:self.notificationKey];
+    view.delegate = self.proxyDelegate;
     [self.view addSubview:view];
 }
 
