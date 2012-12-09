@@ -16,6 +16,4 @@
 
 + (id)objectWithTBMBFacade:(id <TBMBFacade>)tbmbFacade;
 
-- (id)proxyDelegate;
-
 @end

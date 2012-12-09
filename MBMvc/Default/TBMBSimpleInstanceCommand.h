@@ -8,5 +8,4 @@
 
 
 @interface TBMBSimpleInstanceCommand : NSObject <TBMBInstanceCommand>
-+ (id)proxy;
 @end

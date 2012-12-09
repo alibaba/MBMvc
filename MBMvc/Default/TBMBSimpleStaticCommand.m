@@ -6,7 +6,6 @@
 #import "TBMBSimpleStaticCommand.h"
 #import "TBMBUtil.h"
 #import "TBMBMessageReceiver.h"
-#import "TBMBMessageProxy.h"
 
 
 @implementation TBMBSimpleStaticCommand {
@@ -27,7 +26,4 @@
     return handlerNames;
 }
 
-+ (id)proxy {
-    return [[TBMBMessageProxy alloc] initWithClass:self andKey:0];
-}
 @end

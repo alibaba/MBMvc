@@ -6,7 +6,6 @@
 #import "TBMBSimpleInstanceCommand.h"
 #import "TBMBUtil.h"
 #import "TBMBMessageReceiver.h"
-#import "TBMBMessageProxy.h"
 
 
 @implementation TBMBSimpleInstanceCommand {
@@ -26,10 +25,5 @@
     [handlerNames addObject:TBMBProxyHandlerName(0, self)];
     return handlerNames;
 }
-
-+ (id)proxy {
-    return [[TBMBMessageProxy alloc] initWithClass:self andKey:0];
-}
-
 
 @end

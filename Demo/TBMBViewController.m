@@ -10,6 +10,9 @@
 #import "TBMBDemoView.h"
 #import "TBMBInstanceHelloCommand.h"
 #import "TBMBStaticHelloCommand.h"
+#import "TBMBDefaultRootViewController+TBMBProxy.h"
+#import "TBMBSimpleInstanceCommand+TBMBProxy.h"
+#import "TBMBSimpleStaticCommand+TBMBProxy.h"
 
 @interface TBMBViewController ()
 
@@ -21,7 +24,7 @@
 - (void)loadView {
     [super loadView];
     TBMBDemoView *view = [[TBMBDemoView alloc] initWithFrame:self.view.frame];
-    view.delegate = self.proxyDelegate;
+    view.delegate = self.proxyObject;
     [self.view addSubview:view];
 }
 
@@ -35,8 +38,8 @@
 - (void)requestStatic:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    TBMBViewController *delegate = self.proxyDelegate;
-    [[TBMBStaticHelloCommand proxy] sayNo:[TBMBTestDO objectWithName:view.text]
+    TBMBViewController *delegate = self.proxyObject;
+    [[TBMBStaticHelloCommand proxyObject] sayNo:[TBMBTestDO objectWithName:view.text]
                                    result:[^(NSString *ret) {
                                        [delegate sayNo:ret];
                                    } copy]];
@@ -46,8 +49,8 @@
 - (void)requestInstance:(UIButton *)sender {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
-    TBMBViewController *delegate = self.proxyDelegate;
-    [[TBMBInstanceHelloCommand proxy] sayHello:view.text Age:20
+    TBMBViewController *delegate = self.proxyObject;
+    [[TBMBInstanceHelloCommand proxyObject] sayHello:view.text Age:20
                                         result:[^(NSString *ret) {
                                             [delegate sayHello:ret];
                                         } copy]];

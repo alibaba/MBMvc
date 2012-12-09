@@ -7,7 +7,6 @@
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBUtil.h"
-#import "TBMBMessageProxy.h"
 
 
 @implementation TBMBDefaultRootViewController {
@@ -63,11 +62,6 @@
 + (id)objectWithTBMBFacade:(id <TBMBFacade>)tbmbFacade {
     return [[TBMBDefaultRootViewController alloc] initWithTBMBFacade:tbmbFacade];
 }
-
-- (id)proxyDelegate {
-    return [[TBMBMessageProxy alloc] initWithClass:[self class] andKey:self.notificationKey];
-}
-
 
 - (void)dealloc {
     [self.tbmbFacade unsubscribeNotification:self];
