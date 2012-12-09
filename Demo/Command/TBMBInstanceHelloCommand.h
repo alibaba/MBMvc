@@ -6,9 +6,10 @@
 #import <Foundation/Foundation.h>
 #import "TBMBSimpleInstanceCommand.h"
 #import "TBMBSimpleSingletonCommand.h"
+#import "TBMBOnlyProxy.h"
 
 
-@interface TBMBInstanceHelloCommand : TBMBSimpleSingletonCommand
+@interface TBMBInstanceHelloCommand : TBMBSimpleSingletonCommand <TBMBOnlyProxy>
 
 - (void)sayHello:(NSString *)name Age:(NSUInteger)age result:(void (^)(NSString *ret))result;
 @end

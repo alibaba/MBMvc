@@ -6,6 +6,7 @@
 #import "TBMBSimpleInstanceCommand.h"
 #import "TBMBUtil.h"
 #import "TBMBMessageReceiver.h"
+#import "TBMBOnlyProxy.h"
 
 
 @implementation TBMBSimpleInstanceCommand {
@@ -21,6 +22,9 @@
 }
 
 + (NSSet *)listReceiveNotifications {
+    if (TBMBClassHasProtocol(self, @protocol(TBMBOnlyProxy))) {
+        return [NSSet setWithObject:TBMBProxyHandlerName(0, self)];
+    }
     NSMutableSet *handlerNames = TBMBGetAllCommandHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
     [handlerNames addObject:TBMBProxyHandlerName(0, self)];
     return handlerNames;

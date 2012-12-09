@@ -7,6 +7,7 @@
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBUtil.h"
+#import "TBMBOnlyProxy.h"
 
 
 @implementation TBMBDefaultRootViewController {
@@ -80,6 +81,9 @@
 }
 
 - (NSSet *)listReceiveNotifications {
+    if (TBMBClassHasProtocol([self class], @protocol(TBMBOnlyProxy))) {
+        return [NSSet setWithObject:TBMBProxyHandlerName(0, [self class])];
+    }
     NSMutableSet *handlerNames = TBMBGetAllUIViewControllerHandlerName(self, TBMB_DEFAULT_RECEIVE_HANDLER_NAME);
     [handlerNames addObject:TBMBProxyHandlerName(self.notificationKey, [self class])];
     return handlerNames;
