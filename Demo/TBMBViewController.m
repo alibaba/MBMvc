@@ -39,7 +39,7 @@
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
-    [[TBMBStaticHelloCommand proxyObject] sayNo:[TBMBTestDO objectWithName:view.text]
+    [TBMBStaticHelloCommand.proxyObject sayNo:[TBMBTestDO objectWithName:view.text]
                                    result:[^(NSString *ret) {
                                        [delegate sayNo:ret];
                                    } copy]];
@@ -50,7 +50,7 @@
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
-    [[TBMBInstanceHelloCommand proxyObject] sayHello:view.text Age:20
+    [TBMBInstanceHelloCommand.proxyObject sayHello:view.text Age:20
                                         result:[^(NSString *ret) {
                                             [delegate sayHello:ret];
                                         } copy]];
