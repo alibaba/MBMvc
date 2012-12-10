@@ -22,7 +22,7 @@ static char kTBMBNSMethodSignatureNotFoundKey;
     return notFound ? [notFound boolValue] : NO;
 }
 
-- (BOOL)_$setTBMBNotFound:(BOOL)yesOrNO {
+- (void)_$setTBMBNotFound:(BOOL)yesOrNO {
     objc_setAssociatedObject(self, &kTBMBNSMethodSignatureNotFoundKey, [NSNumber numberWithBool:yesOrNO], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 @end
