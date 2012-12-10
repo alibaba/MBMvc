@@ -9,6 +9,24 @@
 #import "TBMBUtil.h"
 #import "TBMBStaticCommand.h"
 
+static char kTBMBNSMethodSignatureNotFoundKey;
+
+@interface NSMethodSignature (TBMB)
+
+
+@end
+
+@implementation NSMethodSignature (TBMB)
+- (BOOL)_$isTBMBNotFound {
+    NSNumber *notFound = objc_getAssociatedObject(self, &kTBMBNSMethodSignatureNotFoundKey);
+    return notFound ? [notFound boolValue] : NO;
+}
+
+- (BOOL)_$setTBMBNotFound:(BOOL)yesOrNO {
+    objc_setAssociatedObject(self, &kTBMBNSMethodSignatureNotFoundKey, [NSNumber numberWithBool:yesOrNO], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+@end
+
 
 @implementation TBMBMessageProxy {
 @private
@@ -29,10 +47,25 @@
     } else {
         sig = [_proxyClass instanceMethodSignatureForSelector:sel];
     }
-    return sig ? : [super methodSignatureForSelector:sel];
+    if (sig) {
+        [sig _$setTBMBNotFound:NO];
+        return sig;
+    } else {
+        NSMethodSignature *signature = [[self class] methodSignatureForSelector:@selector(__$$__NullMethod)];
+        [signature _$setTBMBNotFound:YES];
+        return signature;
+    }
+    //return sig ? : [super methodSignatureForSelector:sel];
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
+    if (invocation.methodSignature._$isTBMBNotFound) {
+        NSLog(@"MBMvc You Invoke a Selector [%@] which is not exist in Class[%@]",
+                NSStringFromSelector(invocation.selector),
+                _proxyClass
+        );
+        return;
+    }
     if (!invocation.argumentsRetained) {
         [invocation retainArguments];
     }
@@ -43,5 +76,8 @@
     TBMBGlobalSendTBMBNotification(notification);
 }
 
+
++ (void)__$$__NullMethod {
+}
 
 @end
