@@ -54,7 +54,7 @@
 
 - (NSSet *)listReceiveNotifications {
     if (TBMBClassHasProtocol([self class], @protocol(TBMBOnlyProxy))) {
-        return [NSSet setWithObject:TBMBProxyHandlerName(0, [self class])];
+        return [NSSet setWithObject:TBMBProxyHandlerName(self.notificationKey, [self class])];
     }
     NSMutableSet *handlerNames = TBMBGetAllReceiverHandlerName([self class], [TBMBDefaultMessageReceiver class],
             TBMB_DEFAULT_RECEIVE_HANDLER_NAME
