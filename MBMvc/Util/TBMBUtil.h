@@ -11,10 +11,7 @@ extern inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
 
 extern inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz);
 
-extern inline NSMutableSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix);
-
-extern inline NSMutableSet *TBMBGetAllTBMBDefaultMessageReceiverHandlerName(TBMBDefaultMessageReceiver *receiver,
-        NSString *prefix);
+extern inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class rootClass, NSString *prefix);
 
 extern inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
 

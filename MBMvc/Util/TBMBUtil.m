@@ -7,7 +7,6 @@
 #import "TBMBUtil.h"
 #import "TBMBCommand.h"
 #import "TBMBStaticCommand.h"
-#import "TBMBDefaultMessageReceiver.h"
 
 inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     Class currentClass = clazz;
@@ -45,28 +44,17 @@ static inline NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMet
     return names;
 }
 
-inline NSMutableSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *controller, NSString *prefix) {
+inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class rootClass, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
-    Class clazz = [controller class];
-    while (clazz != nil && clazz != [UIViewController class]) {
+    rootClass = rootClass ? : [NSObject class];
+    Class clazz = currentClass;
+    while (clazz != nil && clazz != rootClass) {
         NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, NO, prefix);
         [names unionSet:nameWithClass];
         clazz = class_getSuperclass(clazz);
     }
     return names;
 }
-
-inline NSMutableSet *TBMBGetAllTBMBDefaultMessageReceiverHandlerName(TBMBDefaultMessageReceiver *receiver, NSString *prefix) {
-    NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
-    Class clazz = [receiver class];
-    while (clazz != nil && clazz != [TBMBDefaultMessageReceiver class]) {
-        NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, NO, prefix);
-        [names unionSet:nameWithClass];
-        clazz = class_getSuperclass(clazz);
-    }
-    return names;
-}
-
 
 inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
