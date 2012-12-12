@@ -72,12 +72,7 @@
 
 //默认自动匹配方法
 - (void)handlerNotification:(id <TBMBNotification>)notification {
-    if ([notification.name isEqualToString:TBMBProxyHandlerName(self.notificationKey, [self class])]) {   //代理方法直接执行
-        NSInvocation *invocation = notification.body;
-        [invocation invokeWithTarget:self];
-        return;
-    }
-    TBMBAutoHandlerNotification(self, notification);
+    TBMBAutoHandlerReceiverNotification(self, notification);
 }
 
 - (NSSet *)listReceiveNotifications {

@@ -7,6 +7,7 @@
 #import "TBMBUtil.h"
 #import "TBMBCommand.h"
 #import "TBMBStaticCommand.h"
+#import "TBMBMessageReceiver.h"
 
 inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     Class currentClass = clazz;
@@ -72,4 +73,13 @@ inline void TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notifi
     if ([handler respondsToSelector:notifyHandler]) {
         objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
     }
+}
+
+inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification) {
+    if ([notification.name isEqualToString:TBMBProxyHandlerName(handler.notificationKey, [handler class])]) {   //代理方法直接执行
+        NSInvocation *invocation = notification.body;
+        [invocation invokeWithTarget:handler];
+        return;
+    }
+    TBMBAutoHandlerNotification(handler, notification);
 }

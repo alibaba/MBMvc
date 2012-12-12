@@ -6,6 +6,7 @@
 #import "TBMBNotification.h"
 
 @class TBMBDefaultMessageReceiver;
+@protocol TBMBMessageReceiver;
 
 extern inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
 
@@ -16,3 +17,5 @@ extern inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Cl
 extern inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
 
 extern inline void TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification);
+
+extern inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification);
