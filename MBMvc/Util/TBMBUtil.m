@@ -8,6 +8,7 @@
 #import "TBMBCommand.h"
 #import "TBMBStaticCommand.h"
 #import "TBMBMessageReceiver.h"
+#import "TBMBOnlyProxy.h"
 
 inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     Class currentClass = clazz;
@@ -55,6 +56,17 @@ inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class roo
         clazz = class_getSuperclass(clazz);
     }
     return names;
+}
+
+inline NSSet *TBMBListAllReceiverHandlerName(id <TBMBMessageReceiver> handler, Class rootClass) {
+    if (TBMBClassHasProtocol([handler class], @protocol(TBMBOnlyProxy))) {
+        return [NSSet setWithObject:TBMBProxyHandlerName(handler.notificationKey, [handler class])];
+    }
+    NSMutableSet *handlerNames = TBMBGetAllReceiverHandlerName([handler class], rootClass,
+            TBMB_DEFAULT_RECEIVE_HANDLER_NAME
+    );
+    [handlerNames addObject:TBMBProxyHandlerName(handler.notificationKey, [handler class])];
+    return handlerNames;
 }
 
 inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {

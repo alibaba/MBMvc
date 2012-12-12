@@ -14,6 +14,8 @@ extern inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz);
 
 extern inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class rootClass, NSString *prefix);
 
+extern inline NSSet *TBMBListAllReceiverHandlerName(id <TBMBMessageReceiver> handler, Class rootClass);
+
 extern inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
 
 extern inline void TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification);

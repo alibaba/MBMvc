@@ -76,14 +76,7 @@
 }
 
 - (NSSet *)listReceiveNotifications {
-    if (TBMBClassHasProtocol([self class], @protocol(TBMBOnlyProxy))) {
-        return [NSSet setWithObject:TBMBProxyHandlerName(self.notificationKey, [self class])];
-    }
-    NSMutableSet *handlerNames = TBMBGetAllReceiverHandlerName([self class], [TBMBDefaultRootViewController class],
-            TBMB_DEFAULT_RECEIVE_HANDLER_NAME
-    );
-    [handlerNames addObject:TBMBProxyHandlerName(self.notificationKey, [self class])];
-    return handlerNames;
+    return TBMBListAllReceiverHandlerName(self,[TBMBDefaultRootViewController class]);
 }
 
 - (NSSet *)_$listObserver {

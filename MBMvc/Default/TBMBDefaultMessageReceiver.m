@@ -7,7 +7,6 @@
 #import "TBMBFacade.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBUtil.h"
-#import "TBMBOnlyProxy.h"
 
 
 @implementation TBMBDefaultMessageReceiver {
@@ -53,14 +52,7 @@
 }
 
 - (NSSet *)listReceiveNotifications {
-    if (TBMBClassHasProtocol([self class], @protocol(TBMBOnlyProxy))) {
-        return [NSSet setWithObject:TBMBProxyHandlerName(self.notificationKey, [self class])];
-    }
-    NSMutableSet *handlerNames = TBMBGetAllReceiverHandlerName([self class], [TBMBDefaultMessageReceiver class],
-            TBMB_DEFAULT_RECEIVE_HANDLER_NAME
-    );
-    [handlerNames addObject:TBMBProxyHandlerName(self.notificationKey, [self class])];
-    return handlerNames;
+    return TBMBListAllReceiverHandlerName(self, [TBMBDefaultMessageReceiver class]);
 }
 
 - (NSSet *)_$listObserver {
