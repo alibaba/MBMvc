@@ -7,6 +7,7 @@
 #import "TBMBUtil.h"
 #import "TBMBCommand.h"
 #import "TBMBStaticCommand.h"
+#import "TBMBDefaultMessageReceiver.h"
 
 inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     Class currentClass = clazz;
@@ -48,6 +49,17 @@ inline NSMutableSet *TBMBGetAllUIViewControllerHandlerName(UIViewController *con
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
     Class clazz = [controller class];
     while (clazz != nil && clazz != [UIViewController class]) {
+        NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, NO, prefix);
+        [names unionSet:nameWithClass];
+        clazz = class_getSuperclass(clazz);
+    }
+    return names;
+}
+
+inline NSMutableSet *TBMBGetAllTBMBDefaultMessageReceiverHandlerName(TBMBDefaultMessageReceiver *receiver, NSString *prefix) {
+    NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
+    Class clazz = [receiver class];
+    while (clazz != nil && clazz != [TBMBDefaultMessageReceiver class]) {
         NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, NO, prefix);
         [names unionSet:nameWithClass];
         clazz = class_getSuperclass(clazz);
