@@ -7,6 +7,9 @@
 #define TBMB_DEFAULT_RECEIVE_HANDLER_NAME  (@"$$")
 
 @protocol TBMBMessageReceiver
+//默认的key 用于回调判断用
+- (const NSUInteger)notificationKey;
+
 //处理通知的函数
 - (void)handlerNotification:(id <TBMBNotification>)notification;
 
