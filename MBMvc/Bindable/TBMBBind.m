@@ -173,7 +173,7 @@ static char kTBMBBindableObjectKey;
                                                                              changeBlock:changeBlock];
         [bindable addObserver:handler
                    forKeyPath:keyPath
-                      options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                      options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial
                       context:nil];
 
         [bindable _$AddTBMBBindableObjectSet:handler];
