@@ -7,7 +7,6 @@
 #import "TBMBGlobalFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBUtil.h"
-#import "TBMBOnlyProxy.h"
 
 
 @implementation TBMBDefaultRootViewController {
@@ -17,8 +16,7 @@
 }
 
 - (const NSUInteger)notificationKey {
-    const void *selfPtr = (__bridge const void *) self;
-    return (const NSUInteger) selfPtr;
+    return getDefaultNotificationKey(self);
 }
 
 - (id <TBMBFacade>)tbmbFacade {
@@ -76,7 +74,7 @@
 }
 
 - (NSSet *)listReceiveNotifications {
-    return TBMBListAllReceiverHandlerName(self,[TBMBDefaultRootViewController class]);
+    return TBMBListAllReceiverHandlerName(self, [TBMBDefaultRootViewController class]);
 }
 
 - (NSSet *)_$listObserver {

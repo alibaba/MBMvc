@@ -21,3 +21,5 @@ extern inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSS
 extern inline void TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification);
 
 extern inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification);
+
+extern inline const NSUInteger getDefaultNotificationKey(id o);

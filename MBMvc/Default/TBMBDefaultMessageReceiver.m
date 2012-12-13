@@ -28,8 +28,7 @@
 }
 
 - (const NSUInteger)notificationKey {
-    const void *selfPtr = (__bridge const void *) self;
-    return (const NSUInteger) selfPtr;
+    return getDefaultNotificationKey(self);
 }
 
 - (id)initWithTBMBFacade:(id <TBMBFacade>)tbmbFacade {

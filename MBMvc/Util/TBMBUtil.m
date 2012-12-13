@@ -95,3 +95,8 @@ inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler
     }
     TBMBAutoHandlerNotification(handler, notification);
 }
+
+inline const NSUInteger getDefaultNotificationKey(id o) {
+    const void *ptr = (__bridge const void *) o;
+    return (const NSUInteger) ptr;
+}
