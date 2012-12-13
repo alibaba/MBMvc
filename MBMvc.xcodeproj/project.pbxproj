@@ -37,7 +37,6 @@
 		EACF07FDA05B19D29466B216 /* TBMBDefaultRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */; };
 		EACF0829E304988B0107E712 /* TBMBSimpleInstanceCommand+TBMBProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF018D7DA1AB2BB9A1D78D /* TBMBSimpleInstanceCommand+TBMBProxy.m */; };
 		EACF08DF827B8818D7E9E57E /* TBMBSimpleSingletonCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF02E376C813FD4025B4F9 /* TBMBSimpleSingletonCommand.m */; };
-		EACF095AF8ACD271CA41BBF1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D980DF4ABC5FE1DD51A /* InfoPlist.strings */; };
 		EACF097504AE855ED6921972 /* TBMBStaticHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF009893395D5F7221274B /* TBMBStaticHelloCommand.m */; };
 		EACF0980B1B55973A3186EFC /* TBMBInstanceHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0232AF8F10AC9ECC0F14 /* TBMBInstanceHelloCommand.m */; };
 		EACF09F995FE62F5B7A54282 /* TBMBInstanceHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0232AF8F10AC9ECC0F14 /* TBMBInstanceHelloCommand.m */; };
@@ -45,7 +44,6 @@
 		EACF0AE70B05C5B12BAA6884 /* TBMBBind.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF080F927138E0226D938A /* TBMBBind.m */; };
 		EACF0B001BD9BE25CCA0B3D5 /* TBMBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0114696E5921FD1438BC /* TBMBAppDelegate.m */; };
 		EACF0B0972828AB8ED702CDA /* TBMBStaticHelloCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF009893395D5F7221274B /* TBMBStaticHelloCommand.m */; };
-		EACF0B333FA47CFED50854EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF01017E4FAEB93FB87A8B /* InfoPlist.strings */; };
 		EACF0BEE00D0E9E271E16F36 /* TBMBDefaultMessageReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF05AB7BB806AB6A1B1DB5 /* TBMBDefaultMessageReceiver.m */; };
 		EACF0C0A8D76F4C66815D50B /* TBMBGlobalFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */; };
 		EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */; };
@@ -59,7 +57,6 @@
 		EACF0ECF63E169A1AC59FD53 /* TBMBGlobalFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */; };
 		EACF0F15033165E5EBD597F2 /* TBMBTestService.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0E1EF74E82CE36E11EE9 /* TBMBTestService.m */; };
 		EACF0F6BEE7B01AFAD7A1BA4 /* TBMBMessageProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0E57111DA06BDC157FB2 /* TBMBMessageProxy.m */; };
-		EACF0F6CED51863C1FF4DBA9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF0BE3EE9393AE445B9537 /* InfoPlist.strings */; };
 		EACF0FA89B08F82AF1AD3231 /* TBMBDefaultNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */; };
 		EACF0FCFB829D4899F7D4CF5 /* TBMBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF01DAA530DD7BDABD9AC9 /* TBMBViewController.m */; };
 /* End PBXBuildFile section */
@@ -95,7 +92,6 @@
 		EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EACF03F3429D28833C1197FC /* TBMBInstanceHelloCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBInstanceHelloCommand.h; sourceTree = "<group>"; };
 		EACF040FA11E7C5BCC313B8B /* TBMBMessageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageProxy.h; sourceTree = "<group>"; };
-		EACF04421DEF74195EE2E5EC /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = ../MBMvc/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EACF04A49197313295C9DAB1 /* TBMBDefaultRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultRootViewController.h; sourceTree = "<group>"; };
 		EACF04C87CC6AD5D3E221B2C /* TBMBDefaultMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultMessageReceiver.h; sourceTree = "<group>"; };
 		EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultNotification.m; sourceTree = "<group>"; };
@@ -358,9 +354,6 @@
 		EACF0D52192F1E5B3BF40004 /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				EACF0BE3EE9393AE445B9537 /* InfoPlist.strings */,
-				EACF01017E4FAEB93FB87A8B /* InfoPlist.strings */,
-				EACF0D980DF4ABC5FE1DD51A /* InfoPlist.strings */,
 			);
 			name = en.lproj;
 			sourceTree = "<group>";
@@ -368,7 +361,6 @@
 		EACF0D71EC854C0EBDDEDA90 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EACF05BE95B6DDA3E34D0ADA /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -460,9 +452,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EACF002BD4B066233DCAAFB1 /* InfoPlist.strings in Resources */,
-				EACF0F6CED51863C1FF4DBA9 /* InfoPlist.strings in Resources */,
-				EACF0B333FA47CFED50854EE /* InfoPlist.strings in Resources */,
-				EACF095AF8ACD271CA41BBF1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,35 +541,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EACF01017E4FAEB93FB87A8B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		EACF05BE95B6DDA3E34D0ADA /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		EACF0BE3EE9393AE445B9537 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		EACF0D980DF4ABC5FE1DD51A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EACF04421DEF74195EE2E5EC /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		EACF0E48844C799FD0D1290F /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
