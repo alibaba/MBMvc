@@ -66,11 +66,15 @@
 }
 
 - (void)prev:(id)prev {
-    [_delegate prev:prev];
+    if ([_delegate respondsToSelector:@selector(prev:)]) {
+        [_delegate prev:prev];
+    }
 }
 
 - (void)next:(id)next {
-    [_delegate next:next];
+    if ([_delegate respondsToSelector:@selector(next:)]) {
+        [_delegate next:next];
+    }
 }
 
 - (void)requestInstance:(id)requestInstance {

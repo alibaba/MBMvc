@@ -80,4 +80,13 @@ static char kTBMBNSMethodSignatureNotFoundKey;
 + (void)__$$__NullMethod {
 }
 
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if (TBMBClassHasProtocol(_proxyClass, @protocol(TBMBStaticCommand))) {
+        return [_proxyClass respondsToSelector:aSelector];
+    } else {
+        return [_proxyClass instancesRespondToSelector:aSelector];
+    }
+}
+
+
 @end
