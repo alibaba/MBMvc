@@ -5,6 +5,15 @@
 #import <objc/runtime.h>
 #import "TBMBNotification.h"
 
+
+#ifdef TBMB_DEBUG
+#define TBMB_GET_KEY_PATH_VALID(host,keyPath)  {if(((host).keyPath)==nil){}}
+#define TBMB_LOG(msg, args...) NSLog(@"TBMB " msg, ##args)
+#else
+#define TBMB_LOG(msg, args...)
+#define TBMB_GET_KEY_PATH_VALID(host,keyPath)
+#endif
+
 @class TBMBDefaultMessageReceiver;
 @protocol TBMBMessageReceiver;
 

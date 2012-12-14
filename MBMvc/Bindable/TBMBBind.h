@@ -4,6 +4,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "TBMBUtil.h"
 
 extern void TBMBSetAutoUnbind(BOOL yesOrNO);
 
@@ -26,17 +27,27 @@ extern inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host,
 
 extern inline void TBMBUnbindObject(id bindable);
 
+
+#define TBMBBindO(bindable , keyPath , block)                                                                 \
+        {TBMB_GET_KEY_PATH_VALID(bindable , keyPath) TBMBBindObject(bindable,@#keyPath,block);}
+
+#define TBMBBindOWeak(bindable , keyPath , host, block)                                                       \
+        {TBMB_GET_KEY_PATH_VALID(bindable , keyPath) TBMBBindObjectWeak(bindable,@#keyPath,host,block);}
+
+#define TBMBBindOStrong(bindable , keyPath ,host, block)                                                      \
+        {TBMB_GET_KEY_PATH_VALID(bindable , keyPath) TBMBBindObjectStrong(bindable,@#keyPath,host,block);}
+
 #define TBMBBindPropertyWeak(bindable , keyPath , type , host , property)                                     \
-        {                                                                                                     \
+        {   TBMB_GET_KEY_PATH_VALID(bindable , keyPath)                                                       \
             __block __unsafe_unretained type ___host = (type) host;                                           \
-            TBMBBindObject((bindable) , (keyPath) , ^(id ____old, id ____new) {                               \
+            TBMBBindObject((bindable) , @#keyPath , ^(id ____old, id ____new) {                               \
                                 (___host).property = ____new;                                                 \
                         });                                                                                   \
         }
 
 #define TBMBBindPropertyStrong(bindable , keyPath , host , property)                                          \
-        {                                                                                                     \
-            TBMBBindObject((bindable) , (keyPath) , ^(id ____old, id ____new) {                               \
+        {   TBMB_GET_KEY_PATH_VALID(bindable , keyPath)                                                       \
+            TBMBBindObject((bindable) , @#keyPath , ^(id ____old, id ____new) {                               \
                             (host).property = ____new;                                                        \
             });                                                                                               \
         }

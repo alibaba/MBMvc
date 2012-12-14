@@ -57,7 +57,7 @@
         textFieldSync.tag = 6;
         [self addSubview:textFieldSync];
 
-        TBMBBindPropertyWeak(textField, @"text", UITextField *, textFieldSync, text);
+        TBMBBindPropertyWeak(textField, text, UITextField *, textFieldSync, text);
         textField.text = @"testl123345";
         [self addSubview:buttonPrev];
     }

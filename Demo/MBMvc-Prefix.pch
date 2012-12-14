@@ -14,4 +14,8 @@
 
 #import <Foundation/Foundation.h>
 
+#ifdef DEBUG
+#define TBMB_DEBUG 1
+#endif
+
 #endif
