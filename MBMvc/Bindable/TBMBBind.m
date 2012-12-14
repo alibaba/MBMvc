@@ -77,7 +77,11 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
                         change:(NSDictionary *)change
                        context:(void *)context {
     if (_changeBlock) {
-        _changeBlock([change objectForKey:NSKeyValueChangeOldKey], [change objectForKey:NSKeyValueChangeNewKey]);
+        id old = [change objectForKey:NSKeyValueChangeOldKey];
+        id new = [change objectForKey:NSKeyValueChangeNewKey];
+        old = [old isEqual:[NSNull null]] ? nil : old;
+        new = [new isEqual:[NSNull null]] ? nil : new;
+        _changeBlock(old, new);
     }
 }
 
