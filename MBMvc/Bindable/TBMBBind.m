@@ -88,36 +88,6 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
 
 @end
 
-inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock) {
-    [TBMBBind bindObject:bindable
-              forKeyPath:keyPath
-              withChange:changeBlock];
-}
-
-
-inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
-    if (changeBlock) {
-        __block __unsafe_unretained id _host = host;
-        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
-            changeBlock(_host, old, new);
-        }
-        );
-    }
-}
-
-inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
-    if (changeBlock) {
-        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
-            changeBlock(host, old, new);
-        }
-        );
-    }
-}
-
-inline void TBMBUnbindObject(id bindable) {
-    [TBMBBind unbindObject:bindable];
-}
-
 static char kTBMBBindableObjectKey;
 
 @implementation NSObject (TBMBBindableObject)
@@ -148,12 +118,7 @@ static char kTBMBBindableObjectKey;
 }
 @end
 
-
-@implementation TBMBBind {
-
-}
-
-+ (void)initBind {
+static inline void _initBind() {
     if (!__is_need_auto_unbind) {
         return;
     }
@@ -167,11 +132,9 @@ static char kTBMBBindableObjectKey;
     );
 }
 
-+ (void)bindObject:(id)bindable
-        forKeyPath:(NSString *)keyPath
-        withChange:(TBMB_CHANGE_BLOCK)changeBlock {
+inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
-        [self initBind];
+        _initBind();
         TBMBBindObjectHandler *handler = [TBMBBindObjectHandler objectWithBindableObject:bindable
                                                                                  keyPath:keyPath
                                                                              changeBlock:changeBlock];
@@ -184,7 +147,7 @@ static char kTBMBBindableObjectKey;
     }
 }
 
-+ (void)unbindObject:(id)bindable {
+inline void TBMBUnbindObject(id bindable) {
     NSMutableSet *objectSet;
     if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
         NSSet *objectSetCopy = [NSSet setWithSet:objectSet];
@@ -195,5 +158,22 @@ static char kTBMBBindableObjectKey;
     }
 }
 
+inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
+    if (changeBlock) {
+        __block __unsafe_unretained id _host = host;
+        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+            changeBlock(_host, old, new);
+        }
+        );
+    }
+}
 
-@end
+inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
+    if (changeBlock) {
+        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+            changeBlock(host, old, new);
+        }
+        );
+    }
+}
+

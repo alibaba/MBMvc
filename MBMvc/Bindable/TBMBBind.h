@@ -12,13 +12,6 @@ typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 
 typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);
 
-
-@interface TBMBBind : NSObject
-+ (void)bindObject:(id)bindable forKeyPath:(NSString *)keyPath withChange:(TBMB_CHANGE_BLOCK)changeBlock;
-
-+ (void)unbindObject:(id)bindable;
-@end
-
 #define tbKeyPath(OBJ,PATH) OBJ , @(((void)(NO && ((void)OBJ.PATH, NO)), #PATH))
 
 extern inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock);
