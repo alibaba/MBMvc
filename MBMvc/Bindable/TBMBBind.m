@@ -14,6 +14,10 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
 
 @protocol TBMBBindHandlerProtocol
 - (void)removeObserver;
+
+- (id)bindableObject;
+
+- (NSString *)keyPath;
 @end
 
 @interface TBMBBindObjectHandler : NSObject <TBMBBindHandlerProtocol>
@@ -147,17 +151,6 @@ inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK cha
     }
 }
 
-inline void TBMBUnbindObject(id bindable) {
-    NSMutableSet *objectSet;
-    if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
-        NSSet *objectSetCopy = [NSSet setWithSet:objectSet];
-        for (id <TBMBBindHandlerProtocol> handler in objectSetCopy) {
-            [handler removeObserver];
-            [objectSet removeObject:handler];
-        }
-    }
-}
-
 inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
         __block __unsafe_unretained id _host = host;
@@ -174,6 +167,30 @@ inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_H
             changeBlock(host, old, new);
         }
         );
+    }
+}
+
+inline void TBMBUnbindObject(id bindable) {
+    NSMutableSet *objectSet;
+    if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
+        NSSet *objectSetCopy = [NSSet setWithSet:objectSet];
+        for (id <TBMBBindHandlerProtocol> handler in objectSetCopy) {
+            [handler removeObserver];
+            [objectSet removeObject:handler];
+        }
+    }
+}
+
+inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath) {
+    NSMutableSet *objectSet;
+    if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
+        NSSet *objectSetCopy = [NSSet setWithSet:objectSet];
+        for (id <TBMBBindHandlerProtocol> handler in objectSetCopy) {
+            if ([handler.keyPath isEqualToString:keyPath]) {
+                [handler removeObserver];
+                [objectSet removeObject:handler];
+            }
+        }
     }
 }
 
