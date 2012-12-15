@@ -561,7 +561,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MBMvc/MBMvc-Prefix.pch";
+				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
 				INFOPLIST_FILE = "MBMvcTests/MBMvcTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -650,7 +650,7 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MBMvc/MBMvc-Prefix.pch";
+				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
 				INFOPLIST_FILE = "MBMvcTests/MBMvcTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
