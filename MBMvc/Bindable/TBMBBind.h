@@ -5,7 +5,10 @@
 
 #import <Foundation/Foundation.h>
 #import "TBMBUtil.h"
-@interface TBMBBindInitValue :NSObject @end
+
+@interface TBMBBindInitValue : NSObject
++ (TBMBBindInitValue *)value;
+@end
 
 extern void TBMBSetAutoUnbind(BOOL yesOrNO);
 
