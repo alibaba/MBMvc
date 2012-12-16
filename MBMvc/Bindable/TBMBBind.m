@@ -8,9 +8,9 @@
 
 static BOOL __is_need_auto_unbind = YES;
 
-@implementation TBMBInitValue
+@implementation TBMBBindInitValue
 -(NSString *)description {
-    return @"TBMBInitValue";
+    return @"TBMBBindInitValue";
 }
 @end
 
@@ -89,7 +89,7 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
     if (_changeBlock) {
         id old = [change objectForKey:NSKeyValueChangeOldKey];
         id new = [change objectForKey:NSKeyValueChangeNewKey];
-        old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [[TBMBInitValue alloc] init];
+        old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [[TBMBBindInitValue alloc] init];
         new = [new isEqual:[NSNull null]] ? nil : new;
         _changeBlock(old, new);
     }
