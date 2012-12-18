@@ -6,28 +6,44 @@
 #import <Foundation/Foundation.h>
 #import "TBMBUtil.h"
 
+//一个observer用来表示 可以用来remove
+@protocol TBMBBindObserver <NSObject>
+@end
+
+//当绑定init的时候old的值就是这个,可以用来判断是否是初次绑定
 @interface TBMBBindInitValue : NSObject
 + (TBMBBindInitValue *)value;
 @end
 
+//设定是否在绑定主体dealloc自动解绑它上面的所有observer 默认是YES
 extern void TBMBSetAutoUnbind(BOOL yesOrNO);
 
 typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 
 typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);
 
+//这个宏 可以用来在编译期就判断这个OBJ下的这个keyPath是否存在,可以避免出错
 #define tbKeyPath(OBJ,PATH) OBJ , @(((void)(NO && ((void)OBJ.PATH, NO)), #PATH))
 
-extern inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock);
+//绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行
+extern inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock);
 
-extern inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
+//绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行 ,其中 host 是弱引用
+extern inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
 
-extern inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
+//绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行 ,其中 host 是强引用
+extern inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
 
+//解绑bindable上的所有observer
 extern inline void TBMBUnbindObject(id bindable);
 
+//解绑bindable上keyPath对应的所有observer
 extern inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath);
 
+//直接解绑一个Observer
+extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
+
+//直接绑定变量 ,对放对象是弱引用
 #define TBMBBindPropertyWeak(bindable , keyPath , type , host , property)                                     \
         {                                                                                                     \
             __block __unsafe_unretained type ___host = (type) host;                                           \
@@ -35,7 +51,7 @@ extern inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath);
                                 (___host).property = ____new;                                                 \
                         });                                                                                   \
         }
-
+//直接绑定变量 ,对放对象是强引用
 #define TBMBBindPropertyStrong(bindable , keyPath , host , property)                                          \
         {                                                                                                     \
             TBMBBindObject(tbKeyPath(bindable,keyPath) , ^(id ____old, id ____new) {                          \

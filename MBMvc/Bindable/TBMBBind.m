@@ -32,7 +32,7 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
     __is_need_auto_unbind = yesOrNO;
 }
 
-@protocol TBMBBindHandlerProtocol
+@protocol TBMBBindHandlerProtocol <TBMBBindObserver>
 - (void)removeObserver;
 
 - (id)bindableObject;
@@ -156,7 +156,7 @@ static inline void _initBind() {
     );
 }
 
-inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock) {
+inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
         _initBind();
         TBMBBindObjectHandler *handler = [TBMBBindObjectHandler objectWithBindableObject:bindable
@@ -168,26 +168,30 @@ inline void TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK cha
                       context:nil];
 
         [bindable _$AddTBMBBindableObjectSet:handler];
+        return handler;
     }
+    return nil;
 }
 
-inline void TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
+inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
         __block __unsafe_unretained id _host = host;
-        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+        return TBMBBindObject(bindable, keyPath, ^(id old, id new) {
             changeBlock(_host, old, new);
         }
         );
     }
+    return nil;
 }
 
-inline void TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
+inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
-        TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+        return TBMBBindObject(bindable, keyPath, ^(id old, id new) {
             changeBlock(host, old, new);
         }
         );
     }
+    return nil;
 }
 
 inline void TBMBUnbindObject(id bindable) {
@@ -211,6 +215,20 @@ inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath) {
                 [objectSet removeObject:handler];
             }
         }
+    }
+}
+
+inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
+    if ([observer conformsToProtocol:@protocol(TBMBBindHandlerProtocol)]) {
+        id <TBMBBindHandlerProtocol> _observer = (id <TBMBBindHandlerProtocol>) observer;
+        id bindable = _observer.bindableObject;
+        NSMutableSet *objectSet;
+        if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
+            [objectSet removeObject:_observer];
+        }
+        [_observer removeObserver];
+    } else {
+        TBMB_LOG(@"Unkown observer[%@]", observer);
     }
 }
 
