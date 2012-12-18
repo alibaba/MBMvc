@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-
+//代理对象
 @interface TBMBMessageProxy : NSProxy
 - (id)initWithClass:(Class)proxyClass andKey:(NSUInteger)key;
 @end

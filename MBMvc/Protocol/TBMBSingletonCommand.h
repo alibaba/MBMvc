@@ -6,7 +6,7 @@
 #import "TBMBInstanceCommand.h"
 
 @protocol TBMBSingletonCommand <TBMBInstanceCommand>
-
+//单例的Command
 + (id <TBMBSingletonCommand>)instance;
 
 @end

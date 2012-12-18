@@ -7,5 +7,6 @@
 #import "TBMBSimpleStaticCommand.h"
 
 @interface TBMBSimpleStaticCommand (TBMBProxy)
+//创建它的代理对象,使调用直接消息化
 + (id)proxyObject;
 @end

@@ -6,15 +6,19 @@
 #import "TBMBNotification.h"
 
 @protocol TBMBMessageSender
-
+//发送通知
 - (void)sendNotification:(NSString *)notificationName;
 
+//发送通知
 - (void)sendNotification:(NSString *)notificationName body:(id)body;
 
+//发送通知
 - (void)sendTBMBNotification:(id <TBMBNotification>)notification;
 
+//发送通知
 - (void)sendNotificationForSEL:(SEL)selector;
 
+//发送通知
 - (void)sendNotificationForSEL:(SEL)selector body:(id)body;
 
 @end

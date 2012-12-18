@@ -12,12 +12,17 @@
 + (TBMBGlobalFacade *)instance;
 @end
 
+//封装好的 发送Notification接口
 extern inline void TBMBGlobalSendNotification(NSString *notificationName);
 
+//封装好的 发送Notification接口
 extern inline void TBMBGlobalSendNotificationWithBody(NSString *notificationName, id body);
 
+//封装好的 发送Notification接口
 extern inline void TBMBGlobalSendNotificationForSEL(SEL selector);
 
+//封装好的 发送Notification接口
 extern inline void TBMBGlobalSendNotificationForSELWithBody(SEL selector, id body);
 
+//封装好的 发送Notification接口
 extern inline void TBMBGlobalSendTBMBNotification(id <TBMBNotification> notification);

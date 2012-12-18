@@ -7,7 +7,7 @@
 #import "TBMBCommand.h"
 
 @protocol TBMBStaticCommand <TBMBCommand>
-
+//静态类型的Command
 + (void)execute:(id <TBMBNotification>)notification;
 
 @end
