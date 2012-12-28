@@ -51,9 +51,9 @@
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
     [TBMBInstanceHelloCommand.proxyObject sayHello:view.text Age:20
-                                        result:[^(NSString *ret) {
+                                        result:^(NSString *ret) {
                                             [delegate sayHello:ret];
-                                        } copy]];
+                                        }];
 //    [self sendNotificationForSEL:@selector($$instanceHello:) body:view.text];
 }
 

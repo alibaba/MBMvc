@@ -23,6 +23,7 @@
 
 - (void)sayHello:(NSString *)name Age:(NSUInteger)age result:(void (^)(NSString *ret))result {
     NSLog(@"command Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
+    NSLog(@"run %p", result);
     [TBMBTestService helloWorld:name result:^(NSString *ret) {
         NSLog(@"command Callback Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
         if (result) {
