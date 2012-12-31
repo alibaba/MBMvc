@@ -8,22 +8,30 @@
 #import "TBMBViewController.h"
 
 
+@interface TBMBDemoView () <UITextFieldDelegate>
+@end
+
 @implementation TBMBDemoView {
 }
-
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 200, 30)];
-        [button setTitle:@"请求" forState:UIControlStateNormal];
+        TBMBBindObjectStrong(tbKeyPath(self, viewVO.buttonTitle1), button, ^(UIButton *host, id old, id new) {
+            [host setTitle:new forState:UIControlStateNormal];
+        }
+        );
         [button addTarget:self action:@selector(requestStatic:) forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = [UIColor redColor];
         button.tag = 1;
         [self addSubview:button];
 
         UIButton *buttonTwo = [[UIButton alloc] initWithFrame:CGRectMake(50, 80, 200, 30)];
-        [buttonTwo setTitle:@"请求" forState:UIControlStateNormal];
+        TBMBBindObjectStrong(tbKeyPath(self, viewVO.buttonTitle2), buttonTwo, ^(UIButton *host, id old, id new) {
+            [host setTitle:new forState:UIControlStateNormal];
+        }
+        );
         [buttonTwo addTarget:self action:@selector(requestInstance:) forControlEvents:UIControlEventTouchUpInside];
         buttonTwo.backgroundColor = [UIColor redColor];
         buttonTwo.tag = 2;
@@ -32,7 +40,7 @@
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50, 120, 200, 30)];
         textField.backgroundColor = [UIColor redColor];
         textField.tag = 3;
-        textField.text = @"test";
+        TBMBBindPropertyStrong(self, viewVO.text, textField, text);
         [self addSubview:textField];
 
         UIButton *buttonNav = [[UIButton alloc] initWithFrame:CGRectMake(50, 160, 200, 30)];
@@ -52,10 +60,9 @@
         UITextField *textFieldSync = [[UITextField alloc] initWithFrame:CGRectMake(50, 240, 200, 30)];
         textFieldSync.backgroundColor = [UIColor blueColor];
         textFieldSync.tag = 6;
+        textFieldSync.delegate = self;
         [self addSubview:textFieldSync];
 
-        TBMBBindPropertyWeak(textField, text, UITextField *, textFieldSync, text);
-        textField.text = @"testl123345";
         [self addSubview:buttonPrev];
     }
 
@@ -63,19 +70,33 @@
 }
 
 - (void)prev:(id)prev {
-    [self.viewDO setClickPrev :YES];
+    self.viewVO.clickPrev = YES;
 }
 
 - (void)next:(id)next {
-    [self.viewDO setClickNext :YES];
+    self.viewVO.clickNext = YES;
 }
 
 - (void)requestInstance:(id)requestInstance {
-    [self.viewDO setRequestInstance :YES];
+    self.viewVO.requestInstance = YES;
 }
 
 - (void)requestStatic:(id)requestStatic {
-    [self.viewDO setRequestStatic :YES];
+    self.viewVO.requestStatic = YES;
 }
+
+- (BOOL)            textField:(UITextField *)textField
+shouldChangeCharactersInRange:(NSRange)range
+            replacementString:(NSString *)string {
+    NSMutableString *text = [NSMutableString stringWithString:textField.text];
+    if (range.location >= text.length) {
+        [text appendString:string];
+    } else {
+        [text replaceCharactersInRange:range withString:string];
+    }
+    self.viewVO.text = text;
+    return YES;
+}
+
 
 @end

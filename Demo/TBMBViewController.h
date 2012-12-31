@@ -14,6 +14,11 @@
 @property(nonatomic, assign) BOOL clickNext;
 @property(nonatomic, assign) BOOL requestInstance;
 @property(nonatomic, assign) BOOL requestStatic;
+
+@property(nonatomic, copy) NSString *text;
+
+@property(nonatomic, copy) NSString *buttonTitle1;
+@property(nonatomic, copy) NSString *buttonTitle2;
 @end
 
 @interface TBMBViewController : TBMBDefaultRootViewController

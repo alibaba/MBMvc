@@ -4,9 +4,10 @@
 
 
 #import <Foundation/Foundation.h>
+#import "TBMBPage.h"
 
 
-@interface TBMBDefaultPage : UIView
+@interface TBMBDefaultPage : UIView <TBMBPage>
 
 @property(nonatomic, strong) id viewDO;
 

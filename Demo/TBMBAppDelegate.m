@@ -17,7 +17,7 @@
 
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
-
+    //可以直接自动扫描全部Command进行自动异步的Command注册
     [[TBMBGlobalFacade instance] registerCommandAutoAsync];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

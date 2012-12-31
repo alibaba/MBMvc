@@ -17,6 +17,18 @@
 #import "TBMBBind.h"
 
 @implementation TBMBViewDO
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        _buttonTitle1 = @"请求";
+        _buttonTitle2 = @"请求";
+        _text = @"test";
+    }
+
+    return self;
+}
+
 @end
 
 @interface TBMBViewController ()
@@ -29,7 +41,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.viewDO = [[TBMBViewDO alloc] init];
-
         TBMBBindObjectWeak(tbKeyPath(self, viewDO.clickPrev), self, ^(TBMBViewController *host, id old, id new) {
             if (old != [TBMBBindInitValue value])
                 [host prev];
@@ -93,9 +104,8 @@
 
 - (void)requestStatic {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
-    [TBMBStaticHelloCommand.proxyObject sayNo:[TBMBTestDO objectWithName:view.text]
+    [TBMBStaticHelloCommand.proxyObject sayNo:[TBMBTestDO objectWithName:self.viewDO.text]
                                        result:[^(NSString *ret) {
                                            [delegate sayNo:ret];
                                        } copy]];
@@ -104,9 +114,8 @@
 
 - (void)requestInstance {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
-    [TBMBInstanceHelloCommand.proxyObject sayHello:view.text Age:20
+    [TBMBInstanceHelloCommand.proxyObject sayHello:self.viewDO.text Age:20
                                             result:^(NSString *ret) {
                                                 [delegate sayHello:ret];
                                             }];
@@ -115,14 +124,13 @@
 
 - (void)sayNo:(NSString *)name {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    UIButton *view = (UIButton *) [self.view viewWithTag:1];
-    [view setTitle:name forState:UIControlStateNormal];
+
+    self.viewDO.buttonTitle1 = name;
 }
 
 - (NSString *)sayHello:(NSString *)name {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    UIButton *view = (UIButton *) [self.view viewWithTag:2];
-    [view setTitle:name forState:UIControlStateNormal];
+    self.viewDO.buttonTitle2 = name;
     return @"hello";
 }
 
@@ -130,16 +138,12 @@
 - (void)$$receiveStaticHello:(id <TBMBNotification>)notification title:(NSString *)title {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
-    UIButton *view = (UIButton *) [self.view viewWithTag:1];
-    [view setTitle:title forState:UIControlStateNormal];
 }
 
 //这里没有被使用
 - (void)$$receiveInstanceHello:(id <TBMBNotification>)notification {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
-    UIButton *view = (UIButton *) [self.view viewWithTag:2];
-    [view setTitle:notification.body forState:UIControlStateNormal];
 }
 
 

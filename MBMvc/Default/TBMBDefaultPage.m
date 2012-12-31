@@ -3,11 +3,12 @@
 //
 
 
+#import <objc/message.h>
 #import "TBMBDefaultPage.h"
 
 
 @implementation TBMBDefaultPage {
-@private
+@protected
     id _viewDO;
 }
 @synthesize viewDO = _viewDO;
@@ -16,8 +17,11 @@
     self = [self initWithFrame:frame];
     if (self) {
         self.viewDO = viewDO;
+        SEL selector = @selector(setViewVO:);
+        if ([self respondsToSelector:selector]) {
+            objc_msgSend(self, selector, viewDO);
+        }
     }
-
     return self;
 }
 

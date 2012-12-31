@@ -118,6 +118,7 @@
 		EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EACF0A943E34ABAE321F94B2 /* MBMvcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "MBMvcTests-Info.plist"; sourceTree = "<group>"; };
 		EACF0ABDD8484047F155F8C1 /* MBMvcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMvcTests.h; sourceTree = "<group>"; };
+		EACF0ABFABB9A07342A46C3A /* TBMBPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBPage.h; sourceTree = "<group>"; };
 		EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EACF0B0638BD017E4E305399 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EACF0B30EA0C86778B6BDB70 /* TBMBSimpleInstanceCommand+TBMBProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBSimpleInstanceCommand+TBMBProxy.h"; sourceTree = "<group>"; };
@@ -214,6 +215,7 @@
 				EACF00B4DE855DEECCC0B05A /* TBMBCommand.h */,
 				EACF077024524A39BAC13237 /* TBMBSingletonCommand.h */,
 				EACF0D38E08E6841AAA9802D /* TBMBOnlyProxy.h */,
+				EACF0ABFABB9A07342A46C3A /* TBMBPage.h */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";

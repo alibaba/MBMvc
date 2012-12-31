@@ -5,8 +5,12 @@
 
 #import <Foundation/Foundation.h>
 #import "TBMBDefaultPage.h"
+#import "TBMBPage.h"
 
+@class TBMBViewDO;
 
-@interface TBMBDemoView : TBMBDefaultPage
+@interface TBMBDemoView : TBMBDefaultPage <TBMBPage>
+
+@property(nonatomic, retain) TBMBViewDO *viewVO;
 
 @end
