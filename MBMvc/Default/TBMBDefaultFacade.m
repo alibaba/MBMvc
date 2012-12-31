@@ -67,6 +67,7 @@ static pthread_rwlock_t _subscribeReceiversLock;
 - (id)init {
     self = [super init];
     if (self) {
+        _waitingNotification = nil;
         pthread_rwlock_init(&_subscribeReceiversLock, NULL);
         _subscribeReceivers = [NSMutableSet setWithCapacity:3];
         _regCommandStatus = TBMB_REG_COMMAND_INIT;

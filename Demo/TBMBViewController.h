@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TBMBDefaultRootViewController.h"
 
+@interface TBMBViewDO : NSObject
+@property(nonatomic, assign) BOOL clickPrev;
+@property(nonatomic, assign) BOOL clickNext;
+@property(nonatomic, assign) BOOL requestInstance;
+@property(nonatomic, assign) BOOL requestStatic;
+@end
+
 @interface TBMBViewController : TBMBDefaultRootViewController
 @end

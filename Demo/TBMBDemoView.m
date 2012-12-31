@@ -5,14 +5,11 @@
 
 #import "TBMBDemoView.h"
 #import "TBMBBind.h"
+#import "TBMBViewController.h"
 
 
 @implementation TBMBDemoView {
-
-@private
-    id _delegate;
 }
-@synthesize delegate = _delegate;
 
 
 - (id)initWithFrame:(CGRect)frame {
@@ -66,23 +63,19 @@
 }
 
 - (void)prev:(id)prev {
-    if ([_delegate respondsToSelector:@selector(prev:)]) {
-        [_delegate prev:prev];
-    }
+    [self.viewDO setClickPrev :YES];
 }
 
 - (void)next:(id)next {
-    if ([_delegate respondsToSelector:@selector(next:)]) {
-        [_delegate next:next];
-    }
+    [self.viewDO setClickNext :YES];
 }
 
 - (void)requestInstance:(id)requestInstance {
-    [_delegate requestInstance:requestInstance];
+    [self.viewDO setRequestInstance :YES];
 }
 
 - (void)requestStatic:(id)requestStatic {
-    [_delegate requestStatic:requestStatic];
+    [self.viewDO setRequestStatic :YES];
 }
 
 @end

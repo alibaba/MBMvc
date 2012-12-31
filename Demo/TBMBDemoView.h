@@ -4,9 +4,9 @@
 
 
 #import <Foundation/Foundation.h>
+#import "TBMBDefaultPage.h"
 
 
-@interface TBMBDemoView : UIView
+@interface TBMBDemoView : TBMBDefaultPage
 
-@property(nonatomic, strong) id delegate;
 @end

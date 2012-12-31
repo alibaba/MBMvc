@@ -14,12 +14,49 @@
 #import "TBMBSimpleInstanceCommand+TBMBProxy.h"
 #import "TBMBSimpleStaticCommand+TBMBProxy.h"
 #import "TBMBTestCommand.h"
+#import "TBMBBind.h"
+
+@implementation TBMBViewDO
+@end
 
 @interface TBMBViewController ()
-
+@property(nonatomic, strong) TBMBViewDO *viewDO;
 @end
 
 @implementation TBMBViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.viewDO = [[TBMBViewDO alloc] init];
+
+        TBMBBindObjectWeak(tbKeyPath(self, viewDO.clickPrev), self, ^(TBMBViewController *host, id old, id new) {
+            if (old != [TBMBBindInitValue value])
+                [host prev];
+        }
+        );
+
+        TBMBBindObjectWeak(tbKeyPath(self, viewDO.clickNext), self, ^(TBMBViewController *host, id old, id new) {
+            if (old != [TBMBBindInitValue value])
+                [host next];
+        }
+        );
+
+        TBMBBindObjectWeak(tbKeyPath(self, viewDO.requestInstance), self, ^(TBMBViewController *host, id old, id new) {
+            if (old != [TBMBBindInitValue value])
+                [host requestInstance];
+        }
+        );
+
+        TBMBBindObjectWeak(tbKeyPath(self, viewDO.requestStatic), self, ^(TBMBViewController *host, id old, id new) {
+            if (old != [TBMBBindInitValue value])
+                [host requestStatic];
+        }
+        );
+    }
+
+    return self;
+}
 
 
 - (id)init {
@@ -30,6 +67,7 @@
             NSLog(@"%@ return just Test", proxyObject);
             [proxyObject justTest];
         }];
+
     }
     return self;
 }
@@ -41,20 +79,19 @@
 
 - (void)loadView {
     [super loadView];
-    TBMBDemoView *view = [[TBMBDemoView alloc] initWithFrame:self.view.frame];
-    view.delegate = self.proxyObject;
+    TBMBDemoView *view = [[TBMBDemoView alloc] initWithFrame:self.view.frame withViewDO:self.viewDO];
     [self.view addSubview:view];
 }
 
-- (void)prev:(id)prev {
+- (void)prev {
 }
 
-- (void)next:(id)next {
+- (void)next {
     for (NSUInteger i = 0; i < 10; i++)
         [[TBMBViewController alloc] init];
 }
 
-- (void)requestStatic:(UIButton *)sender {
+- (void)requestStatic {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
@@ -65,7 +102,7 @@
 //    [self sendNotificationForSEL:@selector($$staticHello:name:) body:view.text];
 }
 
-- (void)requestInstance:(UIButton *)sender {
+- (void)requestInstance {
     NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
@@ -89,7 +126,7 @@
     return @"hello";
 }
 
-
+//这里没有被使用
 - (void)$$receiveStaticHello:(id <TBMBNotification>)notification title:(NSString *)title {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
@@ -97,6 +134,7 @@
     [view setTitle:title forState:UIControlStateNormal];
 }
 
+//这里没有被使用
 - (void)$$receiveInstanceHello:(id <TBMBNotification>)notification {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
