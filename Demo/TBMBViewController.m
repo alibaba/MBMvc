@@ -13,6 +13,7 @@
 #import "TBMBDefaultRootViewController+TBMBProxy.h"
 #import "TBMBSimpleInstanceCommand+TBMBProxy.h"
 #import "TBMBSimpleStaticCommand+TBMBProxy.h"
+#import "TBMBTestCommand.h"
 
 @interface TBMBViewController ()
 
@@ -20,6 +21,23 @@
 
 @implementation TBMBViewController
 
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        id proxyObject = self.proxyObject;
+        [[TBMBTestCommand proxyObject] justTest:^{
+            NSLog(@"%@ return just Test", proxyObject);
+            [proxyObject justTest];
+        }];
+    }
+    return self;
+}
+
+
+- (void)justTest {
+    NSLog(@"%@ just Test", self);
+}
 
 - (void)loadView {
     [super loadView];
@@ -32,7 +50,8 @@
 }
 
 - (void)next:(id)next {
-    [[TBMBViewController alloc] init];
+    for (NSUInteger i = 0; i < 10; i++)
+        [[TBMBViewController alloc] init];
 }
 
 - (void)requestStatic:(UIButton *)sender {
@@ -40,9 +59,9 @@
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
     [TBMBStaticHelloCommand.proxyObject sayNo:[TBMBTestDO objectWithName:view.text]
-                                   result:[^(NSString *ret) {
-                                       [delegate sayNo:ret];
-                                   } copy]];
+                                       result:[^(NSString *ret) {
+                                           [delegate sayNo:ret];
+                                       } copy]];
 //    [self sendNotificationForSEL:@selector($$staticHello:name:) body:view.text];
 }
 
@@ -51,9 +70,9 @@
     UITextField *view = (UITextField *) [self.view viewWithTag:3];
     TBMBViewController *delegate = self.proxyObject;
     [TBMBInstanceHelloCommand.proxyObject sayHello:view.text Age:20
-                                        result:^(NSString *ret) {
-                                            [delegate sayHello:ret];
-                                        }];
+                                            result:^(NSString *ret) {
+                                                [delegate sayHello:ret];
+                                            }];
 //    [self sendNotificationForSEL:@selector($$instanceHello:) body:view.text];
 }
 

@@ -4,6 +4,7 @@
 
 
 #import <objc/message.h>
+#import <pthread.h>
 #import "TBMBDefaultFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBUtil.h"
@@ -24,6 +25,8 @@ typedef enum {
     NSOperationQueue *_dispatch_message_queue;
     TBMB_REG_COMMAND_STATUE _regCommandStatus;
     NSMutableArray *_waitingNotification;
+
+    NSMutableSet *_subscribeReceivers;
 }
 
 static NSOperationQueue *_c_dispatch_queue = nil;
@@ -45,6 +48,8 @@ static NSNotificationCenter *_c_NotificationCenter;
 }
 
 
+static pthread_rwlock_t _subscribeReceiversLock;
+
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
     static dispatch_once_t _oncePredicate_TBMBDefaultFacade;
@@ -62,6 +67,8 @@ static NSNotificationCenter *_c_NotificationCenter;
 - (id)init {
     self = [super init];
     if (self) {
+        pthread_rwlock_init(&_subscribeReceiversLock, NULL);
+        _subscribeReceivers = [NSMutableSet setWithCapacity:3];
         _regCommandStatus = TBMB_REG_COMMAND_INIT;
         _notificationCenter = _c_NotificationCenter ? : [[NSNotificationCenter alloc] init];
         _command_queue = _c_queue ? : dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@",
@@ -78,30 +85,55 @@ static NSNotificationCenter *_c_NotificationCenter;
     return self;
 }
 
+- (void)dealloc {
+    pthread_rwlock_destroy(&_subscribeReceiversLock);
+}
+
+
+static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
+    return [NSString stringWithFormat:(@"%d##%@"), key, clazz];
+}
+
 
 - (void)subscribeNotification:(id <TBMBMessageReceiver>)_receiver {
     if (!_receiver) {
         return;
     }
+    NSString *receiverName = subscribeReceiverName(_receiver.notificationKey, [_receiver class]);
+    pthread_rwlock_wrlock(&_subscribeReceiversLock);
+    [_subscribeReceivers addObject:receiverName];
+    pthread_rwlock_unlock(&_subscribeReceiversLock);
     __block __unsafe_unretained id <TBMBMessageReceiver> receiver = _receiver;
     void (^OBSERVER_BLOCK)(NSNotification *);
     NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
     if ([currentQueue isEqual:_dispatch_message_queue]) {
         OBSERVER_BLOCK = ^(NSNotification *note) {
-            [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+            pthread_rwlock_rdlock(&_subscribeReceiversLock);
+            BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
+            pthread_rwlock_unlock(&_subscribeReceiversLock);
+            if (receiverExist)
+                [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
         };
     } else {
         OBSERVER_BLOCK = ^(NSNotification *note) {
             if (currentQueue.isSuspended) {
                 NSLog(@"ERROR:Observer OperationQueue can't be Run![%@]", currentQueue);  //注册线程失效的情况下使用主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                    pthread_rwlock_rdlock(&_subscribeReceiversLock);
+                    BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
+                    pthread_rwlock_unlock(&_subscribeReceiversLock);
+                    if (receiverExist)
+                        [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
                 }
                 );
                 return;
             }
             [currentQueue addOperationWithBlock:^{
-                [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                pthread_rwlock_rdlock(&_subscribeReceiversLock);
+                BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
+                pthread_rwlock_unlock(&_subscribeReceiversLock);
+                if (receiverExist)
+                    [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
             }];
         };
     }
@@ -120,6 +152,9 @@ static NSNotificationCenter *_c_NotificationCenter;
     if (!receiver || receiver._$listObserver.count == 0) {
         return;
     }
+    pthread_rwlock_wrlock(&_subscribeReceiversLock);
+    [_subscribeReceivers removeObject:subscribeReceiverName(receiver.notificationKey, [receiver class])];
+    pthread_rwlock_unlock(&_subscribeReceiversLock);
     NSSet *_observers = [NSSet setWithSet:receiver._$listObserver];
     for (id observer in _observers) {
         [_notificationCenter removeObserver:observer];

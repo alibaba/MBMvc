@@ -10,6 +10,7 @@
 
 #import "TBMBViewController.h"
 #import "TBMBGlobalFacade.h"
+#import "TBMBDefaultFacade.h"
 
 @implementation TBMBAppDelegate
 
