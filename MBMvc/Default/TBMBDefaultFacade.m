@@ -201,19 +201,23 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 }
 
 - (void)registerCommandAuto {
-    Class *classes = NULL;
-    int numClasses = objc_getClassList(NULL, 0);
-    if (numClasses > 0) {
-        classes = (Class *) malloc(sizeof(Class) * numClasses);
-        numClasses = objc_getClassList(classes, numClasses);
-        for (int i = 0; i < numClasses; i++) {
-            Class clazz = classes[i];
-            if (TBMBClassHasProtocol(clazz, @protocol(TBMBCommand))) {
-                [self registerCommand:clazz];
+    static dispatch_once_t _oncePredicate_registerCommandAuto;
+    dispatch_once(&_oncePredicate_registerCommandAuto, ^{
+        Class *classes = NULL;
+        int numClasses = objc_getClassList(NULL, 0);
+        if (numClasses > 0) {
+            classes = (Class *) malloc(sizeof(Class) * numClasses);
+            numClasses = objc_getClassList(classes, numClasses);
+            for (int i = 0; i < numClasses; i++) {
+                Class clazz = classes[i];
+                if (TBMBClassHasProtocol(clazz, @protocol(TBMBCommand))) {
+                    [self registerCommand:clazz];
+                }
             }
+            free(classes);
         }
-        free(classes);
     }
+    );
 }
 
 - (void)registerCommandAutoAsync {
