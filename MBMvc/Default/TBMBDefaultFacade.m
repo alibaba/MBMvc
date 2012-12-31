@@ -149,12 +149,15 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 }
 
 - (void)unsubscribeNotification:(id <TBMBMessageReceiver>)receiver {
-    if (!receiver || receiver._$listObserver.count == 0) {
+    if (!receiver) {
         return;
     }
     pthread_rwlock_wrlock(&_subscribeReceiversLock);
     [_subscribeReceivers removeObject:subscribeReceiverName(receiver.notificationKey, [receiver class])];
     pthread_rwlock_unlock(&_subscribeReceiversLock);
+    if (receiver._$listObserver.count == 0) {
+        return;
+    }
     NSSet *_observers = [NSSet setWithSet:receiver._$listObserver];
     for (id observer in _observers) {
         [_notificationCenter removeObserver:observer];
