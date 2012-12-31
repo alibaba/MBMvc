@@ -179,12 +179,10 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                                      id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass,
                                                              @selector(instance)
                                                      );
-                                                     objc_msgSend(commandSingleton,
-                                                             @selector(execute:), notification
-                                                     );
+                                                     objc_msgSend(commandSingleton, @selector(execute:), notification);
                                                  } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
-                                                     objc_msgSend([[commandClass alloc] init],
-                                                             @selector(execute:), notification
+                                                     objc_msgSend([[commandClass alloc]
+                                                                                 init], @selector(execute:), notification
                                                      );
                                                  } else {
                                                      NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
