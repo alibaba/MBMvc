@@ -100,6 +100,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
         return;
     }
     NSString *receiverName = subscribeReceiverName(_receiver.notificationKey, [_receiver class]);
+    //防止由于dispatch线程和receiver执行线程不一致导致的野指针被执行,就是在真正执行前再判断一次是否已经unsubscribe
     pthread_rwlock_wrlock(&_subscribeReceiversLock);
     [_subscribeReceivers addObject:receiverName];
     pthread_rwlock_unlock(&_subscribeReceiversLock);
