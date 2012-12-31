@@ -40,6 +40,7 @@
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50, 120, 200, 30)];
         textField.backgroundColor = [UIColor redColor];
         textField.tag = 3;
+        textField.delegate = self;
         TBMBBindPropertyStrong(self, viewVO.text, textField, text);
         [self addSubview:textField];
 
@@ -85,16 +86,24 @@
     self.viewVO.requestStatic = YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField.tag == 3) {
+        self.viewVO.text = textField.text;
+    }
+}
+
 - (BOOL)            textField:(UITextField *)textField
 shouldChangeCharactersInRange:(NSRange)range
             replacementString:(NSString *)string {
-    NSMutableString *text = [NSMutableString stringWithString:textField.text];
-    if (range.location >= text.length) {
-        [text appendString:string];
-    } else {
-        [text replaceCharactersInRange:range withString:string];
+    if (textField.tag == 6) {
+        NSMutableString *text = [NSMutableString stringWithString:textField.text];
+        if (range.location >= text.length) {
+            [text appendString:string];
+        } else {
+            [text replaceCharactersInRange:range withString:string];
+        }
+        self.viewVO.text = text;
     }
-    self.viewVO.text = text;
     return YES;
 }
 
