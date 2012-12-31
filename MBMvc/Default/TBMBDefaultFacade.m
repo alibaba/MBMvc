@@ -228,7 +228,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self registerCommandAuto];
             _regCommandStatus = TBMB_REG_COMMAND_DONE;
-            NSArray *waitingNotification;
+            NSArray *waitingNotification = nil;
             @synchronized (self) {
                 if ([_waitingNotification count] > 0) {
                     waitingNotification = [[NSArray alloc] initWithArray:_waitingNotification];
