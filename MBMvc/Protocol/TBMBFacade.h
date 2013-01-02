@@ -11,6 +11,8 @@
 //Facade 是单例
 + (id <TBMBFacade>)instance;
 
+- (void)setInterceptors:(NSArray *)interceptors;
+
 //订阅receiver
 - (void)subscribeNotification:(id <TBMBMessageReceiver>)receiver;
 

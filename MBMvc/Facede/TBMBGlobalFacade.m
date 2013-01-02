@@ -39,6 +39,9 @@ static Class _facadeClass = nil;
     return _instance;
 }
 
+- (void)setInterceptors:(NSArray *)interceptors {
+    [_facade setInterceptors:interceptors];
+}
 
 - (id)init {
     self = [super init];

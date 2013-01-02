@@ -8,7 +8,6 @@
 #import "TBMBDefaultFacade.h"
 #import "TBMBDefaultNotification.h"
 #import "TBMBUtil.h"
-#import "TBMBInstanceCommand.h"
 #import "TBMBDefaultCommandInvocation.h"
 
 typedef enum {
@@ -24,6 +23,8 @@ typedef enum {
     NSOperationQueue *_dispatch_message_queue;
     TBMB_REG_COMMAND_STATUE _regCommandStatus;
     NSMutableArray *_waitingNotification;
+
+    NSArray *_interceptors;
 
     NSMutableSet *_subscribeReceivers;
 }
@@ -61,6 +62,10 @@ static pthread_rwlock_t _subscribeReceiversLock;
     );
 
     return _instance;
+}
+
+- (void)setInterceptors:(NSArray *)interceptors {
+    _interceptors = interceptors;
 }
 
 - (id)init {
@@ -180,7 +185,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                              dispatch_async(queue, ^{
                                                  TBMBDefaultCommandInvocation *invocation = [TBMBDefaultCommandInvocation objectWithCommandClass:commandClass
                                                                                                                                     notification:notification
-                                                                                                                                    interceptors:nil];
+                                                                                                                                    interceptors:_interceptors];
                                                  [invocation invoke];
                                              }
                                              );
