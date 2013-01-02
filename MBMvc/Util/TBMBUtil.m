@@ -80,11 +80,13 @@ inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *
     return names;
 }
 
-inline void TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification) {
+inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification) {
     SEL notifyHandler = NSSelectorFromString(notification.name);
+    id ret = nil;
     if ([handler respondsToSelector:notifyHandler]) {
-        objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
+        ret = objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
     }
+    return ret;
 }
 
 inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification) {

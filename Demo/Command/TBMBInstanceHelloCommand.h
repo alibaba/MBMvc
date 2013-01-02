@@ -11,5 +11,5 @@
 
 @interface TBMBInstanceHelloCommand : TBMBSimpleSingletonCommand <TBMBOnlyProxy>
 
-- (void)sayHello:(NSString *)name Age:(NSUInteger)age result:(void (^)(NSString *ret))result;
+- (NSNumber *)sayHello:(NSString *)name Age:(NSUInteger)age result:(void (^)(NSString *ret))result;
 @end

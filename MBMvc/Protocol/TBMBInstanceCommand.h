@@ -7,6 +7,6 @@
 
 @protocol TBMBInstanceCommand <TBMBCommand>
 //执行收到的消息
-- (void)execute:(id <TBMBNotification>)notification;
+- (id)execute:(id <TBMBNotification>)notification;
 
 @end

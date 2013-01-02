@@ -167,19 +167,21 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     }
 }
 
-static inline void executeCommand(Class commandClass, id <TBMBNotification> notification) {
+static inline id executeCommand(Class commandClass, id <TBMBNotification> notification) {
+    id ret = nil;
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
-        objc_msgSend(commandClass, @selector(execute:), notification);
+        ret = objc_msgSend(commandClass, @selector(execute:), notification);
     } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBSingletonCommand))) {
         id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass, @selector(instance));
         if (commandSingleton) {
-            objc_msgSend(commandSingleton, @selector(execute:), notification);
+            ret = objc_msgSend(commandSingleton, @selector(execute:), notification);
         }
     } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
-        objc_msgSend([[commandClass alloc] init], @selector(execute:), notification);
+        ret = objc_msgSend([[commandClass alloc] init], @selector(execute:), notification);
     } else {
         NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
     }
+    return ret;
 }
 
 - (void)registerCommand:(Class)commandClass {

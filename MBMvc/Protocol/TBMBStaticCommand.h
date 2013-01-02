@@ -8,6 +8,6 @@
 
 @protocol TBMBStaticCommand <TBMBCommand>
 //静态类型的Command
-+ (void)execute:(id <TBMBNotification>)notification;
++ (id)execute:(id <TBMBNotification>)notification;
 
 @end

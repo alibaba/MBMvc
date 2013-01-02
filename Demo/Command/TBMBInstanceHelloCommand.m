@@ -21,7 +21,7 @@
     }];
 }
 
-- (void)sayHello:(NSString *)name Age:(NSUInteger)age result:(void (^)(NSString *ret))result {
+- (NSNumber *)sayHello:(NSString *)name Age:(NSUInteger)age result:(void (^)(NSString *ret))result {
     NSLog(@"command Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     NSLog(@"run %p", result);
     [TBMBTestService helloWorld:name result:^(NSString *ret) {
@@ -30,6 +30,8 @@
             result([NSString stringWithFormat:@"%@_%d", ret, age]);
         }
     }];
+
+    return [[NSNumber alloc] initWithBool:YES];
 
 }
 

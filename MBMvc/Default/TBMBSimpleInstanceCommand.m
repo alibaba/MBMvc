@@ -12,13 +12,19 @@
 @implementation TBMBSimpleInstanceCommand {
 
 }
-- (void)execute:(id <TBMBNotification>)notification {
+- (id)execute:(id <TBMBNotification>)notification {
     if ([notification.name isEqualToString:TBMBProxyHandlerName(0, [self class])]) {   //代理方法直接执行
         NSInvocation *invocation = notification.body;
         [invocation invokeWithTarget:self];
-        return;
+        char const *returnType = invocation.methodSignature.methodReturnType;
+        if (strcmp("@", returnType) == 0) {
+            id ret;
+            [invocation getReturnValue:&ret];
+            return ret;
+        }
+        return nil;
     }
-    TBMBAutoHandlerNotification(self, notification);
+    return TBMBAutoHandlerNotification(self, notification);
 }
 
 + (NSSet *)listReceiveNotifications {
