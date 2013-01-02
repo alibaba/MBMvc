@@ -9,8 +9,6 @@
 
 @interface TBMBDefaultPage : UIView <TBMBPage>
 
-@property(nonatomic, strong) id viewDO;
-
 //初始化一个page
 - (id)initWithFrame:(CGRect)frame withViewDO:(id)viewDO;
 

@@ -7,5 +7,5 @@
 //指名是一个Page
 @protocol TBMBPage
 @optional
-- (void)setViewVO:(id)viewVO;
+- (void)setViewDO:(id)viewDO;
 @end

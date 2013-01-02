@@ -7,17 +7,12 @@
 #import "TBMBDefaultPage.h"
 
 
-@implementation TBMBDefaultPage {
-@protected
-    id _viewDO;
-}
-@synthesize viewDO = _viewDO;
+@implementation TBMBDefaultPage
 
 - (id)initWithFrame:(CGRect)frame withViewDO:(id)viewDO {
     self = [self initWithFrame:frame];
     if (self) {
-        self.viewDO = viewDO;
-        SEL selector = @selector(setViewVO:);
+        SEL selector = @selector(setViewDO:);
         if ([self respondsToSelector:selector]) {
             objc_msgSend(self, selector, viewDO);
         }

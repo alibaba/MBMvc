@@ -18,7 +18,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 200, 30)];
-        TBMBBindObjectStrong(tbKeyPath(self, viewVO.buttonTitle1), button, ^(UIButton *host, id old, id new) {
+        TBMBBindObjectStrong(tbKeyPath(self, viewDO.buttonTitle1), button, ^(UIButton *host, id old, id new) {
             [host setTitle:new forState:UIControlStateNormal];
         }
         );
@@ -28,7 +28,7 @@
         [self addSubview:button];
 
         UIButton *buttonTwo = [[UIButton alloc] initWithFrame:CGRectMake(50, 80, 200, 30)];
-        TBMBBindObjectStrong(tbKeyPath(self, viewVO.buttonTitle2), buttonTwo, ^(UIButton *host, id old, id new) {
+        TBMBBindObjectStrong(tbKeyPath(self, viewDO.buttonTitle2), buttonTwo, ^(UIButton *host, id old, id new) {
             [host setTitle:new forState:UIControlStateNormal];
         }
         );
@@ -41,7 +41,7 @@
         textField.backgroundColor = [UIColor redColor];
         textField.tag = 3;
         textField.delegate = self;
-        TBMBBindPropertyStrong(self, viewVO.text, textField, text);
+        TBMBBindPropertyStrong(self, viewDO.text, textField, text);
         [self addSubview:textField];
 
         UIButton *buttonNav = [[UIButton alloc] initWithFrame:CGRectMake(50, 160, 200, 30)];
@@ -71,24 +71,24 @@
 }
 
 - (void)prev:(id)prev {
-    self.viewVO.clickPrev = YES;
+    self.viewDO.clickPrev = YES;
 }
 
 - (void)next:(id)next {
-    self.viewVO.clickNext = YES;
+    self.viewDO.clickNext = YES;
 }
 
 - (void)requestInstance:(id)requestInstance {
-    self.viewVO.requestInstance = YES;
+    self.viewDO.requestInstance = YES;
 }
 
 - (void)requestStatic:(id)requestStatic {
-    self.viewVO.requestStatic = YES;
+    self.viewDO.requestStatic = YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField.tag == 3) {
-        self.viewVO.text = textField.text;
+        self.viewDO.text = textField.text;
     }
 }
 
@@ -102,7 +102,7 @@ shouldChangeCharactersInRange:(NSRange)range
         } else {
             [text replaceCharactersInRange:range withString:string];
         }
-        self.viewVO.text = text;
+        self.viewDO.text = text;
     }
     return YES;
 }

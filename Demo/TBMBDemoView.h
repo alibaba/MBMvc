@@ -11,6 +11,6 @@
 
 @interface TBMBDemoView : TBMBDefaultPage <TBMBPage>
 
-@property(nonatomic, retain) TBMBViewDO *viewVO;
+@property(nonatomic, retain) TBMBViewDO *viewDO;
 
 @end
