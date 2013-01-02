@@ -10,6 +10,7 @@
 
 #import "TBMBViewController.h"
 #import "TBMBGlobalFacade.h"
+#import "TBMBLogInterceptor.h"
 
 @implementation TBMBAppDelegate
 
@@ -17,6 +18,8 @@
 
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
+    //设置拦截器
+    [[TBMBGlobalFacade instance] setInterceptors:[NSArray arrayWithObjects:[[TBMBLogInterceptor alloc] init], nil]];
     //可以直接自动扫描全部Command进行自动异步的Command注册
     [[TBMBGlobalFacade instance] registerCommandAutoAsync];
 
