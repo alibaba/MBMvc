@@ -185,7 +185,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                              dispatch_async(queue, ^{
                                                  TBMBDefaultCommandInvocation *invocation = [TBMBDefaultCommandInvocation objectWithCommandClass:commandClass
                                                                                                                                     notification:notification
-                                                                                                                                    interceptors:_interceptors];
+                                                                                                                                    interceptors:[NSArray arrayWithArray:_interceptors]];
                                                  [invocation invoke];
                                              }
                                              );

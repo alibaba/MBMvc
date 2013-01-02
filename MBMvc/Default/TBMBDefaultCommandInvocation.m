@@ -31,6 +31,8 @@
         _notification = notification;
         if (interceptors) {
             _interceptors = [interceptors objectEnumerator];
+        } else {
+            _interceptors = nil;
         }
     }
     return self;
@@ -69,7 +71,7 @@ static inline id executeCommand(Class commandClass, id <TBMBNotification> notifi
 
 - (id)invoke {
     id <TBMBCommandInterceptor> interceptor = nil;
-    if ((interceptor = [_interceptors nextObject])) {
+    if (_interceptors && (interceptor = [_interceptors nextObject])) {
         return [interceptor intercept:self];
     } else {
         return executeCommand(_commandClass, _notification);
