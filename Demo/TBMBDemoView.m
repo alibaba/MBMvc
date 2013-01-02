@@ -64,6 +64,12 @@
         textFieldSync.delegate = self;
         [self addSubview:textFieldSync];
 
+
+        UITextView *textViewLog = [[UITextView alloc] initWithFrame:CGRectMake(50, 280, 200, 190)];
+        textViewLog.backgroundColor = [UIColor blueColor];
+        TBMBBindPropertyStrong(self, viewDO.log, textViewLog, text);
+        [self addSubview:textViewLog];
+
         [self addSubview:buttonPrev];
     }
 

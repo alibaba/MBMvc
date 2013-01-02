@@ -5,6 +5,7 @@
 
 #import "TBMBLogInterceptor.h"
 #import "TBMBCommandInvocation.h"
+#import "TBMBGlobalFacade.h"
 
 
 @implementation TBMBLogInterceptor {
@@ -14,6 +15,12 @@
     NSLog(@"invocation: %@", invocation);
     id ret = [invocation invoke];
     NSLog(@"Return: %@", ret);
+
+    if ([ret isKindOfClass:[NSNumber class]] && [ret boolValue]) {
+        TBMBGlobalSendNotificationForSELWithBody((@selector($$receiveLog:)),
+                [NSString stringWithFormat:@"[%@] has log @ %@", invocation.commandClass, [NSDate date]]
+        );
+    }
     return ret;
 }
 

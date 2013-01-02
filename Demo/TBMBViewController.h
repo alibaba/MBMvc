@@ -19,6 +19,8 @@
 
 @property(nonatomic, copy) NSString *buttonTitle1;
 @property(nonatomic, copy) NSString *buttonTitle2;
+
+@property(nonatomic, copy) NSString *log;
 @end
 
 @interface TBMBViewController : TBMBDefaultRootViewController

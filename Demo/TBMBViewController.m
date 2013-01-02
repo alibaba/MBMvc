@@ -24,6 +24,7 @@
         _buttonTitle1 = @"请求";
         _buttonTitle2 = @"请求";
         _text = @"test";
+        _log = @"";
     }
 
     return self;
@@ -144,6 +145,10 @@
 - (void)$$receiveInstanceHello:(id <TBMBNotification>)notification {
     NSLog(@"Receive Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
     NSLog(@"isSendByMe:%d", notification.key == self.notificationKey);
+}
+
+- (void)$$receiveLog:(id <TBMBNotification>)notification {
+    self.viewDO.log = [NSString stringWithFormat:@"%@ \n\r %@", self.viewDO.log, notification.body];
 }
 
 
