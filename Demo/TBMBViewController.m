@@ -148,7 +148,7 @@
 }
 
 - (void)$$receiveLog:(id <TBMBNotification>)notification {
-    self.viewDO.log = [NSString stringWithFormat:@"%@ \n\r %@", self.viewDO.log, notification.body];
+    self.viewDO.log = [NSString stringWithFormat:@"%@ \n\r %@", notification.body, self.viewDO.log];
 }
 
 
