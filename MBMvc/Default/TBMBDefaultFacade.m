@@ -9,8 +9,7 @@
 #import "TBMBDefaultNotification.h"
 #import "TBMBUtil.h"
 #import "TBMBInstanceCommand.h"
-#import "TBMBStaticCommand.h"
-#import "TBMBSingletonCommand.h"
+#import "TBMBDefaultCommandInvocation.h"
 
 typedef enum {
     TBMB_REG_COMMAND_INIT,
@@ -167,22 +166,6 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     }
 }
 
-static inline id executeCommand(Class commandClass, id <TBMBNotification> notification) {
-    id ret = nil;
-    if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
-        ret = objc_msgSend(commandClass, @selector(execute:), notification);
-    } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBSingletonCommand))) {
-        id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass, @selector(instance));
-        if (commandSingleton) {
-            ret = objc_msgSend(commandSingleton, @selector(execute:), notification);
-        }
-    } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
-        ret = objc_msgSend([[commandClass alloc] init], @selector(execute:), notification);
-    } else {
-        NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
-    }
-    return ret;
-}
 
 - (void)registerCommand:(Class)commandClass {
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBCommand))) {
@@ -195,7 +178,10 @@ static inline id executeCommand(Class commandClass, id <TBMBNotification> notifi
                                              id <TBMBNotification> notification = [note.userInfo
                                                      objectForKey:TBMB_NOTIFICATION_KEY];
                                              dispatch_async(queue, ^{
-                                                 executeCommand(commandClass, notification);
+                                                 TBMBDefaultCommandInvocation *invocation = [TBMBDefaultCommandInvocation objectWithCommandClass:commandClass
+                                                                                                                                    notification:notification
+                                                                                                                                    interceptors:nil];
+                                                 [invocation invoke];
                                              }
                                              );
                                          }];

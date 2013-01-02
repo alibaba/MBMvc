@@ -4,6 +4,7 @@
 
 
 #import "TBMBDefaultNotification.h"
+#import "TBMBUtil.h"
 
 
 @implementation TBMBDefaultNotification {
@@ -159,6 +160,10 @@
                                               "userInfo:{%@} "
                                               "lastNotification:{\n\t%@\n}}"
             , _name, _body, _key, _retryCount, _userInfo, _lastNotification];
+}
+
+- (void)dealloc {
+    TBMB_LOG(@"dealloc [%@]", self);
 }
 
 
