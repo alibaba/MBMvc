@@ -167,6 +167,21 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     }
 }
 
+static inline void executeCommand(Class commandClass, id <TBMBNotification> notification) {
+    if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
+        objc_msgSend(commandClass, @selector(execute:), notification);
+    } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBSingletonCommand))) {
+        id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass, @selector(instance));
+        if (commandSingleton) {
+            objc_msgSend(commandSingleton, @selector(execute:), notification);
+        }
+    } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
+        objc_msgSend([[commandClass alloc] init], @selector(execute:), notification);
+    } else {
+        NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
+    }
+}
+
 - (void)registerCommand:(Class)commandClass {
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBCommand))) {
         dispatch_queue_t queue = _command_queue;
@@ -178,20 +193,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                              id <TBMBNotification> notification = [note.userInfo
                                                      objectForKey:TBMB_NOTIFICATION_KEY];
                                              dispatch_async(queue, ^{
-                                                 if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
-                                                     objc_msgSend(commandClass, @selector(execute:), notification);
-                                                 } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBSingletonCommand))) {
-                                                     id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass,
-                                                             @selector(instance)
-                                                     );
-                                                     objc_msgSend(commandSingleton, @selector(execute:), notification);
-                                                 } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
-                                                     objc_msgSend([[commandClass alloc]
-                                                                                 init], @selector(execute:), notification
-                                                     );
-                                                 } else {
-                                                     NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
-                                                 }
+                                                 executeCommand(commandClass, notification);
                                              }
                                              );
                                          }];
