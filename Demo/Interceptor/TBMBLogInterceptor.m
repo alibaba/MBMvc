@@ -22,6 +22,8 @@
                 [NSString stringWithFormat:@"[%@][%d] has log @ %@", invocation.commandClass,
                                            TBMBIsNotificationProxy(invocation.notification), [NSDate date]]
         );
+    } else {
+        TBMBGlobalSendNotificationForSEL((@selector($$receiveNonLog:)));
     }
     return ret;
 }

@@ -84,7 +84,34 @@ inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notifica
     SEL notifyHandler = NSSelectorFromString(notification.name);
     id ret = nil;
     if ([handler respondsToSelector:notifyHandler]) {
-        ret = objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
+        BOOL hasIdReturn = NO;
+        Class clazz = object_getClass(handler);
+        Method method;
+        if (class_isMetaClass(clazz)) {
+            //handler本身是类
+            method = class_getClassMethod(handler, notifyHandler);
+        } else {
+            //handler是一个实例
+            method = class_getInstanceMethod(clazz, notifyHandler);
+        }
+        if (method) {
+
+            char *type = method_copyReturnType(method);
+
+            if (type) {
+                if (strncmp(type, "@", 1) == 0) {
+                    hasIdReturn = YES;
+                }
+            }
+            if (type) {
+                free(type);
+            }
+        }
+        if (hasIdReturn) {
+            ret = objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
+        } else {
+            objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
+        }
     }
     return ret;
 }

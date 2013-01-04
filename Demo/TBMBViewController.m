@@ -110,7 +110,7 @@
                                        result:[^(NSString *ret) {
                                            [delegate sayNo:ret];
                                        } copy]];
-//    [self sendNotificationForSEL:@selector($$staticHello:name:) body:view.text];
+    [self sendNotificationForSEL:@selector($$staticHello:name:)];
 }
 
 - (void)requestInstance {
@@ -149,6 +149,10 @@
 
 - (void)$$receiveLog:(id <TBMBNotification>)notification {
     self.viewDO.log = [NSString stringWithFormat:@"%@ \n\r %@", notification.body, self.viewDO.log];
+}
+
+- (id)$$receiveNonLog:(id <TBMBNotification>)notification {
+    return [NSNumber numberWithBool:NO];
 }
 
 

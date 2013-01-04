@@ -12,12 +12,6 @@
 
 + (void)$$staticHello:(id <TBMBNotification>)notification name:(NSString *)name {
     NSLog(@"command Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    [TBMBTestService helloWorld:name result:^(NSString *ret) {
-        NSLog(@"command Callback Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-        TBMBGlobalSendTBMBNotification([notification createNextNotificationForSEL:@selector
-        ($$receiveStaticHello:title:)                                    withBody:ret]
-        );
-    }];
 }
 
 + (void)sayNo:(TBMBTestDO *)name result:(void (^)(NSString *ret))result {
