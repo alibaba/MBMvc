@@ -95,15 +95,11 @@ inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notifica
             method = class_getInstanceMethod(clazz, notifyHandler);
         }
         if (method) {
-
             char *type = method_copyReturnType(method);
-
             if (type) {
                 if (type[0] == '@') {
                     hasIdReturn = YES;
                 }
-            }
-            if (type) {
                 free(type);
             }
         }
