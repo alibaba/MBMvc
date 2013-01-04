@@ -74,7 +74,7 @@ static char kTBMBNSMethodSignatureNotFoundKey;
     TBMB_LOG(@"proxy selector[%@]", NSStringFromSelector(invocation.selector));
     for (NSUInteger i = 0; i < signature.numberOfArguments; i++) {
         char const *type = [signature getArgumentTypeAtIndex:i];
-        if (strcmp("@?", type) == 0) {
+        if (strcmp(@encode(void (^)()), type) == 0) {
             TBMB_LOG(@"proxy parameter in [%d] is type [%s]", i, type);
             void *block = NULL;
             [invocation getArgument:&block atIndex:i];

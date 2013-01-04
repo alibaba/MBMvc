@@ -97,7 +97,7 @@ inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notifica
         if (method) {
             char *type = method_copyReturnType(method);
             if (type) {
-                if (type[0] == '@') {
+                if (type[0] == @encode(id)[0]) {
                     hasIdReturn = YES;
                 }
                 free(type);
