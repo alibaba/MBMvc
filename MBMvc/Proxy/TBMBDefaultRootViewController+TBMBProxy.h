@@ -8,5 +8,5 @@
 
 @interface TBMBDefaultRootViewController (TBMBProxy)
 //创建它的代理对象,使调用直接消息化
-- (id)proxyObject;
+@property(nonatomic, readonly) id proxyObject;
 @end
