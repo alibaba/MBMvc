@@ -6,6 +6,7 @@
 #import "TBMBLogInterceptor.h"
 #import "TBMBCommandInvocation.h"
 #import "TBMBGlobalFacade.h"
+#import "TBMBUtil.h"
 
 
 @implementation TBMBLogInterceptor {
@@ -18,7 +19,8 @@
 
     if ([ret isKindOfClass:[NSNumber class]] && [ret boolValue]) {
         TBMBGlobalSendNotificationForSELWithBody((@selector($$receiveLog:)),
-                [NSString stringWithFormat:@"[%@] has log @ %@", invocation.commandClass, [NSDate date]]
+                [NSString stringWithFormat:@"[%@][%d] has log @ %@", invocation.commandClass,
+                                           TBMBIsNotificationProxy(invocation.notification), [NSDate date]]
         );
     }
     return ret;

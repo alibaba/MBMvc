@@ -22,7 +22,7 @@ inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
 }
 
 inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz) {
-    return [NSString stringWithFormat:(@"__##__ProxyHandler_%d_%@"), key, clazz];
+    return [NSString stringWithFormat:(@"%@_%d_%@"), TBMB_PROXY_PREFIX, key, clazz];
 }
 
 static inline NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NSString *prefix) {
@@ -98,7 +98,13 @@ inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler
     TBMBAutoHandlerNotification(handler, notification);
 }
 
-inline const NSUInteger getDefaultNotificationKey(id o) {
+inline const NSUInteger TBMBGetDefaultNotificationKey(id o) {
     const void *ptr = (__bridge const void *) o;
     return (const NSUInteger) ptr;
+}
+
+
+inline BOOL TBMBIsNotificationProxy(id <TBMBNotification> notification) {
+    return notification && [notification.name hasPrefix:TBMB_PROXY_PREFIX] && [notification.body
+            isKindOfClass:[NSInvocation class]];
 }

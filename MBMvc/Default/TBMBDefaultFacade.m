@@ -183,9 +183,11 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                              id <TBMBNotification> notification = [note.userInfo
                                                      objectForKey:TBMB_NOTIFICATION_KEY];
                                              dispatch_async(queue, ^{
+                                                 //这样写就不会循环引用
+                                                 NSArray *interceptors = [NSArray arrayWithArray:[TBMBDefaultFacade instance]->_interceptors];
                                                  TBMBDefaultCommandInvocation *invocation = [TBMBDefaultCommandInvocation objectWithCommandClass:commandClass
                                                                                                                                     notification:notification
-                                                                                                                                    interceptors:[NSArray arrayWithArray:_interceptors]];
+                                                                                                                                    interceptors:interceptors];
                                                  [invocation invoke];
                                              }
                                              );

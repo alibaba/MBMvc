@@ -16,7 +16,7 @@
 }
 
 - (const NSUInteger)notificationKey {
-    return getDefaultNotificationKey(self);
+    return TBMBGetDefaultNotificationKey(self);
 }
 
 - (id <TBMBFacade>)tbmbFacade {

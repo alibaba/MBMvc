@@ -12,6 +12,8 @@
 #define TBMB_LOG(msg, args...)
 #endif
 
+#define TBMB_PROXY_PREFIX @"__##__ProxyHandler"
+
 @class TBMBDefaultMessageReceiver;
 @protocol TBMBMessageReceiver;
 
@@ -29,4 +31,6 @@ extern inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> n
 
 extern inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification);
 
-extern inline const NSUInteger getDefaultNotificationKey(id o);
+extern inline const NSUInteger TBMBGetDefaultNotificationKey(id o);
+
+extern inline BOOL TBMBIsNotificationProxy(id <TBMBNotification> notification);
