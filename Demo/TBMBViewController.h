@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "TBMBDefaultRootViewController.h"
 
+//用来做Bind的viewDO
 @interface TBMBViewDO : NSObject
-@property(nonatomic, assign) BOOL clickPrev;
-@property(nonatomic, assign) BOOL clickNext;
 @property(nonatomic, assign) BOOL requestInstance;
 @property(nonatomic, assign) BOOL requestStatic;
 

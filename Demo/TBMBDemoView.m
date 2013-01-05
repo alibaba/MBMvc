@@ -45,14 +45,14 @@
         [self addSubview:textField];
 
         UIButton *buttonNav = [[UIButton alloc] initWithFrame:CGRectMake(50, 160, 200, 30)];
-        [buttonNav setTitle:@"下一个" forState:UIControlStateNormal];
+        [buttonNav setTitle:@"测试并发" forState:UIControlStateNormal];
         [buttonNav addTarget:self action:@selector(next:) forControlEvents:UIControlEventTouchUpInside];
         buttonNav.backgroundColor = [UIColor redColor];
         buttonNav.tag = 4;
         [self addSubview:buttonNav];
 
         UIButton *buttonPrev = [[UIButton alloc] initWithFrame:CGRectMake(50, 200, 200, 30)];
-        [buttonPrev setTitle:@"上一个" forState:UIControlStateNormal];
+        [buttonPrev setTitle:@"不会发生什么" forState:UIControlStateNormal];
         [buttonPrev addTarget:self action:@selector(prev:) forControlEvents:UIControlEventTouchUpInside];
         buttonPrev.backgroundColor = [UIColor redColor];
         buttonPrev.tag = 5;
@@ -77,11 +77,11 @@
 }
 
 - (void)prev:(id)prev {
-    self.viewDO.clickPrev = YES;
+    [self.delegate prev];
 }
 
 - (void)next:(id)next {
-    self.viewDO.clickNext = YES;
+    [self.delegate next];
 }
 
 - (void)requestInstance:(id)requestInstance {

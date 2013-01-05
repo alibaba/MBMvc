@@ -15,7 +15,7 @@
 @implementation TBMBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+    //直接使用registerCommandAutoAsync 来注册了 ,不再需要单个来注册
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
     //设置拦截器
@@ -24,7 +24,6 @@
     [[TBMBGlobalFacade instance] registerCommandAutoAsync];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     self.viewController = [[TBMBViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];

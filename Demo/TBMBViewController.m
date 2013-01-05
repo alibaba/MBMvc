@@ -32,7 +32,11 @@
 
 @end
 
-@interface TBMBViewController ()
+//提供了两种方式 与View交互 一种是走delegate 但是使用proxyObject
+//还有一种是通过Bind viewDO 由viewDO的值的改变来 触发操作
+//两种都是基于消息 安全
+
+@interface TBMBViewController () <TBMBDemoViewProtocol>
 @property(nonatomic, strong) TBMBViewDO *viewDO;
 @end
 
@@ -42,24 +46,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.viewDO = [[TBMBViewDO alloc] init];
-        TBMBBindObjectWeak(tbKeyPath(self, viewDO.clickPrev), self, ^(TBMBViewController *host, id old, id new) {
-            if (old != [TBMBBindInitValue value])
-                [host prev];
-        }
-        );
-
-        TBMBBindObjectWeak(tbKeyPath(self, viewDO.clickNext), self, ^(TBMBViewController *host, id old, id new) {
-            if (old != [TBMBBindInitValue value])
-                [host next];
-        }
-        );
-
+        //绑定self.viewDO.requestInstance改变时 执行[self requestInstance]
         TBMBBindObjectWeak(tbKeyPath(self, viewDO.requestInstance), self, ^(TBMBViewController *host, id old, id new) {
             if (old != [TBMBBindInitValue value])
                 [host requestInstance];
         }
         );
-
+        //绑定self.viewDO.requestStatic改变时 执行[self requestStatic]
         TBMBBindObjectWeak(tbKeyPath(self, viewDO.requestStatic), self, ^(TBMBViewController *host, id old, id new) {
             if (old != [TBMBBindInitValue value])
                 [host requestStatic];
@@ -74,6 +67,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        //用来测试高并发的
         id proxyObject = self.proxyObject;
         [[TBMBTestCommand proxyObject] justTest:^{
             NSLog(@"%@ return just Test", proxyObject);
@@ -92,12 +86,17 @@
 - (void)loadView {
     [super loadView];
     TBMBDemoView *view = [[TBMBDemoView alloc] initWithFrame:self.view.frame withViewDO:self.viewDO];
+    //用self.proxyObject 来作为view的delegate <必须是retain的哦,因为这个是NSProxy>
+    view.delegate = self.proxyObject;
     [self.view addSubview:view];
 }
 
+//执行下一个按钮
 - (void)prev {
+    NSLog(@"click Prev button");
 }
 
+//执行上一个按钮
 - (void)next {
     for (NSUInteger i = 0; i < 10; i++)
         [[TBMBViewController alloc] init];

@@ -9,8 +9,17 @@
 
 @class TBMBViewDO;
 
+@protocol TBMBDemoViewProtocol
+
+- (void)next;
+
+- (void)prev;
+@end
+
 @interface TBMBDemoView : TBMBDefaultPage <TBMBPage>
 
 @property(nonatomic, retain) TBMBViewDO *viewDO;
+//因为这个delegate是NSProxy 所以得是 strong的
+@property(nonatomic, strong) id <TBMBDemoViewProtocol> delegate;
 
 @end
