@@ -195,6 +195,9 @@ inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath
 }
 
 inline void TBMBUnbindObject(id bindable) {
+    if (!bindable) {
+        return;
+    }
     NSMutableSet *objectSet;
     if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
         NSSet *objectSetCopy = [NSSet setWithSet:objectSet];
@@ -206,6 +209,9 @@ inline void TBMBUnbindObject(id bindable) {
 }
 
 inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath) {
+    if (!bindable || !keyPath) {
+        return;
+    }
     NSMutableSet *objectSet;
     if ((objectSet = [bindable _$TBMBBindableObjectSet]) && objectSet.count > 0) {
         NSSet *objectSetCopy = [NSSet setWithSet:objectSet];
@@ -219,6 +225,9 @@ inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath) {
 }
 
 inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
+    if (!observer) {
+        return;
+    }
     if ([observer conformsToProtocol:@protocol(TBMBBindHandlerProtocol)]) {
         id <TBMBBindHandlerProtocol> _observer = (id <TBMBBindHandlerProtocol>) observer;
         id bindable = _observer.bindableObject;
