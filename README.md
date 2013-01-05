@@ -1,4 +1,4 @@
-MBMvc 就是Message Base MVC的简称
+MBMvc 就是Message Based MVC的简称
 
 使M/V/C之间的交互全部通过**消息机制**来完成,不会相互引用,这样就不会因为有引用导致的各自生命周期的混乱
 
