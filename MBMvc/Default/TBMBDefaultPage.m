@@ -16,8 +16,13 @@
         if ([self respondsToSelector:selector]) {
             objc_msgSend(self, selector, viewDO);
         }
+        [self loadView];
     }
     return self;
+}
+
+- (void)loadView {
+
 }
 
 

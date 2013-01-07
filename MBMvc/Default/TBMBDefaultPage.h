@@ -12,4 +12,7 @@
 //初始化一个page
 - (id)initWithFrame:(CGRect)frame withViewDO:(id)viewDO;
 
+//Page载入View
+- (void)loadView;
+
 @end
