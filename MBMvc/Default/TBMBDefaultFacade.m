@@ -257,9 +257,11 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 - (void)sendTBMBNotification:(id <TBMBNotification>)notification {
     if (_regCommandStatus == TBMB_REG_COMMAND_ASYNC_DOING) {
         @synchronized (self) {
-            [_waitingNotification addObject:notification];
+            if (_regCommandStatus == TBMB_REG_COMMAND_ASYNC_DOING && _waitingNotification) {
+                [_waitingNotification addObject:notification];
+                return;
+            }
         }
-        return;
     }
     NSNotification *sysNotification = [NSNotification notificationWithName:notification.name
                                                                     object:nil
