@@ -109,7 +109,7 @@ shouldChangeCharactersInRange:(NSRange)range
     return YES;
 }
 
-
+//这类方法会被自动注册到Bind上哦,屌吧
 TBMBWhenThisKeyPathChange(viewDO, text){
     NSLog(@"Text Change:%@", new);
 }

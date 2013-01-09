@@ -46,12 +46,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.viewDO = [[TBMBViewDO alloc] init];
-        //绑定self.viewDO.requestInstance改变时 执行[self requestInstance]
-        TBMBBindObjectWeak(tbKeyPath(self, viewDO.requestInstance), self, ^(TBMBViewController *host, id old, id new) {
-            if (old != [TBMBBindInitValue value])
-                [host requestInstance];
-        }
-        );
         //绑定self.viewDO.requestStatic改变时 执行[self requestStatic]
         TBMBBindObjectWeak(tbKeyPath(self, viewDO.requestStatic), self, ^(TBMBViewController *host, id old, id new) {
             if (old != [TBMBBindInitValue value])
@@ -61,6 +55,20 @@
     }
 
     return self;
+}
+
+//我这里也支持自动绑定哦
+TBMBWhenThisKeyPathChange(viewDO, requestInstance){
+    //由于本TBMBViewController重载了initWithNibName 所以autoBindKeyPath会在 initWithNibName之前被执行,
+    //导致这里会被调用两次,需要注意
+    if (!isInit && old) {
+        NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
+        TBMBViewController *delegate = self.proxyObject;
+        [TBMBInstanceHelloCommand.proxyObject sayHello:self.viewDO.text Age:20
+                                                result:^(NSString *ret) {
+                                                    [delegate sayHello:ret];
+                                                }];
+    }
 }
 
 
@@ -110,16 +118,6 @@
                                            [delegate sayNo:ret];
                                        } copy]];
     [self sendNotificationForSEL:@selector($$staticHello:name:)];
-}
-
-- (void)requestInstance {
-    NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
-    TBMBViewController *delegate = self.proxyObject;
-    [TBMBInstanceHelloCommand.proxyObject sayHello:self.viewDO.text Age:20
-                                            result:^(NSString *ret) {
-                                                [delegate sayHello:ret];
-                                            }];
-//    [self sendNotificationForSEL:@selector($$instanceHello:) body:view.text];
 }
 
 - (void)sayNo:(NSString *)name {
