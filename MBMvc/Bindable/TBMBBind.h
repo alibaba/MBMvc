@@ -68,15 +68,22 @@ extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
     metamacro_foreach_concat(,$$,__VA_ARGS__)
 
 
-#define TBMB_foreach_concat_iter(INDEX, BASE, ARG) TBMB_foreach_concat_iter_(BASE, ARG)
-#define TBMB_foreach_concat_iter_(BASE, ARG) metamacro_concat(.,ARG)
+#define __TBMB_foreach_concat_iter(INDEX, BASE, ARG) .ARG
+
+#define __TBMB_get_self_property(...)                                                                \
+    self metamacro_foreach_cxt_recursive(__TBMB_foreach_concat_iter, , ,__VA_ARGS__)
+
 //编译时判断字段是否存在
+#ifdef TBMB_DEBUG
 #define __TBMBTryWhenThisKeyPathChange(...)                                                           \
     metamacro_concat(-(void)__$$tryKeyPathChange_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))    \
-    {metamacro_concat(self,metamacro_foreach_cxt(TBMB_foreach_concat_iter, , , __VA_ARGS__));}  \
-
+    {(void)(NO && ((void)__TBMB_get_self_property(__VA_ARGS__), NO));}
+#else
+#define __TBMBTryWhenThisKeyPathChange(...)
+#endif
 
 
 #define TBMBWhenThisKeyPathChange(...)                                                             \
+     __TBMBTryWhenThisKeyPathChange(__VA_ARGS__)                                                   \
     metamacro_concat(-(void)__$$keyPathChange_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))    \
     :(BOOL)isInit old:(id)old new:(id)new
