@@ -5,6 +5,7 @@
 
 #import <objc/message.h>
 #import "TBMBDefaultPage.h"
+#import "TBMBUtil.h"
 
 
 @implementation TBMBDefaultPage
@@ -17,12 +18,18 @@
             objc_msgSend(self, selector, viewDO);
         }
         [self loadView];
+        [self autoBindingKeyPath];
     }
     return self;
 }
 
 - (void)loadView {
 
+}
+
+//自动扫描keyBinding
+- (void)autoBindingKeyPath {
+    TBMBAutoBindingKeyPath(self);
 }
 
 

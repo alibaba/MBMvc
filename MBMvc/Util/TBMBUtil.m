@@ -9,6 +9,7 @@
 #import "TBMBStaticCommand.h"
 #import "TBMBMessageReceiver.h"
 #import "TBMBOnlyProxy.h"
+#import "TBMBBind.h"
 
 inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
     Class currentClass = clazz;
@@ -130,4 +131,41 @@ inline const NSUInteger TBMBGetDefaultNotificationKey(id o) {
 inline BOOL TBMBIsNotificationProxy(id <TBMBNotification> notification) {
     return notification && [notification.name hasPrefix:TBMB_PROXY_PREFIX] && [notification.body
             isKindOfClass:[NSInvocation class]];
+}
+
+inline void TBMBAutoBindingKeyPath(id bindable) {
+    NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
+    Class rootClass = [NSObject class];
+    Class clazz = [bindable class];
+    while (clazz != nil && clazz != rootClass) {
+        unsigned int methodCount;
+        Method *methods = class_copyMethodList(clazz, &methodCount);
+        if (methods && methodCount > 0) {
+            for (unsigned int i = 0; i < methodCount; i++) {
+                SEL selector = method_getName(methods[i]);
+                NSString *selectorName = NSStringFromSelector(selector);
+                if ([selectorName hasPrefix:TBMB_KEY_PATH_CHANGE_PREFIX]) {
+                    [names addObject:selectorName];      //为了去重
+                }
+            }
+        }
+        if (methods) {
+            free(methods);
+        }
+        clazz = class_getSuperclass(clazz);
+    }
+
+    if (names.count > 0) {
+        for (NSString *name in names) {
+            SEL selector = NSSelectorFromString(name);
+            NSString *keyPath = [name substringFromIndex:[TBMB_KEY_PATH_CHANGE_PREFIX length]];
+            keyPath = [[keyPath componentsSeparatedByString:@":"] objectAtIndex:0];
+            keyPath = [[keyPath componentsSeparatedByString:@"$$"] componentsJoinedByString:@"."];
+            __block __unsafe_unretained id _bindable = bindable;
+            TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+                objc_msgSend(_bindable, selector, [TBMBBindInitValue value] == old, old, new);
+            }
+            );
+        }
+    }
 }

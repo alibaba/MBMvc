@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TBMBUtil.h"
+#import "metamacros.h"
 
 //一个observer用来表示 可以用来remove
 @protocol TBMBBindObserver <NSObject>
@@ -24,7 +25,7 @@ typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);
 
 //这个宏 可以用来在编译期就判断这个OBJ下的这个keyPath是否存在,可以避免出错
 #define tbKeyPath(OBJ,PATH) OBJ , @(((void)(NO && ((void)OBJ.PATH, NO)), #PATH))
-
+#pragma mark  - Binding
 //绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行
 extern inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock);
 
@@ -33,6 +34,8 @@ extern inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *ke
 
 //绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行 ,其中 host 是强引用
 extern inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
+
+#pragma mark  - UnBinding
 
 //解绑bindable上的所有observer
 extern inline void TBMBUnbindObject(id bindable);
@@ -58,3 +61,22 @@ extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
                             (host).property = ____new;                                                        \
             });                                                                                               \
         }
+
+#pragma mark  - Auto KeyPath Change Binding
+
+#define __TBMBAutoKeyPathChangeMethodName(...)      \
+    metamacro_foreach_concat(,$$,__VA_ARGS__)
+
+
+#define TBMB_foreach_concat_iter(INDEX, BASE, ARG) TBMB_foreach_concat_iter_(BASE, ARG)
+#define TBMB_foreach_concat_iter_(BASE, ARG) metamacro_concat(.,ARG)
+//编译时判断字段是否存在
+#define __TBMBTryWhenThisKeyPathChange(...)                                                           \
+    metamacro_concat(-(void)__$$tryKeyPathChange_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))    \
+    {metamacro_concat(self,metamacro_foreach_cxt(TBMB_foreach_concat_iter, , , __VA_ARGS__));}  \
+
+
+
+#define TBMBWhenThisKeyPathChange(...)                                                             \
+    metamacro_concat(-(void)__$$keyPathChange_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))    \
+    :(BOOL)isInit old:(id)old new:(id)new

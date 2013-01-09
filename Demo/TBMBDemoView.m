@@ -81,7 +81,8 @@
     [self.delegate next];
 }
 
-- (void)requestInstance:(id)requestInstance {
+- (void)requestInstance
+        :(id)requestInstance {
     self.viewDO.requestInstance = YES;
 }
 
@@ -110,5 +111,9 @@ shouldChangeCharactersInRange:(NSRange)range
     return YES;
 }
 
+
+TBMBWhenThisKeyPathChange(viewDO, text){
+    NSLog(@"Text Change:%@", new);
+}
 
 @end

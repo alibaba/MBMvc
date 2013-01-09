@@ -14,6 +14,8 @@
 
 #define TBMB_PROXY_PREFIX @"__##__ProxyHandler"
 
+#define TBMB_KEY_PATH_CHANGE_PREFIX @"__$$keyPathChange_"
+
 @class TBMBDefaultMessageReceiver;
 @protocol TBMBMessageReceiver;
 
@@ -34,3 +36,5 @@ extern inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> 
 extern inline const NSUInteger TBMBGetDefaultNotificationKey(id o);
 
 extern inline BOOL TBMBIsNotificationProxy(id <TBMBNotification> notification);
+
+extern inline void TBMBAutoBindingKeyPath(id bindable);

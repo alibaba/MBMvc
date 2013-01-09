@@ -11,6 +11,9 @@
 #import "TBMBViewController.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBLogInterceptor.h"
+#import "TBMBBind.h"
+
+#define TBMBTestJoin(...)   metamacro_stringify(__TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))
 
 @implementation TBMBAppDelegate
 
@@ -27,6 +30,8 @@
     self.viewController = [[TBMBViewController alloc] initWithNibName:nil bundle:nil];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+
+    NSLog(@"%s", TBMBTestJoin(a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t));
 
     return YES;
 }
