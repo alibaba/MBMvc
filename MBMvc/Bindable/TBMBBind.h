@@ -74,9 +74,9 @@ extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
     self metamacro_foreach_cxt_recursive(__TBMB_foreach_concat_iter, , ,__VA_ARGS__)
 
 //编译时判断字段是否存在
-#ifdef TBMB_DEBUG
+#ifdef DEBUG
 #define __TBMBTryWhenThisKeyPathChange(...)                                                                            \
-    metamacro_concat(-(void)__$$tryKeyPathChangeOnlyExistInTBMBDebug_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__)) \
+    metamacro_concat(-(void)__$$tryKeyPathChangeOnlyExistInDebugOn_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__)) \
     {(void)(NO && ((void)__TBMB_get_self_property(__VA_ARGS__), NO));}
 #else
 #define __TBMBTryWhenThisKeyPathChange(...)
