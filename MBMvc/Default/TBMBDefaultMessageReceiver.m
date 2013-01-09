@@ -67,5 +67,10 @@
     [_$tbmbObserver removeObject:observer];
 }
 
+//自动扫描keyBinding
+- (void)autoBindingKeyPath {
+    TBMBAutoBindingKeyPath(self);
+}
+
 
 @end

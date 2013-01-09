@@ -12,15 +12,13 @@
 @end
 
 @implementation TBMBDemoView {
+@private
+    UIButton *button;
 }
 
 - (void)loadView {
     [super loadView];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 200, 30)];
-    TBMBBindObjectStrong(tbKeyPath(self, viewDO.buttonTitle1), button, ^(UIButton *host, id old, id new) {
-        [host setTitle:new forState:UIControlStateNormal];
-    }
-    );
+    button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 200, 30)];
     [button addTarget:self action:@selector(requestStatic:) forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor = [UIColor redColor];
     button.tag = 1;
@@ -114,6 +112,10 @@ shouldChangeCharactersInRange:(NSRange)range
 
 TBMBWhenThisKeyPathChange(viewDO, text){
     NSLog(@"Text Change:%@", new);
+}
+
+TBMBWhenThisKeyPathChange(viewDO, buttonTitle1){
+    [button setTitle:new forState:UIControlStateNormal];
 }
 
 @end

@@ -36,6 +36,7 @@
     if (self) {
         [self.tbmbFacade unsubscribeNotification:self];
         [self.tbmbFacade subscribeNotification:self];
+        [self autoBindingKeyPath];
     }
     return self;
 }
@@ -115,6 +116,11 @@
 - (void)sendNotificationForSEL:(SEL)selector body:(id)body {
     [self.tbmbFacade sendTBMBNotification:[TBMBDefaultNotification objectWithName:NSStringFromSelector(selector)
                                                                               key:self.notificationKey body:body]];
+}
+
+//自动扫描keyBinding
+- (void)autoBindingKeyPath {
+    TBMBAutoBindingKeyPath(self);
 }
 
 
