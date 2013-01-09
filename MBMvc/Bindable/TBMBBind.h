@@ -75,8 +75,8 @@ extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
 
 //编译时判断字段是否存在
 #ifdef TBMB_DEBUG
-#define __TBMBTryWhenThisKeyPathChange(...)                                                           \
-    metamacro_concat(-(void)__$$tryKeyPathChange_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))    \
+#define __TBMBTryWhenThisKeyPathChange(...)                                                                            \
+    metamacro_concat(-(void)__$$tryKeyPathChangeOnlyExistInTBMBDebug_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__)) \
     {(void)(NO && ((void)__TBMB_get_self_property(__VA_ARGS__), NO));}
 #else
 #define __TBMBTryWhenThisKeyPathChange(...)
