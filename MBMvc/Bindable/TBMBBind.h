@@ -64,8 +64,11 @@ extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
 
 #pragma mark  - Auto KeyPath Change Binding
 
+#define  __TBMBAutoKeyPathChangeMethodNameSEP $_$
+#define  __TBMBAutoKeyPathChangeMethodNameSEP_STR @metamacro_stringify(__TBMBAutoKeyPathChangeMethodNameSEP)
+
 #define __TBMBAutoKeyPathChangeMethodName(...)      \
-    metamacro_foreach_concat(,$$,__VA_ARGS__)
+    metamacro_foreach_concat(,__TBMBAutoKeyPathChangeMethodNameSEP,__VA_ARGS__)
 
 
 #define __TBMB_foreach_concat_iter(INDEX, BASE, ARG) .ARG
