@@ -6,6 +6,7 @@
 #import "TBMBDemoView.h"
 #import "TBMBBind.h"
 #import "TBMBViewController.h"
+#import "TBMBViewDO.h"
 
 
 @interface TBMBDemoView () <UITextFieldDelegate>
@@ -49,7 +50,7 @@
     [self addSubview:buttonNav];
 
     UIButton *buttonPrev = [[UIButton alloc] initWithFrame:CGRectMake(50, 200, 200, 30)];
-    [buttonPrev setTitle:@"不会发生什么" forState:UIControlStateNormal];
+    [buttonPrev setTitle:@"ViewDO直接在Command修改" forState:UIControlStateNormal];
     [buttonPrev addTarget:self action:@selector(prev:) forControlEvents:UIControlEventTouchUpInside];
     buttonPrev.backgroundColor = [UIColor redColor];
     buttonPrev.tag = 5;

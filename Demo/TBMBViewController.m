@@ -15,22 +15,7 @@
 #import "TBMBSimpleStaticCommand+TBMBProxy.h"
 #import "TBMBTestCommand.h"
 #import "TBMBBind.h"
-
-@implementation TBMBViewDO
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        _buttonTitle1 = @"请求";
-        _buttonTitle2 = @"请求";
-        _text = @"test";
-        _log = @"";
-    }
-
-    return self;
-}
-
-@end
+#import "TBMBViewDO.h"
 
 //提供了两种方式 与View交互 一种是走delegate 但是使用proxyObject
 //还有一种是通过Bind viewDO 由viewDO的值的改变来 触发操作
@@ -102,6 +87,7 @@ TBMBWhenThisKeyPathChange(viewDO, requestInstance){
 //执行下一个按钮
 - (void)prev {
     NSLog(@"click Prev button");
+    [[TBMBTestCommand proxyObject] changeViewDOText:self.viewDO];
 }
 
 //执行上一个按钮

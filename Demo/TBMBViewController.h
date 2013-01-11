@@ -9,18 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TBMBDefaultRootViewController.h"
 
-//用来做Bind的viewDO
-@interface TBMBViewDO : NSObject
-@property(nonatomic, assign) BOOL requestInstance;
-@property(nonatomic, assign) BOOL requestStatic;
 
-@property(nonatomic, copy) NSString *text;
-
-@property(nonatomic, copy) NSString *buttonTitle1;
-@property(nonatomic, copy) NSString *buttonTitle2;
-
-@property(nonatomic, copy) NSString *log;
-@end
 
 @interface TBMBViewController : TBMBDefaultRootViewController
 @end

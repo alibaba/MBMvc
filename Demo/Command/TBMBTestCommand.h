@@ -6,8 +6,12 @@
 #import <Foundation/Foundation.h>
 #import "TBMBSimpleInstanceCommand.h"
 
+@class TBMBViewDO;
+
 
 @interface TBMBTestCommand : TBMBSimpleInstanceCommand
 
 - (void)justTest:(void (^)())done;
+
+- (void)changeViewDOText:(TBMBViewDO *)viewDO;
 @end

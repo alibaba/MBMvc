@@ -19,6 +19,10 @@
 //设定是否在绑定主体dealloc自动解绑它上面的所有observer 默认是YES
 extern void TBMBSetAutoUnbind(BOOL yesOrNO);
 
+//设定绑定执行的线程是不是绑定时的线程,默认是NO
+//如果你想把ViewDO直接传到Model层请把这个设为YES,防止在非主线程修改UI
+extern void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO);
+
 typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 
 typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);

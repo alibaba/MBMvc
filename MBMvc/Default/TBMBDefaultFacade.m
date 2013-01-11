@@ -112,7 +112,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     __block __unsafe_unretained id <TBMBMessageReceiver> receiver = _receiver;
     void (^OBSERVER_BLOCK)(NSNotification *);
     NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
-    if ([currentQueue isEqual:_dispatch_message_queue]) {
+    if ([_dispatch_message_queue isEqual:currentQueue]) {
         OBSERVER_BLOCK = ^(NSNotification *note) {
             pthread_rwlock_rdlock(&_subscribeReceiversLock);
             BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
@@ -122,7 +122,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
         };
     } else {
         OBSERVER_BLOCK = ^(NSNotification *note) {
-            if (currentQueue.isSuspended) {
+            if (!currentQueue || currentQueue.isSuspended) {
                 NSLog(@"ERROR:Observer OperationQueue can't be Run![%@]", currentQueue);  //注册线程失效的情况下使用主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
                     pthread_rwlock_rdlock(&_subscribeReceiversLock);

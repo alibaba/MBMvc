@@ -8,6 +8,8 @@
 
 static BOOL __is_need_auto_unbind = YES;
 
+static BOOL __bindable_run_thread_is_binding_thread = NO;
+
 @implementation TBMBBindInitValue
 + (TBMBBindInitValue *)value {
     static TBMBBindInitValue *_instance = nil;
@@ -30,6 +32,10 @@ static BOOL __is_need_auto_unbind = YES;
 
 void TBMBSetAutoUnbind(BOOL yesOrNO) {
     __is_need_auto_unbind = yesOrNO;
+}
+
+void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
+    __bindable_run_thread_is_binding_thread = yesOrNO;
 }
 
 @protocol TBMBBindHandlerProtocol <TBMBBindObserver>
@@ -64,6 +70,7 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
     TBMB_CHANGE_BLOCK _changeBlock;
     NSString *_keyPath;
     __unsafe_unretained id _bindableObject;
+    NSOperationQueue *_bindingQueue;
 }
 
 @synthesize changeBlock = _changeBlock;
@@ -78,6 +85,9 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
         _bindableObject = bindableObject;
         _keyPath = keyPath;
         _changeBlock = changeBlock;
+        if (__bindable_run_thread_is_binding_thread) {
+            _bindingQueue = [NSOperationQueue currentQueue];
+        }
     }
 
     return self;
@@ -105,7 +115,14 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
         id new = [change objectForKey:NSKeyValueChangeNewKey];
         old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [TBMBBindInitValue value];
         new = [new isEqual:[NSNull null]] ? nil : new;
-        _changeBlock(old, new);
+        if (_bindingQueue && !_bindingQueue.isSuspended) {
+            [_bindingQueue addOperationWithBlock:^{
+                _changeBlock(old, new);
+            }];
+        } else {
+            _changeBlock(old, new);
+        }
+
     }
 }
 

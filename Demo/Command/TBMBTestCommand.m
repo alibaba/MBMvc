@@ -4,6 +4,7 @@
 
 
 #import "TBMBTestCommand.h"
+#import "TBMBViewDO.h"
 
 
 @implementation TBMBTestCommand {
@@ -14,4 +15,9 @@
         done();
     }
 }
+
+- (void)changeViewDOText:(TBMBViewDO *)viewDO {
+    viewDO.text = @"It is run in TBMBTestCommand!";
+}
+
 @end
