@@ -67,7 +67,7 @@ static char kTBMBNSMethodSignatureNotFoundKey;
         );
         return;
     }
-
+    objc_setAssociatedObject(self, &kTBMBNSMethodSignatureNotFoundKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     NSMutableArray *needReleaseBlocks = [NSMutableArray arrayWithCapacity:2];
     //判断参数有Block 就进行copy

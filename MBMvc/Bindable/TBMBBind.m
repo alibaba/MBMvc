@@ -154,6 +154,7 @@ static char kTBMBBindableObjectKey;
             [handler removeObserver];
         }
     }
+    objc_setAssociatedObject(self, &kTBMBBindableObjectKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     // Call original implementation
     [self _$TBMBBindableObject_dealloc];
 }
