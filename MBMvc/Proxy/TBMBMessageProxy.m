@@ -75,15 +75,12 @@ static char kTBMBNSMethodSignatureNotFoundKey;
     for (NSUInteger i = 0; i < signature.numberOfArguments; i++) {
         char const *type = [signature getArgumentTypeAtIndex:i];
         if (strcmp(@encode(void (^)()), type) == 0) {
-            TBMB_LOG(@"proxy parameter in [%d] is type [%s]", i, type);
             void *block = NULL;
             [invocation getArgument:&block atIndex:i];
             if (block) {
                 id blockObj = (__bridge id) block;
                 if ([blockObj isKindOfClass:NSClassFromString(@"NSBlock")]) {
-                    TBMB_LOG(@"ori block ptr [%p]", block);
                     void *blockCopied = Block_copy(block);
-                    TBMB_LOG(@"copy block ptr [%p]", blockCopied);
                     [invocation setArgument:&blockCopied atIndex:i];
                     [needReleaseBlocks addObject:[NSValue valueWithPointer:blockCopied]];
                 }
