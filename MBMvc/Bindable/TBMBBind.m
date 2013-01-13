@@ -128,7 +128,7 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
         id new = [change objectForKey:NSKeyValueChangeNewKey];
         old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [TBMBBindInitValue value];
         new = [new isEqual:[NSNull null]] ? nil : new;
-        if (_bindingQueue && !_bindingQueue.isSuspended) {
+        if (_bindingQueue && _bindingQueue != [NSOperationQueue currentQueue] && !_bindingQueue.isSuspended) {
             __block id retainedObj = nil;
             if (__TBMBBindableRunSafeThreadStrategy == TBMBBindableRunSafeThreadStrategy_Retain) {
                 retainedObj = _bindableObject;  //强制retain一把,防止由于bindable被dealloc导致异步执行crash
