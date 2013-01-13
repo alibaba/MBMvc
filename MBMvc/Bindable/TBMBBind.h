@@ -30,7 +30,8 @@ typedef enum {
 
 //当TBMBSetBindableRunThreadIsBindingThread 设为YES时 ,bind触发的执行是异步的,那么可能导致弱引用的changeBlock执行时
 //外部参数已经被dealloc 这个策略就是对这个情况下的处理做分离 ,默认策略是 TBMBBindableRunSafeThreadStrategy_Retain
-// TBMBBindableRunSafeThreadStrategy_Retain 再异步执行前对bindable retain一把,执行完后在release,并发高时占用很多内存
+// TBMBBindableRunSafeThreadStrategy_Retain 在异步执行前对bindable retain一把,执行完后在release,并发高时占会用很多内存,
+//      因为会在异步执行阶段bindable对象不会被dealloc
 // TBMBBindableRunSafeThreadStrategy_Ignore 在异步执行前判断bindable是否dealloc 已经dealloc就不执行了 ,对内存友好
 extern void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy strategy);
 
