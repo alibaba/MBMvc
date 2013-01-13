@@ -116,8 +116,10 @@ void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
         old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [TBMBBindInitValue value];
         new = [new isEqual:[NSNull null]] ? nil : new;
         if (_bindingQueue && !_bindingQueue.isSuspended) {
+            __block id retainedObj = _bindableObject;  //强制retain一把,防止由于bindable被dealloc导致异步执行crash
             [_bindingQueue addOperationWithBlock:^{
                 _changeBlock(old, new);
+                retainedObj = nil;
             }];
         } else {
             _changeBlock(old, new);

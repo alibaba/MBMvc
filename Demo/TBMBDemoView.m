@@ -51,7 +51,7 @@
 
     UIButton *buttonPrev = [[UIButton alloc] initWithFrame:CGRectMake(50, 200, 200, 30)];
     [buttonPrev setTitle:@"ViewDO直接在Command修改" forState:UIControlStateNormal];
-    [buttonPrev addTarget:self action:@selector(prev:) forControlEvents:UIControlEventTouchUpInside];
+    [buttonPrev addTarget:self action:@selector(bindVORun:) forControlEvents:UIControlEventTouchUpInside];
     buttonPrev.backgroundColor = [UIColor redColor];
     buttonPrev.tag = 5;
 
@@ -72,7 +72,7 @@
 }
 
 
-- (void)prev:(id)prev {
+- (void)bindVORun:(id)prev {
     [self.delegate prev];
 }
 
