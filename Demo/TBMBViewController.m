@@ -92,8 +92,9 @@ TBMBWhenThisKeyPathChange(viewDO, requestInstance){
 
 //执行上一个按钮
 - (void)next {
-    for (NSUInteger i = 0; i < 10; i++)
-        [[TBMBViewController alloc] init];
+    for (NSUInteger i = 0; i < 10; i++) {
+        [[[TBMBViewController alloc] init] sayNo:@"123"];
+    }
 }
 
 - (void)requestStatic {
