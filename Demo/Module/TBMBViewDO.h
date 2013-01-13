@@ -5,8 +5,12 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol TBMBViewDOProtocol
+- (void)setText:(NSString *)text;
+@end
+
 //用来做Bind的viewDO
-@interface TBMBViewDO : NSObject
+@interface TBMBViewDO : NSObject <TBMBViewDOProtocol>
 @property(nonatomic, assign) BOOL requestInstance;
 @property(nonatomic, assign) BOOL requestStatic;
 

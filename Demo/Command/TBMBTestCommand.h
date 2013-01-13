@@ -7,11 +7,12 @@
 #import "TBMBSimpleInstanceCommand.h"
 
 @class TBMBViewDO;
+@protocol TBMBViewDOProtocol;
 
 
 @interface TBMBTestCommand : TBMBSimpleInstanceCommand
 
 - (void)justTest:(void (^)())done;
 
-- (void)changeViewDOText:(TBMBViewDO *)viewDO;
+- (void)changeViewDOText:(id <TBMBViewDOProtocol>)viewDO;
 @end

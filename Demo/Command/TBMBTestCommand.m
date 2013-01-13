@@ -16,8 +16,8 @@
     }
 }
 
-- (void)changeViewDOText:(TBMBViewDO *)viewDO {
-    viewDO.text = @"It is run in TBMBTestCommand!";
+- (void)changeViewDOText:(id <TBMBViewDOProtocol>)viewDO {
+    [viewDO setText:@"It is run in TBMBTestCommand!"];
 }
 
 @end
