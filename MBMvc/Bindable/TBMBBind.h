@@ -23,6 +23,17 @@ extern void TBMBSetAutoUnbind(BOOL yesOrNO);
 //如果你想把ViewDO直接传到Model层请把这个设为YES,防止在非主线程修改UI
 extern void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO);
 
+typedef enum {
+    TBMBBindableRunSafeThreadStrategy_Retain = 0,
+    TBMBBindableRunSafeThreadStrategy_Ignore
+} TBMBBindableRunSafeThreadStrategy;
+
+//当TBMBSetBindableRunThreadIsBindingThread 设为YES时 ,bind触发的执行是异步的,那么可能导致弱引用的changeBlock执行时
+//外部参数已经被dealloc 这个策略就是对这个情况下的处理做分离 ,默认策略是 TBMBBindableRunSafeThreadStrategy_Retain
+// TBMBBindableRunSafeThreadStrategy_Retain 再异步执行前对bindable retain一把,执行完后在release,并发高时占用很多内存
+// TBMBBindableRunSafeThreadStrategy_Ignore 在异步执行前判断bindable是否dealloc 已经dealloc就不执行了 ,对内存友好
+extern void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy strategy);
+
 typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 
 typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);

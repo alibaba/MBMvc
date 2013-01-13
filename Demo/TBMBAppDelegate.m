@@ -19,6 +19,7 @@
 @implementation TBMBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy_Ignore);
     TBMBSetBindableRunThreadIsBindingThread(YES);
     //直接使用registerCommandAutoAsync 来注册了 ,不再需要单个来注册
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];

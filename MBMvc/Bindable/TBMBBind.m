@@ -10,6 +10,9 @@ static BOOL __is_need_auto_unbind = YES;
 
 static BOOL __bindable_run_thread_is_binding_thread = NO;
 
+static TBMBBindableRunSafeThreadStrategy __TBMBBindableRunSafeThreadStrategy =
+        TBMBBindableRunSafeThreadStrategy_Retain;
+
 @implementation TBMBBindInitValue
 + (TBMBBindInitValue *)value {
     static TBMBBindInitValue *_instance = nil;
@@ -38,6 +41,10 @@ void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
     __bindable_run_thread_is_binding_thread = yesOrNO;
 }
 
+void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy strategy) {
+    __TBMBBindableRunSafeThreadStrategy = strategy;
+}
+
 @protocol TBMBBindHandlerProtocol <TBMBBindObserver>
 - (void)removeObserver;
 
@@ -51,6 +58,7 @@ void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
 @property(nonatomic, assign) id bindableObject;
 @property(nonatomic, copy) NSString *keyPath;
 @property(nonatomic, copy) TBMB_CHANGE_BLOCK changeBlock;
+@property BOOL isBindableObjectUnbind;
 
 - (id)initWithBindableObject:(id)bindableObject
                      keyPath:(NSString *)keyPath
@@ -71,17 +79,21 @@ void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
     NSString *_keyPath;
     __unsafe_unretained id _bindableObject;
     NSOperationQueue *_bindingQueue;
+    BOOL _isBindableObjectUnbind;
 }
 
 @synthesize changeBlock = _changeBlock;
 @synthesize keyPath = _keyPath;
 @synthesize bindableObject = _bindableObject;
+@synthesize isBindableObjectUnbind = _isBindableObjectUnbind;
+
 
 - (id)initWithBindableObject:(id)bindableObject
                      keyPath:(NSString *)keyPath
                  changeBlock:(TBMB_CHANGE_BLOCK)changeBlock {
     self = [super init];
     if (self) {
+        self.isBindableObjectUnbind = NO;
         _bindableObject = bindableObject;
         _keyPath = keyPath;
         _changeBlock = changeBlock;
@@ -102,6 +114,7 @@ void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
 
 
 - (void)removeObserver {
+    self.isBindableObjectUnbind = YES;
     [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
 }
 
@@ -116,9 +129,18 @@ void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
         old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [TBMBBindInitValue value];
         new = [new isEqual:[NSNull null]] ? nil : new;
         if (_bindingQueue && !_bindingQueue.isSuspended) {
-            __block id retainedObj = _bindableObject;  //强制retain一把,防止由于bindable被dealloc导致异步执行crash
+            __block id retainedObj = nil;
+            if (__TBMBBindableRunSafeThreadStrategy == TBMBBindableRunSafeThreadStrategy_Retain) {
+                retainedObj = _bindableObject;  //强制retain一把,防止由于bindable被dealloc导致异步执行crash
+            }
             [_bindingQueue addOperationWithBlock:^{
-                _changeBlock(old, new);
+                if (__TBMBBindableRunSafeThreadStrategy == TBMBBindableRunSafeThreadStrategy_Ignore) {
+                    if (!self.isBindableObjectUnbind) {
+                        _changeBlock(old, new);
+                    }
+                } else {
+                    _changeBlock(old, new);
+                }
                 retainedObj = nil;
             }];
         } else {
