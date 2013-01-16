@@ -43,7 +43,7 @@ TBMBWhenThisKeyPathChange(viewDO, showTime) {
         [[TBMBDemoStep5Command proxyObject] getDate:self.viewDO];
     }
 }
-
+//这里接受Log拦截器发过来的数据并显示出来
 - (void)$$receiveLog:(id <TBMBNotification>)notification {
     self.viewDO.log = [NSString stringWithFormat:@"发起了一个请求:%@ \n\n %@", notification.body, self.viewDO.log ? : @""];
 }
