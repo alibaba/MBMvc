@@ -44,4 +44,8 @@ TBMBWhenThisKeyPathChange(viewDO, showTime) {
     }
 }
 
+- (void)$$receiveLog:(id <TBMBNotification>)notification {
+    self.viewDO.log = [NSString stringWithFormat:@"发起了一个请求:%@ \n\n %@", notification.body, self.viewDO.log ? : @""];
+}
+
 @end

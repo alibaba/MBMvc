@@ -9,6 +9,8 @@
 
 
 @implementation TBMBDemoStep5View {
+@private
+    UITextView *textView;
 
 }
 - (void)loadView {
@@ -19,6 +21,10 @@
     button.backgroundColor = [UIColor blueColor];
     [button setTitle:@"Show Time" forState:UIControlStateNormal];
     [self addSubview:button];
+
+    textView = [[UITextView alloc] initWithFrame:CGRectMake(50, 80, 200, 300)];
+    textView.backgroundColor = [UIColor blueColor];
+    [self addSubview:textView];
 }
 
 - (void)showTime {
@@ -34,6 +40,13 @@ TBMBWhenThisKeyPathChange(viewDO, alertText){
                              message:new
                             delegate:nil cancelButtonTitle:@"关闭"
                    otherButtonTitles:nil] show];
+    }
+}
+
+//这里监听 当self.viewDO.log
+TBMBWhenThisKeyPathChange(viewDO, log){
+    if (new) {
+        textView.text = new;
     }
 }
 

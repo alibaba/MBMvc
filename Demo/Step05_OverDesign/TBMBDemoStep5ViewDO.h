@@ -15,4 +15,6 @@
 @property(nonatomic, copy) NSString *alertText;
 //用来触发showTime的操作
 @property(nonatomic) BOOL showTime;
+//记录log
+@property(nonatomic, copy) NSString *log;
 @end
