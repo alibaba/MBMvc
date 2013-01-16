@@ -7,8 +7,6 @@
 #import "TBMBDemoRootViewController.h"
 
 
-//这个是最原始的仿delegate做法
-
 @interface TBMBDemoStep1ViewController : TBMBDemoRootViewController
 
 @end

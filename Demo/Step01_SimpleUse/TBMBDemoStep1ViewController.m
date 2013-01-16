@@ -13,12 +13,7 @@
 @property(nonatomic, copy) NSString *alertText;
 @end
 
-@implementation TBMBDemoStep1ViewController {
-@private
-    NSString *_alertText;
-}
-@synthesize alertText = _alertText;
-
+@implementation TBMBDemoStep1ViewController
 
 - (void)loadView {
     [super loadView];

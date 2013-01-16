@@ -11,6 +11,7 @@
 #import "TBMBNavViewDO.h"
 #import "TBMBNavView.h"
 #import "TBMBDemoStep1ViewController.h"
+#import "TBMBDemoStep2ViewController.h"
 
 
 @interface TBMBNavViewController ()
@@ -26,12 +27,16 @@ TBMBWhenThisKeyPathChange(viewDO, demoStep)
         TBMBDemoStep step = (TBMBDemoStep) [new intValue];
         UIViewController *controller = nil;
         switch (step) {
-
+            case TBMB_DEMO_END:
+                break;
             case TBMB_DEMO_STEP01:
                 controller = [[TBMBDemoStep1ViewController alloc] initWithNibName:nil bundle:nil];
                 break;
-            case TBMB_DEMO_END:
+            case TBMB_DEMO_STEP02:
+                controller = [[TBMBDemoStep2ViewController alloc] initWithNibName:nil bundle:nil];
                 break;
+
+
         }
         if (controller) {
             [self.navigationController pushViewController:controller animated:YES];

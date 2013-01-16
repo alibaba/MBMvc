@@ -8,7 +8,7 @@
 #import "TBMBGlobalFacade.h"
 #import "TBMBUtil.h"
 
-
+//这是一个拦截器 当调用的Command 方法返回 YES时 会发一个$$receiveLog:通知出去
 @implementation TBMBLogInterceptor {
 
 }
