@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TBMBDefaultRootViewController.h"
+#import "TBMBDemoRootViewController.h"
 
 
 
-@interface TBMBNavViewController : TBMBDefaultRootViewController
+@interface TBMBNavViewController : TBMBDemoRootViewController
 @end

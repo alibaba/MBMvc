@@ -10,6 +10,7 @@
 #import "TBMBBind.h"
 #import "TBMBNavViewDO.h"
 #import "TBMBNavView.h"
+#import "TBMBDemoStep1ViewController.h"
 
 
 @interface TBMBNavViewController ()
@@ -22,12 +23,20 @@
 TBMBWhenThisKeyPathChange(viewDO, demoStep)
 {
     if (!isInit && new) {   //当初始化和new没有值时不响应
-        TBMBDemoStep
-                step = (TBMBDemoStep)
-                [new intValue];
+        TBMBDemoStep step = (TBMBDemoStep) [new intValue];
+        UIViewController *controller = nil;
         switch (step) {
-                //FIXME
+
+            case TBMB_DEMO_STEP01:
+                controller = [[TBMBDemoStep1ViewController alloc] initWithNibName:nil bundle:nil];
+                break;
+            case TBMB_DEMO_END:
+                break;
         }
+        if (controller) {
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+
     }
 }
 
@@ -51,15 +60,4 @@ TBMBWhenThisKeyPathChange(viewDO, demoStep)
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    if ([self isViewLoaded] && self.view.window == nil) {
-        self.view = nil;
-    }
-}
-
-- (void)dealloc {
-    NSLog(@"dealloc %@", self);
-
-}
 @end
