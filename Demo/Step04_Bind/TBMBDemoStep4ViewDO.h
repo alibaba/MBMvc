@@ -7,8 +7,9 @@
 
 
 @interface TBMBDemoStep4ViewDO : NSObject
-
+//记录需要被Alert的文字
 @property(nonatomic, copy) NSString *alertText;
+//用来触发showTime的操作
 @property(nonatomic) BOOL showTime;
 
 @end
