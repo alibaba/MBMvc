@@ -5,7 +5,6 @@
 
 #import "TBMBDemoView.h"
 #import "TBMBBind.h"
-#import "TBMBViewController.h"
 #import "TBMBViewDO.h"
 
 
@@ -39,7 +38,7 @@
     textField.backgroundColor = [UIColor redColor];
     textField.tag = 3;
     textField.delegate = self;
-    TBMBBindPropertyStrong(self, viewDO.text, textField, text);
+    TBMBBindPropertyWeak(self, viewDO.text, UITextField *, textField, text);
     [self addSubview:textField];
 
     UIButton *buttonNav = [[UIButton alloc] initWithFrame:CGRectMake(50, 160, 200, 30)];

@@ -114,8 +114,10 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
 
 
 - (void)removeObserver {
-    self.isBindableObjectUnbind = YES;
-    [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
+    if (!self.isBindableObjectUnbind) {
+        self.isBindableObjectUnbind = YES;
+        [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
+    }
 }
 
 
@@ -218,10 +220,14 @@ inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB
 inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
         __block __unsafe_unretained id _host = host;
-        return TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+        id <TBMBBindObserver> observer = TBMBBindObject(bindable, keyPath, ^(id old, id new) {
             changeBlock(_host, old, new);
         }
         );
+        if (bindable != host) {       //弱引用则自动挂载 避免弱引用导致野指针 最后crash
+            TBMBAttachBindObserver(observer, host);
+        }
+        return observer;
     }
     return nil;
 }
@@ -234,6 +240,12 @@ inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath
         );
     }
     return nil;
+}
+
+inline void TBMBAttachBindObserver(id <TBMBBindObserver> observer, id obj) {
+    if ([observer conformsToProtocol:@protocol(TBMBBindHandlerProtocol)]) {
+        [obj _$AddTBMBBindableObjectSet:(id <TBMBBindHandlerProtocol>) observer];
+    }
 }
 
 inline void TBMBUnbindObject(id bindable) {

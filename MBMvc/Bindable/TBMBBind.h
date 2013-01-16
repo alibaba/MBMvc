@@ -51,6 +51,8 @@ extern inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *ke
 //绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行 ,其中 host 是强引用
 extern inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
 
+//将一个TBMBBindObserver Attach到一个obj 使observer的生命周期<=这个obj
+extern inline void TBMBAttachBindObserver(id <TBMBBindObserver> observer, id obj);
 #pragma mark  - UnBinding
 
 //解绑bindable上的所有observer
@@ -62,15 +64,15 @@ extern inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath);
 //直接解绑一个Observer
 extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
 
-//直接绑定变量 ,对放对象是弱引用
+//直接绑定变量 ,对方对象是弱引用
 #define TBMBBindPropertyWeak(bindable , keyPath , type , host , property)                                     \
-        {                                                                                                     \
-            __block __unsafe_unretained type ___host = (type) host;                                           \
-            TBMBBindObject(tbKeyPath(bindable,keyPath), ^(id ____old, id ____new) {                           \
-                                (___host).property = ____new;                                                 \
-                        });                                                                                   \
-        }
-//直接绑定变量 ,对放对象是强引用
+    {                                                                                                         \
+        TBMBBindObjectWeak(tbKeyPath(bindable,keyPath),host,^(type ____host ,id ____old,id ____new) {         \
+                                    (____host).property = ____new;                                            \
+                            });                                                                               \
+    }
+
+//直接绑定变量 ,对方对象是强引用
 #define TBMBBindPropertyStrong(bindable , keyPath , host , property)                                          \
         {                                                                                                     \
             TBMBBindObject(tbKeyPath(bindable,keyPath) , ^(id ____old, id ____new) {                          \
