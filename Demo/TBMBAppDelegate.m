@@ -23,7 +23,7 @@
     TBMBSetBindableRunThreadIsBindingThread(YES);
     //直接使用registerCommandAutoAsync 来注册了 ,不再需要单个来注册
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
-//    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
+//    [[TBMBGlobalFacade instance] registerCommand:[TBMBSingletonHelloCommand class]];
     //设置拦截器
     [[TBMBGlobalFacade instance] setInterceptors:[NSArray arrayWithObjects:[[TBMBLogInterceptor alloc] init], nil]];
     //可以直接自动扫描全部Command进行自动异步的Command注册

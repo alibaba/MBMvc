@@ -3,11 +3,11 @@
 //
 
 
-#import "TBMBTestCommand.h"
+#import "TBMBInstanceTestCommand.h"
 #import "TBMBViewDO.h"
 
 
-@implementation TBMBTestCommand {
+@implementation TBMBInstanceTestCommand {
 
 }
 - (void)justTest:(void (^)())done {
@@ -17,7 +17,7 @@
 }
 
 - (void)changeViewDOText:(id <TBMBViewDOProtocol>)viewDO {
-    [viewDO setText:@"It is run in TBMBTestCommand!"];
+    [viewDO setText:@"It is run in TBMBInstanceTestCommand!"];
 }
 
 @end

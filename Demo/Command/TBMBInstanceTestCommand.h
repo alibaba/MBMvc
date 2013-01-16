@@ -10,7 +10,7 @@
 @protocol TBMBViewDOProtocol;
 
 
-@interface TBMBTestCommand : TBMBSimpleInstanceCommand
+@interface TBMBInstanceTestCommand : TBMBSimpleInstanceCommand
 
 - (void)justTest:(void (^)())done;
 

@@ -9,7 +9,7 @@
 #import "TBMBOnlyProxy.h"
 
 
-@interface TBMBInstanceHelloCommand : TBMBSimpleSingletonCommand <TBMBOnlyProxy>
+@interface TBMBSingletonHelloCommand : TBMBSimpleSingletonCommand <TBMBOnlyProxy>
 
 - (NSNumber *)sayHello:(NSString *)name Age:(NSUInteger)age result:(void (^)(NSString *ret))result;
 @end

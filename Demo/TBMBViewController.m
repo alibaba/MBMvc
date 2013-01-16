@@ -8,12 +8,12 @@
 
 #import "TBMBViewController.h"
 #import "TBMBDemoView.h"
-#import "TBMBInstanceHelloCommand.h"
+#import "TBMBSingletonHelloCommand.h"
 #import "TBMBStaticHelloCommand.h"
 #import "TBMBDefaultRootViewController+TBMBProxy.h"
 #import "TBMBSimpleInstanceCommand+TBMBProxy.h"
 #import "TBMBSimpleStaticCommand+TBMBProxy.h"
-#import "TBMBTestCommand.h"
+#import "TBMBInstanceTestCommand.h"
 #import "TBMBBind.h"
 #import "TBMBViewDO.h"
 
@@ -49,7 +49,7 @@ TBMBWhenThisKeyPathChange(viewDO, requestInstance){
     if (!isInit && old) {
         NSLog(@"Send Thread:[%@] isMain[%d]", [NSThread currentThread], [NSThread isMainThread]);
         TBMBViewController *delegate = self.proxyObject;
-        [TBMBInstanceHelloCommand.proxyObject sayHello:self.viewDO.text Age:20
+        [TBMBSingletonHelloCommand.proxyObject sayHello:self.viewDO.text Age:20
                                                 result:^(NSString *ret) {
                                                     [delegate sayHello:ret];
                                                 }];
@@ -62,7 +62,7 @@ TBMBWhenThisKeyPathChange(viewDO, requestInstance){
     if (self) {
         //用来测试高并发的
         id proxyObject = self.proxyObject;
-        [[TBMBTestCommand proxyObject] justTest:^{
+        [[TBMBInstanceTestCommand proxyObject] justTest:^{
             NSLog(@"%@ return just Test", proxyObject);
             [proxyObject justTest];
         }];
@@ -87,7 +87,7 @@ TBMBWhenThisKeyPathChange(viewDO, requestInstance){
 //执行下一个按钮
 - (void)prev {
     NSLog(@"click Prev button");
-    [[TBMBTestCommand proxyObject] changeViewDOText:self.viewDO];
+    [[TBMBInstanceTestCommand proxyObject] changeViewDOText:self.viewDO];
 }
 
 //执行上一个按钮

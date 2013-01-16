@@ -3,13 +3,13 @@
 //
 
 
-#import "TBMBInstanceHelloCommand.h"
+#import "TBMBSingletonHelloCommand.h"
 #import "TBMBTestService.h"
 #import "TBMBMessageSender.h"
 #import "TBMBGlobalFacade.h"
 
 
-@implementation TBMBInstanceHelloCommand {
+@implementation TBMBSingletonHelloCommand {
 
 }
 
