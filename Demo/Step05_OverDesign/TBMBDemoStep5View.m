@@ -1,17 +1,16 @@
 //
-// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-16 下午12:34.
+// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-16 下午12:56.
 //
 
 
-#import "TBMBDemoStep4View.h"
-#import "TBMBDemoStep4ViewDO.h"
+#import "TBMBDemoStep5View.h"
+#import "TBMBDemoStep5ViewDO.h"
 #import "TBMBBind.h"
 
 
-@implementation TBMBDemoStep4View {
+@implementation TBMBDemoStep5View {
 
 }
-
 - (void)loadView {
     [super loadView];
 
@@ -42,5 +41,4 @@ TBMBWhenThisKeyPathChange(viewDO, alertText){
     NSLog(@"dealloc %@", self);
 
 }
-
 @end
