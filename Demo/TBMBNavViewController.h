@@ -1,5 +1,5 @@
 //
-//  TBMBViewController.h
+//  TBMBNavViewController.h
 //  MBMvc
 //
 //  Created by 黄 若慧 on 11/09/12.
@@ -11,5 +11,5 @@
 
 
 
-@interface TBMBViewController : TBMBDefaultRootViewController
+@interface TBMBNavViewController : TBMBDefaultRootViewController
 @end

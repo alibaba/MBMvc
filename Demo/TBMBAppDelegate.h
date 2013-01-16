@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class TBMBViewController;
+@class TBMBNavViewController;
 
 @interface TBMBAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
 
-@property(strong, nonatomic) TBMBViewController *viewController;
+@property(strong, nonatomic) TBMBNavViewController *viewController;
 
 @end
