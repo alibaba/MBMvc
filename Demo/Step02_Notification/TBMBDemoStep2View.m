@@ -32,4 +32,9 @@
                otherButtonTitles:nil] show];
 
 }
+
+- (void)dealloc {
+    NSLog(@"dealloc %@", self);
+
+}
 @end

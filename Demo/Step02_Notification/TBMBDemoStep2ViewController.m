@@ -38,7 +38,7 @@
 - (void)$$receiveDate:(id <TBMBNotification>)notification {
     //业务层返回数据给 ViewController
     if (notification.key == self.notificationKey) {
-        self.alertText = [NSString stringWithFormat:@"现在时间:%@", [NSDate date]];
+        self.alertText = [NSString stringWithFormat:@"现在时间:%@", notification.body];
     }
 }
 

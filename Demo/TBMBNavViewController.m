@@ -12,6 +12,7 @@
 #import "TBMBNavView.h"
 #import "TBMBDemoStep1ViewController.h"
 #import "TBMBDemoStep2ViewController.h"
+#import "TBMBDemoStep3ViewController.h"
 
 
 @interface TBMBNavViewController ()
@@ -35,8 +36,9 @@ TBMBWhenThisKeyPathChange(viewDO, demoStep)
             case TBMB_DEMO_STEP02:
                 controller = [[TBMBDemoStep2ViewController alloc] initWithNibName:nil bundle:nil];
                 break;
-
-
+            case TBMB_DEMO_STEP03:
+                controller = [[TBMBDemoStep3ViewController alloc] initWithNibName:nil bundle:nil];
+                break;
         }
         if (controller) {
             [self.navigationController pushViewController:controller animated:YES];
