@@ -27,6 +27,7 @@
 }
 
 - (void)nextPage {
+    //不需要用respondsToSelector 判断方法是否存在了 因为是proxyObject 他会帮你判断的,可以少写两行代码
     [self.delegate pushNewPage];
 }
 
