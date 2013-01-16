@@ -9,6 +9,7 @@ typedef enum {
     TBMB_DEMO_STEP01,
     TBMB_DEMO_STEP02,
     TBMB_DEMO_STEP03,
+    TBMB_DEMO_STEP04,
     TBMB_DEMO_END
 } TBMBDemoStep;
 
