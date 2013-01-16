@@ -6,6 +6,7 @@
 #import "TBMBDemoStep1ViewController.h"
 #import "TBMBDemoStep1View.h"
 #import "TBMBBind.h"
+#import "TBMBDefaultRootViewController+TBMBProxy.h"
 
 
 @interface TBMBDemoStep1ViewController () <TBMBDemoStep1Delegate>
@@ -22,7 +23,7 @@
 - (void)loadView {
     [super loadView];
     TBMBDemoStep1View *navView = [[TBMBDemoStep1View alloc] initWithFrame:self.view.frame withViewDO:nil];
-    navView.delegate = self;
+    navView.delegate = self.proxyObject;
     [self.view addSubview:navView];
     //这里做一次绑定 当alertText改变时 调用的逻辑
     TBMBBindObjectWeak(tbKeyPath(self, alertText), navView, ^(TBMBDemoStep1View *host, id old, id new) {

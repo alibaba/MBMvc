@@ -12,6 +12,9 @@
 
 - (NSUInteger const)notificationKey;
 
+//属性的初始化在这里做比较好,可以防止AutoBind被过早执行
+- (void)propertyInit;
+
 - (id)initWithTBMBFacade:(id <TBMBFacade>)tbmbFacade;
 
 + (id)objectWithTBMBFacade:(id <TBMBFacade>)tbmbFacade;

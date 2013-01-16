@@ -36,6 +36,7 @@
     if (self) {
         [self.tbmbFacade unsubscribeNotification:self];
         [self.tbmbFacade subscribeNotification:self];
+        [self propertyInit];
         [self autoBindingKeyPath];
     }
     return self;
@@ -46,10 +47,16 @@
     if (self) {
         [self.tbmbFacade unsubscribeNotification:self];
         [self.tbmbFacade subscribeNotification:self];
+        [self propertyInit];
+        [self autoBindingKeyPath];
     }
     return self;
 }
 
+
+- (void)propertyInit {
+
+}
 
 - (id)initWithTBMBFacade:(id <TBMBFacade>)tbmbFacade {
     self = [super init];

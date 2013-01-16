@@ -22,7 +22,7 @@
 //当self.viewDO.demoStep的值改变时 触发的操作
 TBMBWhenThisKeyPathChange(viewDO, demoStep)
 {
-    if (!isInit && new) {   //当初始化和new没有值时不响应
+    if (!isInit && old) {   //当初始化和old没有值时不响应   old没有值表示是第一次初始化的时候
         TBMBDemoStep step = (TBMBDemoStep) [new intValue];
         UIViewController *controller = nil;
         switch (step) {
@@ -39,6 +39,7 @@ TBMBWhenThisKeyPathChange(viewDO, demoStep)
 
     }
 }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

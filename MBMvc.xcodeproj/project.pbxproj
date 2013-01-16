@@ -192,7 +192,6 @@
 				EACF0A4C33E9802892902983 /* TBMBDemoStep1ViewController.h */,
 				EACF04A6BE09CB8557A8DACE /* TBMBDemoStep1View.m */,
 				EACF06F84E9A49AB996B6506 /* TBMBDemoStep1View.h */,
-				EACF0EABB85D8544F237519E /* Command */,
 			);
 			path = Step01_SimpleUse;
 			sourceTree = "<group>";
@@ -397,13 +396,6 @@
 				EACF07B7B0C0B16B29F24994 /* metamacros.h */,
 			);
 			path = Bindable;
-			sourceTree = "<group>";
-		};
-		EACF0EABB85D8544F237519E /* Command */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Command;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
