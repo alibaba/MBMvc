@@ -42,10 +42,5 @@
     self.alertText = [NSString stringWithFormat:@"现在时间:%@", [NSDate date]];
 }
 
-- (void)pushNewPage {
-    [self.navigationController pushViewController:[[TBMBDemoStep1ViewController alloc] initWithNibName:nil bundle:nil]
-                                         animated:YES];
-}
-
 
 @end

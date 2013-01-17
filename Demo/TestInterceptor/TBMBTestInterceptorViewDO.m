@@ -8,19 +8,18 @@
  *
  */
 //
-// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-16 下午12:57.
+// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-17 上午9:36.
 //
 
 
-#import "TBMBDemoStep5ViewDO.h"
+#import "TBMBTestInterceptorViewDO.h"
 
 
-@implementation TBMBDemoStep5ViewDO {
+@implementation TBMBTestInterceptorViewDO {
 
 }
 - (void)setDate:(NSDate *)date {
     self.alertText = [NSString stringWithFormat:@"现在时间:%@", date];
 }
-
 
 @end

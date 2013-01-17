@@ -27,4 +27,8 @@ typedef enum {
 
 @property(nonatomic) TBMBDemoStep demoStep;
 
+@property(nonatomic) BOOL gotoTestMemory;
+
+@property(nonatomic) BOOL gotoTestInterceptor;
+
 @end

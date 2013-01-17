@@ -8,7 +8,7 @@
  *
  */
 //
-// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-16 下午12:57.
+// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-17 上午9:36.
 //
 
 
@@ -16,9 +16,11 @@
 #import "TBMBDemoStep5Command.h"
 
 
-@interface TBMBDemoStep5ViewDO : NSObject <TBMBDemoStep5CommandGetDateProtocol>
+@interface TBMBTestInterceptorViewDO : NSObject <TBMBDemoStep5CommandGetDateProtocol>
 //记录需要被Alert的文字
 @property(nonatomic, copy) NSString *alertText;
 //用来触发showTime的操作
 @property(nonatomic) BOOL showTime;
+//记录log
+@property(nonatomic, copy) NSString *log;
 @end

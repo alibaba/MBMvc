@@ -22,15 +22,39 @@
 
 - (void)loadView {
     [super loadView];
-    CGFloat h = 40;
+    CGFloat h = 20;
     for (TBMBDemoStep step = TBMB_DEMO_STEP01; step < TBMB_DEMO_END; step++) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, h * (step + 1), 200, 30)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, h, 200, 30)];
         [button addTarget:self action:@selector(gotoStep:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = step;
         button.backgroundColor = [UIColor blueColor];
         [button setTitle:[NSString stringWithFormat:@"第%d课", (step + 1)] forState:UIControlStateNormal];
         [self addSubview:button];
+        h += 40;
     }
+
+    UIButton *buttonMem = [[UIButton alloc] initWithFrame:CGRectMake(50, h, 200, 30)];
+    [buttonMem addTarget:self action:@selector(gotoTestMem) forControlEvents:UIControlEventTouchUpInside];
+    buttonMem.backgroundColor = [UIColor blueColor];
+    [buttonMem setTitle:@"测试内存警告" forState:UIControlStateNormal];
+    [self addSubview:buttonMem];
+    h += 40;
+
+    UIButton *buttonInterceptor = [[UIButton alloc] initWithFrame:CGRectMake(50, h, 200, 30)];
+    [buttonInterceptor addTarget:self
+                          action:@selector(gotoTestInterceptor)
+                forControlEvents:UIControlEventTouchUpInside];
+    buttonInterceptor.backgroundColor = [UIColor blueColor];
+    [buttonInterceptor setTitle:@"测试拦截器" forState:UIControlStateNormal];
+    [self addSubview:buttonInterceptor];
+}
+
+- (void)gotoTestInterceptor {
+    self.viewDO.gotoTestInterceptor = YES;
+}
+
+- (void)gotoTestMem {
+    self.viewDO.gotoTestMemory = YES;
 }
 
 //点中按钮的调用

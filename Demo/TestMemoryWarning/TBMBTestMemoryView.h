@@ -8,20 +8,19 @@
  *
  */
 //
-// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-16 上午10:55.
+// Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-17 上午9:21.
 //
 
 
 #import <Foundation/Foundation.h>
 #import "TBMBDefaultPage.h"
 
-@protocol TBMBDemoStep1Delegate
-- (void)showTime;
+@protocol TBMBTestMemoryDelegate
+
+- (void)pushNewPage;
 @end
 
-@interface TBMBDemoStep1View : TBMBDefaultPage
+@interface TBMBTestMemoryView : TBMBDefaultPage
 //注意这里是strong 因为MBMvc的delegate 是一个proxyObject,并不是原来的对象,所以这里需要用strong
-@property(nonatomic, strong) id <TBMBDemoStep1Delegate> delegate;
-
-- (void)alert:(NSString *)text;
+@property(nonatomic, strong) id <TBMBTestMemoryDelegate> delegate;
 @end

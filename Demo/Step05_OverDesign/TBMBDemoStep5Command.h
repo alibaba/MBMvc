@@ -15,9 +15,11 @@
 #import <Foundation/Foundation.h>
 #import "TBMBSimpleSingletonCommand.h"
 
-@protocol TBMBDemoStep5ViewAlertShowProtocol;
+@protocol TBMBDemoStep5CommandGetDateProtocol
+- (void)setDate:(NSDate *)date;
+@end
 
 
 @interface TBMBDemoStep5Command : TBMBSimpleSingletonCommand
-- (NSNumber *)getDate:(id <TBMBDemoStep5ViewAlertShowProtocol>)obj;
+- (NSNumber *)getDate:(id <TBMBDemoStep5CommandGetDateProtocol>)obj;
 @end

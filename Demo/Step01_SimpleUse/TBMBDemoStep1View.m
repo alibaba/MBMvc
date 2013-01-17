@@ -28,19 +28,10 @@
     [button setTitle:@"Show Time" forState:UIControlStateNormal];
     [self addSubview:button];
 
-    UIButton *button2 = [[UIButton alloc] initWithFrame:CGRectMake(50, 80, 200, 30)];
-    [button2 addTarget:self action:@selector(nextPage) forControlEvents:UIControlEventTouchUpInside];
-    button2.backgroundColor = [UIColor blueColor];
-    [button2 setTitle:@"Goto Next Page" forState:UIControlStateNormal];
-    [self addSubview:button2];
-}
-
-- (void)nextPage {
-    //不需要用respondsToSelector 判断方法是否存在了 因为是proxyObject 他会帮你判断的,可以少写两行代码
-    [self.delegate pushNewPage];
 }
 
 - (void)showTime {
+    //不需要用respondsToSelector 判断方法是否存在了 因为是proxyObject 他会帮你判断的,可以少写两行代码
     [self.delegate showTime];
 }
 
