@@ -79,6 +79,8 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
 
 - (void)removeObserver;
 
+- (void)addObserver;
+
 @end
 
 @implementation TBMBBindObjectHandler {
@@ -125,7 +127,15 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
     if (!self.isBindableObjectUnbind) {
         self.isBindableObjectUnbind = YES;
         [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
+        _changeBlock = nil;//remove后释放_changeBlock来释放一些内存
     }
+}
+
+- (void)addObserver {
+    [_bindableObject addObserver:self
+                      forKeyPath:_keyPath
+                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial
+                         context:nil];
 }
 
 
@@ -133,7 +143,8 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    if (_changeBlock) {
+    TBMB_CHANGE_BLOCK changeBlock = _changeBlock;
+    if (changeBlock) {
         id old = [change objectForKey:NSKeyValueChangeOldKey];
         id new = [change objectForKey:NSKeyValueChangeNewKey];
         old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [TBMBBindInitValue value];
@@ -146,15 +157,15 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
             [_bindingQueue addOperationWithBlock:^{
                 if (__TBMBBindableRunSafeThreadStrategy == TBMBBindableRunSafeThreadStrategy_Ignore) {
                     if (!self.isBindableObjectUnbind) {
-                        _changeBlock(old, new);
+                        changeBlock(old, new);
                     }
                 } else {
-                    _changeBlock(old, new);
+                    changeBlock(old, new);
                 }
                 retainedObj = nil;
             }];
         } else {
-            _changeBlock(old, new);
+            changeBlock(old, new);
         }
 
     }
@@ -214,11 +225,7 @@ inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB
         TBMBBindObjectHandler *handler = [TBMBBindObjectHandler objectWithBindableObject:bindable
                                                                                  keyPath:keyPath
                                                                              changeBlock:changeBlock];
-        [bindable addObserver:handler
-                   forKeyPath:keyPath
-                      options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial
-                      context:nil];
-
+        [handler addObserver];
         [bindable _$AddTBMBBindableObjectSet:handler];
         return handler;
     }
