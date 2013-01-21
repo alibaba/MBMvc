@@ -27,7 +27,7 @@
 
 - (void)loadView {
     [super loadView];
-    TBMBDemoStep2View *navView = [[TBMBDemoStep2View alloc] initWithFrame:self.view.frame withViewDO:nil];
+    TBMBDemoStep2View *navView = [[TBMBDemoStep2View alloc] initWithFrame:self.view.bounds withViewDO:nil];
     navView.delegate = self.proxyObject;
     [self.view addSubview:navView];
     //这里做一次绑定 当alertText改变时 调用的逻辑

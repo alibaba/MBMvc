@@ -24,6 +24,7 @@
 #import "TBMBDemoStep5ViewController.h"
 #import "TBMBTestMemoryViewController.h"
 #import "TBMBTestInterceptorViewController.h"
+#import "TBMBAutoNilDelegateViewController.h"
 
 
 @interface TBMBNavViewController ()
@@ -79,6 +80,17 @@ TBMBWhenThisKeyPathChange(viewDO, gotoTestInterceptor){
     if (!isInit && old && [new boolValue]) {
 
         TBMBTestInterceptorViewController *controller = [[TBMBTestInterceptorViewController alloc]
+                                                                                            initWithNibName:nil
+                                                                                                     bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+}
+
+
+//当self.viewDO.gotoAutoNil 触发的操作
+TBMBWhenThisKeyPathChange(viewDO, gotoAutoNil){
+    if (!isInit && old && [new boolValue]) {
+        TBMBAutoNilDelegateViewController *controller = [[TBMBAutoNilDelegateViewController alloc]
                                                                                             initWithNibName:nil
                                                                                                      bundle:nil];
         [self.navigationController pushViewController:controller animated:YES];

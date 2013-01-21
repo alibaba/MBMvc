@@ -48,6 +48,8 @@ typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 
 typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);
 
+typedef void (^TBMB_DEALLOC_BLOCK)();
+
 //这个宏 可以用来在编译期就判断这个OBJ下的这个keyPath是否存在,可以避免出错
 #define tbKeyPath(OBJ,PATH) OBJ , @(((void)(NO && ((void)OBJ.PATH, NO)), #PATH))
 #pragma mark  - Binding
@@ -72,6 +74,19 @@ extern inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath);
 
 //直接解绑一个Observer
 extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
+
+//创建一个在bindable dealloc的时候出发的操作
+extern inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_DEALLOC_BLOCK deallocBlock);
+
+//设置可以自动在delegate被release的时候,置为nil的方法
+#define TBMBAutoNilDelegate(hostType,host,delegateProperty,delegate)                                                  \
+    {                                                                                                                 \
+        (host).delegateProperty=(delegate);                                                                           \
+        __block __unsafe_unretained hostType _____host = (host);                                                      \
+        id <TBMBBindObserver> ___observer=TBMBCreateDeallocObserver((delegate),^(){_____host.delegateProperty=nil;}); \
+        TBMBAttachBindObserver(___observer,(host));                                                                   \
+    }
+
 
 //直接绑定变量 ,对方对象是弱引用
 #define TBMBBindPropertyWeak(bindable , keyPath , type , host , property)                                     \

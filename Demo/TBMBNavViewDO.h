@@ -31,4 +31,6 @@ typedef enum {
 
 @property(nonatomic) BOOL gotoTestInterceptor;
 
+@property(nonatomic) BOOL gotoAutoNil;
+
 @end

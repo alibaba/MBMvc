@@ -39,7 +39,7 @@
 - (void)loadView {
     [super loadView];
     TBMBTestInterceptorView *view = [[TBMBTestInterceptorView alloc]
-                                                              initWithFrame:self.view.frame withViewDO:self.viewDO];
+                                                              initWithFrame:self.view.bounds withViewDO:self.viewDO];
     [self.view addSubview:view];
 }
 

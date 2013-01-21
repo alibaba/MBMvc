@@ -47,6 +47,19 @@
     buttonInterceptor.backgroundColor = [UIColor blueColor];
     [buttonInterceptor setTitle:@"测试拦截器" forState:UIControlStateNormal];
     [self addSubview:buttonInterceptor];
+    h += 40;
+
+    UIButton *buttonAutoNil = [[UIButton alloc] initWithFrame:CGRectMake(50, h, 200, 30)];
+    [buttonAutoNil addTarget:self
+                      action:@selector(gotoAutoNil)
+            forControlEvents:UIControlEventTouchUpInside];
+    buttonAutoNil.backgroundColor = [UIColor blueColor];
+    [buttonAutoNil setTitle:@"测试delegate自动释放" forState:UIControlStateNormal];
+    [self addSubview:buttonAutoNil];
+}
+
+- (void)gotoAutoNil {
+    self.viewDO.gotoAutoNil = YES;
 }
 
 - (void)gotoTestInterceptor {

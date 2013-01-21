@@ -40,7 +40,7 @@
 - (void)loadView {
     [super loadView];
     //这里将 self.viewDO 传给View 使他们都使用一个ViewDO,那么对这个ViewDO的操作都能被触发
-    TBMBDemoStep4View *view = [[TBMBDemoStep4View alloc] initWithFrame:self.view.frame withViewDO:self.viewDO];
+    TBMBDemoStep4View *view = [[TBMBDemoStep4View alloc] initWithFrame:self.view.bounds withViewDO:self.viewDO];
     [self.view addSubview:view];
 }
 //这里监听 当self.viewDO.showTime被改变时会触发这个操作

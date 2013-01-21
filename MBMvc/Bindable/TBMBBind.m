@@ -66,7 +66,7 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
 @property(nonatomic, assign) id bindableObject;
 @property(nonatomic, copy) NSString *keyPath;
 @property(nonatomic, copy) TBMB_CHANGE_BLOCK changeBlock;
-@property BOOL isBindableObjectUnbind;
+@property(atomic) BOOL isBindableObjectUnbind;
 
 - (id)initWithBindableObject:(id)bindableObject
                      keyPath:(NSString *)keyPath
@@ -308,5 +308,56 @@ inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
     } else {
         TBMB_LOG(@"Unkown observer[%@]", observer);
     }
+}
+
+
+@interface TBMBDeallocObserver : NSObject <TBMBBindHandlerProtocol>
+@property(nonatomic, assign) id bindableObject;
+@property(nonatomic, copy) NSString *keyPath;
+@property(nonatomic, copy) TBMB_DEALLOC_BLOCK deallocBlock;
+@property(atomic) BOOL isBindableObjectUnbind;
+
+- (id)initWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock;
+
++ (id)objectWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock;
+
+
+@end
+
+@implementation TBMBDeallocObserver
+- (id)initWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock {
+    self = [super init];
+    if (self) {
+        self.isBindableObjectUnbind = NO;
+        _bindableObject = bindableObject;
+        _deallocBlock = deallocBlock;
+
+    }
+
+    return self;
+}
+
++ (id)objectWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock {
+    return [[TBMBDeallocObserver alloc] initWithBindableObject:bindableObject deallocBlock:deallocBlock];
+}
+
+- (void)removeObserver {
+    if (!self.isBindableObjectUnbind) {
+        self.isBindableObjectUnbind = YES;
+        if (_deallocBlock) {
+            _deallocBlock();
+        }
+    }
+}
+
+
+@end
+
+
+inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_DEALLOC_BLOCK deallocBlock) {
+    TBMBDeallocObserver *deallocObserver = [TBMBDeallocObserver objectWithBindableObject:bindable
+                                                                            deallocBlock:deallocBlock];
+    [bindable _$AddTBMBBindableObjectSet:deallocObserver];
+    return deallocObserver;
 }
 

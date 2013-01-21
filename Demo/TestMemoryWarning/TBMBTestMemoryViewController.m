@@ -27,7 +27,7 @@
 
 - (void)loadView {
     [super loadView];
-    TBMBTestMemoryView *view = [[TBMBTestMemoryView alloc] initWithFrame:self.view.frame withViewDO:nil];
+    TBMBTestMemoryView *view = [[TBMBTestMemoryView alloc] initWithFrame:self.view.bounds withViewDO:nil];
     view.delegate = self.proxyObject;
     [self.view addSubview:view];
     //这里做一次绑定 当title改变时 调用的逻辑

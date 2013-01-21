@@ -39,7 +39,7 @@
 - (void)loadView {
     [super loadView];
     //这里将 self.viewDO 传给View 使他们都使用一个ViewDO,那么对这个ViewDO的操作都能被触发
-    TBMBDemoStep5View *view = [[TBMBDemoStep5View alloc] initWithFrame:self.view.frame withViewDO:self.viewDO];
+    TBMBDemoStep5View *view = [[TBMBDemoStep5View alloc] initWithFrame:self.view.bounds withViewDO:self.viewDO];
     [self.view addSubview:view];
 }
 
