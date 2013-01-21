@@ -77,7 +77,7 @@ extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
 
 //创建一个在bindable dealloc的时候出发的操作
 extern inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_DEALLOC_BLOCK deallocBlock);
-
+#pragma mark  - Marco for Easy Use
 //设置可以自动在delegate被release的时候,置为nil的方法
 #define TBMBAutoNilDelegate(hostType,host,delegateProperty,delegate)                                                  \
     {                                                                                                                 \
