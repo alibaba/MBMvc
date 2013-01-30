@@ -9,6 +9,12 @@
  *///
 // Created by <a href="mailto:wentong@taobao.com">文通</a> on 13-1-30 上午9:22.
 //
+
+#import "TBMBFacade.h"
+#import "TBMBGlobalFacade.h"
+#import "TBMBUtil.h"
+#import "TBMBDefaultMessageReceiver.h"
+
 //用于直接嵌入代码使其成为Receiver
 
 #define TBMBDefaultReceiverImpl                                                                            \
