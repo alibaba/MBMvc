@@ -41,7 +41,6 @@ return self;                                                                    
 }                                                                                                          \
                                                                                                            \
                                                                                                            \
-//默认自动匹配方法                                                                                           \
 - (void)handlerNotification:(id <TBMBNotification>)notification {                                          \
 TBMBAutoHandlerReceiverNotification(self, notification);                                                   \
 }                                                                                                          \
@@ -63,7 +62,6 @@ _$tbmbObserver = _$tbmbObserver ? : [NSMutableSet setWithCapacity:1];           
 [_$tbmbObserver removeObject:observer];                                                                    \
 }                                                                                                          \
                                                                                                            \
-//自动扫描keyBinding                                                                                           \
 - (void)autoBindingKeyPath {                                                                               \
 TBMBAutoBindingKeyPath(self);                                                                              \
 }
