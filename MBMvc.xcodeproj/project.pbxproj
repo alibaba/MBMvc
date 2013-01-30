@@ -227,6 +227,7 @@
 		EACF0DAF689CD12D4D41C10F /* TBMBAutoNilDelegateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBAutoNilDelegateView.h; sourceTree = "<group>"; };
 		EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultRootViewController.m; sourceTree = "<group>"; };
 		EACF0DFCD86336834D4BDA20 /* TBMBDefaultCommandInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultCommandInvocation.h; sourceTree = "<group>"; };
+		EACF0E55019A96CB8301870D /* TBMBDefaultReceiverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultReceiverImpl.h; sourceTree = "<group>"; };
 		EACF0E57111DA06BDC157FB2 /* TBMBMessageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBMessageProxy.m; sourceTree = "<group>"; };
 		EACF0E61E844130094956ECE /* TBMBNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBNavView.m; sourceTree = "<group>"; };
 		EACF0E68DB8EC06CC6585DB6 /* TBMBTestMemoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestMemoryView.h; sourceTree = "<group>"; };
@@ -420,6 +421,7 @@
 				EACF0CE9D33F31FCD13BFA29 /* TBMBDefaultPage.h */,
 				EACF08E48C32DD0D55DB8912 /* TBMBDefaultCommandInvocation.m */,
 				EACF0DFCD86336834D4BDA20 /* TBMBDefaultCommandInvocation.h */,
+				EACF0E55019A96CB8301870D /* TBMBDefaultReceiverImpl.h */,
 			);
 			path = Default;
 			sourceTree = "<group>";
