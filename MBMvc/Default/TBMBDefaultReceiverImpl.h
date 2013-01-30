@@ -12,8 +12,6 @@
 //用于直接嵌入代码使其成为Receiver
 
 #define TBMBDefaultReceiverImpl                                                                            \
-{                                                                                                          \
-@private                                                                                                   \
 id <TBMBFacade> _$tbmbFacade;                                                                              \
 NSMutableSet *_$tbmbObserver;                                                                              \
 }                                                                                                          \
@@ -42,7 +40,6 @@ self.tbmbFacade = tbmbFacade;                                                   
 return self;                                                                                               \
 }                                                                                                          \
                                                                                                            \
-#pragma mark  - receiver ,need Overwrite                                                                   \
                                                                                                            \
 //默认自动匹配方法                                                                                           \
 - (void)handlerNotification:(id <TBMBNotification>)notification {                                          \
