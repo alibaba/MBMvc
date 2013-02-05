@@ -54,6 +54,8 @@ AutoBind可以通过TBMBSetAutoUnbind来进行开关
 
 * TBMBBindObject
 
+Demo 如下:
+
 
     TBMBBindObject(tbKeyPath(self, viewDO.alertText),  ^(id old, id new) {
         if (old != [TBMBBindInitValue value]) {
@@ -75,6 +77,7 @@ TBMBBindObject的效果就是绑定,当self的viewDO这个属性下面的alertTe
 
 * TBMBBindObjectWeak
 
+Demo 如下:
 
     TBMBBindObjectWeak(tbKeyPath(self, alertText), navView, ^(TBMBDemoStep1View *host, id old, id new) {
         if (old != [TBMBBindInitValue value]) {
@@ -112,6 +115,7 @@ TBMBBindObjectWeak的目的就是在TBMBBindObject的基础上使上面Demo中�
 
 * TBMBBindObjectStrong
 
+Demo 如下:
 
     TBMBBindObjectWeak(tbKeyPath(self, title), view, ^(TBMBTestMemoryView *host, id old, id new) {
         if (old != [TBMBBindInitValue value]) {
@@ -128,6 +132,7 @@ TBMBBindObjectStrong相对TBMBBindObjectWeak即change block对host的引用是�
 
 * TBMBAutoNilDelegate
 
+Demo 如下:
 
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.bounds];
     //用TBMBAutoNilDelegate设置delegate可以保证在delegate dealloc的时候 会被自动置为nil
@@ -140,6 +145,7 @@ TBMBBindObjectStrong相对TBMBBindObjectWeak即change block对host的引用是�
 
 * TBMBWhenThisKeyPathChange
 
+Demo 如下:
 
     //这里监听 当self.viewDO.alertText被改变时会触发这个操作
     TBMBWhenThisKeyPathChange(viewDO, alertText){
