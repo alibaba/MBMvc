@@ -1,5 +1,21 @@
 #小提示:
 
+##### 开始
+
+    //可以直接自动扫描全部Command进行自动异步的Command注册
+    [[TBMBGlobalFacade instance] registerCommandAutoAsync];
+
+
+在应用起来时需要调用这个方法来注册所有的Command
+
+
+
+    @interface TBMBDemoRootViewController : TBMBDefaultRootViewController
+    @end
+
+记得继承`TBMBDefaultRootViewController`
+
+
 ##### 自动注册为Notification Observer
 
 在`TBMBDefaultRootViewController`类似的`TBMBMessageReceiver`  或 `TBMBCommand` 中
@@ -177,3 +193,51 @@ TBMBWhenThisKeyPathChange是一个宏,用来生成一个可以自动绑定的方
 即self.viewDO.alertText被改变时会调用这个方法
 
 如果其他地方需要使用可以调用TBMBAutoBindingKeyPath来对方法进行解析和绑定
+
+
+##### 拦截器
+
+MBMvc支持拦截器,可以拦截发送到Command的Notification
+
+如有一个拦截器
+
+
+
+    #import "TBMBLogInterceptor.h"
+    #import "TBMBCommandInvocation.h"
+    #import "TBMBGlobalFacade.h"
+    #import "TBMBUtil.h"
+
+    //这是一个拦截器 当调用的Command 方法返回 YES时 会发一个$$receiveLog:通知出去
+    @implementation TBMBLogInterceptor {
+
+    }
+    - (id)intercept:(id <TBMBCommandInvocation>)invocation {
+        NSLog(@"invocation: %@", invocation);
+        id ret = [invocation invoke];
+        NSLog(@"Return: %@", ret);
+
+        if ([ret isKindOfClass:[NSNumber class]] && [ret boolValue]) {
+            TBMBGlobalSendNotificationForSELWithBody((@selector($$receiveLog:)),
+                    [NSString stringWithFormat:@"[%@][%d] has log @ %@", invocation.commandClass,
+                                               TBMBIsNotificationProxy(invocation.notification), [NSDate date]]
+            );
+        } else {
+            TBMBGlobalSendNotificationForSEL((@selector($$receiveNonLog:)));
+        }
+        return ret;
+    }
+
+
+    @end
+
+
+这个拦截器拦截 调用Command的返回结果..如果调用Command的return值是 YES的话 则再发送一个名为$$receiveLog:的消息来打日志,否则发送$$receiveNonLog:
+
+
+配置拦截器主要在 应用起来的时候设置
+
+    //设置拦截器
+    [[TBMBGlobalFacade instance] setInterceptors:[NSArray arrayWithObjects:[[TBMBLogInterceptor alloc] init], nil]];
+
+
