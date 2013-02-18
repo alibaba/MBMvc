@@ -1,4 +1,12 @@
-//
+/*
+ * (C) 2007-2013 Alibaba Group Holding Limited
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ *
+ *///
 // Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-11-29 上午9:03.
 //
 
@@ -7,6 +15,11 @@
 #import "TBMBBind.h"
 
 static BOOL __is_need_auto_unbind = YES;
+
+static BOOL __bindable_run_thread_is_binding_thread = NO;
+
+static TBMBBindableRunSafeThreadStrategy __TBMBBindableRunSafeThreadStrategy =
+        TBMBBindableRunSafeThreadStrategy_Retain;
 
 @implementation TBMBBindInitValue
 + (TBMBBindInitValue *)value {
@@ -32,6 +45,14 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
     __is_need_auto_unbind = yesOrNO;
 }
 
+void TBMBSetBindableRunThreadIsBindingThread(BOOL yesOrNO) {
+    __bindable_run_thread_is_binding_thread = yesOrNO;
+}
+
+void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy strategy) {
+    __TBMBBindableRunSafeThreadStrategy = strategy;
+}
+
 @protocol TBMBBindHandlerProtocol <TBMBBindObserver>
 - (void)removeObserver;
 
@@ -45,6 +66,7 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
 @property(nonatomic, assign) id bindableObject;
 @property(nonatomic, copy) NSString *keyPath;
 @property(nonatomic, copy) TBMB_CHANGE_BLOCK changeBlock;
+@property(atomic) BOOL isBindableObjectUnbind;
 
 - (id)initWithBindableObject:(id)bindableObject
                      keyPath:(NSString *)keyPath
@@ -57,6 +79,8 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
 
 - (void)removeObserver;
 
+- (void)addObserver;
+
 @end
 
 @implementation TBMBBindObjectHandler {
@@ -64,20 +88,28 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
     TBMB_CHANGE_BLOCK _changeBlock;
     NSString *_keyPath;
     __unsafe_unretained id _bindableObject;
+    NSOperationQueue *_bindingQueue;
+    BOOL _isBindableObjectUnbind;
 }
 
 @synthesize changeBlock = _changeBlock;
 @synthesize keyPath = _keyPath;
 @synthesize bindableObject = _bindableObject;
+@synthesize isBindableObjectUnbind = _isBindableObjectUnbind;
+
 
 - (id)initWithBindableObject:(id)bindableObject
                      keyPath:(NSString *)keyPath
                  changeBlock:(TBMB_CHANGE_BLOCK)changeBlock {
     self = [super init];
     if (self) {
+        self.isBindableObjectUnbind = NO;
         _bindableObject = bindableObject;
         _keyPath = keyPath;
         _changeBlock = changeBlock;
+        if (__bindable_run_thread_is_binding_thread) {
+            _bindingQueue = [NSOperationQueue currentQueue];
+        }
     }
 
     return self;
@@ -92,7 +124,18 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
 
 
 - (void)removeObserver {
-    [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
+    if (!self.isBindableObjectUnbind) {
+        self.isBindableObjectUnbind = YES;
+        [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
+        _changeBlock = nil;//remove后释放_changeBlock来释放一些内存
+    }
+}
+
+- (void)addObserver {
+    [_bindableObject addObserver:self
+                      forKeyPath:_keyPath
+                         options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial
+                         context:nil];
 }
 
 
@@ -100,12 +143,31 @@ void TBMBSetAutoUnbind(BOOL yesOrNO) {
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    if (_changeBlock) {
+    TBMB_CHANGE_BLOCK changeBlock = _changeBlock;
+    if (changeBlock) {
         id old = [change objectForKey:NSKeyValueChangeOldKey];
         id new = [change objectForKey:NSKeyValueChangeNewKey];
         old = old ? ([old isEqual:[NSNull null]] ? nil : old) : [TBMBBindInitValue value];
         new = [new isEqual:[NSNull null]] ? nil : new;
-        _changeBlock(old, new);
+        if (_bindingQueue && _bindingQueue != [NSOperationQueue currentQueue] && !_bindingQueue.isSuspended) {
+            __block id retainedObj = nil;
+            if (__TBMBBindableRunSafeThreadStrategy == TBMBBindableRunSafeThreadStrategy_Retain) {
+                retainedObj = _bindableObject;  //强制retain一把,防止由于bindable被dealloc导致异步执行crash
+            }
+            [_bindingQueue addOperationWithBlock:^{
+                if (__TBMBBindableRunSafeThreadStrategy == TBMBBindableRunSafeThreadStrategy_Ignore) {
+                    if (!self.isBindableObjectUnbind) {
+                        changeBlock(old, new);
+                    }
+                } else {
+                    changeBlock(old, new);
+                }
+                retainedObj = nil;
+            }];
+        } else {
+            changeBlock(old, new);
+        }
+
     }
 }
 
@@ -137,6 +199,7 @@ static char kTBMBBindableObjectKey;
             [handler removeObserver];
         }
     }
+    objc_setAssociatedObject(self, &kTBMBBindableObjectKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     // Call original implementation
     [self _$TBMBBindableObject_dealloc];
 }
@@ -162,11 +225,7 @@ inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB
         TBMBBindObjectHandler *handler = [TBMBBindObjectHandler objectWithBindableObject:bindable
                                                                                  keyPath:keyPath
                                                                              changeBlock:changeBlock];
-        [bindable addObserver:handler
-                   forKeyPath:keyPath
-                      options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld | NSKeyValueObservingOptionInitial
-                      context:nil];
-
+        [handler addObserver];
         [bindable _$AddTBMBBindableObjectSet:handler];
         return handler;
     }
@@ -176,10 +235,14 @@ inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB
 inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
         __block __unsafe_unretained id _host = host;
-        return TBMBBindObject(bindable, keyPath, ^(id old, id new) {
+        id <TBMBBindObserver> observer = TBMBBindObject(bindable, keyPath, ^(id old, id new) {
             changeBlock(_host, old, new);
         }
         );
+        if (bindable != host) {       //弱引用则自动挂载 避免弱引用导致野指针 最后crash
+            TBMBAttachBindObserver(observer, host);
+        }
+        return observer;
     }
     return nil;
 }
@@ -192,6 +255,12 @@ inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath
         );
     }
     return nil;
+}
+
+inline void TBMBAttachBindObserver(id <TBMBBindObserver> observer, id obj) {
+    if ([observer conformsToProtocol:@protocol(TBMBBindHandlerProtocol)]) {
+        [obj _$AddTBMBBindableObjectSet:(id <TBMBBindHandlerProtocol>) observer];
+    }
 }
 
 inline void TBMBUnbindObject(id bindable) {
@@ -239,5 +308,56 @@ inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
     } else {
         TBMB_LOG(@"Unkown observer[%@]", observer);
     }
+}
+
+
+@interface TBMBDeallocObserver : NSObject <TBMBBindHandlerProtocol>
+@property(nonatomic, assign) id bindableObject;
+@property(nonatomic, copy) NSString *keyPath;
+@property(nonatomic, copy) TBMB_DEALLOC_BLOCK deallocBlock;
+@property(atomic) BOOL isBindableObjectUnbind;
+
+- (id)initWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock;
+
++ (id)objectWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock;
+
+
+@end
+
+@implementation TBMBDeallocObserver
+- (id)initWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock {
+    self = [super init];
+    if (self) {
+        self.isBindableObjectUnbind = NO;
+        _bindableObject = bindableObject;
+        _deallocBlock = deallocBlock;
+
+    }
+
+    return self;
+}
+
++ (id)objectWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock {
+    return [[TBMBDeallocObserver alloc] initWithBindableObject:bindableObject deallocBlock:deallocBlock];
+}
+
+- (void)removeObserver {
+    if (!self.isBindableObjectUnbind) {
+        self.isBindableObjectUnbind = YES;
+        if (_deallocBlock) {
+            _deallocBlock();
+        }
+    }
+}
+
+
+@end
+
+
+inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_DEALLOC_BLOCK deallocBlock) {
+    TBMBDeallocObserver *deallocObserver = [TBMBDeallocObserver objectWithBindableObject:bindable
+                                                                            deallocBlock:deallocBlock];
+    [bindable _$AddTBMBBindableObjectSet:deallocObserver];
+    return deallocObserver;
 }
 

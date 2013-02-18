@@ -1,3 +1,12 @@
+/*
+ * (C) 2007-2013 Alibaba Group Holding Limited
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ *
+ */
 //
 // Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-12-8 下午12:30.
 //
@@ -67,7 +76,7 @@ static char kTBMBNSMethodSignatureNotFoundKey;
         );
         return;
     }
-
+    objc_setAssociatedObject(self, &kTBMBNSMethodSignatureNotFoundKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     NSMutableArray *needReleaseBlocks = [NSMutableArray arrayWithCapacity:2];
     //判断参数有Block 就进行copy
@@ -75,15 +84,12 @@ static char kTBMBNSMethodSignatureNotFoundKey;
     for (NSUInteger i = 0; i < signature.numberOfArguments; i++) {
         char const *type = [signature getArgumentTypeAtIndex:i];
         if (strcmp(@encode(void (^)()), type) == 0) {
-            TBMB_LOG(@"proxy parameter in [%d] is type [%s]", i, type);
             void *block = NULL;
             [invocation getArgument:&block atIndex:i];
             if (block) {
                 id blockObj = (__bridge id) block;
                 if ([blockObj isKindOfClass:NSClassFromString(@"NSBlock")]) {
-                    TBMB_LOG(@"ori block ptr [%p]", block);
                     void *blockCopied = Block_copy(block);
-                    TBMB_LOG(@"copy block ptr [%p]", blockCopied);
                     [invocation setArgument:&blockCopied atIndex:i];
                     [needReleaseBlocks addObject:[NSValue valueWithPointer:blockCopied]];
                 }

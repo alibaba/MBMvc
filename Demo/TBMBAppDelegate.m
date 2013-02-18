@@ -1,32 +1,53 @@
+/*
+ * (C) 2007-2013 Alibaba Group Holding Limited
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ *
+ */
 //
 //  TBMBAppDelegate.m
 //  MBMvc
 //
-//  Created by 黄 若慧 on 11/09/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "TBMBAppDelegate.h"
 
-#import "TBMBViewController.h"
+#import "TBMBNavViewController.h"
 #import "TBMBGlobalFacade.h"
 #import "TBMBLogInterceptor.h"
+#import "TBMBBind.h"
 
 @implementation TBMBAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //直接使用registerCommandAutoAsync 来注册了 ,不再需要单个来注册
+//当TBMBSetBindableRunThreadIsBindingThread 设为YES时 ,bind触发的执行是异步的,那么可能导致弱引用的changeBlock执行时
+//外部参数已经被dealloc 这个策略就是对这个情况下的处理做分离 ,默认策略是 TBMBBindableRunSafeThreadStrategy_Retain
+// TBMBBindableRunSafeThreadStrategy_Retain 在异步执行前对bindable retain一把,执行完后在release,并发高时占会用很多内存,
+//      因为会在异步执行阶段bindable对象不会被dealloc
+// TBMBBindableRunSafeThreadStrategy_Ignore 在异步执行前判断bindable是否dealloc 已经dealloc就不执行了 ,对内存友好
+    TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy_Retain);
+    //设定绑定执行的线程是不是绑定时的线程,默认是NO
+//如果你想把ViewDO直接传到Model层请把这个设为YES,防止在非主线程修改UI
+    TBMBSetBindableRunThreadIsBindingThread(YES);
+//直接使用registerCommandAutoAsync 来注册了 ,不再需要单个来注册
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
-//    [[TBMBGlobalFacade instance] registerCommand:[TBMBInstanceHelloCommand class]];
+//    [[TBMBGlobalFacade instance] registerCommand:[TBMBSingletonHelloCommand class]];
     //设置拦截器
     [[TBMBGlobalFacade instance] setInterceptors:[NSArray arrayWithObjects:[[TBMBLogInterceptor alloc] init], nil]];
     //可以直接自动扫描全部Command进行自动异步的Command注册
     [[TBMBGlobalFacade instance] registerCommandAutoAsync];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[TBMBViewController alloc] initWithNibName:nil bundle:nil];
-    self.window.rootViewController = self.viewController;
+    self.window.rootViewController = [[UINavigationController alloc]
+                                                              initWithRootViewController:
+                                                                      [[TBMBNavViewController alloc]
+                                                                                              initWithNibName:nil
+                                                                                                       bundle:nil]];
     [self.window makeKeyAndVisible];
+
 
     return YES;
 }

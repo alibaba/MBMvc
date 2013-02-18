@@ -1,3 +1,12 @@
+/*
+ * (C) 2007-2013 Alibaba Group Holding Limited
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ *
+ */
 //
 // Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-11-12 下午3:57.
 //
@@ -36,6 +45,8 @@
     if (self) {
         [self.tbmbFacade unsubscribeNotification:self];
         [self.tbmbFacade subscribeNotification:self];
+        [self propertyInit];
+        [self autoBindingKeyPath];
     }
     return self;
 }
@@ -45,10 +56,16 @@
     if (self) {
         [self.tbmbFacade unsubscribeNotification:self];
         [self.tbmbFacade subscribeNotification:self];
+        [self propertyInit];
+        [self autoBindingKeyPath];
     }
     return self;
 }
 
+
+- (void)propertyInit {
+
+}
 
 - (id)initWithTBMBFacade:(id <TBMBFacade>)tbmbFacade {
     self = [super init];
@@ -115,6 +132,11 @@
 - (void)sendNotificationForSEL:(SEL)selector body:(id)body {
     [self.tbmbFacade sendTBMBNotification:[TBMBDefaultNotification objectWithName:NSStringFromSelector(selector)
                                                                               key:self.notificationKey body:body]];
+}
+
+//自动扫描keyBinding
+- (void)autoBindingKeyPath {
+    TBMBAutoBindingKeyPath(self);
 }
 
 

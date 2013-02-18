@@ -1,3 +1,12 @@
+/*
+ * (C) 2007-2013 Alibaba Group Holding Limited
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ *
+ */
 //
 // Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-12-31 下午4:58.
 //
@@ -5,6 +14,7 @@
 
 #import <objc/message.h>
 #import "TBMBDefaultPage.h"
+#import "TBMBUtil.h"
 
 
 @implementation TBMBDefaultPage
@@ -17,12 +27,18 @@
             objc_msgSend(self, selector, viewDO);
         }
         [self loadView];
+        [self autoBindingKeyPath];
     }
     return self;
 }
 
 - (void)loadView {
 
+}
+
+//自动扫描keyBinding
+- (void)autoBindingKeyPath {
+    TBMBAutoBindingKeyPath(self);
 }
 
 

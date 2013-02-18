@@ -1,3 +1,12 @@
+/*
+ * (C) 2007-2013 Alibaba Group Holding Limited
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ *
+ */
 //
 // Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-11-12 下午4:25.
 //
@@ -112,7 +121,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     __block __unsafe_unretained id <TBMBMessageReceiver> receiver = _receiver;
     void (^OBSERVER_BLOCK)(NSNotification *);
     NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
-    if ([currentQueue isEqual:_dispatch_message_queue]) {
+    if ([_dispatch_message_queue isEqual:currentQueue]) {
         OBSERVER_BLOCK = ^(NSNotification *note) {
             pthread_rwlock_rdlock(&_subscribeReceiversLock);
             BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
@@ -122,7 +131,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
         };
     } else {
         OBSERVER_BLOCK = ^(NSNotification *note) {
-            if (currentQueue.isSuspended) {
+            if (!currentQueue || currentQueue.isSuspended) {
                 NSLog(@"ERROR:Observer OperationQueue can't be Run![%@]", currentQueue);  //注册线程失效的情况下使用主线程执行
                 dispatch_async(dispatch_get_main_queue(), ^{
                     pthread_rwlock_rdlock(&_subscribeReceiversLock);
