@@ -354,13 +354,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EACF0498C833F71FD6288893 /* Facede */ = {
+		EACF0498C833F71FD6288893 /* Facade */ = {
 			isa = PBXGroup;
 			children = (
 				EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */,
 				EACF076966D60DA2353A80AF /* TBMBGlobalFacade.h */,
 			);
-			path = Facede;
+			lastKnownFileType = text;
+			path = Facade;
 			sourceTree = "<group>";
 		};
 		EACF054C94B49BBCCBD24A36 /* TestMemoryWarning */ = {
@@ -549,7 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				EACF05AF33DA91D9871F126B /* Default */,
-				EACF0498C833F71FD6288893 /* Facede */,
+				EACF0498C833F71FD6288893 /* Facade */,
 				EACF041A4340A94EE50DD832 /* Protocol */,
 				EACF022DE80075F1CFA492AB /* Util */,
 				EACF0DA4F7B8E5270B09C54D /* Bindable */,
