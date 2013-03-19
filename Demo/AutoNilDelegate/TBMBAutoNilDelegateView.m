@@ -29,6 +29,8 @@
     [super loadView];
 
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.bounds];
+    id testDelegate = [[NSObject alloc] init];
+    TBMBAutoNilDelegate(UITableView *, tableView, delegate, testDelegate)
     //用TBMBAutoNilDelegate设置delegate可以保证在delegate dealloc的时候 会被自动置为nil
     TBMBAutoNilDelegate(UITableView *, tableView, delegate, self)
     TBMBAutoNilDelegate(UITableView *, tableView, dataSource, self)

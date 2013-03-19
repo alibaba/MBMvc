@@ -83,7 +83,14 @@ extern inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_
     {                                                                                                                 \
         (host).delegateProperty=(delegate);                                                                           \
         __block __unsafe_unretained hostType _____host = (host);                                                      \
-        id <TBMBBindObserver> ___observer=TBMBCreateDeallocObserver((delegate),^(){_____host.delegateProperty=nil;}); \
+        __block __unsafe_unretained id _____delegate = (delegate);                                                    \
+        id <TBMBBindObserver> ___observer=TBMBCreateDeallocObserver((delegate),                                       \
+                               ^(){if(_____host.delegateProperty==_____delegate){                                     \
+                                   TBMB_LOG(@"NeedAutoNil host[%@] delegateProperty[%@] delegate[%@]",                \
+                                                _____host, @#delegateProperty,_____delegate);                         \
+                                   _____host.delegateProperty=nil;}                                                   \
+                                   else{TBMB_LOG(@"NeedAutoNil host[%@] delegateProperty[%@] delegate[%@]",           \
+                                                    _____host, @#delegateProperty,_____delegate);}});                 \
         TBMBAttachBindObserver(___observer,(host));                                                                   \
     }
 
