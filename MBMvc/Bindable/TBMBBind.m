@@ -124,10 +124,12 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
 
 
 - (void)removeObserver {
-    if (!self.isBindableObjectUnbind) {
-        self.isBindableObjectUnbind = YES;
-        [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
-        _changeBlock = nil;//remove后释放_changeBlock来释放一些内存
+    @synchronized (self) {
+        if (!self.isBindableObjectUnbind) {
+            self.isBindableObjectUnbind = YES;
+            [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
+            _changeBlock = nil;//remove后释放_changeBlock来释放一些内存
+        }
     }
 }
 
@@ -342,12 +344,15 @@ inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
 }
 
 - (void)removeObserver {
-    if (!self.isBindableObjectUnbind) {
-        self.isBindableObjectUnbind = YES;
-        if (_deallocBlock) {
-            _deallocBlock();
+    @synchronized (self) {
+        if (!self.isBindableObjectUnbind) {
+            self.isBindableObjectUnbind = YES;
+            if (_deallocBlock) {
+                _deallocBlock();
+            }
         }
     }
+
 }
 
 
