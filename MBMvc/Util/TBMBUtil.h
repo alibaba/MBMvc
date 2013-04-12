@@ -22,7 +22,7 @@
 #endif
 
 
-#ifdef  TBMB_IOS_VERSION_ALLOW_WEAK
+#if  __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0
 #define TBMBWeak __weak
 #define TBMBPropertyWeak weak
 #else
