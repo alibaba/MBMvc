@@ -171,7 +171,7 @@ inline void TBMBAutoBindingKeyPath(id bindable) {
             keyPath = [[keyPath componentsSeparatedByString:@":"] objectAtIndex:0];
             keyPath = [[keyPath componentsSeparatedByString:__TBMBAutoKeyPathChangeMethodNameSEP_STR]
                                 componentsJoinedByString:@"."];
-            __block __unsafe_unretained id _bindable = bindable;
+            __block TBMBWeak id _bindable = bindable;
             TBMBBindObject(bindable, keyPath, ^(id old, id new) {
                 objc_msgSend(_bindable, selector, [TBMBBindInitValue value] == old, old, new);
             }

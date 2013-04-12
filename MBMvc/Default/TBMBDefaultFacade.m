@@ -118,7 +118,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     pthread_rwlock_wrlock(&_subscribeReceiversLock);
     [_subscribeReceivers addObject:receiverName];
     pthread_rwlock_unlock(&_subscribeReceiversLock);
-    __block __unsafe_unretained id <TBMBMessageReceiver> receiver = _receiver;
+    __block TBMBWeak id <TBMBMessageReceiver> receiver = _receiver;
     void (^OBSERVER_BLOCK)(NSNotification *);
     NSOperationQueue *currentQueue = [NSOperationQueue currentQueue];
     if ([_dispatch_message_queue isEqual:currentQueue]) {

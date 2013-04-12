@@ -63,7 +63,7 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
 
 @interface TBMBBindObjectHandler : NSObject <TBMBBindHandlerProtocol>
 
-@property(nonatomic, assign) id bindableObject;
+@property(nonatomic, TBMBPropertyWeak) id bindableObject;
 @property(nonatomic, copy) NSString *keyPath;
 @property(nonatomic, copy) TBMB_CHANGE_BLOCK changeBlock;
 @property(atomic) BOOL isBindableObjectUnbind;
@@ -87,7 +87,7 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
 @private
     TBMB_CHANGE_BLOCK _changeBlock;
     NSString *_keyPath;
-    __unsafe_unretained id _bindableObject;
+    TBMBWeak id _bindableObject;
     NSOperationQueue *_bindingQueue;
     BOOL _isBindableObjectUnbind;
 }
@@ -236,7 +236,7 @@ inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB
 
 inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
-        __block __unsafe_unretained id _host = host;
+        __block TBMBWeak id _host = host;
         id <TBMBBindObserver> observer = TBMBBindObject(bindable, keyPath, ^(id old, id new) {
             changeBlock(_host, old, new);
         }
@@ -314,7 +314,7 @@ inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
 
 
 @interface TBMBDeallocObserver : NSObject <TBMBBindHandlerProtocol>
-@property(nonatomic, assign) id bindableObject;
+@property(nonatomic, TBMBPropertyWeak) id bindableObject;
 @property(nonatomic, copy) NSString *keyPath;
 @property(nonatomic, copy) TBMB_DEALLOC_BLOCK deallocBlock;
 @property(atomic) BOOL isBindableObjectUnbind;

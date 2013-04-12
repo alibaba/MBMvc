@@ -113,7 +113,7 @@ TBMBBindObjectWeak的目的就是在TBMBBindObject的基础上使上面Demo中�
 
     inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
         if (changeBlock) {
-            __block __unsafe_unretained id _host = host;
+            __block TBMBWeak id _host = host;
             id <TBMBBindObserver> observer = TBMBBindObject(bindable, keyPath, ^(id old, id new) {
                 changeBlock(_host, old, new);
             }
