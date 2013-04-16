@@ -23,8 +23,8 @@
 
 
 #if  __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0
-#define TBMBWeak __unsafe_unretained
-#define TBMBPropertyWeak assign
+#define TBMBWeak __weak
+#define TBMBPropertyWeak weak
 #else
 #define TBMBWeak __unsafe_unretained
 #define TBMBPropertyWeak assign
