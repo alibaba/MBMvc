@@ -22,15 +22,6 @@
 #endif
 
 
-#if  __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_5_0
-#define TBMBWeak __weak
-#define TBMBPropertyWeak weak
-#else
-#define TBMBWeak __unsafe_unretained
-#define TBMBPropertyWeak assign
-#endif
-
-
 //#if !__has_feature(objc_arc)
 //#define TBMBAutoRelease(__v) ([__v autorelease]);
 //#define TBMBReturnAutoReleased TBMBAutoRelease

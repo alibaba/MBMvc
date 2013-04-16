@@ -236,7 +236,7 @@ inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB
 
 inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock) {
     if (changeBlock) {
-        __block TBMBWeak id _host = host;
+        __block __unsafe_unretained id _host = host;
         id <TBMBBindObserver> observer = TBMBBindObject(bindable, keyPath, ^(id old, id new) {
             changeBlock(_host, old, new);
         }
