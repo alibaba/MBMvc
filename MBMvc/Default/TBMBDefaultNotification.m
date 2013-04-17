@@ -141,6 +141,7 @@
     TBMBDefaultNotification *notification = [TBMBDefaultNotification objectWithName:name];
     notification.key = self.key;
     notification.lastNotification = self;
+    notification.userInfo = self.userInfo;
     return notification;
 }
 
