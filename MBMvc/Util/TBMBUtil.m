@@ -32,7 +32,10 @@ inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
 }
 
 inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz) {
-    return [NSString stringWithFormat:(@"%@_%d_%@"), TBMB_PROXY_PREFIX, key, clazz];
+    return [NSString stringWithFormat:(@"%@_%d_%@"),
+                                      TBMB_PROXY_PREFIX,
+                                      key,
+                                      clazz];
 }
 
 static inline NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMethod, NSString *prefix) {
@@ -68,15 +71,21 @@ inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class roo
     return names;
 }
 
-inline NSSet *TBMBListAllReceiverHandlerName(id <TBMBMessageReceiver> handler, Class rootClass) {
+
+inline NSSet *TBMBInternalListAllReceiverHandlerName(id handler, id <TBMBMessageReceiver> receiver, Class rootClass) {
     if (TBMBClassHasProtocol([handler class], @protocol(TBMBOnlyProxy))) {
-        return [NSSet setWithObject:TBMBProxyHandlerName(handler.notificationKey, [handler class])];
+        return [NSSet setWithObject:TBMBProxyHandlerName(receiver.notificationKey, [handler class])];
     }
     NSMutableSet *handlerNames = TBMBGetAllReceiverHandlerName([handler class], rootClass,
             TBMB_DEFAULT_RECEIVE_HANDLER_NAME
     );
-    [handlerNames addObject:TBMBProxyHandlerName(handler.notificationKey, [handler class])];
+    [handlerNames addObject:TBMBProxyHandlerName(receiver.notificationKey, [handler class])];
     return handlerNames;
+}
+
+
+inline NSSet *TBMBListAllReceiverHandlerName(id <TBMBMessageReceiver> handler, Class rootClass) {
+    return TBMBInternalListAllReceiverHandlerName(handler, handler, rootClass);
 }
 
 inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix) {
@@ -122,13 +131,18 @@ inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notifica
     return ret;
 }
 
-inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification) {
-    if ([notification.name isEqualToString:TBMBProxyHandlerName(handler.notificationKey, [handler class])]) {   //代理方法直接执行
+inline void TBMBInternalAutoHandlerReceiverNotification(id handler, id <TBMBMessageReceiver> receiver,
+        id <TBMBNotification> notification) {
+    if ([notification.name isEqualToString:TBMBProxyHandlerName(receiver.notificationKey, [handler class])]) {   //代理方法直接执行
         NSInvocation *invocation = notification.body;
         [invocation invokeWithTarget:handler];
         return;
     }
     TBMBAutoHandlerNotification(handler, notification);
+}
+
+inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification) {
+    TBMBInternalAutoHandlerReceiverNotification(handler, handler, notification);
 }
 
 inline const NSUInteger TBMBGetDefaultNotificationKey(id o) {
