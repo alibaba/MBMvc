@@ -36,6 +36,16 @@
 
 @synthesize delay = _delay;
 
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        _delay = -1;
+    }
+    return self;
+}
+
+
 - (id)initWithName:(NSString *)name key:(NSUInteger)key {
     self = [super init];
     if (self) {
