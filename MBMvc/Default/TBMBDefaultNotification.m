@@ -39,6 +39,7 @@
 - (id)initWithName:(NSString *)name key:(NSUInteger)key {
     self = [super init];
     if (self) {
+        _delay = -1;
         _name = name;
         _key = key;
     }
@@ -49,6 +50,7 @@
 - (id)initWithName:(NSString *)name key:(NSUInteger)key body:(id)body {
     self = [super init];
     if (self) {
+        _delay = -1;
         _name = name;
         _key = key;
         _body = body;
@@ -60,6 +62,7 @@
 - (id)initWithName:(NSString *)name {
     self = [super init];
     if (self) {
+        _delay = -1;
         _name = name;
     }
 
@@ -69,6 +72,7 @@
 - (id)initWithName:(NSString *)name body:(id)body {
     self = [super init];
     if (self) {
+        _delay = -1;
         _name = name;
         _body = body;
     }
@@ -79,6 +83,7 @@
 - (id)initWithSEL:(SEL)SEL {
     self = [super init];
     if (self) {
+        _delay = -1;
         _name = NSStringFromSelector(SEL);
     }
 
@@ -88,6 +93,7 @@
 - (id)initWithSEL:(SEL)SEL body:(id)body {
     self = [super init];
     if (self) {
+        _delay = -1;
         _name = NSStringFromSelector(SEL);
         _body = body;
     }
@@ -98,6 +104,7 @@
 - (id)initWithSEL:(SEL)SEL key:(NSUInteger)key body:(id)body {
     self = [super init];
     if (self) {
+        _delay = -1;
         _name = NSStringFromSelector(SEL);
         _key = key;
         _body = body;

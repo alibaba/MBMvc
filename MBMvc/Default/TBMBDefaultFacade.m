@@ -282,7 +282,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                                                     object:nil
                                                                   userInfo:[NSDictionary dictionaryWithObject:notification
                                                                                                        forKey:TBMB_NOTIFICATION_KEY]];
-    if (notification.delay > 0) {
+    if (notification.delay >= 0) {
         [_notificationCenter performSelector:@selector(postNotification:)
                                   withObject:sysNotification
                                   afterDelay:notification.delay];
