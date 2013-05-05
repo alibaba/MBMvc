@@ -16,6 +16,7 @@
 #import "TBMBDemoStep2View.h"
 #import "TBMBBind.h"
 #import "TBMBDefaultRootViewController+TBMBProxy.h"
+#import "TBMBDefaultNotification.h"
 
 @interface TBMBDemoStep2ViewController () <TBMBDemoStep2Delegate>
 @property(nonatomic, copy) NSString *alertText;
@@ -27,7 +28,9 @@
 
 - (void)loadView {
     [super loadView];
-    TBMBDemoStep2View *navView = [[TBMBDemoStep2View alloc] initWithFrame:self.view.bounds withViewDO:nil];
+    TBMBDemoStep2View *navView = [[TBMBDemoStep2View alloc]
+                                                     initWithFrame:self.view.bounds
+                                                        withViewDO:nil];
     navView.delegate = self.proxyObject;
     [self.view addSubview:navView];
     //这里做一次绑定 当alertText改变时 调用的逻辑
@@ -41,13 +44,16 @@
 
 - (void)showTime {
     //这里发消息出去 到 业务层去 请求数据
-    [self sendNotificationForSEL:@selector($$getDate:)];
+    id <TBMBNotification> notification = [TBMBDefaultNotification objectWithSEL:@selector($$getDate:)];
+    [notification setDelay:1];
+    [self sendTBMBNotification:notification];
 }
 
 - (void)$$receiveDate:(id <TBMBNotification>)notification {
     //业务层返回数据给 ViewController
     if (notification.key == self.notificationKey) {
-        self.alertText = [NSString stringWithFormat:@"现在时间:%@", notification.body];
+        self.alertText = [NSString stringWithFormat:@"现在时间:%@",
+                                                    notification.body];
     }
 }
 

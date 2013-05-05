@@ -21,6 +21,7 @@
 @property(nonatomic, copy, readonly) NSString *name;
 @property(nonatomic, assign) NSUInteger key;
 @property(nonatomic, strong) id body;
+@property(nonatomic, assign) NSTimeInterval delay;
 @property(nonatomic, assign) NSUInteger retryCount;
 @property(nonatomic, strong) NSDictionary *userInfo;
 @property(nonatomic, strong) id <TBMBNotification> lastNotification;

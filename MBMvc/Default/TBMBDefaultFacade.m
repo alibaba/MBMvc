@@ -93,7 +93,8 @@ static pthread_rwlock_t _subscribeReceiversLock;
             _dispatch_message_queue = _c_dispatch_queue;
         } else {
             _dispatch_message_queue = [[NSOperationQueue alloc] init];
-            [_dispatch_message_queue setName:[NSString stringWithFormat:@"TBMB_DEFAULT_DISPATCH_QUEUE.%@", self]];
+            [_dispatch_message_queue setName:[NSString stringWithFormat:@"TBMB_DEFAULT_DISPATCH_QUEUE.%@",
+                                                                        self]];
         }
     }
     return self;
@@ -105,7 +106,9 @@ static pthread_rwlock_t _subscribeReceiversLock;
 
 
 static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
-    return [NSString stringWithFormat:(@"%d##%@"), key, clazz];
+    return [NSString stringWithFormat:(@"%d##%@"),
+                                      key,
+                                      clazz];
 }
 
 
@@ -156,7 +159,8 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     if (notificationNames && notificationNames.count > 0) {
         for (NSString *name in notificationNames) {
             id observer = [_notificationCenter addObserverForName:name
-                                                           object:nil queue:_dispatch_message_queue
+                                                           object:nil
+                                                            queue:_dispatch_message_queue
                                                        usingBlock:OBSERVER_BLOCK];
             [_receiver _$addObserver:observer];
         }
@@ -187,7 +191,8 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
         NSSet *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
         for (NSString *name in names) {
             [_notificationCenter addObserverForName:name
-                                             object:nil queue:_dispatch_message_queue
+                                             object:nil
+                                              queue:_dispatch_message_queue
                                          usingBlock:^(NSNotification *note) {
                                              id <TBMBNotification> notification = [note.userInfo
                                                      objectForKey:TBMB_NOTIFICATION_KEY];
@@ -260,7 +265,8 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 }
 
 - (void)sendNotification:(NSString *)notificationName body:(id)body {
-    [self sendTBMBNotification:[TBMBDefaultNotification objectWithName:notificationName body:body]];
+    [self sendTBMBNotification:[TBMBDefaultNotification objectWithName:notificationName
+                                                                  body:body]];
 }
 
 - (void)sendTBMBNotification:(id <TBMBNotification>)notification {
@@ -276,8 +282,13 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                                                     object:nil
                                                                   userInfo:[NSDictionary dictionaryWithObject:notification
                                                                                                        forKey:TBMB_NOTIFICATION_KEY]];
-
-    [_notificationCenter postNotification:sysNotification];
+    if (notification.delay > 0) {
+        [_notificationCenter performSelector:@selector(postNotification:)
+                                  withObject:sysNotification
+                                  afterDelay:notification.delay];
+    } else {
+        [_notificationCenter postNotification:sysNotification];
+    }
 }
 
 - (void)sendNotificationForSEL:(SEL)selector {
@@ -285,7 +296,8 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 }
 
 - (void)sendNotificationForSEL:(SEL)selector body:(id)body {
-    [self sendNotification:NSStringFromSelector(selector) body:body];
+    [self sendNotification:NSStringFromSelector(selector)
+                      body:body];
 }
 
 

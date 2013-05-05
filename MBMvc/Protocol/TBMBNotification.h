@@ -16,6 +16,10 @@
 //消息内容
 - (id)body;
 
+- (NSTimeInterval)delay;
+
+- (void)setDelay:(NSTimeInterval)delay;
+
 //消息名
 - (NSString *)name;
 

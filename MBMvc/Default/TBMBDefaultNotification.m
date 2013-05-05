@@ -25,6 +25,7 @@
     NSDictionary *_userInfo;
     id <TBMBNotification> _lastNotification;
     NSUInteger _key;
+    NSTimeInterval _delay;
 }
 @synthesize name = _name;
 @synthesize body = _body;
@@ -32,6 +33,8 @@
 @synthesize userInfo = _userInfo;
 @synthesize lastNotification = _lastNotification;
 @synthesize key = _key;
+
+@synthesize delay = _delay;
 
 - (id)initWithName:(NSString *)name key:(NSUInteger)key {
     self = [super init];
@@ -104,12 +107,17 @@
 }
 
 + (id)objectWithSEL:(SEL)SEL key:(NSUInteger)key body:(id)body {
-    return [[TBMBDefaultNotification alloc] initWithSEL:SEL key:key body:body];
+    return [[TBMBDefaultNotification alloc]
+                                     initWithSEL:SEL
+                                             key:key
+                                            body:body];
 }
 
 
 + (id)objectWithSEL:(SEL)SEL body:(id)body {
-    return [[TBMBDefaultNotification alloc] initWithSEL:SEL body:body];
+    return [[TBMBDefaultNotification alloc]
+                                     initWithSEL:SEL
+                                            body:body];
 }
 
 
@@ -119,7 +127,9 @@
 
 
 + (id)objectWithName:(NSString *)name body:(id)body {
-    return [[TBMBDefaultNotification alloc] initWithName:name body:body];
+    return [[TBMBDefaultNotification alloc]
+                                     initWithName:name
+                                             body:body];
 }
 
 
@@ -129,12 +139,17 @@
 
 
 + (id)objectWithName:(NSString *)name key:(NSUInteger)key body:(id)body {
-    return [[TBMBDefaultNotification alloc] initWithName:name key:key body:body];
+    return [[TBMBDefaultNotification alloc]
+                                     initWithName:name
+                                              key:key
+                                             body:body];
 }
 
 
 + (id)objectWithName:(NSString *)name key:(NSUInteger)key {
-    return [[TBMBDefaultNotification alloc] initWithName:name key:key];
+    return [[TBMBDefaultNotification alloc]
+                                     initWithName:name
+                                              key:key];
 }
 
 - (id <TBMBNotification>)createNextNotification:(NSString *)name {
@@ -146,7 +161,8 @@
 }
 
 - (id <TBMBNotification>)createNextNotification:(NSString *)name withBody:(id)body {
-    TBMBDefaultNotification *notification = [TBMBDefaultNotification objectWithName:name body:body];
+    TBMBDefaultNotification *notification = [TBMBDefaultNotification objectWithName:name
+                                                                               body:body];
     notification.key = self.key;
     notification.lastNotification = self;
     notification.userInfo = self.userInfo;
@@ -158,7 +174,8 @@
 }
 
 - (id <TBMBNotification>)createNextNotificationForSEL:(SEL)selector withBody:(id)body {
-    return [self createNextNotification:NSStringFromSelector(selector) withBody:body];
+    return [self createNextNotification:NSStringFromSelector(selector)
+                               withBody:body];
 }
 
 
@@ -169,7 +186,13 @@
                                               "retryCount:[%d] "
                                               "userInfo:{%@} "
                                               "lastNotification:{\n\t%@\n}}"
-            , _name, _body, _key, _retryCount, _userInfo, _lastNotification];
+            ,
+                                      _name,
+                                      _body,
+                                      _key,
+                                      _retryCount,
+                                      _userInfo,
+                                      _lastNotification];
 }
 
 - (void)dealloc {
