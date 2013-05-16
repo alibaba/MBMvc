@@ -359,7 +359,7 @@ inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
         if (!self.isBindableObjectUnbind) {
             self.isBindableObjectUnbind = YES;
             if (_deallocBlock) {
-                _deallocBlock();
+                _deallocBlock(_bindableObject);
             }
         }
     }
