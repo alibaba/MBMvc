@@ -48,7 +48,7 @@ typedef void (^TBMB_CHANGE_BLOCK)(id old, id new);
 
 typedef void (^TBMB_HOST_CHANGE_BLOCK)(id host, id old, id new);
 
-typedef void (^TBMB_DEALLOC_BLOCK)(id host);
+typedef void (^TBMB_DEALLOC_BLOCK)();
 
 //这个宏 可以用来在编译期就判断这个OBJ下的这个keyPath是否存在,可以避免出错
 #define tbKeyPath(OBJ,PATH) OBJ , @(((void)(NO && ((void)OBJ.PATH, NO)), #PATH))
@@ -83,13 +83,14 @@ extern inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_
     {                                                                                                                 \
         (host).delegateProperty=(delegate);                                                                           \
         __block __unsafe_unretained hostType _____host = (host);                                                      \
+        __block __unsafe_unretained id _____delegate = (delegate);                                                    \
         id <TBMBBindObserver> ___observer=TBMBCreateDeallocObserver((delegate),                                       \
-                               ^(id ______myDelegate){if(_____host.delegateProperty==______myDelegate){               \
+                               ^(){if(_____host.delegateProperty==_____delegate){                                     \
                                    TBMB_LOG(@"NeedAutoNil host[%@] delegateProperty[%@] delegate[%@]",                \
-                                                _____host, @#delegateProperty,______myDelegate);                      \
+                                                _____host, @#delegateProperty,_____delegate);                         \
                                    _____host.delegateProperty=nil;}                                                   \
                                    else{TBMB_LOG(@"NeedAutoNil host[%@] delegateProperty[%@] delegate[%@]",           \
-                                                    _____host, @#delegateProperty,______myDelegate);}});              \
+                                                    _____host, @#delegateProperty,_____delegate);}});                 \
         TBMBAttachBindObserver(___observer,(host));                                                                   \
     }
 
