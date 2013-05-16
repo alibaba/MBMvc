@@ -119,7 +119,9 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
                        keyPath:(NSString *)keyPath
                    changeBlock:(TBMB_CHANGE_BLOCK)changeBlock {
     return [[TBMBBindObjectHandler alloc]
-                                   initWithBindableObject:bindableObject keyPath:keyPath changeBlock:changeBlock];
+                                   initWithBindableObject:bindableObject
+                                                  keyPath:keyPath
+                                              changeBlock:changeBlock];
 }
 
 
@@ -127,7 +129,8 @@ void TBMBSetBindableRunSafeThreadStrategy(TBMBBindableRunSafeThreadStrategy stra
     @synchronized (self) {
         if (!self.isBindableObjectUnbind) {
             self.isBindableObjectUnbind = YES;
-            [(id) _bindableObject removeObserver:self forKeyPath:_keyPath];
+            [(id) _bindableObject removeObserver:self
+                                      forKeyPath:_keyPath];
             _changeBlock = nil;//remove后释放_changeBlock来释放一些内存
         }
     }
@@ -351,7 +354,9 @@ inline void TBMBUnbindObserver(id <TBMBBindObserver> observer) {
 }
 
 + (id)objectWithBindableObject:(id)bindableObject deallocBlock:(TBMB_DEALLOC_BLOCK)deallocBlock {
-    return [[TBMBDeallocObserver alloc] initWithBindableObject:bindableObject deallocBlock:deallocBlock];
+    return [[TBMBDeallocObserver alloc]
+                                 initWithBindableObject:bindableObject
+                                           deallocBlock:deallocBlock];
 }
 
 - (void)removeObserver {
@@ -375,5 +380,14 @@ inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_DEALLOC
                                                                             deallocBlock:deallocBlock];
     [bindable _$AddTBMBBindableObjectSet:deallocObserver];
     return deallocObserver;
+}
+
+
+inline void TBMBCancelDeallocObserver(id <TBMBBindObserver> observer) {
+    if (observer && [observer isKindOfClass:[TBMBDeallocObserver class]]) {
+        TBMBDeallocObserver *deallocObserver = (TBMBDeallocObserver *) observer;
+        deallocObserver.isBindableObjectUnbind = YES;
+        deallocObserver.deallocBlock = NULL;
+    }
 }
 
