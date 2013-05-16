@@ -86,15 +86,18 @@ extern inline void TBMBCancelDeallocObserver(id <TBMBBindObserver> observer);
     {                                                                                                                 \
         (host).delegateProperty=(delegate);                                                                           \
         __block __unsafe_unretained hostType _____host = (host);                                                      \
-        __block __unsafe_unretained id _____delegate = (delegate);                                                    \
         id <TBMBBindObserver> ___observer=TBMBCreateDeallocObserver((delegate),                                       \
-                               ^(){if(_____host.delegateProperty==_____delegate){                                     \
-                                   TBMB_LOG(@"NeedAutoNil host[%@] delegateProperty[%@] delegate[%@]",                \
-                                                _____host, @#delegateProperty,_____delegate);                         \
-                                   _____host.delegateProperty=nil;}                                                   \
-                                   else{TBMB_LOG(@"NeedAutoNil host[%@] delegateProperty[%@] delegate[%@]",           \
-                                                    _____host, @#delegateProperty,_____delegate);}});                 \
-        TBMBAttachBindObserver(___observer,(host));                                                                   \
+                               ^(){                                                                                   \
+                                   TBMB_LOG(@"NeedAutoNil host[%@] delegateProperty[%@]",                             \
+                                                _____host, @#delegateProperty);                                       \
+                                   _____host.delegateProperty=nil;                                                    \
+                                  });                                                                                 \
+        TBMBCreateDeallocObserver(host,                                                                               \
+            ^() {                                                                                                     \
+                TBMB_LOG(@"NeedAutoNil cancelDeallocObserver[%@]", ___observer);                                      \
+                TBMBCancelDeallocObserver(___observer);                                                               \
+            }                                                                                                         \
+            );                                                                                                        \
     }
 
 

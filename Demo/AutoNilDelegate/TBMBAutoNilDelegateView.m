@@ -31,6 +31,13 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.bounds];
     id testDelegate = [[NSObject alloc] init];
     TBMBAutoNilDelegate(UITableView *, tableView, delegate, testDelegate)
+    testDelegate = nil;
+
+    testDelegate = [[NSObject alloc] init];
+    TBMBAutoNilDelegate(UITableView *, tableView, delegate, testDelegate)
+    tableView = nil;
+
+    tableView = [[UITableView alloc] initWithFrame:self.bounds];
     //用TBMBAutoNilDelegate设置delegate可以保证在delegate dealloc的时候 会被自动置为nil
     TBMBAutoNilDelegate(UITableView *, tableView, delegate, self)
     TBMBAutoNilDelegate(UITableView *, tableView, dataSource, self)
