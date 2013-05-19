@@ -6,8 +6,8 @@
  * Released under the MIT license
  */
 
-#ifndef EXTC_METAMACROS_H
-#define EXTC_METAMACROS_H
+#ifndef TBMB_EXTC_METAMACROS_H
+#define TBMB_EXTC_METAMACROS_H
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"

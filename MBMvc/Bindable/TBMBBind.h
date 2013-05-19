@@ -14,7 +14,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TBMBUtil.h"
-#import "metamacros.h"
+#import "TBMB_metamacros.h"
 
 //一个observer用来表示 可以用来remove
 @protocol TBMBBindObserver <NSObject>
