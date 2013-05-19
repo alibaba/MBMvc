@@ -120,21 +120,21 @@ extern inline void TBMBCancelDeallocObserver(id <TBMBBindObserver> observer);
 #pragma mark  - Auto KeyPath Change Binding
 
 #define  __TBMBAutoKeyPathChangeMethodNameSEP $_$
-#define  __TBMBAutoKeyPathChangeMethodNameSEP_STR @metamacro_stringify(__TBMBAutoKeyPathChangeMethodNameSEP)
+#define  __TBMBAutoKeyPathChangeMethodNameSEP_STR @TBMB_metamacro_stringify(__TBMBAutoKeyPathChangeMethodNameSEP)
 
 #define __TBMBAutoKeyPathChangeMethodName(...)      \
-    metamacro_foreach_concat(,__TBMBAutoKeyPathChangeMethodNameSEP,__VA_ARGS__)
+    TBMB_metamacro_foreach_concat(,__TBMBAutoKeyPathChangeMethodNameSEP,__VA_ARGS__)
 
 
 #define __TBMB_foreach_concat_iter(INDEX, BASE, ARG) .ARG
 
 #define __TBMB_get_self_property(...)                                                                \
-    self metamacro_foreach_cxt_recursive(__TBMB_foreach_concat_iter, , ,__VA_ARGS__)
+    self TBMB_metamacro_foreach_cxt_recursive(__TBMB_foreach_concat_iter, , ,__VA_ARGS__)
 
 //编译时判断字段是否存在
 #ifdef DEBUG
 #define __TBMBTryWhenThisKeyPathChange(...)                                                                            \
-    metamacro_concat(-(void)__$$tryKeyPathChangeOnlyExistInDebugOn_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__)) \
+    TBMB_metamacro_concat(-(void)__$$tryKeyPathChangeOnlyExistInDebugOn_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__)) \
     {(void)(NO && ((void)__TBMB_get_self_property(__VA_ARGS__), NO));}
 #else
 #define __TBMBTryWhenThisKeyPathChange(...)
@@ -143,5 +143,5 @@ extern inline void TBMBCancelDeallocObserver(id <TBMBBindObserver> observer);
 
 #define TBMBWhenThisKeyPathChange(...)                                                             \
      __TBMBTryWhenThisKeyPathChange(__VA_ARGS__)                                                   \
-    metamacro_concat(-(void)__$$keyPathChange_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))    \
+    TBMB_metamacro_concat(-(void)__$$keyPathChange_, __TBMBAutoKeyPathChangeMethodName(__VA_ARGS__))    \
     :(BOOL)isInit old:(id)old new:(id)new
