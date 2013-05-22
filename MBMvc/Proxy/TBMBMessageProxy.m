@@ -135,5 +135,18 @@ static char kTBMBNSMethodSignatureNotFoundKey;
     return YES;
 }
 
+- (BOOL)isKindOfClass:(Class)aClass {
+    return [_proxyClass isSubclassOfClass:aClass];
+}
+
+
+- (BOOL)isMemberOfClass:(Class)aClass {
+    return _proxyClass == aClass;
+}
+
+- (BOOL)conformsToProtocol:(Protocol *)aProtocol {
+    return [_proxyClass conformsToProtocol:aProtocol];
+}
+
 
 @end
