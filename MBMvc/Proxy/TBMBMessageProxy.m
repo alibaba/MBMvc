@@ -85,12 +85,14 @@ static char kTBMBNSMethodSignatureNotFoundKey;
         char const *type = [signature getArgumentTypeAtIndex:i];
         if (strcmp(@encode(void (^)()), type) == 0) {
             void *block = NULL;
-            [invocation getArgument:&block atIndex:i];
+            [invocation getArgument:&block
+                            atIndex:i];
             if (block) {
                 id blockObj = (__bridge id) block;
                 if ([blockObj isKindOfClass:NSClassFromString(@"NSBlock")]) {
                     void *blockCopied = Block_copy(block);
-                    [invocation setArgument:&blockCopied atIndex:i];
+                    [invocation setArgument:&blockCopied
+                                    atIndex:i];
                     [needReleaseBlocks addObject:[NSValue valueWithPointer:blockCopied]];
                 }
             }
@@ -126,6 +128,11 @@ static char kTBMBNSMethodSignatureNotFoundKey;
     } else {
         return [_proxyClass instancesRespondToSelector:aSelector];
     }
+}
+
+
+- (BOOL)isProxy {
+    return YES;
 }
 
 
