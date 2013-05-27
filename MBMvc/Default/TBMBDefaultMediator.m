@@ -46,6 +46,10 @@
 }
 
 
+- (void)close {
+    _realReceiver = nil;
+}
+
 - (id)initWithRealReceiver:(id)realReceiver {
     self = [super init];
     if (self) {
@@ -62,15 +66,26 @@
 
 
 - (NSUInteger const)notificationKey {
-    return TBMBGetDefaultNotificationKey(_realReceiver);
+    if (_realReceiver) {
+        return TBMBGetDefaultNotificationKey(_realReceiver);
+    } else {
+        return 0;
+    }
+
 }
 
 - (void)handlerNotification:(id <TBMBNotification>)notification {
-    TBMBInternalAutoHandlerReceiverNotification(_realReceiver, self, notification);
+    if (_realReceiver) {
+        TBMBInternalAutoHandlerReceiverNotification(_realReceiver, self, notification);
+    }
 }
 
 - (NSSet *)listReceiveNotifications {
-    return TBMBInternalListAllReceiverHandlerName(_realReceiver, self, [NSObject class]);
+    if (_realReceiver) {
+        return TBMBInternalListAllReceiverHandlerName(_realReceiver, self, [NSObject class]);
+    } else {
+        return [NSSet set];
+    }
 }
 
 

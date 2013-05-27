@@ -95,6 +95,7 @@
 }
 
 - (void)dealloc {
+    [_mediator close];
     NSLog(@"dealloc %@", self);
 
 }

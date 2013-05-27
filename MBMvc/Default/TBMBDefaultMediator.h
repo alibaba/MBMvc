@@ -14,8 +14,9 @@
 @property(nonatomic, strong) id <TBMBFacade> tbmbFacade;
 @property(nonatomic, assign, readonly) id realReceiver;
 
-
 - (NSUInteger const)notificationKey;
+
+- (void)close;
 
 - (id)initWithRealReceiver:(id)realReceiver;
 
