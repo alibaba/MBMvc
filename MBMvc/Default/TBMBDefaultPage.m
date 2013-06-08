@@ -28,11 +28,16 @@
         }
         [self loadView];
         [self autoBindingKeyPath];
+        [self afterAutoBindingLoadView];
     }
     return self;
 }
 
 - (void)loadView {
+
+}
+
+- (void)afterAutoBindingLoadView {
 
 }
 
