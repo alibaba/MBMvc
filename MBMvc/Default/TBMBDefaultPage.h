@@ -25,4 +25,5 @@
 //Page载入View
 - (void)loadView;
 
+- (void)afterAutoBindingLoadView;
 @end
