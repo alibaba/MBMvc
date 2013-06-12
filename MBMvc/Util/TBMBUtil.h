@@ -16,7 +16,7 @@
 
 
 #ifdef TBMB_DEBUG
-#define TBMB_LOG(msg, args...) NSLog(@"TBMB " msg, ##args)
+#define TBMB_LOG(msg, args...) NSLog(@"[TBMB] " msg, ##args)
 #else
 #define TBMB_LOG(msg, args...)
 #endif
