@@ -27,4 +27,12 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
+  s.prefix_header_contents = <<-EOS
+  
+#ifdef DEBUG
+#define TBMB_DEBUG
+#endif
+
+EOS
+
 end
