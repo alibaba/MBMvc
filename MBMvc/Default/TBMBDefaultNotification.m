@@ -206,8 +206,8 @@
             ,
                                       _name,
                                       _body,
-                                      (unsigned long)_key,
-                                      (unsigned long)_retryCount,
+                                      (unsigned long) _key,
+                                      (unsigned long) _retryCount,
                                       _userInfo,
                                       _lastNotification];
 }
