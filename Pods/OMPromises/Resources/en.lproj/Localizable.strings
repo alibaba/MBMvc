@@ -1,0 +1,7 @@
+"error_cancelled" = "The promise has been cancelled.";
+"error_combinator_any" = "No promise combined with the any combinator has been fulfilled.";
+"error_exception_%@" = "The supplied then/rescue handler threw an exception during execution: %@";
+"error_http_status_%i%@" = "Server responded with status code %i: %@.";
+"error_http_request_%@" = "Failed to perform HTTP request: %@";
+"error_http_content_type_%@%@" = "Found Content-Type %@ but expected %@.";
+"error_http_deserialization_%@%@" = "Failed to deserialize %@ data: %@";

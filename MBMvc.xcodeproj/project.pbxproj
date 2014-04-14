@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D82E792F201D4E8DBEFD41C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F574D2AC48E4E92BEE2A936 /* libPods.a */; };
 		DC96C3BE174DEE9000DB1628 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
 		DC96C3C9174DEF3800DB1628 /* TBMBDefaultFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0755EFB1DAFCA21432B5 /* TBMBDefaultFacade.m */; };
 		DC96C3CA174DEF3800DB1628 /* TBMBDefaultNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */; };
@@ -97,6 +98,7 @@
 		DC96C424174DF01F00DB1628 /* libLibMBMVC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */; };
 		EACF002BD4B066233DCAAFB1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF0E48844C799FD0D1290F /* InfoPlist.strings */; };
 		EACF00F3BB9611C843583809 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */; };
+		EACF013AF7B445FC44D642AE /* TBMBPromises.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF05B79054A60C649D78ED /* TBMBPromises.h */; };
 		EACF01435A94CA5287B435E4 /* MBMvcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF020B04620474C4D795B3 /* MBMvcTests.m */; };
 		EACF018100A53DB7D8C14A4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
 		EACF01C29701FDA299DFE9BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF00C43235422C43B05660 /* UIKit.framework */; };
@@ -126,6 +128,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F574D2AC48E4E92BEE2A936 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		319D800BAA4240DEAB0F5782 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibMBMVC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACF00143526FE645AAF3FAF /* TBMBCommandInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBCommandInterceptor.h; sourceTree = "<group>"; };
 		EACF00222F49568473E9C0E1 /* MBMvcTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MBMvcTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +171,7 @@
 		EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultNotification.m; sourceTree = "<group>"; };
 		EACF051D954EF450AC2DB676 /* TBMBTestMemoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestMemoryViewController.h; sourceTree = "<group>"; };
 		EACF05AB7BB806AB6A1B1DB5 /* TBMBDefaultMessageReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultMessageReceiver.m; sourceTree = "<group>"; };
+		EACF05B79054A60C649D78ED /* TBMBPromises.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBPromises.h; sourceTree = "<group>"; };
 		EACF0602BE6A5302B28522A6 /* TBMBDemoRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoRootViewController.m; sourceTree = "<group>"; };
 		EACF0603DF1D1C1B609B555D /* TBMBLogInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBLogInterceptor.h; sourceTree = "<group>"; };
 		EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBMvc-Prefix.pch"; sourceTree = "<group>"; };
@@ -266,6 +271,7 @@
 			files = (
 				DC96C421174DEFE400DB1628 /* UIKit.framework in Frameworks */,
 				DC96C3BE174DEE9000DB1628 /* Foundation.framework in Frameworks */,
+				D82E792F201D4E8DBEFD41C8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +330,7 @@
 				EACF0C664EC41437B934C314 /* MBMvc */,
 				EACF077BDCE622C9743D44ED /* MBMvcTests */,
 				EACF0749C727E5E25BEC60DB /* Demo */,
+				319D800BAA4240DEAB0F5782 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -385,6 +392,7 @@
 				EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */,
 				EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */,
 				EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */,
+				0F574D2AC48E4E92BEE2A936 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -396,6 +404,14 @@
 				EACF076966D60DA2353A80AF /* TBMBGlobalFacade.h */,
 			);
 			path = Facade;
+			sourceTree = "<group>";
+		};
+		EACF04BC07D84F2437EC6576 /* Promises */ = {
+			isa = PBXGroup;
+			children = (
+				EACF05B79054A60C649D78ED /* TBMBPromises.h */,
+			);
+			path = Promises;
 			sourceTree = "<group>";
 		};
 		EACF054C94B49BBCCBD24A36 /* TestMemoryWarning */ = {
@@ -595,6 +611,7 @@
 				EACF022DE80075F1CFA492AB /* Util */,
 				EACF0DA4F7B8E5270B09C54D /* Bindable */,
 				EACF0C631863968DD2C47B4C /* Proxy */,
+				EACF04BC07D84F2437EC6576 /* Promises */,
 			);
 			path = MBMvc;
 			sourceTree = "<group>";
@@ -663,6 +680,7 @@
 				DC96C3FB174DEF5700DB1628 /* TBMBSimpleInstanceCommand+TBMBProxy.h in Headers */,
 				DC96C3FC174DEF5700DB1628 /* TBMBDefaultMessageReceiver+TBMBProxy.h in Headers */,
 				DC96C3FD174DEF5700DB1628 /* TBMBDefaultMediator+TBMBProxy.h in Headers */,
+				EACF013AF7B445FC44D642AE /* TBMBPromises.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,9 +691,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC96C3C6174DEE9000DB1628 /* Build configuration list for PBXNativeTarget "LibMBMVC" */;
 			buildPhases = (
+				4E05F8061C314DB4980E0044 /* Check Pods Manifest.lock */,
 				DC96C3B9174DEE9000DB1628 /* Sources */,
 				DC96C3BA174DEE9000DB1628 /* Frameworks */,
 				DC96C3DC174DEF4000DB1628 /* Headers */,
+				180AFCF9120F4A8E9471BD37 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -738,6 +758,8 @@
 			mainGroup = EACF01C53FF8E3ECFBC10803;
 			productRefGroup = EACF0A957A25CD1B1A993DE3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				DC96C3BC174DEE9000DB1628 /* LibMBMVC */,
@@ -769,6 +791,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		180AFCF9120F4A8E9471BD37 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E05F8061C314DB4980E0044 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		EACF0034F89D30EFA140E09F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -887,6 +939,7 @@
 /* Begin XCBuildConfiguration section */
 		DC96C3C7174DEE9000DB1628 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319D800BAA4240DEAB0F5782 /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -903,6 +956,7 @@
 		};
 		DC96C3C8174DEE9000DB1628 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319D800BAA4240DEAB0F5782 /* Pods.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;

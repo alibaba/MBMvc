@@ -27,6 +27,8 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
+  s.dependency 'OMPromises/Core', '~>0.3.0'
+
   s.prefix_header_contents = <<-EOS
   
 #ifdef DEBUG
