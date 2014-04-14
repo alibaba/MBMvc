@@ -55,28 +55,28 @@
 @class TBMBDefaultMessageReceiver;
 @protocol TBMBMessageReceiver;
 
-extern inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
+extern BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol);
 
-extern inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz);
+extern NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz);
 
-extern inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class rootClass, NSString *prefix);
+extern NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class rootClass, NSString *prefix);
 
-extern inline NSSet *TBMBInternalListAllReceiverHandlerName(id handler, id <TBMBMessageReceiver> receiver,
+extern NSSet *TBMBInternalListAllReceiverHandlerName(id handler, id <TBMBMessageReceiver> receiver,
         Class rootClass);
 
-extern inline NSSet *TBMBListAllReceiverHandlerName(id <TBMBMessageReceiver> handler, Class rootClass);
+extern NSSet *TBMBListAllReceiverHandlerName(id <TBMBMessageReceiver> handler, Class rootClass);
 
-extern inline NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
+extern NSMutableSet *TBMBGetAllCommandHandlerName(Class commandClass, NSString *prefix);
 
-extern inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification);
+extern id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notification);
 
-extern inline void TBMBInternalAutoHandlerReceiverNotification(id handler, id <TBMBMessageReceiver> receiver,
+extern void TBMBInternalAutoHandlerReceiverNotification(id handler, id <TBMBMessageReceiver> receiver,
         id <TBMBNotification> notification);
 
-extern inline void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification);
+extern void TBMBAutoHandlerReceiverNotification(id <TBMBMessageReceiver> handler, id <TBMBNotification> notification);
 
-extern inline const NSUInteger TBMBGetDefaultNotificationKey(id o);
+extern const NSUInteger TBMBGetDefaultNotificationKey(id o);
 
-extern inline BOOL TBMBIsNotificationProxy(id <TBMBNotification> notification);
+extern BOOL TBMBIsNotificationProxy(id <TBMBNotification> notification);
 
-extern inline void TBMBAutoBindingKeyPath(id bindable);
+extern void TBMBAutoBindingKeyPath(id bindable);

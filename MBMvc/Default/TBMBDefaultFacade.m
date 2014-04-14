@@ -84,10 +84,10 @@ static pthread_rwlock_t _subscribeReceiversLock;
         pthread_rwlock_init(&_subscribeReceiversLock, NULL);
         _subscribeReceivers = [NSMutableSet setWithCapacity:3];
         _regCommandStatus = TBMB_REG_COMMAND_INIT;
-        _notificationCenter = _c_NotificationCenter ? : [[NSNotificationCenter alloc] init];
-        _command_queue = _c_queue ? : dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@",
-                                                                                        self]
-                                                                                        UTF8String], DISPATCH_QUEUE_CONCURRENT
+        _notificationCenter = _c_NotificationCenter ?: [[NSNotificationCenter alloc] init];
+        _command_queue = _c_queue ?: dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@",
+                                                                                       self]
+                                                                                       UTF8String], DISPATCH_QUEUE_CONCURRENT
         );
         if (_c_dispatch_queue) {
             _dispatch_message_queue = _c_dispatch_queue;
@@ -106,8 +106,8 @@ static pthread_rwlock_t _subscribeReceiversLock;
 
 
 static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
-    return [NSString stringWithFormat:(@"%d##%@"),
-                                      key,
+    return [NSString stringWithFormat:(@"%ld##%@"),
+                                      (unsigned long) key,
                                       clazz];
 }
 

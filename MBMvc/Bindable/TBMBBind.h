@@ -54,32 +54,32 @@ typedef void (^TBMB_DEALLOC_BLOCK)();
 #define tbKeyPath(OBJ,PATH) OBJ , @(((void)(NO && ((void)OBJ.PATH, NO)), #PATH))
 #pragma mark  - Binding
 //绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行
-extern inline id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock);
+extern id <TBMBBindObserver> TBMBBindObject(id bindable, NSString *keyPath, TBMB_CHANGE_BLOCK changeBlock);
 
 //绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行 ,其中 host 是弱引用
-extern inline id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
+extern id <TBMBBindObserver> TBMBBindObjectWeak(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
 
 //绑定对象当bindable的这个keyPath发生改变时, changeBlock会被执行 ,其中 host 是强引用
-extern inline id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
+extern id <TBMBBindObserver> TBMBBindObjectStrong(id bindable, NSString *keyPath, id host, TBMB_HOST_CHANGE_BLOCK changeBlock);
 
 //将一个TBMBBindObserver Attach到一个obj 使observer的生命周期<=这个obj
-extern inline void TBMBAttachBindObserver(id <TBMBBindObserver> observer, id obj);
+extern void TBMBAttachBindObserver(id <TBMBBindObserver> observer, id obj);
 #pragma mark  - UnBinding
 
 //解绑bindable上的所有observer
-extern inline void TBMBUnbindObject(id bindable);
+extern void TBMBUnbindObject(id bindable);
 
 //解绑bindable上keyPath对应的所有observer
-extern inline void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath);
+extern void TBMBUnbindObjectWithKeyPath(id bindable, NSString *keyPath);
 
 //直接解绑一个Observer
-extern inline void TBMBUnbindObserver(id <TBMBBindObserver> observer);
+extern void TBMBUnbindObserver(id <TBMBBindObserver> observer);
 
 //创建一个在bindable dealloc的时候出发的操作
-extern inline id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_DEALLOC_BLOCK deallocBlock);
+extern id <TBMBBindObserver> TBMBCreateDeallocObserver(id bindable, TBMB_DEALLOC_BLOCK deallocBlock);
 
 //取消一个DeallocObserver的执行
-extern inline void TBMBCancelDeallocObserver(id <TBMBBindObserver> observer);
+extern void TBMBCancelDeallocObserver(id <TBMBBindObserver> observer);
 #pragma mark  - Marco for Easy Use
 //设置可以自动在delegate被release的时候,置为nil的方法
 #define TBMBAutoNilDelegate(hostType,host,delegateProperty,delegate)                                                  \

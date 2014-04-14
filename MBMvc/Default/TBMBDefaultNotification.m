@@ -199,15 +199,15 @@
 - (NSString *)description {
     return [NSString stringWithFormat:@"{Name:[%@] "
                                               "Body:[%@] "
-                                              "Key:[%d] "
-                                              "retryCount:[%d] "
+                                              "Key:[%ld] "
+                                              "retryCount:[%ld] "
                                               "userInfo:{%@} "
                                               "lastNotification:{\n\t%@\n}}"
             ,
                                       _name,
                                       _body,
-                                      _key,
-                                      _retryCount,
+                                      (unsigned long)_key,
+                                      (unsigned long)_retryCount,
                                       _userInfo,
                                       _lastNotification];
 }

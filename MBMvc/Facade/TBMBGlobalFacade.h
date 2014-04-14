@@ -22,16 +22,16 @@
 @end
 
 //封装好的 发送Notification接口
-extern inline void TBMBGlobalSendNotification(NSString *notificationName);
+extern void TBMBGlobalSendNotification(NSString *notificationName);
 
 //封装好的 发送Notification接口
-extern inline void TBMBGlobalSendNotificationWithBody(NSString *notificationName, id body);
+extern void TBMBGlobalSendNotificationWithBody(NSString *notificationName, id body);
 
 //封装好的 发送Notification接口
-extern inline void TBMBGlobalSendNotificationForSEL(SEL selector);
+extern void TBMBGlobalSendNotificationForSEL(SEL selector);
 
 //封装好的 发送Notification接口
-extern inline void TBMBGlobalSendNotificationForSELWithBody(SEL selector, id body);
+extern void TBMBGlobalSendNotificationForSELWithBody(SEL selector, id body);
 
 //封装好的 发送Notification接口
-extern inline void TBMBGlobalSendTBMBNotification(id <TBMBNotification> notification);
+extern void TBMBGlobalSendTBMBNotification(id <TBMBNotification> notification);

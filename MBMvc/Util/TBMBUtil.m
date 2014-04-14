@@ -32,9 +32,9 @@ inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
 }
 
 inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz) {
-    return [NSString stringWithFormat:(@"%@_%d_%@"),
+    return [NSString stringWithFormat:(@"%@_%ld_%@"),
                                       TBMB_PROXY_PREFIX,
-                                      key,
+                                      (unsigned long) key,
                                       clazz];
 }
 
