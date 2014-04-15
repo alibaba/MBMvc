@@ -106,6 +106,7 @@
 		EACF01F0659A5861E868271D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */; };
 		EACF03F2581BACB54DF53900 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */; };
 		EACF07411BAC39CBE2196D50 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0B0638BD017E4E305399 /* Default.png */; };
+		EACF09C531076808DF9C5DBD /* TBMBPromises.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF02CF330AF4A42CC18B15 /* TBMBPromises.m */; };
 		EACF0A0236F08407B5100D0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
 		EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -157,6 +158,7 @@
 		EACF0253EBED3ABB635EE061 /* TBMBDemoStep3Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep3Command.h; sourceTree = "<group>"; };
 		EACF02907226E3934313D629 /* TBMBSimpleStaticCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBSimpleStaticCommand.h; sourceTree = "<group>"; };
 		EACF02B4F4BE10716FFF1B8F /* TBMBDemoStep5Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep5Command.h; sourceTree = "<group>"; };
+		EACF02CF330AF4A42CC18B15 /* TBMBPromises.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBPromises.m; sourceTree = "<group>"; };
 		EACF02E376C813FD4025B4F9 /* TBMBSimpleSingletonCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBSimpleSingletonCommand.m; sourceTree = "<group>"; };
 		EACF035FAB2F66CED9E8174E /* TBMBMessageSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageSender.h; sourceTree = "<group>"; };
 		EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -410,6 +412,7 @@
 			isa = PBXGroup;
 			children = (
 				EACF05B79054A60C649D78ED /* TBMBPromises.h */,
+				EACF02CF330AF4A42CC18B15 /* TBMBPromises.m */,
 			);
 			path = Promises;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				DC96C3D9174DEF3800DB1628 /* TBMBSimpleInstanceCommand+TBMBProxy.m in Sources */,
 				DC96C3DA174DEF3800DB1628 /* TBMBDefaultMessageReceiver+TBMBProxy.m in Sources */,
 				DC96C3DB174DEF3800DB1628 /* TBMBDefaultMediator+TBMBProxy.m in Sources */,
+				EACF09C531076808DF9C5DBD /* TBMBPromises.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -997,6 +1001,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1010,6 +1015,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
