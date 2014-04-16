@@ -6,17 +6,16 @@
  * published by the Free Software Foundation.
  *
  *
- */
-//
-// Created by <a href="mailto:wentong@taobao.com">文通</a> on 12-12-8 下午12:30.
+ *///
+// Created by 文通 on 14-4-16 上午10:29.
 //
 
 
 #import <Foundation/Foundation.h>
+#import "TBMBSimpleInstanceCommand.h"
+#import "TBMBPromises.h"
 
-//代理对象
-@interface TBMBMessageProxy : NSProxy
-- (id)initWithClass:(Class)proxyClass andKey:(NSUInteger)key;
 
-- (void)processInvocation:(NSInvocation *)invocation;
+@interface TBMBDemoStep7Command : TBMBSimpleInstanceCommand
+- (TBMBPromise *)getData;
 @end

@@ -64,7 +64,6 @@ static char kTBMBNSMethodSignatureNotFoundKey;
         [signature _$setTBMBNotFound:YES];
         return signature;
     }
-    //return sig ? : [super methodSignatureForSelector:sel];
 }
 
 - (void)forwardInvocation:(NSInvocation *)invocation {
@@ -111,11 +110,17 @@ static char kTBMBNSMethodSignatureNotFoundKey;
             Block_release(needReleaseBlock);
         }
     }
+
+    [self processInvocation:invocation];
+
     TBMBDefaultNotification *notification = [[TBMBDefaultNotification alloc]
                                                                       initWithName:TBMBProxyHandlerName(_key, _proxyClass)
                                                                                key:_key
                                                                               body:invocation];
     TBMBGlobalSendTBMBNotification(notification);
+}
+
+- (void)processInvocation:(NSInvocation *)invocation {
 }
 
 

@@ -17,8 +17,8 @@
 typedef OMPromise TBMBPromise;
 typedef OMDeferred TBMBDeferred;
 
-extern TBMBDeferred *getTBMBDeferredFromThread();
+extern TBMBDeferred *getDeferredFromThread();
 
-extern void setTBMBDeferredToThread(TBMBDeferred *deferred);
+extern void setDeferredToThread(TBMBDeferred *deferred);
 
-extern void removeTBMBDeferredToThread();
+extern void removeDeferredFromThread();
