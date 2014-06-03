@@ -37,7 +37,6 @@
 		DC96C3E3174DEF5700DB1628 /* TBMBDefaultMessageReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF04C87CC6AD5D3E221B2C /* TBMBDefaultMessageReceiver.h */; };
 		DC96C3E4174DEF5700DB1628 /* TBMBDefaultPage.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0CE9D33F31FCD13BFA29 /* TBMBDefaultPage.h */; };
 		DC96C3E5174DEF5700DB1628 /* TBMBDefaultCommandInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0DFCD86336834D4BDA20 /* TBMBDefaultCommandInvocation.h */; };
-		DC96C3E6174DEF5700DB1628 /* TBMBDefaultReceiverImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0E55019A96CB8301870D /* TBMBDefaultReceiverImpl.h */; };
 		DC96C3E7174DEF5700DB1628 /* TBMBDefaultMediator.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF04BB086759E0885A6C1C /* TBMBDefaultMediator.h */; };
 		DC96C3E8174DEF5700DB1628 /* TBMBGlobalFacade.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF076966D60DA2353A80AF /* TBMBGlobalFacade.h */; };
 		DC96C3E9174DEF5700DB1628 /* TBMBMessageReceiver.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF07902CF4BEF73CAE5E67 /* TBMBMessageReceiver.h */; };
@@ -271,7 +270,6 @@
 		EACF0DDDFD2E99559C8ECF03 /* TBMBDemoStep7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7ViewController.m; sourceTree = "<group>"; };
 		EACF0DF90852AB4A050B7117 /* TBMBPromisesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBPromisesProxy.h; sourceTree = "<group>"; };
 		EACF0DFCD86336834D4BDA20 /* TBMBDefaultCommandInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultCommandInvocation.h; sourceTree = "<group>"; };
-		EACF0E55019A96CB8301870D /* TBMBDefaultReceiverImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultReceiverImpl.h; sourceTree = "<group>"; };
 		EACF0E57111DA06BDC157FB2 /* TBMBMessageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBMessageProxy.m; sourceTree = "<group>"; };
 		EACF0E61E844130094956ECE /* TBMBNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBNavView.m; sourceTree = "<group>"; };
 		EACF0E68DB8EC06CC6585DB6 /* TBMBTestMemoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestMemoryView.h; sourceTree = "<group>"; };
@@ -511,7 +509,6 @@
 				EACF0CE9D33F31FCD13BFA29 /* TBMBDefaultPage.h */,
 				EACF08E48C32DD0D55DB8912 /* TBMBDefaultCommandInvocation.m */,
 				EACF0DFCD86336834D4BDA20 /* TBMBDefaultCommandInvocation.h */,
-				EACF0E55019A96CB8301870D /* TBMBDefaultReceiverImpl.h */,
 				EACF0EF9C7417B4711F33752 /* TBMBDefaultMediator.m */,
 				EACF04BB086759E0885A6C1C /* TBMBDefaultMediator.h */,
 			);
@@ -709,7 +706,6 @@
 				DC96C3E3174DEF5700DB1628 /* TBMBDefaultMessageReceiver.h in Headers */,
 				DC96C3E4174DEF5700DB1628 /* TBMBDefaultPage.h in Headers */,
 				DC96C3E5174DEF5700DB1628 /* TBMBDefaultCommandInvocation.h in Headers */,
-				DC96C3E6174DEF5700DB1628 /* TBMBDefaultReceiverImpl.h in Headers */,
 				DC96C3E7174DEF5700DB1628 /* TBMBDefaultMediator.h in Headers */,
 				DC96C3E8174DEF5700DB1628 /* TBMBGlobalFacade.h in Headers */,
 				DC96C3E9174DEF5700DB1628 /* TBMBMessageReceiver.h in Headers */,
