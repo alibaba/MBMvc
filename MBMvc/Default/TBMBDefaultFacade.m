@@ -198,7 +198,8 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                                      objectForKey:TBMB_NOTIFICATION_KEY];
                                              dispatch_async(queue, ^{
                                                  //这样写就不会循环引用
-                                                 NSArray *interceptors = [NSArray arrayWithArray:[TBMBDefaultFacade instance]->_interceptors];
+                                                 NSArray *interceptors = [NSArray arrayWithArray:[TBMBDefaultFacade instance]
+                                                         ->_interceptors];
                                                  TBMBDefaultCommandInvocation *invocation = [TBMBDefaultCommandInvocation objectWithCommandClass:commandClass
                                                                                                                                     notification:notification
                                                                                                                                     interceptors:interceptors];
@@ -215,12 +216,10 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 - (void)registerCommandAuto {
     static dispatch_once_t _oncePredicate_registerCommandAuto;
     dispatch_once(&_oncePredicate_registerCommandAuto, ^{
-        Class *classes = NULL;
-        int numClasses = objc_getClassList(NULL, 0);
-        if (numClasses > 0) {
-            classes = (Class *) malloc(sizeof(Class) * numClasses);
-            numClasses = objc_getClassList(classes, numClasses);
-            for (int i = 0; i < numClasses; i++) {
+        unsigned int numClasses = 0;
+        Class *classes = objc_copyClassList(&numClasses);
+        if (classes) {
+            for (unsigned int i = 0; i < numClasses; i++) {
                 Class clazz = classes[i];
                 if (TBMBClassHasProtocol(clazz, @protocol(TBMBCommand))) {
                     [self registerCommand:clazz];
