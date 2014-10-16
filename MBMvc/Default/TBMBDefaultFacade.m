@@ -25,6 +25,11 @@ typedef enum {
     TBMB_REG_COMMAND_DONE
 } TBMB_REG_COMMAND_STATUE;
 
+@interface TBMBDefaultFacade ()
+
+@property(atomic, assign) TBMB_REG_COMMAND_STATUE regCommandStatus;
+@end
+
 @implementation TBMBDefaultFacade {
 @private
     NSNotificationCenter *_notificationCenter;
@@ -37,6 +42,8 @@ typedef enum {
 
     NSMutableSet *_subscribeReceivers;
 }
+
+@synthesize regCommandStatus = _regCommandStatus;
 
 static NSOperationQueue *_c_dispatch_queue = nil;
 
@@ -83,7 +90,7 @@ static pthread_rwlock_t _subscribeReceiversLock;
         _waitingNotification = nil;
         pthread_rwlock_init(&_subscribeReceiversLock, NULL);
         _subscribeReceivers = [NSMutableSet setWithCapacity:3];
-        _regCommandStatus = TBMB_REG_COMMAND_INIT;
+        self.regCommandStatus = TBMB_REG_COMMAND_INIT;
         _notificationCenter = _c_NotificationCenter ?: [[NSNotificationCenter alloc] init];
         _command_queue = _c_queue ?: dispatch_queue_create([[NSString stringWithFormat:@"TBMB_DEFAULT_COMMAND_QUEUE.%@",
                                                                                        self]
@@ -235,10 +242,10 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     static dispatch_once_t _oncePredicate_registerCommandAutoAsync;
     dispatch_once(&_oncePredicate_registerCommandAutoAsync, ^{
         _waitingNotification = [[NSMutableArray alloc] initWithCapacity:0];
-        _regCommandStatus = TBMB_REG_COMMAND_ASYNC_DOING;
+        self.regCommandStatus = TBMB_REG_COMMAND_ASYNC_DOING;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [self registerCommandAuto];
-            _regCommandStatus = TBMB_REG_COMMAND_DONE;
+            self.regCommandStatus = TBMB_REG_COMMAND_DONE;
             NSArray *waitingNotification = nil;
             @synchronized (self) {
                 if ([_waitingNotification count] > 0) {
@@ -269,9 +276,9 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 }
 
 - (void)sendTBMBNotification:(id <TBMBNotification>)notification {
-    if (_regCommandStatus == TBMB_REG_COMMAND_ASYNC_DOING) {
+    if (self.regCommandStatus == TBMB_REG_COMMAND_ASYNC_DOING) {
         @synchronized (self) {
-            if (_regCommandStatus == TBMB_REG_COMMAND_ASYNC_DOING && _waitingNotification) {
+            if (self.regCommandStatus == TBMB_REG_COMMAND_ASYNC_DOING && _waitingNotification) {
                 [_waitingNotification addObject:notification];
                 return;
             }
