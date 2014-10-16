@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '6.1'
 
-  s.ios.deployment_target = '4.3'
+  s.ios.deployment_target = '5.0'
 
   s.source_files = 'MBMvc/**/*.{h,m}'
 
