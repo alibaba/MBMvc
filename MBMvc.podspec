@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "MBMvc"
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.summary      = "MBMvc is a Message Based MVC framework."
   s.homepage     = "https://github.com/alibaba/MBMvc"
 
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
                     }
 
   s.author       = { "文通" => "wentong@taobao.com" }
-  s.source       = { :git => "https://github.com/alibaba/MBMvc.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/alibaba/MBMvc.git", :tag => "1.1.0" }
 
 
   s.platform     = :ios, '6.1'
