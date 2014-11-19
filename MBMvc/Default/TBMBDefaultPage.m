@@ -24,7 +24,8 @@
     if (self) {
         SEL selector = @selector(setViewDO:);
         if ([self respondsToSelector:selector]) {
-            objc_msgSend(self, selector, viewDO);
+            void (*objc_msgSendTypeAll)(id, SEL, id) = (void *) objc_msgSend;
+            objc_msgSendTypeAll(self, selector, viewDO);
         }
         [self loadView];
         [self autoBindingKeyPath];

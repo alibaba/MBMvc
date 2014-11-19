@@ -33,7 +33,7 @@ inline BOOL TBMBClassHasProtocol(Class clazz, Protocol *protocol) {
 
 inline NSString *TBMBProxyHandlerName(NSUInteger key, Class clazz) {
     return [NSString stringWithFormat:(@"%@_%ld_%@"),
-                                      TBMB_PROXY_PREFIX,
+                     TBMB_PROXY_PREFIX,
                                       (unsigned long) key,
                                       clazz];
 }
@@ -61,7 +61,7 @@ static inline NSSet *TBMBGetAllHandlerNameWithClass(Class clazz, BOOL isClassMet
 
 inline NSMutableSet *TBMBGetAllReceiverHandlerName(Class currentClass, Class rootClass, NSString *prefix) {
     NSMutableSet *names = [[NSMutableSet alloc] initWithCapacity:3];
-    rootClass = rootClass ? : [NSObject class];
+    rootClass = rootClass ?: [NSObject class];
     Class clazz = currentClass;
     while (clazz != nil && clazz != rootClass) {
         NSSet *nameWithClass = TBMBGetAllHandlerNameWithClass(clazz, NO, prefix);
@@ -187,7 +187,8 @@ inline void TBMBAutoBindingKeyPath(id bindable) {
                                 componentsJoinedByString:@"."];
             __block __unsafe_unretained id _bindable = bindable;
             TBMBBindObject(bindable, keyPath, ^(id old, id new) {
-                objc_msgSend(_bindable, selector, [TBMBBindInitValue value] == old, old, new);
+                void (*objc_msgSendTypeAll)(id, SEL, BOOL, id, id) = (void *) objc_msgSend;
+                objc_msgSendTypeAll(_bindable, selector, [TBMBBindInitValue value] == old, old, new);
             }
             );
         }
