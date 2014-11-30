@@ -2,9 +2,10 @@ PODS:
   - OMPromises/Core (0.3.0)
 
 DEPENDENCIES:
+  - OMPromises/Core
   - OMPromises/Core (~> 0.3.0)
 
 SPEC CHECKSUMS:
-  OMPromises: 6bc4a70ddd7cdc9b15c538f1223e0c3e1345ec42
+  OMPromises: 504eb1cfd1249f8814d7e311f1378f9652224486
 
-COCOAPODS: 0.31.1
+COCOAPODS: 0.33.1

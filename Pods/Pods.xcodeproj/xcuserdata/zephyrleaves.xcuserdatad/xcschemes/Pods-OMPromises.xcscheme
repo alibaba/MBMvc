@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E515A8DEF73E4F1B8D8D2544"
+               BlueprintIdentifier = "1D5EC25A180E4B6A92EE5C13"
                BuildableName = "libPods-OMPromises.a"
                BlueprintName = "Pods-OMPromises"
                ReferencedContainer = "container:Pods.xcodeproj">
