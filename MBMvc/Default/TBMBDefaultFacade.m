@@ -137,7 +137,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
             BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
             pthread_rwlock_unlock(&_subscribeReceiversLock);
             if (receiverExist)
-                [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                [receiver handlerNotification:(note.userInfo)[TBMB_NOTIFICATION_KEY]];
         };
     } else {
         OBSERVER_BLOCK = ^(NSNotification *note) {
@@ -148,7 +148,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                     BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
                     pthread_rwlock_unlock(&_subscribeReceiversLock);
                     if (receiverExist)
-                        [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                        [receiver handlerNotification:(note.userInfo)[TBMB_NOTIFICATION_KEY]];
                 }
                 );
                 return;
@@ -158,7 +158,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                 BOOL receiverExist = [_subscribeReceivers containsObject:receiverName];
                 pthread_rwlock_unlock(&_subscribeReceiversLock);
                 if (receiverExist)
-                    [receiver handlerNotification:[note.userInfo objectForKey:TBMB_NOTIFICATION_KEY]];
+                    [receiver handlerNotification:(note.userInfo)[TBMB_NOTIFICATION_KEY]];
             }];
         };
     }
@@ -201,8 +201,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                              object:nil
                                               queue:_dispatch_message_queue
                                          usingBlock:^(NSNotification *note) {
-                                             id <TBMBNotification> notification = [note.userInfo
-                                                     objectForKey:TBMB_NOTIFICATION_KEY];
+                                             id <TBMBNotification> notification = (note.userInfo)[TBMB_NOTIFICATION_KEY];
                                              dispatch_async(queue, ^{
                                                  //这样写就不会循环引用
                                                  NSArray *interceptors = [NSArray arrayWithArray:[TBMBDefaultFacade instance]
@@ -286,8 +285,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
     }
     NSNotification *sysNotification = [NSNotification notificationWithName:notification.name
                                                                     object:nil
-                                                                  userInfo:[NSDictionary dictionaryWithObject:notification
-                                                                                                       forKey:TBMB_NOTIFICATION_KEY]];
+                                                                  userInfo:@{TBMB_NOTIFICATION_KEY : notification}];
     if (notification.delay >= 0) {
         [_notificationCenter performSelector:@selector(postNotification:)
                                   withObject:sysNotification
