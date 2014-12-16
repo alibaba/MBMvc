@@ -22,7 +22,7 @@
 - (void)loadView {
     [super loadView];
 
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 40, 200, 30)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, 140, 200, 30)];
     [button addTarget:self action:@selector(nextPage) forControlEvents:UIControlEventTouchUpInside];
     button.backgroundColor = [UIColor blueColor];
     [button setTitle:@"Next Page" forState:UIControlStateNormal];

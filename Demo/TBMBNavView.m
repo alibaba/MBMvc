@@ -22,7 +22,7 @@
 
 - (void)loadView {
     [super loadView];
-    CGFloat h = 5;
+    CGFloat h = 105;
     for (TBMBDemoStep step = TBMB_DEMO_STEP01; step < TBMB_DEMO_END; step++) {
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(50, h, 200, 30)];
         [button addTarget:self action:@selector(gotoStep:) forControlEvents:UIControlEventTouchUpInside];
