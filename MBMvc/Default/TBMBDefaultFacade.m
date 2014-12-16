@@ -41,6 +41,10 @@ typedef enum {
     NSArray *_interceptors;
 
     NSMutableSet *_subscribeReceivers;
+    pthread_rwlock_t _subscribeReceiversLock;
+
+    NSMutableSet *_commands;
+    pthread_rwlock_t _commandsLock;
 }
 
 @synthesize regCommandStatus = _regCommandStatus;
@@ -62,9 +66,6 @@ static NSNotificationCenter *_c_NotificationCenter;
 + (void)setNotificationCenter:(NSNotificationCenter *)notificationCenter {
     _c_NotificationCenter = notificationCenter;
 }
-
-
-static pthread_rwlock_t _subscribeReceiversLock;
 
 + (TBMBDefaultFacade *)instance {
     static TBMBDefaultFacade *_instance = nil;
@@ -89,6 +90,8 @@ static pthread_rwlock_t _subscribeReceiversLock;
     if (self) {
         _waitingNotification = nil;
         pthread_rwlock_init(&_subscribeReceiversLock, NULL);
+        pthread_rwlock_init(&_commandsLock, NULL);
+        _commands = [NSMutableSet setWithCapacity:10];
         _subscribeReceivers = [NSMutableSet setWithCapacity:3];
         self.regCommandStatus = TBMB_REG_COMMAND_INIT;
         _notificationCenter = _c_NotificationCenter ?: [[NSNotificationCenter alloc] init];
@@ -109,6 +112,7 @@ static pthread_rwlock_t _subscribeReceiversLock;
 
 - (void)dealloc {
     pthread_rwlock_destroy(&_subscribeReceiversLock);
+    pthread_rwlock_destroy(&_commandsLock);
 }
 
 
@@ -194,6 +198,19 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
 
 - (void)registerCommand:(Class)commandClass {
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBCommand))) {
+        NSString *className = @(class_getName(commandClass));
+        pthread_rwlock_rdlock(&_commandsLock);
+        BOOL commandExist = [_commands containsObject:className];
+        pthread_rwlock_unlock(&_commandsLock);
+        if (commandExist) {
+            NSLog(@"commandClass[%@] already exist", commandClass);
+            return;
+        } else {
+            pthread_rwlock_wrlock(&_commandsLock);
+            [_commands addObject:className];
+            pthread_rwlock_unlock(&_commandsLock);
+        }
+
         dispatch_queue_t queue = _command_queue;
         NSSet *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
         for (NSString *name in names) {
@@ -214,8 +231,9 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
                                              );
                                          }];
         }
+
     } else {
-        NSAssert(NO, @"Unknown commandClass[%@] to register", commandClass);
+        NSLog(@"Unknown commandClass[%@] to register", commandClass);
     }
 }
 

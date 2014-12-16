@@ -25,5 +25,9 @@
     TBMBGlobalSendTBMBNotification(n);
 }
 
++(void) load {
+    [[TBMBGlobalFacade instance] registerCommand:self];
+}
+
 
 @end
