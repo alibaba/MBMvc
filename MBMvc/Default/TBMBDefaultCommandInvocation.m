@@ -62,15 +62,16 @@ static inline id executeCommand(Class commandClass, id <TBMBNotification> notifi
     if (commandClass == nil || notification == nil) {
         return nil;
     }
+    id (*objc_msgSendTypeAll)(id, SEL, id <TBMBNotification>) = (void *) objc_msgSend;
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
-        ret = objc_msgSend(commandClass, @selector(execute:), notification);
+        ret = objc_msgSendTypeAll(commandClass, @selector(execute:), notification);
     } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBSingletonCommand))) {
         id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass, @selector(instance));
         if (commandSingleton) {
-            ret = objc_msgSend(commandSingleton, @selector(execute:), notification);
+            ret = objc_msgSendTypeAll(commandSingleton, @selector(execute:), notification);
         }
     } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBInstanceCommand))) {
-        ret = objc_msgSend([[commandClass alloc] init], @selector(execute:), notification);
+        ret = objc_msgSendTypeAll([[commandClass alloc] init], @selector(execute:), notification);
     } else {
         NSCAssert(NO, @"Unknown commandClass[%@] to invoke", commandClass);
     }

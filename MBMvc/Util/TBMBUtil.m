@@ -122,10 +122,11 @@ inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notifica
                 free(type);
             }
         }
+        id (*objc_msgSendTypeAll)(id, SEL, id <TBMBNotification>, id, NSDictionary *) = (void *) objc_msgSend;
         if (hasIdReturn) {
-            ret = objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
+            ret = objc_msgSendTypeAll(handler, notifyHandler, notification, notification.body, notification.userInfo);
         } else {
-            objc_msgSend(handler, notifyHandler, notification, notification.body, notification.userInfo);
+            objc_msgSendTypeAll(handler, notifyHandler, notification, notification.body, notification.userInfo);
         }
     }
     return ret;
