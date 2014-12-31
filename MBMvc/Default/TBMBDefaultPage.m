@@ -24,7 +24,7 @@
     if (self) {
         SEL selector = @selector(setViewDO:);
         if ([self respondsToSelector:selector]) {
-            void (*objc_msgSendTypeAll)(id, SEL, id) = (void *) objc_msgSend;
+            void (*objc_msgSendTypeAll)(id, SEL, id) = (void (*)(id, SEL, id)) objc_msgSend;
             objc_msgSendTypeAll(self, selector, viewDO);
         }
         [self loadView];

@@ -122,7 +122,7 @@ inline id TBMBAutoHandlerNotification(id handler, id <TBMBNotification> notifica
                 free(type);
             }
         }
-        id (*objc_msgSendTypeAll)(id, SEL, id <TBMBNotification>, id, NSDictionary *) = (void *) objc_msgSend;
+        id (*objc_msgSendTypeAll)(id, SEL, id <TBMBNotification>, id, NSDictionary *) = (id (*)(id, SEL, id <TBMBNotification>, id, NSDictionary *)) objc_msgSend;
         if (hasIdReturn) {
             ret = objc_msgSendTypeAll(handler, notifyHandler, notification, notification.body, notification.userInfo);
         } else {
@@ -183,12 +183,12 @@ inline void TBMBAutoBindingKeyPath(id bindable) {
         for (NSString *name in names) {
             SEL selector = NSSelectorFromString(name);
             NSString *keyPath = [name substringFromIndex:[TBMB_KEY_PATH_CHANGE_PREFIX length]];
-            keyPath = [[keyPath componentsSeparatedByString:@":"] objectAtIndex:0];
+            keyPath = [keyPath componentsSeparatedByString:@":"][0];
             keyPath = [[keyPath componentsSeparatedByString:__TBMBAutoKeyPathChangeMethodNameSEP_STR]
                                 componentsJoinedByString:@"."];
             __block __unsafe_unretained id _bindable = bindable;
             TBMBBindObject(bindable, keyPath, ^(id old, id new) {
-                void (*objc_msgSendTypeAll)(id, SEL, BOOL, id, id) = (void *) objc_msgSend;
+                void (*objc_msgSendTypeAll)(id, SEL, BOOL, id, id) = (void (*)(id, SEL, BOOL, id, id)) objc_msgSend;
                 objc_msgSendTypeAll(_bindable, selector, [TBMBBindInitValue value] == old, old, new);
             }
             );
