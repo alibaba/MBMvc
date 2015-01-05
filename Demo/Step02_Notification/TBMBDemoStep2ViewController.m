@@ -49,12 +49,16 @@
     [self sendTBMBNotification:notification];
 }
 
-- (void)$$receiveDate:(id <TBMBNotification>)notification {
+- (id)$$receiveDate:(id <TBMBNotification>)notification {
+    if(!notification){
+        return @"123";
+    }
     //业务层返回数据给 ViewController
     if (notification.key == self.notificationKey) {
         self.alertText = [NSString stringWithFormat:@"现在时间:%@",
                                                     notification.body];
     }
+    return @"#21";
 }
 
 
