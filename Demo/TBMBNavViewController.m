@@ -26,7 +26,6 @@
 #import "TBMBTestInterceptorViewController.h"
 #import "TBMBAutoNilDelegateViewController.h"
 #import "TBMBDemoStep6ViewController.h"
-#import "TBMBDemoStep7ViewController.h"
 
 
 @interface TBMBNavViewController ()
@@ -61,9 +60,6 @@ TBMBWhenThisKeyPathChange(viewDO, demoStep)
                 break;
             case TBMB_DEMO_STEP06:
                 controller = [[TBMBDemoStep6ViewController alloc] initWithNibName:nil bundle:nil];
-                break;
-            case TBMB_DEMO_STEP07:
-                controller = [[TBMBDemoStep7ViewController alloc] initWithNibName:nil bundle:nil];
                 break;
         }
         if (controller) {

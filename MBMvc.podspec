@@ -27,8 +27,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
   
-  #'OMPromises/Core', '~>0.3.0'
-  s.dependency 'OMPromises/Core'
+  s.dependency 'ReactiveCocoa'
 
   s.prefix_header_contents = <<-EOS
   

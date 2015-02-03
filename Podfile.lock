@@ -1,11 +1,17 @@
 PODS:
-  - OMPromises/Core (0.3.0)
+  - ReactiveCocoa (2.4.4):
+    - ReactiveCocoa/UI (= 2.4.4)
+  - ReactiveCocoa/Core (2.4.4):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.4.4)
+  - ReactiveCocoa/UI (2.4.4):
+    - ReactiveCocoa/Core
 
 DEPENDENCIES:
-  - OMPromises/Core
-  - OMPromises/Core (~> 0.3.0)
+  - ReactiveCocoa
+  - ReactiveCocoa (= 2.4.4)
 
 SPEC CHECKSUMS:
-  OMPromises: 504eb1cfd1249f8814d7e311f1378f9652224486
+  ReactiveCocoa: 2fce77ef1e622179d30b57726d140369f28d9ec6
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.35.0
