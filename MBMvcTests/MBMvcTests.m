@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "TBMBTestRxCommand.h"
 #import "RACSignal.h"
+#import "RACScheduler.h"
 
 @interface MBMvcTests : XCTestCase
 
@@ -31,16 +32,15 @@
     NSRunLoop *theRL = [NSRunLoop mainRunLoop];
     __block NSNumber *shouldKeepRunning = @YES;
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+    [[RACScheduler schedulerWithPriority:RACSchedulerPriorityLow name:@"Run"] schedule:^{
         sleep(1);
         TBMBTestRxCommand *command = [[TBMBTestRxCommand alloc] init];
         [[command createSignal:@"1"] subscribeNext:^(id x) {
-            NSLog(@"%@", [NSThread currentThread]);
+            NSLog(@"Subscribe %@", [NSThread currentThread]);
             shouldKeepRunning = @NO;
         }];
-    }
-    );
-
+    }];
 
     while ([shouldKeepRunning boolValue] && [theRL runMode:NSDefaultRunLoopMode
                                                 beforeDate:[NSDate distantFuture]]);

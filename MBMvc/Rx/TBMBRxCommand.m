@@ -44,9 +44,6 @@
             currentScheduler = [RACScheduler immediateScheduler];
         }
         if (![scheduler isEqual:currentScheduler]) {
-
-
-
             racSignal = [racSignal subscribeOn:scheduler];
             racSignal = [racSignal deliverOn:currentScheduler];
         }
