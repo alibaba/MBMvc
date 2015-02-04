@@ -18,27 +18,16 @@
 #import "RACDisposable.h"
 #import "RACSignal+Operations.h"
 #import "RACScheduler.h"
+#import "RACSubject.h"
 
 @implementation TBMBRxCommand
 - (RACSignal *)createSignal:(id)parameter {
     RACSignal *racSignal = [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
-        @try {
-            if ([self respondsToSelector:@selector(observe:andSubscribe:)]) {
-                return [self performSelector:@selector(observe:andSubscribe:)
-                                  withObject:parameter
-                                  withObject:subscriber];
-            }
-        }
-        @catch (NSException *exception) {
-            [subscriber sendError:[TBMBRxErrorUtil convertNSException:exception]];
-            return nil;
-        }
-        [subscriber sendCompleted];
-        return nil;
+        return [self _internalCreateSignal:parameter
+                                subscriber:subscriber];
     }];
     RACScheduler *scheduler;
-    if ([self respondsToSelector:@selector(runQueue)] &&
-            (scheduler = [self performSelector:@selector(runQueue)])) {
+    if ((scheduler = [self runScheduler])) {
         RACScheduler *currentScheduler = [RACScheduler currentScheduler];
         if (!currentScheduler) {
             currentScheduler = [RACScheduler immediateScheduler];
@@ -53,7 +42,41 @@
 }
 
 - (void)executeSubject:(id)parameter andSubject:(RACSubject *)subject {
-    //FIXME
+    RACScheduler *scheduler;
+    if ((scheduler = [self runScheduler])) {
+        [scheduler schedule:^{
+            [self _internalCreateSignal:parameter
+                             subscriber:subject];
+        }];
+    } else {
+        [self _internalCreateSignal:parameter
+                         subscriber:subject];
+    }
+}
+
+- (RACDisposable *)_internalCreateSignal:(id)parameter subscriber:(id <RACSubscriber>)subscriber {
+    @try {
+        if ([self respondsToSelector:@selector(observe:andSubscribe:)]) {
+            return [self performSelector:@selector(observe:andSubscribe:)
+                              withObject:parameter
+                              withObject:subscriber];
+        }
+    }
+    @catch (NSException *exception) {
+        [subscriber sendError:[TBMBRxErrorUtil convertNSException:exception]];
+        return nil;
+    }
+    [subscriber sendCompleted];
+    return nil;
+}
+
+
+- (RACScheduler *)runScheduler {
+    RACScheduler *scheduler = nil;
+    if ([self respondsToSelector:@selector(runQueue)]) {
+        scheduler = [self performSelector:@selector(runQueue)];
+    }
+    return scheduler;
 }
 
 
