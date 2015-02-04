@@ -28,12 +28,23 @@
 }
 
 - (void)testExample {
-    // This is an example of a functional test case.
+    NSRunLoop *theRL = [NSRunLoop mainRunLoop];
+    __block NSNumber *shouldKeepRunning = @YES;
 
-    TBMBTestRxCommand *command = [[TBMBTestRxCommand alloc] init];
-    [[command createSignal:@"1"] subscribeNext:^(id x) {
-        NSLog(@"%@", [NSThread currentThread]);
-    }];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        sleep(1);
+        TBMBTestRxCommand *command = [[TBMBTestRxCommand alloc] init];
+        [[command createSignal:@"1"] subscribeNext:^(id x) {
+            NSLog(@"%@", [NSThread currentThread]);
+            shouldKeepRunning = @NO;
+        }];
+    }
+    );
+
+
+    while ([shouldKeepRunning boolValue] && [theRL runMode:NSDefaultRunLoopMode
+                                                beforeDate:[NSDate distantFuture]]);
+    sleep(1);
     XCTAssert(YES, @"Pass");
 
 }

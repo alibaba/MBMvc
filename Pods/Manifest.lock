@@ -9,7 +9,6 @@ PODS:
 
 DEPENDENCIES:
   - ReactiveCocoa
-  - ReactiveCocoa (= 2.4.4)
 
 SPEC CHECKSUMS:
   ReactiveCocoa: 2fce77ef1e622179d30b57726d140369f28d9ec6

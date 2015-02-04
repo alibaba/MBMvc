@@ -8,7 +8,7 @@
 @class RACScheduler;
 @class RACSignal;
 @class RACSubject;
-s@class RACDisposable;
+@class RACDisposable;
 
 //用于对应RAC的封装
 @protocol TBMBRxCommandProtocol <NSObject>

@@ -7,7 +7,9 @@
 
 extern NSString *const NSRxErrorDomain;
 
-extern NSInteger NSRxErrorCode;
+extern NSString *const NSRxExceptionKey;
+
+extern const NSInteger NSRxErrorCode;
 
 
 @interface TBMBRxErrorUtil : NSObject

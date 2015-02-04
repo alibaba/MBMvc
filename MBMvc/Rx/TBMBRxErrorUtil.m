@@ -6,7 +6,9 @@
 
 NSString *const NSRxErrorDomain = @"TBMB_RX_ERROR";
 
-NSInteger NSRxErrorCode = 400;
+NSString *const NSRxExceptionKey = @"TBMB_RX_Exception_Key";
+
+const NSInteger NSRxErrorCode = 400;
 
 @implementation TBMBRxErrorUtil {
 
@@ -17,7 +19,7 @@ NSInteger NSRxErrorCode = 400;
     return [[NSError alloc]
                      initWithDomain:NSRxErrorDomain
                                code:NSRxErrorCode
-                           userInfo:@{@"EXCEPTION" : exception}];
+                           userInfo:@{NSRxExceptionKey : exception}];
 }
 
 @end

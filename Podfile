@@ -3,7 +3,8 @@ inhibit_all_warnings!
 
 xcodeproj 'MBMvc'
 
-link_with 'LibMBMVC', 'MBMvcDemo', 'MBMvcTests'
+link_with 'LibMBMVC'
 
-pod 'ReactiveCocoa', '2.4.4'
+pod 'ReactiveCocoa'
 podspec :name => 'MBMvc'
+

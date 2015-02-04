@@ -4,6 +4,8 @@
 
 #import "TBMBTestRxCommand.h"
 #import "RACDisposable.h"
+#import "RACSubscriber.h"
+#import "RACScheduler.h"
 
 
 @implementation TBMBTestRxCommand {
@@ -11,7 +13,13 @@
 }
 - (RACDisposable *)observe:(id)parameter andSubscribe:(id <RACSubscriber>)subscriber {
     NSLog(@"%@", [NSThread currentThread]);
+    [subscriber sendNext:@1];
     return nil;
 }
+
+- (RACScheduler *)runQueue {
+    return [RACScheduler schedulerWithPriority:RACSchedulerPriorityHigh name:@"Test"];
+}
+
 
 @end
