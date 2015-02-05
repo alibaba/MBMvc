@@ -34,5 +34,6 @@
 
 @interface TBMBRxCommand : NSObject <TBMBRxCommandProtocol>
 
++ (instancetype)command;
 
 @end

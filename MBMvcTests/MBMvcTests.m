@@ -11,6 +11,7 @@
 #import "TBMBTestRxCommand.h"
 #import "RACSignal.h"
 #import "RACScheduler.h"
+#import "RACSubject.h"
 
 @interface MBMvcTests : XCTestCase
 
@@ -28,23 +29,48 @@
     [super tearDown];
 }
 
-- (void)testExample {
+
+- (void)testSignal {
     NSRunLoop *theRL = [NSRunLoop mainRunLoop];
     __block NSNumber *shouldKeepRunning = @YES;
 
 
-    [[RACScheduler schedulerWithPriority:RACSchedulerPriorityLow name:@"Run"] schedule:^{
+    [[RACScheduler schedulerWithPriority:RACSchedulerPriorityLow
+                                    name:@"Run"] schedule:^{
         sleep(1);
-        TBMBTestRxCommand *command = [[TBMBTestRxCommand alloc] init];
+        TBMBTestRxCommand *command = [TBMBTestRxCommand command];
         [[command createSignal:@"1"] subscribeNext:^(id x) {
-            NSLog(@"Subscribe %@", [NSThread currentThread]);
+            NSLog(@"Subscribe %@", [RACScheduler currentScheduler]);
             shouldKeepRunning = @NO;
         }];
     }];
 
     while ([shouldKeepRunning boolValue] && [theRL runMode:NSDefaultRunLoopMode
                                                 beforeDate:[NSDate distantFuture]]);
-    sleep(1);
+    XCTAssert(YES, @"Pass");
+}
+
+
+- (void)testSubject {
+    NSRunLoop *theRL = [NSRunLoop mainRunLoop];
+    __block NSNumber *shouldKeepRunning = @YES;
+
+
+    [[RACScheduler schedulerWithPriority:RACSchedulerPriorityLow
+                                    name:@"Run"] schedule:^{
+        sleep(1);
+        RACSubject *subject = [RACSubject subject];
+        [subject subscribeNext:^(id x) {
+            NSLog(@"Subscribe %@", [RACScheduler currentScheduler]);
+            shouldKeepRunning = @NO;
+        }];
+        [[TBMBTestRxCommand command]
+                            executeSubject:@1
+                                andSubject:subject];
+    }];
+
+    while ([shouldKeepRunning boolValue] && [theRL runMode:NSDefaultRunLoopMode
+                                                beforeDate:[NSDate distantFuture]]);
     XCTAssert(YES, @"Pass");
 
 }

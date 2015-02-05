@@ -79,5 +79,9 @@
     return scheduler;
 }
 
++ (instancetype)command {
+    return [[self alloc] init];
+}
+
 
 @end

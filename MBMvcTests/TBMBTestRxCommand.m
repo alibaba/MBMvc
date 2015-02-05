@@ -12,7 +12,7 @@
 
 }
 - (RACDisposable *)observe:(id)parameter andSubscribe:(id <RACSubscriber>)subscriber {
-    NSLog(@"Command %@", [NSThread currentThread]);
+    NSLog(@"Command %@", [RACScheduler currentScheduler]);
     [subscriber sendNext:@1];
     return nil;
 }
