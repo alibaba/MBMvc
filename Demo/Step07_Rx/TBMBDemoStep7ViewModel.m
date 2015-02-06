@@ -21,9 +21,13 @@
 }
 
 - (RACCommand *)timeCommand {
-    return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        return [[TBMBDemoStep7RxCommand command] createSignal:nil];
-    }];
+    if (!_timeCommand) {
+        _timeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            return [[TBMBDemoStep7RxCommand command] createSignal:nil];
+        }];
+        _timeCommand.allowsConcurrentExecution = YES;
+    }
+    return _timeCommand;
 }
 
 

@@ -20,6 +20,6 @@
 
 @property(nonatomic, strong) NSDate *time;
 
-@property(nonatomic, strong, readonly) RACCommand *timeCommand;
+@property(nonatomic, strong) RACCommand *timeCommand;
 
 @end
