@@ -3,8 +3,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TBMBRxCommand.h"
+#import "TBMBRxSingletonCommand.h"
 
 
-@interface TBMBTestRxCommand : TBMBRxCommand <TBMBRxObserve>
+@interface TBMBTestRxCommand : TBMBRxSingletonCommand <TBMBRxObserve>
 @end
