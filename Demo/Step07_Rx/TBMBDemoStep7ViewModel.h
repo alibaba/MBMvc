@@ -8,12 +8,13 @@
  *
  */
 //
-// Created by Wentong on 15/2/4.
+// Created by Wentong on 15/2/6.
 //
 
 #import <Foundation/Foundation.h>
-#import "TBMBRxSingletonCommand.h"
 
 
-@interface TBMBTestRxCommand : TBMBRxSingletonCommand <TBMBRxObserve>
+@interface TBMBDemoStep7ViewModel : NSObject
+
+@property(nonatomic, strong) NSDate *time;
 @end

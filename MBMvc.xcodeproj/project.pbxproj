@@ -105,9 +105,12 @@
 		EACF07411BAC39CBE2196D50 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0B0638BD017E4E305399 /* Default.png */; };
 		EACF0771DE5E9BF8C8E5A453 /* TBMBRxCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0AFF2056AA15F16379C9 /* TBMBRxCommand.h */; };
 		EACF07750D08B5D9ADFAFE58 /* TBMBRxErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF07AF72823CD393FE57FF /* TBMBRxErrorUtil.h */; };
+		EACF09143BA0886652B21615 /* TBMBDemoStep7View.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0C76950A5BC2D137A408 /* TBMBDemoStep7View.m */; };
 		EACF098D8F6F40A4D6671354 /* TBMBRxSingletonCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0523EDB71E06DDED5C9E /* TBMBRxSingletonCommand.h */; };
+		EACF09E26CCD802A79140A98 /* TBMBDemoStep7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0C4B12A519F30F1B166D /* TBMBDemoStep7ViewController.m */; };
 		EACF0A0236F08407B5100D0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
 		EACF0B0B7385142542B959D3 /* TBMBRxErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0326BB7CB38906F21868 /* TBMBRxErrorUtil.m */; };
+		EACF0B5311D5283922984A85 /* TBMBDemoStep7ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF079120A748B3FB89A287 /* TBMBDemoStep7ViewModel.m */; };
 		EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +160,7 @@
 		EACF018D7DA1AB2BB9A1D78D /* TBMBSimpleInstanceCommand+TBMBProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBMBSimpleInstanceCommand+TBMBProxy.m"; sourceTree = "<group>"; };
 		EACF0191621E37EF0B9F4189 /* TBMBTestMemoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBTestMemoryView.m; sourceTree = "<group>"; };
 		EACF01DAA530DD7BDABD9AC9 /* TBMBNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBMBNavViewController.m; sourceTree = "<group>"; };
+		EACF01E0B0F5768933453EBA /* TBMBDemoStep7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7ViewController.h; sourceTree = "<group>"; };
 		EACF0229962BC22B4D4F5A69 /* TBMBTestInterceptorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestInterceptorView.h; sourceTree = "<group>"; };
 		EACF0251417711D5E602F1DF /* TBMBTestMemoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBTestMemoryViewController.m; sourceTree = "<group>"; };
 		EACF0253EBED3ABB635EE061 /* TBMBDemoStep3Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep3Command.h; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 		EACF02E376C813FD4025B4F9 /* TBMBSimpleSingletonCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBSimpleSingletonCommand.m; sourceTree = "<group>"; };
 		EACF0326BB7CB38906F21868 /* TBMBRxErrorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBRxErrorUtil.m; sourceTree = "<group>"; };
 		EACF035FAB2F66CED9E8174E /* TBMBMessageSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageSender.h; sourceTree = "<group>"; };
+		EACF0379AFD83C61A5929C65 /* TBMBDemoStep7ViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7ViewModel.h; sourceTree = "<group>"; };
 		EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EACF03DB799C3219F4821E75 /* TBMBDemoStep5Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep5Command.m; sourceTree = "<group>"; };
 		EACF03E9DC10A6788149B625 /* TBMBDemoStep6ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep6ViewController.h; sourceTree = "<group>"; };
@@ -194,6 +199,7 @@
 		EACF076966D60DA2353A80AF /* TBMBGlobalFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBGlobalFacade.h; sourceTree = "<group>"; };
 		EACF077024524A39BAC13237 /* TBMBSingletonCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBSingletonCommand.h; sourceTree = "<group>"; };
 		EACF07902CF4BEF73CAE5E67 /* TBMBMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageReceiver.h; sourceTree = "<group>"; };
+		EACF079120A748B3FB89A287 /* TBMBDemoStep7ViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7ViewModel.m; sourceTree = "<group>"; };
 		EACF07AF72823CD393FE57FF /* TBMBRxErrorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBRxErrorUtil.h; sourceTree = "<group>"; };
 		EACF07B7B0C0B16B29F24994 /* TBMB_metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMB_metamacros.h; sourceTree = "<group>"; };
 		EACF07BA3E6FAA1B17195F5C /* TBMBDefaultRootViewController+TBMBProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBDefaultRootViewController+TBMBProxy.h"; sourceTree = "<group>"; };
@@ -233,7 +239,9 @@
 		EACF0BC84CBD4AC83FE324DA /* TBMBNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBMBNavViewController.h; sourceTree = "<group>"; };
 		EACF0BF1FD3E079CD512E5CD /* TBMBDemoStep5View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep5View.h; sourceTree = "<group>"; };
 		EACF0C42E018916502131565 /* TBMBInstanceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBInstanceCommand.h; sourceTree = "<group>"; };
+		EACF0C4B12A519F30F1B166D /* TBMBDemoStep7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7ViewController.m; sourceTree = "<group>"; };
 		EACF0C59AFBE61AE9FEE8BCF /* TBMBNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBNotification.h; sourceTree = "<group>"; };
+		EACF0C76950A5BC2D137A408 /* TBMBDemoStep7View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7View.m; sourceTree = "<group>"; };
 		EACF0CA15B798321DFA8DBDD /* TBMBDemoStep4ViewDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep4ViewDO.m; sourceTree = "<group>"; };
 		EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EACF0CCD1BCB717A82281787 /* TBMBNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBNavView.h; sourceTree = "<group>"; };
@@ -259,6 +267,7 @@
 		EACF0E99EBDA61DFC1264086 /* TBMBLogInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBLogInterceptor.m; sourceTree = "<group>"; };
 		EACF0EB4A17E10C510F69A16 /* TBMBDemoStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep2ViewController.m; sourceTree = "<group>"; };
 		EACF0EBB9C1E23A5BEE3A60C /* TBMBRxCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBRxCommand.m; sourceTree = "<group>"; };
+		EACF0EBFA73D2A12C5C8CF11 /* TBMBDemoStep7View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7View.h; sourceTree = "<group>"; };
 		EACF0ED68ED61C37022FE8DC /* TBMBDemoStep2Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep2Command.h; sourceTree = "<group>"; };
 		EACF0EEA2FC96B509AFA3CB6 /* TBMBSimpleStaticCommand+TBMBProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBSimpleStaticCommand+TBMBProxy.h"; sourceTree = "<group>"; };
 		EACF0EF9C7417B4711F33752 /* TBMBDefaultMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultMediator.m; sourceTree = "<group>"; };
@@ -552,6 +561,7 @@
 				EACF0405BB9EA288BF4FA8EC /* TestInterceptor */,
 				EACF07223DC174E61B956773 /* AutoNilDelegate */,
 				EACF00902D0343B615C9ADCD /* Step06_Mediator */,
+				EACF0ED3E1AC4E42AF985F9A /* Step07_Rx */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -662,6 +672,19 @@
 				EACF07B7B0C0B16B29F24994 /* TBMB_metamacros.h */,
 			);
 			path = Bindable;
+			sourceTree = "<group>";
+		};
+		EACF0ED3E1AC4E42AF985F9A /* Step07_Rx */ = {
+			isa = PBXGroup;
+			children = (
+				EACF0C4B12A519F30F1B166D /* TBMBDemoStep7ViewController.m */,
+				EACF01E0B0F5768933453EBA /* TBMBDemoStep7ViewController.h */,
+				EACF0C76950A5BC2D137A408 /* TBMBDemoStep7View.m */,
+				EACF0EBFA73D2A12C5C8CF11 /* TBMBDemoStep7View.h */,
+				EACF079120A748B3FB89A287 /* TBMBDemoStep7ViewModel.m */,
+				EACF0379AFD83C61A5929C65 /* TBMBDemoStep7ViewModel.h */,
+			);
+			path = Step07_Rx;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -926,6 +949,9 @@
 				DC96C41B174DEF7D00DB1628 /* TBMBAutoNilDelegateViewController.m in Sources */,
 				DC96C41C174DEF7D00DB1628 /* TBMBDemoStep6ViewController.m in Sources */,
 				DC96C41D174DEF7D00DB1628 /* TBMBDemoStep6View.m in Sources */,
+				EACF09E26CCD802A79140A98 /* TBMBDemoStep7ViewController.m in Sources */,
+				EACF09143BA0886652B21615 /* TBMBDemoStep7View.m in Sources */,
+				EACF0B5311D5283922984A85 /* TBMBDemoStep7ViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

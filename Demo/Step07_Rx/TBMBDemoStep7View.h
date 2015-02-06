@@ -8,12 +8,16 @@
  *
  */
 //
-// Created by Wentong on 15/2/4.
+// Created by Wentong on 15/2/6.
 //
 
 #import <Foundation/Foundation.h>
-#import "TBMBRxSingletonCommand.h"
+#import "TBMBDefaultPage.h"
+
+@class TBMBDemoStep7ViewModel;
 
 
-@interface TBMBTestRxCommand : TBMBRxSingletonCommand <TBMBRxObserve>
+@interface TBMBDemoStep7View : TBMBDefaultPage
+
+@property(nonatomic, strong) TBMBDemoStep7ViewModel *viewDO;
 @end
