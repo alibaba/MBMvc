@@ -13,8 +13,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class RACCommand;
+
 
 @interface TBMBDemoStep7ViewModel : NSObject
 
 @property(nonatomic, strong) NSDate *time;
+
+@property(nonatomic, strong, readonly) RACCommand *timeCommand;
+
 @end

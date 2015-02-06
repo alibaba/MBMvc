@@ -20,4 +20,5 @@
 @interface TBMBDemoStep7View : TBMBDefaultPage
 
 @property(nonatomic, strong) TBMBDemoStep7ViewModel *viewDO;
+
 @end

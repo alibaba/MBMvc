@@ -20,12 +20,25 @@
 
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil
+                           bundle:nibBundleOrNil];
+    if (self) {
+        _viewDO = [TBMBDemoStep7ViewModel new];
+    }
+    return self;
+}
 
 - (void)loadView {
     [super loadView];
     TBMBDemoStep7View *navView = [[TBMBDemoStep7View alloc]
                                                      initWithFrame:self.view.bounds
-                                                        withViewDO:nil];
+                                                        withViewDO:self.viewDO];
     [self.view addSubview:navView];
+}
+
+
+- (void)dealloc {
+    NSLog(@"dealloc %@", self);
 }
 @end

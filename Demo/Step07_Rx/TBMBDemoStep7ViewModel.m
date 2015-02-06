@@ -12,9 +12,23 @@
 //
 
 #import "TBMBDemoStep7ViewModel.h"
+#import "RACCommand.h"
+#import "TBMBDemoStep7RxCommand.h"
 
 
 @implementation TBMBDemoStep7ViewModel {
 
 }
+
+- (RACCommand *)timeCommand {
+    return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        return [[TBMBDemoStep7RxCommand command] createSignal:nil];
+    }];
+}
+
+
+- (void)dealloc {
+    NSLog(@"dealloc %@", self);
+}
+
 @end
