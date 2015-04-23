@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/Proxy/TBMBSimpleStaticCommand+TBMBProxy.h

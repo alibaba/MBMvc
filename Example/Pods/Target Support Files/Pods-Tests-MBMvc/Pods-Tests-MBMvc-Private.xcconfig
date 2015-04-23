@@ -1,0 +1,5 @@
+#include "Pods-Tests-MBMvc.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/MBMvc" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FBSnapshotTestCase" "${PODS_ROOT}/Headers/Public/MBMvc" "${PODS_ROOT}/Headers/Public/ReactiveCocoa"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}
