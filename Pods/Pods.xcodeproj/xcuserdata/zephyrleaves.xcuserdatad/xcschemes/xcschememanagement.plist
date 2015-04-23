@@ -4,12 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>OMPromises-Resources-iOS.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-OMPromises.xcscheme</key>
+		<key>Pods-ReactiveCocoa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,17 +17,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1B3DC7FAE62342FF8603C414</key>
+		<key>71F1535D5CD8BD861B917164</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1D5EC25A180E4B6A92EE5C13</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5BF65ED8C37F4BC78A4EA6A8</key>
+		<key>C389EDEC88443FF7C915E5F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

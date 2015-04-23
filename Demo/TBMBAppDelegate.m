@@ -19,7 +19,6 @@
 #import "TBMBGlobalFacade.h"
 #import "TBMBLogInterceptor.h"
 #import "TBMBBind.h"
-#import "TBMBPromisesInterceptor.h"
 
 @implementation TBMBAppDelegate
 
@@ -37,9 +36,7 @@
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBStaticHelloCommand class]];
 //    [[TBMBGlobalFacade instance] registerCommand:[TBMBSingletonHelloCommand class]];
     //设置拦截器
-    [[TBMBGlobalFacade instance] setInterceptors:[NSArray arrayWithObjects:[[TBMBLogInterceptor alloc] init],
-                                                                           [TBMBPromisesInterceptor interceptor],
-                                                                           nil]];
+    [[TBMBGlobalFacade instance] setInterceptors:@[[[TBMBLogInterceptor alloc] init]]];
     //可以直接自动扫描全部Command进行自动异步的Command注册
     [[TBMBGlobalFacade instance] registerCommandAutoAsync];
 

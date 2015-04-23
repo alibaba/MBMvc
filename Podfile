@@ -1,5 +1,10 @@
-platform :ios, '6.1'
+platform :ios, '6.0'
 inhibit_all_warnings!
 
-pod 'OMPromises/Core', '~>0.3.0'
+xcodeproj 'MBMvc'
+
+link_with 'LibMBMVC'
+
+pod 'ReactiveCocoa'
 podspec :name => 'MBMvc'
+

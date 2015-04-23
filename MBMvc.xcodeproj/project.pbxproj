@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D82E792F201D4E8DBEFD41C8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F574D2AC48E4E92BEE2A936 /* libPods.a */; };
+		DC59461A1A810DAE00013118 /* MBMvcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5946191A810DAE00013118 /* MBMvcTests.m */; };
+		DC59461B1A810DAE00013118 /* libLibMBMVC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */; };
 		DC96C3BE174DEE9000DB1628 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
 		DC96C3C9174DEF3800DB1628 /* TBMBDefaultFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0755EFB1DAFCA21432B5 /* TBMBDefaultFacade.m */; };
 		DC96C3CA174DEF3800DB1628 /* TBMBDefaultNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */; };
@@ -94,45 +96,34 @@
 		DC96C41D174DEF7D00DB1628 /* TBMBDemoStep6View.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF09526A82116F61F9411F /* TBMBDemoStep6View.m */; };
 		DC96C420174DEF8600DB1628 /* libLibMBMVC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */; };
 		DC96C421174DEFE400DB1628 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF00C43235422C43B05660 /* UIKit.framework */; };
-		DC96C424174DF01F00DB1628 /* libLibMBMVC.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */; };
-		EACF002BD4B066233DCAAFB1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACF0E48844C799FD0D1290F /* InfoPlist.strings */; };
-		EACF009BBC382FC11C33334D /* TBMBSimpleStaticCommand+TBMBPromisesProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF03EFC8FEA4E2DC1CCE90 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.h */; };
 		EACF00F3BB9611C843583809 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */; };
-		EACF013AF7B445FC44D642AE /* TBMBPromises.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF05B79054A60C649D78ED /* TBMBPromises.h */; };
-		EACF01435A94CA5287B435E4 /* MBMvcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF020B04620474C4D795B3 /* MBMvcTests.m */; };
-		EACF017894D6C1D6B88F79EA /* TBMBDemoStep7Command.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0FFE25948684CA3C9C79 /* TBMBDemoStep7Command.h */; };
-		EACF018100A53DB7D8C14A4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
 		EACF01C29701FDA299DFE9BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF00C43235422C43B05660 /* UIKit.framework */; };
-		EACF01EA8EB1E691294252A0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF00C43235422C43B05660 /* UIKit.framework */; };
-		EACF01F0659A5861E868271D /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */; };
-		EACF0275B53EC990AA77D1F2 /* TBMBPromisesInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0E91F59747BBB41DF003 /* TBMBPromisesInterceptor.m */; };
-		EACF02BB8C021C36F88827B3 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF09273E1B2D2AC9EB4F82 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.h */; };
+		EACF02669AA809AB522F6E99 /* TBMBRxCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0EBB9C1E23A5BEE3A60C /* TBMBRxCommand.m */; };
 		EACF03F2581BACB54DF53900 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */; };
-		EACF044ADF3FB25B3550776B /* TBMBPromisesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF05DD25B2834B07E12E4F /* TBMBPromisesProxy.m */; };
+		EACF0448CAB68FD3E3AF89EB /* TBMBTestRxCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0A8DD8FAE278A0EF1799 /* TBMBTestRxCommand.m */; };
+		EACF0613B2ABCD67BE964C7F /* TBMBRxSingletonCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF085B1A008BE99861209B /* TBMBRxSingletonCommand.m */; };
 		EACF07411BAC39CBE2196D50 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0B0638BD017E4E305399 /* Default.png */; };
-		EACF077907147D5FA9906168 /* TBMBDemoStep7View.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF05CBA382D6972586B893 /* TBMBDemoStep7View.h */; };
-		EACF08AB4F42073F4ACB26EA /* TBMBDemoStep7View.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF021514FDA194BF59FEB2 /* TBMBDemoStep7View.m */; };
-		EACF08B8D4161D942A09E638 /* TBMBPromisesInterceptor.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0AC49416C29BA97B674E /* TBMBPromisesInterceptor.h */; };
-		EACF09C531076808DF9C5DBD /* TBMBPromises.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF02CF330AF4A42CC18B15 /* TBMBPromises.m */; };
+		EACF0771DE5E9BF8C8E5A453 /* TBMBRxCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0AFF2056AA15F16379C9 /* TBMBRxCommand.h */; };
+		EACF07750D08B5D9ADFAFE58 /* TBMBRxErrorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF07AF72823CD393FE57FF /* TBMBRxErrorUtil.h */; };
+		EACF09143BA0886652B21615 /* TBMBDemoStep7View.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0C76950A5BC2D137A408 /* TBMBDemoStep7View.m */; };
+		EACF098D8F6F40A4D6671354 /* TBMBRxSingletonCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0523EDB71E06DDED5C9E /* TBMBRxSingletonCommand.h */; };
+		EACF09E26CCD802A79140A98 /* TBMBDemoStep7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0C4B12A519F30F1B166D /* TBMBDemoStep7ViewController.m */; };
 		EACF0A0236F08407B5100D0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */; };
-		EACF0B9C459A077B2FCC6693 /* TBMBDemoStep7Command.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF03EA01622AE9EB5F384D /* TBMBDemoStep7Command.m */; };
-		EACF0C0FEE9630BC271772B8 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0854892292DB52052600 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.m */; };
-		EACF0C1CCB2390EEE09DBB37 /* TBMBDemoStep7ViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0850D3DB4B6EAFB74674 /* TBMBDemoStep7ViewController.h */; };
+		EACF0B0B7385142542B959D3 /* TBMBRxErrorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0326BB7CB38906F21868 /* TBMBRxErrorUtil.m */; };
+		EACF0B5311D5283922984A85 /* TBMBDemoStep7ViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF079120A748B3FB89A287 /* TBMBDemoStep7ViewModel.m */; };
 		EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */; };
-		EACF0EBB9E63C8E70D290B88 /* TBMBDemoStep7ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0DDDFD2E99559C8ECF03 /* TBMBDemoStep7ViewController.m */; };
-		EACF0EF8D88F9474D890FC55 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF0D2B3C55EC85CFE75760 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.m */; };
-		EACF0FB795D2FD255CFFBD3E /* TBMBPromisesProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF0DF90852AB4A050B7117 /* TBMBPromisesProxy.h */; };
+		EACF0F9AF0C62A76649F0C94 /* TBMBDemoStep7RxCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EACF034C6850005F262522BC /* TBMBDemoStep7RxCommand.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DC96C41E174DEF8100DB1628 /* PBXContainerItemProxy */ = {
+		DC59461C1A810DAE00013118 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EACF0E4522CC4FD51B67D723 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DC96C3BC174DEE9000DB1628;
 			remoteInfo = LibMBMVC;
 		};
-		DC96C422174DF01A00DB1628 /* PBXContainerItemProxy */ = {
+		DC96C41E174DEF8100DB1628 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EACF0E4522CC4FD51B67D723 /* Project object */;
 			proxyType = 1;
@@ -143,14 +134,19 @@
 
 /* Begin PBXFileReference section */
 		0F574D2AC48E4E92BEE2A936 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		319D800BAA4240DEAB0F5782 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		1CF778F6DC19D2401CC0CE41 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		63457FF1F2CF8987F05B28EC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8C2C173C5FB84509813A97F7 /* libPods-LibMBMVC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LibMBMVC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC9CE49A77104CD4634DACB9 /* libPods-MBMvcTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MBMvcTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC5946151A810DAE00013118 /* MBMvcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MBMvcTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC5946181A810DAE00013118 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC5946191A810DAE00013118 /* MBMvcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMvcTests.m; sourceTree = "<group>"; };
 		DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLibMBMVC.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCE3748E1A81B5F000842CCA /* libPods-ReactiveCocoa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-ReactiveCocoa.a"; path = "Pods/build/Debug-iphoneos/libPods-ReactiveCocoa.a"; sourceTree = "<group>"; };
 		EACF00143526FE645AAF3FAF /* TBMBCommandInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBCommandInterceptor.h; sourceTree = "<group>"; };
-		EACF00222F49568473E9C0E1 /* MBMvcTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MBMvcTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACF003361E0B86F01564B8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EACF0076A143CB39C2F37F3D /* MBMvc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "MBMvc-Info.plist"; sourceTree = "<group>"; };
 		EACF009774316C26B5B64941 /* TBMBTestInterceptorViewDO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestInterceptorViewDO.h; sourceTree = "<group>"; };
-		EACF00A11283172B290F0CA2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EACF00B4DE855DEECCC0B05A /* TBMBCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBCommand.h; sourceTree = "<group>"; };
 		EACF00C43235422C43B05660 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EACF00C7C99DC5A9FB69E1B5 /* TBMBDemoStep5ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep5ViewController.m; sourceTree = "<group>"; };
@@ -165,33 +161,31 @@
 		EACF018D7DA1AB2BB9A1D78D /* TBMBSimpleInstanceCommand+TBMBProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBMBSimpleInstanceCommand+TBMBProxy.m"; sourceTree = "<group>"; };
 		EACF0191621E37EF0B9F4189 /* TBMBTestMemoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBTestMemoryView.m; sourceTree = "<group>"; };
 		EACF01DAA530DD7BDABD9AC9 /* TBMBNavViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBMBNavViewController.m; sourceTree = "<group>"; };
-		EACF020B04620474C4D795B3 /* MBMvcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MBMvcTests.m; sourceTree = "<group>"; };
-		EACF021514FDA194BF59FEB2 /* TBMBDemoStep7View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7View.m; sourceTree = "<group>"; };
+		EACF01E0B0F5768933453EBA /* TBMBDemoStep7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7ViewController.h; sourceTree = "<group>"; };
 		EACF0229962BC22B4D4F5A69 /* TBMBTestInterceptorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestInterceptorView.h; sourceTree = "<group>"; };
 		EACF0251417711D5E602F1DF /* TBMBTestMemoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBTestMemoryViewController.m; sourceTree = "<group>"; };
 		EACF0253EBED3ABB635EE061 /* TBMBDemoStep3Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep3Command.h; sourceTree = "<group>"; };
 		EACF02907226E3934313D629 /* TBMBSimpleStaticCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBSimpleStaticCommand.h; sourceTree = "<group>"; };
 		EACF02B4F4BE10716FFF1B8F /* TBMBDemoStep5Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep5Command.h; sourceTree = "<group>"; };
-		EACF02CF330AF4A42CC18B15 /* TBMBPromises.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBPromises.m; sourceTree = "<group>"; };
 		EACF02E376C813FD4025B4F9 /* TBMBSimpleSingletonCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBSimpleSingletonCommand.m; sourceTree = "<group>"; };
+		EACF0326BB7CB38906F21868 /* TBMBRxErrorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBRxErrorUtil.m; sourceTree = "<group>"; };
+		EACF034C6850005F262522BC /* TBMBDemoStep7RxCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7RxCommand.m; sourceTree = "<group>"; };
 		EACF035FAB2F66CED9E8174E /* TBMBMessageSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageSender.h; sourceTree = "<group>"; };
+		EACF0379AFD83C61A5929C65 /* TBMBDemoStep7ViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7ViewModel.h; sourceTree = "<group>"; };
 		EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EACF03DB799C3219F4821E75 /* TBMBDemoStep5Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep5Command.m; sourceTree = "<group>"; };
 		EACF03E9DC10A6788149B625 /* TBMBDemoStep6ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep6ViewController.h; sourceTree = "<group>"; };
-		EACF03EA01622AE9EB5F384D /* TBMBDemoStep7Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7Command.m; sourceTree = "<group>"; };
 		EACF03EB542BDEA366269D41 /* TBMBDefaultMediator+TBMBProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBMBDefaultMediator+TBMBProxy.m"; sourceTree = "<group>"; };
-		EACF03EFC8FEA4E2DC1CCE90 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBSimpleStaticCommand+TBMBPromisesProxy.h"; sourceTree = "<group>"; };
 		EACF040FA11E7C5BCC313B8B /* TBMBMessageProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageProxy.h; sourceTree = "<group>"; };
+		EACF0474F96734A61AC5BE74 /* TBMBTestRxCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestRxCommand.h; sourceTree = "<group>"; };
 		EACF04A49197313295C9DAB1 /* TBMBDefaultRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultRootViewController.h; sourceTree = "<group>"; };
 		EACF04A6BE09CB8557A8DACE /* TBMBDemoStep1View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep1View.m; sourceTree = "<group>"; };
 		EACF04BB086759E0885A6C1C /* TBMBDefaultMediator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultMediator.h; sourceTree = "<group>"; };
 		EACF04C87CC6AD5D3E221B2C /* TBMBDefaultMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultMessageReceiver.h; sourceTree = "<group>"; };
 		EACF05161E0D2CE4D3883182 /* TBMBDefaultNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultNotification.m; sourceTree = "<group>"; };
 		EACF051D954EF450AC2DB676 /* TBMBTestMemoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestMemoryViewController.h; sourceTree = "<group>"; };
+		EACF0523EDB71E06DDED5C9E /* TBMBRxSingletonCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBRxSingletonCommand.h; sourceTree = "<group>"; };
 		EACF05AB7BB806AB6A1B1DB5 /* TBMBDefaultMessageReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultMessageReceiver.m; sourceTree = "<group>"; };
-		EACF05B79054A60C649D78ED /* TBMBPromises.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBPromises.h; sourceTree = "<group>"; };
-		EACF05CBA382D6972586B893 /* TBMBDemoStep7View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7View.h; sourceTree = "<group>"; };
-		EACF05DD25B2834B07E12E4F /* TBMBPromisesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBPromisesProxy.m; sourceTree = "<group>"; };
 		EACF0602BE6A5302B28522A6 /* TBMBDemoRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoRootViewController.m; sourceTree = "<group>"; };
 		EACF0603DF1D1C1B609B555D /* TBMBLogInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBLogInterceptor.h; sourceTree = "<group>"; };
 		EACF06356D98E1902E0189CE /* MBMvc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBMvc-Prefix.pch"; sourceTree = "<group>"; };
@@ -207,21 +201,22 @@
 		EACF076966D60DA2353A80AF /* TBMBGlobalFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBGlobalFacade.h; sourceTree = "<group>"; };
 		EACF077024524A39BAC13237 /* TBMBSingletonCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBSingletonCommand.h; sourceTree = "<group>"; };
 		EACF07902CF4BEF73CAE5E67 /* TBMBMessageReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBMessageReceiver.h; sourceTree = "<group>"; };
+		EACF079120A748B3FB89A287 /* TBMBDemoStep7ViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7ViewModel.m; sourceTree = "<group>"; };
+		EACF07AF72823CD393FE57FF /* TBMBRxErrorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBRxErrorUtil.h; sourceTree = "<group>"; };
 		EACF07B7B0C0B16B29F24994 /* TBMB_metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMB_metamacros.h; sourceTree = "<group>"; };
 		EACF07BA3E6FAA1B17195F5C /* TBMBDefaultRootViewController+TBMBProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBDefaultRootViewController+TBMBProxy.h"; sourceTree = "<group>"; };
 		EACF07D0BF6453B518FB20F8 /* TBMBDemoStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep3ViewController.m; sourceTree = "<group>"; };
 		EACF07FF0B8EEF8654C29914 /* TBMBDefaultFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultFacade.h; sourceTree = "<group>"; };
 		EACF080F927138E0226D938A /* TBMBBind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBBind.m; sourceTree = "<group>"; };
-		EACF0850D3DB4B6EAFB74674 /* TBMBDemoStep7ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7ViewController.h; sourceTree = "<group>"; };
-		EACF0854892292DB52052600 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBMBSimpleStaticCommand+TBMBPromisesProxy.m"; sourceTree = "<group>"; };
+		EACF085B1A008BE99861209B /* TBMBRxSingletonCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBRxSingletonCommand.m; sourceTree = "<group>"; };
 		EACF085E254F3EFB3DAE4F38 /* TBMBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBUtil.h; sourceTree = "<group>"; };
 		EACF0885047F60C5216DCAD1 /* TBMBDefaultMediator+TBMBProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBDefaultMediator+TBMBProxy.h"; sourceTree = "<group>"; };
+		EACF08986559C2E73E6003F0 /* TBMBDemoStep7RxCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7RxCommand.h; sourceTree = "<group>"; };
 		EACF08E48C32DD0D55DB8912 /* TBMBDefaultCommandInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultCommandInvocation.m; sourceTree = "<group>"; };
 		EACF08ED4C9088C08DD964F0 /* TBMBDemoStep5View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep5View.m; sourceTree = "<group>"; };
 		EACF08EE34F7AAF19EAE5C89 /* TBMBDemoStep2Command.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep2Command.m; sourceTree = "<group>"; };
 		EACF08FEB1D9028E782E25CD /* TBMBDemoStep5ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep5ViewController.h; sourceTree = "<group>"; };
 		EACF0914EF64588F4C84C160 /* TBMBDemoStep3View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep3View.h; sourceTree = "<group>"; };
-		EACF09273E1B2D2AC9EB4F82 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBSimpleInstanceCommand+TBMBPromisesProxy.h"; sourceTree = "<group>"; };
 		EACF09526A82116F61F9411F /* TBMBDemoStep6View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep6View.m; sourceTree = "<group>"; };
 		EACF09683655BB5983B89FED /* TBMBCommandInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBCommandInvocation.h; sourceTree = "<group>"; };
 		EACF09A9E33658A9CC1BE7ED /* TBMBTestInterceptorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBTestInterceptorView.m; sourceTree = "<group>"; };
@@ -229,12 +224,11 @@
 		EACF0A4C33E9802892902983 /* TBMBDemoStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep1ViewController.h; sourceTree = "<group>"; };
 		EACF0A526395D6A049F09A7A /* TBMBDemoStep6View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep6View.h; sourceTree = "<group>"; };
 		EACF0A8ABDAD7B9398C5EB01 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		EACF0A943E34ABAE321F94B2 /* MBMvcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = "MBMvcTests-Info.plist"; sourceTree = "<group>"; };
+		EACF0A8DD8FAE278A0EF1799 /* TBMBTestRxCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBTestRxCommand.m; sourceTree = "<group>"; };
 		EACF0AB6EF9F565BBF7D2422 /* TBMBDemoStep4View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep4View.h; sourceTree = "<group>"; };
-		EACF0ABDD8484047F155F8C1 /* MBMvcTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MBMvcTests.h; sourceTree = "<group>"; };
 		EACF0ABFABB9A07342A46C3A /* TBMBPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBPage.h; sourceTree = "<group>"; };
-		EACF0AC49416C29BA97B674E /* TBMBPromisesInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBPromisesInterceptor.h; sourceTree = "<group>"; };
 		EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		EACF0AFF2056AA15F16379C9 /* TBMBRxCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBRxCommand.h; sourceTree = "<group>"; };
 		EACF0B0638BD017E4E305399 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EACF0B30EA0C86778B6BDB70 /* TBMBSimpleInstanceCommand+TBMBProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBSimpleInstanceCommand+TBMBProxy.h"; sourceTree = "<group>"; };
 		EACF0B4323AD22B43A4F9103 /* TBMBSimpleStaticCommand+TBMBProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBMBSimpleStaticCommand+TBMBProxy.m"; sourceTree = "<group>"; };
@@ -248,14 +242,15 @@
 		EACF0BC84CBD4AC83FE324DA /* TBMBNavViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBMBNavViewController.h; sourceTree = "<group>"; };
 		EACF0BF1FD3E079CD512E5CD /* TBMBDemoStep5View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep5View.h; sourceTree = "<group>"; };
 		EACF0C42E018916502131565 /* TBMBInstanceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBInstanceCommand.h; sourceTree = "<group>"; };
+		EACF0C4B12A519F30F1B166D /* TBMBDemoStep7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7ViewController.m; sourceTree = "<group>"; };
 		EACF0C59AFBE61AE9FEE8BCF /* TBMBNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBNotification.h; sourceTree = "<group>"; };
+		EACF0C76950A5BC2D137A408 /* TBMBDemoStep7View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7View.m; sourceTree = "<group>"; };
 		EACF0CA15B798321DFA8DBDD /* TBMBDemoStep4ViewDO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep4ViewDO.m; sourceTree = "<group>"; };
 		EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EACF0CCD1BCB717A82281787 /* TBMBNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBNavView.h; sourceTree = "<group>"; };
 		EACF0CE9D33F31FCD13BFA29 /* TBMBDefaultPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultPage.h; sourceTree = "<group>"; };
 		EACF0D0B8BC1B30E17637369 /* TBMBDemoStep3View.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep3View.m; sourceTree = "<group>"; };
 		EACF0D201D5F5413BB0C1AA1 /* TBMBSimpleInstanceCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBSimpleInstanceCommand.h; sourceTree = "<group>"; };
-		EACF0D2B3C55EC85CFE75760 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TBMBSimpleInstanceCommand+TBMBPromisesProxy.m"; sourceTree = "<group>"; };
 		EACF0D2E1DD71E9AF0C3F6E5 /* TBMBDefaultPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultPage.m; sourceTree = "<group>"; };
 		EACF0D38E08E6841AAA9802D /* TBMBOnlyProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBOnlyProxy.h; sourceTree = "<group>"; };
 		EACF0D56FB6AD62FF7BAF587 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -267,16 +262,15 @@
 		EACF0DAAB26269FFE69BEE05 /* TBMBGlobalFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBGlobalFacade.m; sourceTree = "<group>"; };
 		EACF0DAF689CD12D4D41C10F /* TBMBAutoNilDelegateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBAutoNilDelegateView.h; sourceTree = "<group>"; };
 		EACF0DC4DC49733F861F0F6D /* TBMBDefaultRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultRootViewController.m; sourceTree = "<group>"; };
-		EACF0DDDFD2E99559C8ECF03 /* TBMBDemoStep7ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep7ViewController.m; sourceTree = "<group>"; };
-		EACF0DF90852AB4A050B7117 /* TBMBPromisesProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBPromisesProxy.h; sourceTree = "<group>"; };
 		EACF0DFCD86336834D4BDA20 /* TBMBDefaultCommandInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDefaultCommandInvocation.h; sourceTree = "<group>"; };
 		EACF0E57111DA06BDC157FB2 /* TBMBMessageProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBMessageProxy.m; sourceTree = "<group>"; };
 		EACF0E61E844130094956ECE /* TBMBNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBNavView.m; sourceTree = "<group>"; };
 		EACF0E68DB8EC06CC6585DB6 /* TBMBTestMemoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestMemoryView.h; sourceTree = "<group>"; };
 		EACF0E8B8CA45BDE0F67A551 /* TBMBTestInterceptorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBTestInterceptorViewController.h; sourceTree = "<group>"; };
-		EACF0E91F59747BBB41DF003 /* TBMBPromisesInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBPromisesInterceptor.m; sourceTree = "<group>"; };
 		EACF0E99EBDA61DFC1264086 /* TBMBLogInterceptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBLogInterceptor.m; sourceTree = "<group>"; };
 		EACF0EB4A17E10C510F69A16 /* TBMBDemoStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep2ViewController.m; sourceTree = "<group>"; };
+		EACF0EBB9C1E23A5BEE3A60C /* TBMBRxCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBRxCommand.m; sourceTree = "<group>"; };
+		EACF0EBFA73D2A12C5C8CF11 /* TBMBDemoStep7View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7View.h; sourceTree = "<group>"; };
 		EACF0ED68ED61C37022FE8DC /* TBMBDemoStep2Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep2Command.h; sourceTree = "<group>"; };
 		EACF0EEA2FC96B509AFA3CB6 /* TBMBSimpleStaticCommand+TBMBProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TBMBSimpleStaticCommand+TBMBProxy.h"; sourceTree = "<group>"; };
 		EACF0EF9C7417B4711F33752 /* TBMBDefaultMediator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDefaultMediator.m; sourceTree = "<group>"; };
@@ -289,10 +283,18 @@
 		EACF0FBD39DDF8B77EF64440 /* TBMBDemoStep2View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep2View.h; sourceTree = "<group>"; };
 		EACF0FD8B26141AD67ABAFAE /* TBMBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBMBAppDelegate.h; sourceTree = "<group>"; };
 		EACF0FE74DCE1D82713CA357 /* TBMBDemoStep1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBMBDemoStep1ViewController.m; sourceTree = "<group>"; };
-		EACF0FFE25948684CA3C9C79 /* TBMBDemoStep7Command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBMBDemoStep7Command.h; sourceTree = "<group>"; };
+		EE55D4C8C60961EB869E3E6C /* libPods-MBMvcDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MBMvcDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DC5946121A810DAE00013118 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC59461B1A810DAE00013118 /* libLibMBMVC.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC96C3BA174DEE9000DB1628 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -300,17 +302,6 @@
 				DC96C421174DEFE400DB1628 /* UIKit.framework in Frameworks */,
 				DC96C3BE174DEE9000DB1628 /* Foundation.framework in Frameworks */,
 				D82E792F201D4E8DBEFD41C8 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EACF04E89DA22E4223BB4DE4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DC96C424174DF01F00DB1628 /* libLibMBMVC.a in Frameworks */,
-				EACF01F0659A5861E868271D /* SenTestingKit.framework in Frameworks */,
-				EACF01EA8EB1E691294252A0 /* UIKit.framework in Frameworks */,
-				EACF018100A53DB7D8C14A4E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +319,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		133444CCFE1FF09F7D23F8A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1CF778F6DC19D2401CC0CE41 /* Pods.release.xcconfig */,
+				63457FF1F2CF8987F05B28EC /* Pods.debug.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DC5946161A810DAE00013118 /* MBMvcTests */ = {
+			isa = PBXGroup;
+			children = (
+				DC5946191A810DAE00013118 /* MBMvcTests.m */,
+				DC5946171A810DAE00013118 /* Supporting Files */,
+				EACF0A8DD8FAE278A0EF1799 /* TBMBTestRxCommand.m */,
+				EACF0474F96734A61AC5BE74 /* TBMBTestRxCommand.h */,
+			);
+			path = MBMvcTests;
+			sourceTree = "<group>";
+		};
+		DC5946171A810DAE00013118 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC5946181A810DAE00013118 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EACF00902D0343B615C9ADCD /* Step06_Mediator */ = {
 			isa = PBXGroup;
 			children = (
@@ -353,12 +372,12 @@
 		EACF01C53FF8E3ECFBC10803 = {
 			isa = PBXGroup;
 			children = (
+				DC5946161A810DAE00013118 /* MBMvcTests */,
 				EACF0A957A25CD1B1A993DE3 /* Products */,
 				EACF049725A7D24BDC4E177E /* Frameworks */,
 				EACF0C664EC41437B934C314 /* MBMvc */,
-				EACF077BDCE622C9743D44ED /* MBMvcTests */,
 				EACF0749C727E5E25BEC60DB /* Demo */,
-				319D800BAA4240DEAB0F5782 /* Pods.xcconfig */,
+				133444CCFE1FF09F7D23F8A2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -416,11 +435,15 @@
 		EACF049725A7D24BDC4E177E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCE3748E1A81B5F000842CCA /* libPods-ReactiveCocoa.a */,
 				EACF00C43235422C43B05660 /* UIKit.framework */,
 				EACF0CB0ADA1C4C12848C7EC /* Foundation.framework */,
 				EACF0382094DB4A2826ACA01 /* CoreGraphics.framework */,
 				EACF0ACF5CA68CA6670EE5AE /* SenTestingKit.framework */,
 				0F574D2AC48E4E92BEE2A936 /* libPods.a */,
+				8C2C173C5FB84509813A97F7 /* libPods-LibMBMVC.a */,
+				EE55D4C8C60961EB869E3E6C /* libPods-MBMvcDemo.a */,
+				BC9CE49A77104CD4634DACB9 /* libPods-MBMvcTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -432,23 +455,6 @@
 				EACF076966D60DA2353A80AF /* TBMBGlobalFacade.h */,
 			);
 			path = Facade;
-			sourceTree = "<group>";
-		};
-		EACF04BC07D84F2437EC6576 /* Promises */ = {
-			isa = PBXGroup;
-			children = (
-				EACF05B79054A60C649D78ED /* TBMBPromises.h */,
-				EACF02CF330AF4A42CC18B15 /* TBMBPromises.m */,
-				EACF05DD25B2834B07E12E4F /* TBMBPromisesProxy.m */,
-				EACF0DF90852AB4A050B7117 /* TBMBPromisesProxy.h */,
-				EACF0E91F59747BBB41DF003 /* TBMBPromisesInterceptor.m */,
-				EACF0AC49416C29BA97B674E /* TBMBPromisesInterceptor.h */,
-				EACF0D2B3C55EC85CFE75760 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.m */,
-				EACF09273E1B2D2AC9EB4F82 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.h */,
-				EACF0854892292DB52052600 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.m */,
-				EACF03EFC8FEA4E2DC1CCE90 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.h */,
-			);
-			path = Promises;
 			sourceTree = "<group>";
 		};
 		EACF054C94B49BBCCBD24A36 /* TestMemoryWarning */ = {
@@ -558,19 +564,9 @@
 				EACF0405BB9EA288BF4FA8EC /* TestInterceptor */,
 				EACF07223DC174E61B956773 /* AutoNilDelegate */,
 				EACF00902D0343B615C9ADCD /* Step06_Mediator */,
-				EACF0892186A2A6061917E7D /* Step07_Promises */,
+				EACF0ED3E1AC4E42AF985F9A /* Step07_Rx */,
 			);
 			path = Demo;
-			sourceTree = "<group>";
-		};
-		EACF077BDCE622C9743D44ED /* MBMvcTests */ = {
-			isa = PBXGroup;
-			children = (
-				EACF093A427CC0ACC922995C /* Supporting Files */,
-				EACF0ABDD8484047F155F8C1 /* MBMvcTests.h */,
-				EACF020B04620474C4D795B3 /* MBMvcTests.m */,
-			);
-			path = MBMvcTests;
 			sourceTree = "<group>";
 		};
 		EACF083C04E621B52602EFB9 /* Step05_OverDesign */ = {
@@ -588,34 +584,25 @@
 			path = Step05_OverDesign;
 			sourceTree = "<group>";
 		};
-		EACF0892186A2A6061917E7D /* Step07_Promises */ = {
+		EACF09D72F02DBB2E9EA04A0 /* Rx */ = {
 			isa = PBXGroup;
 			children = (
-				EACF0DDDFD2E99559C8ECF03 /* TBMBDemoStep7ViewController.m */,
-				EACF0850D3DB4B6EAFB74674 /* TBMBDemoStep7ViewController.h */,
-				EACF03EA01622AE9EB5F384D /* TBMBDemoStep7Command.m */,
-				EACF0FFE25948684CA3C9C79 /* TBMBDemoStep7Command.h */,
-				EACF021514FDA194BF59FEB2 /* TBMBDemoStep7View.m */,
-				EACF05CBA382D6972586B893 /* TBMBDemoStep7View.h */,
+				EACF0AFF2056AA15F16379C9 /* TBMBRxCommand.h */,
+				EACF0EBB9C1E23A5BEE3A60C /* TBMBRxCommand.m */,
+				EACF0326BB7CB38906F21868 /* TBMBRxErrorUtil.m */,
+				EACF07AF72823CD393FE57FF /* TBMBRxErrorUtil.h */,
+				EACF085B1A008BE99861209B /* TBMBRxSingletonCommand.m */,
+				EACF0523EDB71E06DDED5C9E /* TBMBRxSingletonCommand.h */,
 			);
-			path = Step07_Promises;
-			sourceTree = "<group>";
-		};
-		EACF093A427CC0ACC922995C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EACF0A943E34ABAE321F94B2 /* MBMvcTests-Info.plist */,
-				EACF0E48844C799FD0D1290F /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
+			path = Rx;
 			sourceTree = "<group>";
 		};
 		EACF0A957A25CD1B1A993DE3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				EACF0F31977927A206266240 /* MBMvcDemo.app */,
-				EACF00222F49568473E9C0E1 /* MBMvcTests.octest */,
 				DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */,
+				DC5946151A810DAE00013118 /* MBMvcTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -661,7 +648,7 @@
 				EACF022DE80075F1CFA492AB /* Util */,
 				EACF0DA4F7B8E5270B09C54D /* Bindable */,
 				EACF0C631863968DD2C47B4C /* Proxy */,
-				EACF04BC07D84F2437EC6576 /* Promises */,
+				EACF09D72F02DBB2E9EA04A0 /* Rx */,
 			);
 			path = MBMvc;
 			sourceTree = "<group>";
@@ -688,6 +675,21 @@
 				EACF07B7B0C0B16B29F24994 /* TBMB_metamacros.h */,
 			);
 			path = Bindable;
+			sourceTree = "<group>";
+		};
+		EACF0ED3E1AC4E42AF985F9A /* Step07_Rx */ = {
+			isa = PBXGroup;
+			children = (
+				EACF0C4B12A519F30F1B166D /* TBMBDemoStep7ViewController.m */,
+				EACF01E0B0F5768933453EBA /* TBMBDemoStep7ViewController.h */,
+				EACF0C76950A5BC2D137A408 /* TBMBDemoStep7View.m */,
+				EACF0EBFA73D2A12C5C8CF11 /* TBMBDemoStep7View.h */,
+				EACF079120A748B3FB89A287 /* TBMBDemoStep7ViewModel.m */,
+				EACF0379AFD83C61A5929C65 /* TBMBDemoStep7ViewModel.h */,
+				EACF034C6850005F262522BC /* TBMBDemoStep7RxCommand.m */,
+				EACF08986559C2E73E6003F0 /* TBMBDemoStep7RxCommand.h */,
+			);
+			path = Step07_Rx;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,20 +731,33 @@
 				DC96C3FB174DEF5700DB1628 /* TBMBSimpleInstanceCommand+TBMBProxy.h in Headers */,
 				DC96C3FC174DEF5700DB1628 /* TBMBDefaultMessageReceiver+TBMBProxy.h in Headers */,
 				DC96C3FD174DEF5700DB1628 /* TBMBDefaultMediator+TBMBProxy.h in Headers */,
-				EACF013AF7B445FC44D642AE /* TBMBPromises.h in Headers */,
-				EACF0FB795D2FD255CFFBD3E /* TBMBPromisesProxy.h in Headers */,
-				EACF08B8D4161D942A09E638 /* TBMBPromisesInterceptor.h in Headers */,
-				EACF02BB8C021C36F88827B3 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.h in Headers */,
-				EACF009BBC382FC11C33334D /* TBMBSimpleStaticCommand+TBMBPromisesProxy.h in Headers */,
-				EACF0C1CCB2390EEE09DBB37 /* TBMBDemoStep7ViewController.h in Headers */,
-				EACF017894D6C1D6B88F79EA /* TBMBDemoStep7Command.h in Headers */,
-				EACF077907147D5FA9906168 /* TBMBDemoStep7View.h in Headers */,
+				EACF0771DE5E9BF8C8E5A453 /* TBMBRxCommand.h in Headers */,
+				EACF07750D08B5D9ADFAFE58 /* TBMBRxErrorUtil.h in Headers */,
+				EACF098D8F6F40A4D6671354 /* TBMBRxSingletonCommand.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		DC5946141A810DAE00013118 /* MBMvcTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC59461E1A810DAE00013118 /* Build configuration list for PBXNativeTarget "MBMvcTests" */;
+			buildPhases = (
+				DC5946111A810DAE00013118 /* Sources */,
+				DC5946121A810DAE00013118 /* Frameworks */,
+				DC5946131A810DAE00013118 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC59461D1A810DAE00013118 /* PBXTargetDependency */,
+			);
+			name = MBMvcTests;
+			productName = MBMvcTests;
+			productReference = DC5946151A810DAE00013118 /* MBMvcTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DC96C3BC174DEE9000DB1628 /* LibMBMVC */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC96C3C6174DEE9000DB1628 /* Build configuration list for PBXNativeTarget "LibMBMVC" */;
@@ -761,25 +776,6 @@
 			productName = LibMBMVC;
 			productReference = DC96C3BD174DEE9000DB1628 /* libLibMBMVC.a */;
 			productType = "com.apple.product-type.library.static";
-		};
-		EACF00E1817432F0E2F1EF12 /* MBMvcTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EACF0E5FAFEFFD14F3328CFA /* Build configuration list for PBXNativeTarget "MBMvcTests" */;
-			buildPhases = (
-				EACF0457A3465B233B437183 /* Sources */,
-				EACF04E89DA22E4223BB4DE4 /* Frameworks */,
-				EACF0C3869516AD8C46651B0 /* Resources */,
-				EACF0034F89D30EFA140E09F /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DC96C423174DF01A00DB1628 /* PBXTargetDependency */,
-			);
-			name = MBMvcTests;
-			productName = MBMvcTests;
-			productReference = EACF00222F49568473E9C0E1 /* MBMvcTests.octest */;
-			productType = "com.apple.product-type.bundle";
 		};
 		EACF06DF8F41B3468476ED2C /* MBMvcDemo */ = {
 			isa = PBXNativeTarget;
@@ -804,6 +800,13 @@
 /* Begin PBXProject section */
 		EACF0E4522CC4FD51B67D723 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				TargetAttributes = {
+					DC5946141A810DAE00013118 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
 			buildConfigurationList = EACF0C4F49E5BBA22DC6BB9A /* Build configuration list for PBXProject "MBMvc" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -814,18 +817,23 @@
 			mainGroup = EACF01C53FF8E3ECFBC10803;
 			productRefGroup = EACF0A957A25CD1B1A993DE3 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				DC96C3BC174DEE9000DB1628 /* LibMBMVC */,
 				EACF06DF8F41B3468476ED2C /* MBMvcDemo */,
-				EACF00E1817432F0E2F1EF12 /* MBMvcTests */,
+				DC5946141A810DAE00013118 /* MBMvcTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DC5946131A810DAE00013118 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EACF031C12B9A8C991291EC2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -833,14 +841,6 @@
 				EACF07411BAC39CBE2196D50 /* Default.png in Resources */,
 				EACF00F3BB9611C843583809 /* Default@2x.png in Resources */,
 				EACF0C61DE3198C4072112EA /* Default-568h@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EACF0C3869516AD8C46651B0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EACF002BD4B066233DCAAFB1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,7 +859,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4E05F8061C314DB4980E0044 /* Check Pods Manifest.lock */ = {
@@ -877,22 +877,18 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		EACF0034F89D30EFA140E09F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DC5946111A810DAE00013118 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC59461A1A810DAE00013118 /* MBMvcTests.m in Sources */,
+				EACF0448CAB68FD3E3AF89EB /* TBMBTestRxCommand.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC96C3B9174DEE9000DB1628 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -916,14 +912,9 @@
 				DC96C3D9174DEF3800DB1628 /* TBMBSimpleInstanceCommand+TBMBProxy.m in Sources */,
 				DC96C3DA174DEF3800DB1628 /* TBMBDefaultMessageReceiver+TBMBProxy.m in Sources */,
 				DC96C3DB174DEF3800DB1628 /* TBMBDefaultMediator+TBMBProxy.m in Sources */,
-				EACF09C531076808DF9C5DBD /* TBMBPromises.m in Sources */,
-				EACF044ADF3FB25B3550776B /* TBMBPromisesProxy.m in Sources */,
-				EACF0275B53EC990AA77D1F2 /* TBMBPromisesInterceptor.m in Sources */,
-				EACF0EF8D88F9474D890FC55 /* TBMBSimpleInstanceCommand+TBMBPromisesProxy.m in Sources */,
-				EACF0C0FEE9630BC271772B8 /* TBMBSimpleStaticCommand+TBMBPromisesProxy.m in Sources */,
-				EACF0EBB9E63C8E70D290B88 /* TBMBDemoStep7ViewController.m in Sources */,
-				EACF0B9C459A077B2FCC6693 /* TBMBDemoStep7Command.m in Sources */,
-				EACF08AB4F42073F4ACB26EA /* TBMBDemoStep7View.m in Sources */,
+				EACF02669AA809AB522F6E99 /* TBMBRxCommand.m in Sources */,
+				EACF0B0B7385142542B959D3 /* TBMBRxErrorUtil.m in Sources */,
+				EACF0613B2ABCD67BE964C7F /* TBMBRxSingletonCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -963,56 +954,125 @@
 				DC96C41B174DEF7D00DB1628 /* TBMBAutoNilDelegateViewController.m in Sources */,
 				DC96C41C174DEF7D00DB1628 /* TBMBDemoStep6ViewController.m in Sources */,
 				DC96C41D174DEF7D00DB1628 /* TBMBDemoStep6View.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EACF0457A3465B233B437183 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EACF01435A94CA5287B435E4 /* MBMvcTests.m in Sources */,
+				EACF09E26CCD802A79140A98 /* TBMBDemoStep7ViewController.m in Sources */,
+				EACF09143BA0886652B21615 /* TBMBDemoStep7View.m in Sources */,
+				EACF0B5311D5283922984A85 /* TBMBDemoStep7ViewModel.m in Sources */,
+				EACF0F9AF0C62A76649F0C94 /* TBMBDemoStep7RxCommand.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		DC59461D1A810DAE00013118 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC96C3BC174DEE9000DB1628 /* LibMBMVC */;
+			targetProxy = DC59461C1A810DAE00013118 /* PBXContainerItemProxy */;
+		};
 		DC96C41F174DEF8100DB1628 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DC96C3BC174DEE9000DB1628 /* LibMBMVC */;
 			targetProxy = DC96C41E174DEF8100DB1628 /* PBXContainerItemProxy */;
 		};
-		DC96C423174DF01A00DB1628 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC96C3BC174DEE9000DB1628 /* LibMBMVC */;
-			targetProxy = DC96C422174DF01A00DB1628 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		EACF0E48844C799FD0D1290F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EACF00A11283172B290F0CA2 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
+		DC59461F1A810DAE00013118 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = MBMvcTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+			};
+			name = Release;
+		};
+		DC5946201A810DAE00013118 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = MBMvcTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+			};
+			name = Debug;
+		};
 		DC96C3C7174DEE9000DB1628 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 319D800BAA4240DEAB0F5782 /* Pods.xcconfig */;
+			baseConfigurationReference = 1CF778F6DC19D2401CC0CE41 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DSTROOT = /tmp/LibMBMVC.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_LDFLAGS = "-ObjC";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1020,37 +1080,21 @@
 		};
 		DC96C3C8174DEE9000DB1628 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 319D800BAA4240DEAB0F5782 /* Pods.xcconfig */;
+			baseConfigurationReference = 63457FF1F2CF8987F05B28EC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DSTROOT = /tmp/LibMBMVC.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_LDFLAGS = "-ObjC";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
-		};
-		EACF0004B1250D0FE10BDF4C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MBMvc.app/MBMvc";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
-				INFOPLIST_FILE = "MBMvcTests/MBMvcTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
 		};
 		EACF014063A94A899F6C9716 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1059,9 +1103,12 @@
 				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
 				INFOPLIST_FILE = "Demo/MBMvc-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1073,9 +1120,12 @@
 				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
 				INFOPLIST_FILE = "Demo/MBMvc-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
+				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/** \"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1097,6 +1147,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1126,30 +1177,23 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
-			};
-			name = Debug;
-		};
-		EACF0E0C94853947C0FF219D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MBMvc.app/MBMvc";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo/MBMvc-Prefix.pch";
-				INFOPLIST_FILE = "MBMvcTests/MBMvcTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DC59461E1A810DAE00013118 /* Build configuration list for PBXNativeTarget "MBMvcTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC59461F1A810DAE00013118 /* Release */,
+				DC5946201A810DAE00013118 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DC96C3C6174DEE9000DB1628 /* Build configuration list for PBXNativeTarget "LibMBMVC" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1157,21 +1201,13 @@
 				DC96C3C8174DEE9000DB1628 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EACF0C4F49E5BBA22DC6BB9A /* Build configuration list for PBXProject "MBMvc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EACF0C6C631DD5B8C5CC7957 /* Release */,
 				EACF0C841C85C5388154BEE3 /* Debug */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EACF0E5FAFEFFD14F3328CFA /* Build configuration list for PBXNativeTarget "MBMvcTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EACF0004B1250D0FE10BDF4C /* Release */,
-				EACF0E0C94853947C0FF219D /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
