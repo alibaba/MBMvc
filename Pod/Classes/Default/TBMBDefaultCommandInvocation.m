@@ -66,7 +66,8 @@ static inline id executeCommand(Class commandClass, id <TBMBNotification> notifi
     if (TBMBClassHasProtocol(commandClass, @protocol(TBMBStaticCommand))) {
         ret = objc_msgSendTypeAll(commandClass, @selector(execute:), notification);
     } else if (TBMBClassHasProtocol(commandClass, @protocol(TBMBSingletonCommand))) {
-        id <TBMBSingletonCommand> commandSingleton = objc_msgSend(commandClass, @selector(instance));
+        id <TBMBSingletonCommand> commandSingleton =
+                ((id <TBMBSingletonCommand> (*)(id, SEL)) objc_msgSend)(commandClass, @selector(instance));
         if (commandSingleton) {
             ret = objc_msgSendTypeAll(commandSingleton, @selector(execute:), notification);
         }

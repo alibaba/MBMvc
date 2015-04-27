@@ -212,7 +212,7 @@ static inline NSString *subscribeReceiverName(NSUInteger key, Class clazz) {
         }
 
         dispatch_queue_t queue = _command_queue;
-        NSSet *names = objc_msgSend(commandClass, @selector(listReceiveNotifications));
+        NSSet *names = ((NSSet *(*)(id, SEL)) objc_msgSend)(commandClass, @selector(listReceiveNotifications));
         for (NSString *name in names) {
             [_notificationCenter addObserverForName:name
                                              object:nil
