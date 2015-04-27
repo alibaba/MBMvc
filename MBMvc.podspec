@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, '6.1'
 
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '6.0'
 
 
   s.subspec 'Bindable' do |bs|
