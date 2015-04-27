@@ -1,21 +1,22 @@
 PODS:
   - FBSnapshotTestCase (1.7)
-  - MBMvc (1.2.0):
-    - MBMvc/Bindable (= 1.2.0)
-    - MBMvc/Default (= 1.2.0)
-    - MBMvc/Facade (= 1.2.0)
-    - MBMvc/Protocol (= 1.2.0)
-    - MBMvc/Proxy (= 1.2.0)
-    - MBMvc/Rx (= 1.2.0)
-    - MBMvc/Util (= 1.2.0)
-  - MBMvc/Bindable (1.2.0)
-  - MBMvc/Default (1.2.0)
-  - MBMvc/Facade (1.2.0)
-  - MBMvc/Protocol (1.2.0)
-  - MBMvc/Proxy (1.2.0)
-  - MBMvc/Rx (1.2.0):
+  - MBMvc (1.3.0):
+    - MBMvc/Default (= 1.3.0)
+    - MBMvc/Protocol (= 1.3.0)
+    - MBMvc/Proxy (= 1.3.0)
+    - MBMvc/Rx (= 1.3.0)
+    - MBMvc/Util (= 1.3.0)
+  - MBMvc/Default (1.3.0):
+    - MBMvc/Protocol
+    - MBMvc/Util
+  - MBMvc/Protocol (1.3.0)
+  - MBMvc/Proxy (1.3.0):
+    - MBMvc/Default
+    - MBMvc/Util
+  - MBMvc/Rx (1.3.0):
     - ReactiveCocoa
-  - MBMvc/Util (1.2.0)
+  - MBMvc/Util (1.3.0):
+    - MBMvc/Protocol
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -34,7 +35,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 82c59404fe5352b691fbe6ce6ff2417de157b98c
-  MBMvc: 57d4eca4c594c257063dc3722b882f9ce52408e3
+  MBMvc: 72ddecad4c46d2e6ee48da7fa95bb58b83f60ed7
   ReactiveCocoa: 4a4d7792ea83f1611a11c8096929a5db44ccf947
 
 COCOAPODS: 0.35.0

@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "MBMvc"
-  s.version      = "1.2.0"
+  s.version      = "1.3.0"
   s.summary      = "MBMvc is a Message Based MVC framework."
   s.homepage     = "https://github.com/alibaba/MBMvc"
 
@@ -14,27 +14,19 @@ Pod::Spec.new do |s|
                     }
 
   s.author       = { "文通" => "wentong@taobao.com" }
-  s.source       = { :git => "https://github.com/alibaba/MBMvc.git", :tag => "1.2.0" }
+  s.source       = { :git => "https://github.com/alibaba/MBMvc.git", :tag => s.version.to_s }
 
 
   s.platform     = :ios, '6.1'
 
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '6.0'
 
-
-  s.subspec 'Bindable' do |bs|
-    bs.source_files = 'Pod/Classes/Bindable/**/*'
-    bs.public_header_files = 'Pod/Classes/Bindable/**/*.h'
-  end
 
   s.subspec 'Default' do |bs|
-    bs.source_files = 'Pod/Classes/Default/**/*'
-    bs.public_header_files = 'Pod/Classes/Default/**/*.h'
-  end
-
-  s.subspec 'Facade' do |bs|
-    bs.source_files = 'Pod/Classes/Facade/**/*'
-    bs.public_header_files = 'Pod/Classes/Facade/**/*.h'
+    bs.source_files = 'Pod/Classes/Default/**/*' ,'Pod/Classes/Facade/**/*'
+    bs.public_header_files = 'Pod/Classes/Default/**/*.h' ,'Pod/Classes/Facade/**/*.h'
+    bs.dependency 'MBMvc/Protocol'
+    bs.dependency 'MBMvc/Util'
   end
 
   s.subspec 'Protocol' do |bs|
@@ -45,6 +37,8 @@ Pod::Spec.new do |s|
   s.subspec 'Proxy' do |bs|
     bs.source_files = 'Pod/Classes/Proxy/**/*'
     bs.public_header_files = 'Pod/Classes/Proxy/**/*.h'
+    bs.dependency 'MBMvc/Default'
+    bs.dependency 'MBMvc/Util'
   end
 
   s.subspec 'Rx' do |bs|
@@ -54,8 +48,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Util' do |bs|
-    bs.source_files = 'Pod/Classes/Util/**/*'
-    bs.public_header_files = 'Pod/Classes/Util/**/*.h'
+    bs.source_files = 'Pod/Classes/Util/**/*','Pod/Classes/Bindable/**/*'
+    bs.public_header_files = 'Pod/Classes/Util/**/*.h','Pod/Classes/Bindable/**/*.h'
+    bs.dependency 'MBMvc/Protocol'
   end
  # s.resource_bundles = {
  #   'MBMvc' => ['Pod/Assets/*.png']
