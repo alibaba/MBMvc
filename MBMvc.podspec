@@ -32,12 +32,15 @@ Pod::Spec.new do |s|
     bs.source_files = 'Pod/Classes/Default/**/*'
     bs.public_header_files = 'Pod/Classes/Default/**/*.h'
     bs.dependency 'MBMvc/Protocol'
+    bs.dependency 'MBMvc/Facade'
+    bs.dependency 'MBMvc/Util'
   end
 
   s.subspec 'Facade' do |bs|
     bs.source_files = 'Pod/Classes/Facade/**/*'
     bs.public_header_files = 'Pod/Classes/Facade/**/*.h'
     bs.dependency 'MBMvc/Protocol'
+    bs.dependency 'MBMvc/Default'
   end
 
   s.subspec 'Protocol' do |bs|
@@ -49,6 +52,7 @@ Pod::Spec.new do |s|
     bs.source_files = 'Pod/Classes/Proxy/**/*'
     bs.public_header_files = 'Pod/Classes/Proxy/**/*.h'
     bs.dependency 'MBMvc/Default'
+    bs.dependency 'MBMvc/Util'
   end
 
   s.subspec 'Rx' do |bs|
@@ -61,6 +65,7 @@ Pod::Spec.new do |s|
     bs.source_files = 'Pod/Classes/Util/**/*'
     bs.public_header_files = 'Pod/Classes/Util/**/*.h'
     bs.dependency 'MBMvc/Protocol'
+    bs.dependency 'MBMvc/Bindable'
   end
  # s.resource_bundles = {
  #   'MBMvc' => ['Pod/Assets/*.png']
